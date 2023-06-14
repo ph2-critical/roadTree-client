@@ -1,4 +1,7 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import { css } from '@emotion/react';
+import tw from 'twin.macro';
+import { styled } from 'twin.macro';
 
 export default function Home() {
   return (
@@ -109,5 +112,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
