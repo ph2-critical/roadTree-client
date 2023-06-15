@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/custom-forms')],
 
   // mode: 'jit',
   // content: ['pages/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
