@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import { css } from '@emotion/react';
-import tw from 'twin.macro';
-import { styled } from 'twin.macro';
+import { Header } from '../components/Header';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      hi
-    </main>
+    // <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    //   hi I'm seonho 유선호입니다.
+    // </main>
+    <>
+      <Header />
+    </>
   );
 }
