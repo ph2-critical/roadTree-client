@@ -6,7 +6,7 @@ export const Header = () => {
   const router = useRouter();
   const path = usePathname();
   return (
-    <div className="flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b-[1px]">
+    <div className="flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
       <div>
         <Logo
           className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer"
@@ -16,7 +16,7 @@ export const Header = () => {
         />
       </div>
       {path === '/' ? (
-        <span className="flex w-full h-10 text-sm border border-gray-300 rounded-lg md:ml-52 ml-4 cursor-pointer md:w-1/2">
+        <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
           <input
             type="search"
             name="serch"
