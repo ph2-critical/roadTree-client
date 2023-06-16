@@ -1,22 +1,15 @@
 'use client';
-import Image from 'next/image';
-import logo from '@public/logo.svg';
 import { useRouter, usePathname } from 'next/navigation';
+import { Logo } from '@/src/app/assets/Icons';
 
 export const Header = () => {
   const router = useRouter();
   const path = usePathname();
-  console.log(router);
   return (
     <div className="flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b-[1px]">
       <div>
-        <Image
-          src={logo}
+        <Logo
           className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer"
-          alt="logo"
-          width={128}
-          height={51}
-          priority={true}
           onClick={() => {
             router.push('/');
           }}
@@ -32,7 +25,7 @@ export const Header = () => {
           />
         </span>
       ) : null}
-      <div className="flex flex-row-reverse ml-4 mr-4 text-white md:hidden">
+      <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
         <button>
           <svg
             width="20"
