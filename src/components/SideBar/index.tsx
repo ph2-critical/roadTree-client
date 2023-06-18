@@ -11,10 +11,10 @@ export const SideBar = () => {
   const path = usePathname();
 
   return (
-    <div className="fixed bg-white dark:bg-gray-800">
+    <div className="relative bg-white dark:bg-gray-800">
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className=" h- w-72">
-          <nav className="mt-10 px-6 ">
+          <nav className="px-6 mt-10 ">
             <a
               className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
                 path === '/'
@@ -23,7 +23,7 @@ export const SideBar = () => {
               }  `}
               href="#"
             >
-              <ListBulletIcon className=" m-auto fill-current" />
+              <ListBulletIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">전체글</span>
               <span className="flex-grow text-right"></span>
             </a>
@@ -35,7 +35,7 @@ export const SideBar = () => {
               }  `}
               href="#"
             >
-              <BookIcon className=" m-auto fill-current" />
+              <BookIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">정보 공유</span>
               <span className="flex-grow text-right"></span>
             </a>
@@ -47,12 +47,12 @@ export const SideBar = () => {
               }  `}
               href="#"
             >
-              <ChatIcon className=" m-auto fill-current" />
+              <ChatIcon className="m-auto fill-current" />
               <span className="mx-4 text-lg font-normal">고민/잡담</span>
               <span className="flex-grow text-right">
                 {/* <button
                   type="button"
-                  className="w-6 h-6 text-xs  rounded-full text-white bg-red-500"
+                  className="w-6 h-6 text-xs text-white bg-red-500 rounded-full"
                 >
                   <span className="p-1">7</span>
                 </button> */}
@@ -66,7 +66,7 @@ export const SideBar = () => {
               }  `}
               href="#"
             >
-              <ClipIcon className=" m-auto fill-current" />
+              <ClipIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">질문</span>
               <span className="flex-grow text-right"></span>
             </a>
