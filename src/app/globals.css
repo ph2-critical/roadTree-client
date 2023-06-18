@@ -41,12 +41,15 @@
     /* active하면 bg-main text-white font-bold */
   }
   .modal-btn {
-    @apply w-32 h-10 m-auto text-base font-medium border border-solid rounded-lg border-gray1;
+    @apply w-[122px] h-10 m-auto text-base font-medium border border-solid rounded-lg border-gray1;
     /* 글자 컬러, 백그라운드 컬러 직접 지정
     취소 => text-gray1
     삭제 => text-white bg-gray1
     */
   }
+
+
+
 
   .title-text {
     @apply font-semibold text-lg lg:text-2xl  overflow-hidden text-ellipsis 
@@ -66,5 +69,18 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+
+
+  .bg-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display : flex;
+    justify-content : center;
+    align-items : center;
   }
 }

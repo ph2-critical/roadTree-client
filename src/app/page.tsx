@@ -1,4 +1,5 @@
 import { Header } from '../components/Header';
+import { DeleteModal } from '../components/Modal/deleteModal';
 import { PostCard } from '../components/Post/postCard';
 import { SideBar } from '../components/SideBar';
 
@@ -18,6 +19,8 @@ export default function Home() {
       <button className="modal-btn text-gray1">취소하기</button>
       <button className="text-white modal-btn bg-gray1">삭제하기</button>
       <PostCard />
+      <PostCard />
+      <DeleteModal />
     </>
   );
 }
