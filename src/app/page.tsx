@@ -1,3 +1,4 @@
+import { Comments } from '../components/Comments';
 import { Header } from '../components/Header';
 import { DeleteModal } from '../components/Modal/deleteModal';
 import { PostCard } from '../components/Post/postCard';
@@ -20,7 +21,8 @@ export default function Home() {
       <button className="text-white modal-btn bg-gray1">삭제하기</button>
       <PostCard />
       <PostCard />
-      <DeleteModal />
+      {/* <DeleteModal /> */}
+      <Comments />
     </>
   );
 }
