@@ -6,7 +6,7 @@ export const Header = () => {
   const router = useRouter();
   const path = usePathname();
   return (
-    <div className="flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
+    <div className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
       <div>
         <Logo
           className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer"
