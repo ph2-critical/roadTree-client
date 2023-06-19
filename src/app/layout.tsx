@@ -17,7 +17,9 @@ export default function RootLayout({
       <body>
         <Header />
         <SideBar />
-        <div className="ml-72 ">{children}</div>
+        <div className="flex flex-col items-center justify-between min-h-screen p-24 ml-72 ">
+          {children}
+        </div>
       </body>
     </html>
   );

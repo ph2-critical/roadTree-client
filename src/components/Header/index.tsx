@@ -1,20 +1,15 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Logo } from '@/src/app/assets/Icons';
+import Link from 'next/link';
 
 export const Header = () => {
-  const router = useRouter();
   const path = usePathname();
   return (
     <div className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
-      <div>
-        <Logo
-          className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer"
-          onClick={() => {
-            router.push('/');
-          }}
-        />
-      </div>
+      <Link href={'/'}>
+        <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
+      </Link>
       {path === '/' ? (
         <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
           <input
