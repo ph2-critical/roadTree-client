@@ -1,7 +1,18 @@
+import { SubHeader } from '../components/Main/subHeader';
+import { PostCard } from '../components/Post/postCard';
+import { CheckIcon } from './assets/Icons';
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-24">
-      hi I'm seonho 유선호입니다.
-    </main>
+    <>
+      <SubHeader />
+      <main>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </main>
+    </>
   );
 }
