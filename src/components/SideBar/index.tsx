@@ -11,9 +11,9 @@ export const SideBar = () => {
   const path = usePathname();
 
   return (
-    <div className="relative bg-white dark:bg-gray-800">
+    <div className="fixed bg-white dark:bg-gray-800 h-[1008px] mt-[72px]">
       <div className="flex flex-col sm:flex-row sm:justify-around">
-        <div className=" h- w-72">
+        <div className="w-72">
           <nav className="px-6 mt-10 ">
             <a
               className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${

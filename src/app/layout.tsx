@@ -1,3 +1,5 @@
+import { Header } from '../components/Header';
+import { SideBar } from '../components/SideBar';
 import './globals.css';
 
 export const metadata = {
@@ -12,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <SideBar />
+        <div className="ml-72 ">{children}</div>
+      </body>
     </html>
   );
 }
