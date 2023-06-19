@@ -1,6 +1,6 @@
 export const PostCard = () => {
   return (
-    <div className="flex flex-col w-3/4 p-6 ml-4 text-sm border-gray-300 cursor-pointer border-y g-40 lg:h-52 md:ml-52 lg:w-1/2 lg:p-9 hover:bg-modalbg">
+    <div className="flex flex-col w-3/4 p-6 ml-4 text-sm border-gray-300 cursor-pointer border-y g-40 lg:h-52 lg:p-9 hover:bg-modalbg">
       <div className="mb-3">
         <a className="mr-3 title-text whitespace-nowrap">
           비전공자의 고민을 들어주세요!

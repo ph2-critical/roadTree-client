@@ -5,7 +5,7 @@ import { useState } from 'react';
 export const SubHeader = () => {
   const [now, setNow] = useState('1');
   return (
-    <div className="w-full ml-24">
+    <div className="w-full mb-4 ml-24">
       <div className="flex justify-between pt-3">
         <div className="flex gap-[12px] items-end">
           <div
