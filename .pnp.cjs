@@ -809,6 +809,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prosemirror-keymap", "npm:1.2.2"],\
             ["prosemirror-model", "npm:1.19.2"],\
             ["prosemirror-state", "npm:1.4.3"],\
+            ["prosemirror-transform", "npm:1.7.3"],\
             ["prosemirror-view", "npm:1.31.4"]\
           ],\
           "linkType": "HARD"\
