@@ -1,7 +1,15 @@
+'use client';
 import { Button } from '@/src/components/Button';
 import { Comments } from '@/src/components/Comments';
+import { DeleteModal } from '@/src/components/Modal/deleteModal';
+import { useState } from 'react';
 
 export default function DetailPage() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <main className="flex flex-col w-2/3 mt-10 ml-40 mr-auto group gap-y-1">
       <p className="">질문</p>
@@ -17,9 +25,12 @@ export default function DetailPage() {
         <p> | </p>
         <p>1분전</p>
         <p> | </p>
-        <p>삭제</p>
+        <p onClick={toggleIsOpen} className="hover:cursor-pointer">
+          삭제
+        </p>
         {/* 글에 대한 추가 정보 */}
       </div>
+      {isOpen && <DeleteModal />}
       <div className="text-lg font-base text-contentGray my-11">
         안녕하세요 저는 유선호입니다. 안녕하세요 저는 유선호입니다. 안녕하세요
         저는 유선호입니다. 안녕하세요 저는 유선호입니다. 안녕하세요 저는
