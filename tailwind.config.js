@@ -19,6 +19,8 @@ module.exports = {
         gray1: '#c3c3c3',
         gray2: '#CBD5E2',
         gray3: '#6B6A6A',
+        gray4: '#414141',
+        contentGray: '#2e2e2e',
         borderGray1: '#A5A5A5',
         modalbg: 'rgba(0, 0, 0, 0.1)',
         primary: {

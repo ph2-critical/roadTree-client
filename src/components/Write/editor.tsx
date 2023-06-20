@@ -9,7 +9,7 @@ export default function Inputs(): JSX.Element {
   return (
     <div className="flex flex-col gap-y-5">
       <div className="mt-7">
-        <a className="block mb-4 font-semibold">정보 입력</a>
+        <p className="block mb-4 font-semibold">정보 입력</p>
         <div className="flex gap-[12px]">
           <span className="input-span">
             <input className="input-base" placeholder="닉네임"></input>
@@ -25,7 +25,7 @@ export default function Inputs(): JSX.Element {
       </div>
 
       <div>
-        <a className="block mb-4 font-semibold">카테고리</a>
+        <p className="block mb-4 font-semibold">카테고리</p>
         <div className="flex gap-[20px]">
           <button
             className={`m-0 category-btn ${
