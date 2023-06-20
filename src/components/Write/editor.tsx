@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 export default function BoardWrite(): JSX.Element {
   return (
