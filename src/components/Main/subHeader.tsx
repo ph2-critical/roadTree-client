@@ -1,6 +1,7 @@
 'use client';
 import { CheckIcon } from '@/src/app/assets/Icons';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export const SubHeader = () => {
   const [now, setNow] = useState('1');
@@ -45,7 +46,10 @@ export const SubHeader = () => {
             <a>나도궁순</a>
           </div>
         </div>
-        <button className="write-btn">작성하기</button>
+        <Link href={'/write'} className="write-btn">
+          {/* 링크 수정하세요 */}
+          <button className="write-btn">작성하기</button>
+        </Link>
       </div>
     </div>
   );

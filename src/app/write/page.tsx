@@ -1,3 +1,12 @@
+import dynamic from 'next/dynamic';
+const ToastEditor = dynamic(() => import('@/src/components/Write/editor'), {
+  ssr: false,
+});
+
 export default function Write() {
-  return <main>hi</main>;
+  return (
+    <main>
+      <ToastEditor />
+    </main>
+  );
 }

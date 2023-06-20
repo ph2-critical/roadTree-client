@@ -11,7 +11,7 @@ export const SideBar = () => {
   const path = usePathname();
 
   return (
-    <div className="fixed bg-white dark:bg-gray-800 h-[1008px] mt-[72px]">
+    <div className={`fixed bg-white dark:bg-gray-800 h-[1008px] mt-[72px]`}>
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className="w-72">
           <nav className="px-6 mt-10 ">
