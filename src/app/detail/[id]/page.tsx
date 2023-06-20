@@ -39,7 +39,12 @@ export default function DetailPage() {
         유선호입니다. 안녕하세요 저는 유선호입니다. 안녕하세요 저는
         유선호입니다. 안녕하세요 저는 유선호입니다.
       </div>
-      <Button />
+      <div className="flex gap-3 m-auto">
+        <Button emoji="&#128077;" />
+        <Button emoji="&#128078;" />
+        <Button emoji="&#129300;" />
+        {/* 제일 count 높은 거 color main으로 */}
+      </div>
       <Comments />
     </main>
   );
