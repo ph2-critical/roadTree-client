@@ -227,7 +227,7 @@ export const Comments = () => {
             </div>
             <button
               type="submit"
-              className="flex justify-center w-28 ml-auto py-2.5 px-4 text-sm font-bold text-center text-white bg-main rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+              className="flex justify-center w-28 ml-auto py-2.5 px-4 text-sm font-bold text-center text-white bg-main rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-green-900"
             >
               등록
             </button>

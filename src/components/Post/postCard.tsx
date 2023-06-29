@@ -1,4 +1,14 @@
+'use client';
+import { useEffect, useState } from 'react';
+
 export const PostCard = () => {
+  useEffect(() => {
+    fetch(
+      'http://ec2-3-38-171-194.ap-northeast-2.compute.amazonaws.com:8080/api/v1/posts/2',
+    ).then((res) => {
+      console.log(res.json());
+    });
+  });
   return (
     <div className="flex flex-col w-3/4 p-6 ml-4 text-sm border-gray-300 cursor-pointer border-y g-40 lg:h-52 lg:p-9 hover:bg-modalbg">
       <div className="mb-3">
