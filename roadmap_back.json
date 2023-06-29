@@ -1,0 +1,551 @@
+{
+  "data": {
+    "computer_science": {
+      "description": "추천 소개글",
+      "ref": [
+        {
+          "uuid": "1",
+          "title": "혼자공부하는 컴퓨터 구조+ 운영체제",
+          "url": "",
+          "grade": 1,
+          "amount": "총 13시간43분",
+          "price": 28000,
+          "category": "video, book"
+        },
+        {
+          "uuid": "2",
+          "title": "CS50",
+          "url": "",
+          "grade": 0,
+          "amount": "",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "2",
+          "title": "면접을 위한 CS전공지식 노트",
+          "url": "",
+          "grade": 1,
+          "amount": "총 292쪽",
+          "price": 24000,
+          "category": "book"
+        },
+        {
+          "uuid": "3",
+          "title": "깃헙/연로그 면접 인터뷰",
+          "url": "",
+          "grade": 1,
+          "amount": "총 9챕터",
+          "price": 0,
+          "category": "docs"
+        },
+        {
+          "uuid": "4",
+          "title": "Tech Interview 블로그",
+          "url": "",
+          "grade": 0,
+          "amount": "총 6챕터",
+          "price": 0,
+          "category": "docs"
+        }
+      ],
+      "child": [
+        "network",
+        "hardware",
+        "operaing_system"
+      ]
+    },
+    "java": {
+      "description": "추천 소개글",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "1",
+          "title": "프로그래머스 java 입문",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "2",
+          "title": "프로그래머스 java 심화",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 1,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "3",
+          "title": "java의 정석",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "4",
+          "title": "이펙티브java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "4",
+          "title": "이펙티브java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "5",
+          "title": "점프 투 자바",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "6",
+          "title": "TCP스쿨 java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "7",
+          "title": "dev쿠마 java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "8",
+          "title": "깃헙javaStudy",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        },
+        {
+          "uuid": "9",
+          "title": "나도코딩",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 2,
+          "amount": "총 17시간30분",
+          "price": 30000,
+          "category": "video"
+        }
+      ],
+      "child": [
+      ]
+    },
+    "database": {
+      "description": "데이터베이스가 존재하기 이전에는 파일 시스템으로 데이터를 관리했습니다. 파일 시스템은 데이터를 저장, 삭제, 수정 등을 할 때 발생하는 데이터의 종속성, 중복성 무결성을 보장할 수 없습니다. 이러한 문제점을 해결하기 위해 등장한 것이 바로 데이터베이스입니다. 데이터베이스는 데이터를 통합하여 관리하고, 저장된 데이터를 공유할 수 있으며, 데이터의 무결성을 보장하고, 데이터의 중복을 제거하고, 데이터를 동시에 공유할 수 있습니다. 데이터베이스는 이러한 장점을 가지고 있기 때문에 현재의 시스템에서 가장 많이 사용되는 데이터 관리 시스템입니다.",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "Do it SQL 입문",
+          "url": "https://www.youtube.com/playlist?list=PLG7te9eYUi7usbPInfbh24eE3lsbjGxRw",
+          "grade": 0,
+          "amount": "총 2시간23분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "1",
+          "title": "칸 아카데미 SQL",
+          "url": "https://ko.khanacademy.org/computing/computer-programming/sql?ref=blog.selectfromuser.com",
+          "grade": 1,
+          "amount": "총 37챕터",
+          "price": 0,
+          "category": "posting"
+        },
+        {
+          "uuid": "2",
+          "title": "가장 쉬운 데이터베이스 설계 책",
+          "url": "https://www.yes24.com/Product/goods/12191214?art_bl=7769257",
+          "grade": 0,
+          "amount": "총 453쪽",
+          "price": 27000,
+          "category": "book"
+        },
+        {
+          "uuid": "3",
+          "title": "새로쓴 대용량 데이터베이스 솔루션 Vol.1 [ 개정판 ]",
+          "url": "https://www.yes24.com/Product/Goods/1820583",
+          "grade": 3,
+          "amount": "총 634쪽",
+          "price": 45000,
+          "category": "book"
+        },
+        {
+          "uuid": "4",
+          "title": "W3Schools SQL",
+          "url": "https://www.w3schools.com/sql/?ref=blog.selectfromuser.com",
+          "grade": 0,
+          "amount": "총 58챕터",
+          "price": 0,
+          "category": "posting"
+        },
+        {
+          "uuid": "5",
+          "title": "손에 잡히는 10분 SQL",
+          "url": "https://product.kyobobook.co.kr/detail/S000001033096",
+          "grade": 0,
+          "amount": "총 320쪽",
+          "price": 18000,
+          "category": "book"
+        },
+        {
+          "uuid": "6",
+          "title": "데이터베이스를 지탱하는 기술",
+          "url": "https://www.yes24.com/Product/goods/7957807?scode=032&OzSrank=7",
+          "grade": 0,
+          "amount": "총 368쪽",
+          "price": 25000,
+          "category": "book"
+        }
+      ],
+      "child": [
+        "mysql",
+        "oracle",
+        "mongodb"
+      ]
+    },
+    "springboot": {
+      "description": "Spring은 java기반 웹 프레임워크로, 오리지날 Java를 최대한 활용하고 java가 지향하는 OOP설계에 맞춰 좋은 코드를 짤수 있게 도와주는 오픈소스 프레임워크입니다. 현재 국내에서 제일 많이 사용하는 프레임워크이기도 합니다. 참고로 springboot는 spring의 복잡한 환경설정을 개선하고자 나타났습니다.",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술(김영한)",
+          "url": "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8",
+          "grade": 1,
+          "amount": "총 5시간 21분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "1",
+          "title": "스프링 핵심 원리 - 기본편(김영한)",
+          "url": "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8",
+          "grade": 1,
+          "amount": "총 12시간 5분",
+          "price": 88000,
+          "category": "video"
+        },
+        {
+          "uuid": "2",
+          "title": "예제로 배우는 스프링 입문 (개정판, 백기선)",
+          "url": "https://www.inflearn.com/course/spring_revised_edition#curriculum",
+          "grade": 1,
+          "amount": "총 2시간 26분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "4",
+          "title": "초보 웹 개발자를 위한 스프링5 프로그래밍 입문(최범균)",
+          "url": "https://www.yes24.com/Product/Goods/62268795",
+          "grade": 1,
+          "amount": "총 492쪽",
+          "price": 26500,
+          "category": "book"
+        },
+        {
+          "uuid": "5",
+          "title": "백견불여일타 이젠 프로젝트다! 스프링 부트 쇼핑몰 프로젝트 with JPA",
+          "url": "https://www.yes24.com/Product/Goods/103453774",
+          "grade": 0,
+          "amount": "총 492쪽",
+          "price": 30000,
+          "category": "book"
+        },
+        {
+          "uuid": "6",
+          "title": "코드로 배우는 스프링 웹 프로젝트 현업 개발을 위한 단계별 실습서",
+          "url": "https://www.yes24.com/Product/Goods/62268795",
+          "grade": 2,
+          "amount": "총 760쪽",
+          "price": 38000,
+          "category": "book"
+        },
+        {
+          "uuid": "7",
+          "title": "[깃헙]토비의 스프링 3.1 서적과 백기선님의 강좌를 토대로 스프링의 핵심 기술을 정리",
+          "url": "https://github.com/pjok1122/Spring-Summary/tree/master",
+          "grade": 2,
+          "amount": "총 760쪽",
+          "price": 38000,
+          "category": "posting"
+        },
+        {
+          "uuid": "8",
+          "title": "토비의 스프링 부트 - 이해와 원리(토비)",
+          "url": "https://www.inflearn.com/course/%ED%86%A0%EB%B9%84-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EC%9D%B4%ED%95%B4%EC%99%80%EC%9B%90%EB%A6%AC",
+          "grade": 3,
+          "amount": "총 11시간 6분",
+          "price": 99000,
+          "category": "video"
+        },
+        {
+          "uuid": "9",
+          "title": "토비의 스프링 3.1 세트",
+          "url": "https://www.yes24.com/Product/Goods/7516911",
+          "grade": 4,
+          "amount": "총 1720쪽",
+          "price": 75000,
+          "category": "video"
+        },
+        {
+          "uuid": "10",
+          "title": "스프링 인 액션, 스프링 5의 강력한 기능과 생산성을 활용한 웹 애플리케이션 개발",
+          "url": "https://product.kyobobook.co.kr/detail/S000001942493",
+          "grade": 3,
+          "amount": "총 700쪽",
+          "price": 35000,
+          "category": "book"
+        },
+        {
+          "uuid": "11",
+          "title": "[깃헙]토비의 스프링 3.1 서적과 백기선님의 강좌를 토대로 스프링의 핵심 기술을 정리",
+          "url": "https://github.com/pjok1122/Spring-Summary/tree/master",
+          "grade": 3,
+          "amount": "총 700쪽",
+          "price": 38000,
+          "category": "posting"
+        },
+        {
+          "uuid": "12",
+          "title": "스프링 부트와 AWS로 혼자 구현하는 웹 서비스(향로)",
+          "url": "https://product.kyobobook.co.kr/detail/S000001019679",
+          "grade": 4,
+          "amount": "총 416쪽",
+          "price": 22000,
+          "category": "book"
+        }
+      ],
+      "child": [
+        "MVC",
+        "DB",
+        "JUnit"
+      ]
+    },
+    "jpa": {
+      "url": "https://docs.spring.io/spring-data/jpa/docs/current/reference/html/",
+      "description": "DB와 연결하여 데이터를 읽고 쓰기 위해서 SQL쿼리문을 알아야하지만, JPA을 사용하면 객체중심으로 애플리케이션 개발이 가능하여 생산성을 높여줄 수 있어 많은 개발자들이 사용하고 있습니다.",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "자바 ORM 표준 JPA 프로그래밍 - 기본편(김영한)",
+          "url": "https://www.inflearn.com/course/ORM-JPA-Basic",
+          "grade": 2,
+          "amount": "총 16시간3분",
+          "price": 121000,
+          "category": "video"
+        },
+        {
+          "uuid": "1",
+          "title": "JPA For Beginner(나무소리)",
+          "url": "https://www.youtube.com/playlist?list=PLOSNUO27qFbvzGd3yWbHISxHctPRKkctO",
+          "grade": 2,
+          "amount": "총 3시간58분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "2",
+          "title": "JPA 퀵스타트",
+          "url": "https://product.kyobobook.co.kr/detail/S000001891098",
+          "grade": 2,
+          "amount": "총 708쪽",
+          "price": 30000,
+          "category": "book"
+        },
+        {
+          "uuid": "3",
+          "title": "실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발(김영한)",
+          "url": "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1",
+          "grade": 2,
+          "amount": "총 7시간44분",
+          "price": 88000,
+          "category": "video"
+        },
+        {
+          "uuid": "4",
+          "title": "실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화(김영한)",
+          "url": "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94",
+          "grade": 2,
+          "amount": "총 6시간35분",
+          "price": 88000,
+          "category": "video"
+        },
+        {
+          "uuid": "5",
+          "title": "실전! 스프링 데이터 JPA(김영한)",
+          "url": "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84",
+          "grade": 3,
+          "amount": "총 7시간17분",
+          "price": 88000,
+          "category": "video"
+        },
+        {
+          "uuid": "6",
+          "title": "자바 ORM 표준 JPA 프로그래밍",
+          "url": "https://product.kyobobook.co.kr/detail/S000000935744",
+          "grade": 3,
+          "amount": "총 734쪽",
+          "price": 43000,
+          "category": "book"
+        },
+        {
+          "uuid": "7",
+          "title": "실전! Querydsl(김영한)",
+          "url": "https://www.inflearn.com/course/querydsl-%EC%8B%A4%EC%A0%84",
+          "grade": 4,
+          "amount": "총 6시간24분",
+          "price": 88000,
+          "category": "video"
+        }
+      ],
+      "child": [
+        "면접질문",
+        "Redis"
+        "Security"
+      ]
+    },
+    "aws_cloud": {
+      "url": "https://docs.aws.amazon.com/",
+      "description": "추천 소개글",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "AWS(Amazon Web Service) 입문자를 위한 강의",
+          "url": "https://www.udemy.com/course/aws-beginner-sk/?utm_source=adwords&utm_medium=udemyads&utm_campaign=AWS_Search_la.KR_cc.KR&utm_term=_._ag_145452346958_._ad_641862376242_._kw_aws%EA%B0%95%EC%9D%98_._de_c_._dm__._pl__._ti_kwd-380915330158_._li_1009893_._pd__._&matchtype=b&gad=1",
+          "grade": 1,
+          "amount": "총 9시간",
+          "price": 99000,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        }
+      ],
+      "child": [
+      ]
+    },
+    "code": {
+      "description": "디자인패턴 및 아키텍처 추천 소개글",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        }
+      ],
+      "child": [
+      ]
+    },
+    "algorithm": {
+      "description": "디자인패턴 및 아키텍처 추천 소개글",
+      "ref": [
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        }
+      ],
+      "child": [
+      ]
+    }
+  }
+}
