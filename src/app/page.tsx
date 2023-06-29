@@ -18,7 +18,7 @@ export default function Home() {
   const canStart = [true, true, false];
 
   return (
-    <main className="pb-20 pt-10 sm:py-24 flex align-middle justify-centent flex-col">
+    <main className="sm:pt-4 flex align-middle justify-centent flex-col">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="mx-auto max-w-2xl m-10 lg:max-w-4xl lg:px-12">
           <h1 className="font-display leading-relaxed sm:leading-normal text-4xl font-bold tracking-tighter text-gray-900 p-5 sm:text-5xl lg:text-6xl">
@@ -28,13 +28,13 @@ export default function Home() {
             <div className="flex flex-col justify-center items-center">
               <div>
                 당신의{" "}
-                <span className="text-blue-600 font-bold">공부 러닝</span>{" "}
+                <span className="text-main font-bold">공부 러닝</span>{" "}
                 메이트,
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
               <div>
-                이제 <span className="text-blue-600 font-bold">RoadTree</span>{" "}
+                이제 <span className="text-main font-bold">RoadTree</span>{" "}
                 와 함께
               </div>
             </div>
@@ -43,15 +43,7 @@ export default function Home() {
       </div>
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              RoadTree
-            </h2>
-            <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              당신의 로드맵 어쩌구 랄라구
-            </p>
-          </div>
+        <div className="pt-8 px-4 mx-auto max-w-screen-xl lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {title.map((title, index) => {
               return (
@@ -66,7 +58,7 @@ export default function Home() {
                       return (
                         <li className="flex items-center space-x-3">
                           <svg
-                            className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                            className="flex-shrink-0 w-5 h-5 text-main dark:text-main"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +77,7 @@ export default function Home() {
                   {canStart[index] ? (
                     <StartBut cid={index + 1} />
                   ) : (
-                    <div className="text-white bg-primary-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
+                    <div className="text-white bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
                       준비 중 입니다.
                     </div>
                   )}
