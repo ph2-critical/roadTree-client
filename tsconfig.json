@@ -32,6 +32,6 @@
       // "@/*": ["./src/*"]
     },
   },
-  "include": ["**/*.d.ts","next-env.d.ts", "**/*.ts","**/*.css", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["**/*.d.ts","next-env.d.ts", "**/*.ts","**/*.css", "**/*.tsx", ".next/types/**/*.ts", "src/components/RoadmapPage/StartBut.js", "src/components/RoadmapPage/LoginModal.js"],
   "exclude": ["node_modules"]
 }
