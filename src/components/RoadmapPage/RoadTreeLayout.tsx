@@ -53,6 +53,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           });
           toggle_deleteselect(child);
         }
+        child.select = false;
       });
     }
 

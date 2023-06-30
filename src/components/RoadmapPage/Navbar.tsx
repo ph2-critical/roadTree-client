@@ -24,16 +24,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="relative z-50 py-4 border-b-2">
-      <div className="mx-auto max-w-7xl px-2  flex flex-wrap lg:flex-nowrap">
-        <Link className="mt-10 lg:mt-0 lg:grow lg:basis-0" href="/">
-          <Logo className="hidden text-lg text-white md:flex hover:cursor-pointer" />
+    <header className="relative z-50 py-2 border-b-2 h-16">
+      <div className="px-2 flex flex-wrap mx-10">
+        <Link className="mt-0 grow basis-0" href="/">
+          <Logo className="text-lg text-white flex hover:cursor-pointer" />
         </Link>
-        <div className="hidden sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        <div className="flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end mx-10">
           {init ? (
             isLoggedIn === false ? (
               <button
-                className="inline-flex justify-center rounded-2xl bg-main p-4 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+                className="inline-flex justify-center rounded-2xl bg-main m-2 p-1.5 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
                 onClick={() => {
                   onModal ? null : setModalTrue();
                   setLastModalonId(3);
@@ -43,7 +43,7 @@ export default function Navbar() {
               </button>
             ) : (
               <button
-                className="inline-flex justify-center rounded-2xl bg-main p-4 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+                className="inline-flex justify-center rounded-2xl bg-main m-2 p-1.5 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
@@ -59,7 +59,7 @@ export default function Navbar() {
               </button>
             )
           ) : (
-            <div className="inline-flex justify-center rounded-2xl bg-main p-4 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70">
+            <div className="inline-flex justify-center rounded-2xl bg-main p-1.5 text-base font-semibold text-white hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70">
               로딩중
             </div>
           )}

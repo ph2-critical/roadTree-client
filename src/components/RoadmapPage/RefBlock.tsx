@@ -1,5 +1,6 @@
 import { reference } from '@/public/RoadTreeData';
 import Image from 'next/image';
+import MainGreenBtn from './MainGreenBtn';
 
 export default function RefBlock(props: { refdata: reference }) {
   const refdata: reference = props.refdata;
@@ -36,7 +37,11 @@ export default function RefBlock(props: { refdata: reference }) {
           </div>
         </div>
       </div>
-      <div className="w-14 h-14 p-2 bg-gray-200"></div>
+      <MainGreenBtn
+        string="학습 완료"
+        onClick={() => {}}
+        class="bg-main text-white text-sm mt-auto rounded-sm"
+      />
     </div>
   );
 }

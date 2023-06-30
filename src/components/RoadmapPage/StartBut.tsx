@@ -6,8 +6,9 @@ import LoginModal, { useModalStore } from './LoginModal';
 import { auth } from './Fbase';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
+import MainGreenBtn from './MainGreenBtn';
 
-export default function StartBut(props: {cid: number}) {
+export default function StartBut(props: { cid: number }) {
   const { setModalTrue, lastModalonId, setLastModalonId } = useModalStore();
   const router = useRouter();
   const cid = props.cid;
@@ -44,12 +45,5 @@ export default function StartBut(props: {cid: number}) {
     }
   };
 
-  return (
-    <button
-      className='text-white bg-main hover:brightness-95 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
-      onClick={checkUserAndLogin}
-    >
-      Get started
-    </button>
-  );
+  return <MainGreenBtn onClick={checkUserAndLogin} string="Get started" />;
 }
