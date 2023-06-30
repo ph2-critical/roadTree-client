@@ -14,6 +14,9 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      width: {
+        128: '32rem',
+      },
       colors: {
         main: '#13D080',
         gray1: '#c3c3c3',
@@ -85,7 +88,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/custom-forms'), require("tailwind-scrollbar-hide")], 
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+    require('tailwind-scrollbar-hide'),
+  ],
 };
 
 // mode: 'jit',

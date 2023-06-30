@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { create } from "zustand";
-import { auth } from "./Fbase";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { create } from 'zustand';
+import { auth } from './Fbase';
 
 interface ModalStore {
   onModal: boolean;
@@ -15,10 +14,10 @@ interface ModalStore {
 
 export const useModalStore = create<ModalStore>((set) => ({
   onModal: false,
-  setModalTrue: () => set((state) => ({ onModal: true })),
-  setModalFalse: () => set((state) => ({ onModal: false })),
+  setModalTrue: () => set(() => ({ onModal: true })),
+  setModalFalse: () => set(() => ({ onModal: false })),
   lastModalonId: 3,
-  setLastModalonId: (id) => set((state) => ({ lastModalonId: id })),
+  setLastModalonId: (id) => set(() => ({ lastModalonId: id })),
 }));
 
 export default function LoginModal() {
@@ -27,8 +26,8 @@ export default function LoginModal() {
   function handleGoogleLogin() {
     const provider = new GoogleAuthProvider(); // provider 구글 설정
     signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-      .then((data) => {
-        console.log("login success");
+      .then(() => {
+        console.log('login success');
         setModalFalse();
       })
       .catch((err) => {

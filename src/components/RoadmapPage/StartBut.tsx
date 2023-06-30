@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import LoginModal, { useModalStore } from "./LoginModal";
-import { auth } from "./Fbase";
-import { useRouter } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import LoginModal, { useModalStore } from './LoginModal';
+import { auth } from './Fbase';
+import { useRouter } from 'next/navigation';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function StartBut(props: {cid: number}) {
   const { setModalTrue, lastModalonId, setLastModalonId } = useModalStore();
@@ -14,13 +14,13 @@ export default function StartBut(props: {cid: number}) {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("startbut user" + lastModalonId);
+      console.log('startbut user' + lastModalonId);
       if (lastModalonId === 1) {
         setLastModalonId(0);
-        router.push("/roadmap?front");
+        router.push('/roadmap?front');
       } else if (lastModalonId === 2) {
         setLastModalonId(0);
-        router.push("/roadmap?back");
+        router.push('/roadmap?back');
       }
     }
   });
@@ -36,17 +36,17 @@ export default function StartBut(props: {cid: number}) {
     } else {
       if (cid === 1) {
         setLastModalonId(0);
-        router.push("/roadmap?front");
+        router.push('/roadmap?front');
       } else if (cid === 2) {
         setLastModalonId(0);
-        router.push("/roadmap?back");
+        router.push('/roadmap?back');
       }
     }
   };
 
   return (
     <button
-      className="text-white bg-main hover:brightness-95 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      className='text-white bg-main hover:brightness-95 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
       onClick={checkUserAndLogin}
     >
       Get started

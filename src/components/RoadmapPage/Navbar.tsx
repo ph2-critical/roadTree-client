@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import LoginModal, { useModalStore } from "./LoginModal";
-import { auth } from "./Fbase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { Logo } from "@/src/app/assets/Icons";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import LoginModal, { useModalStore } from './LoginModal';
+import { auth } from './Fbase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { Logo } from '@/src/app/assets/Icons';
 
 export default function Navbar() {
   const { onModal, setModalTrue, setLastModalonId } = useModalStore();
@@ -47,7 +47,7 @@ export default function Navbar() {
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
-                      console.log("로그아웃 성공");
+                      console.log('로그아웃 성공');
                       setIsLoggedIn(false);
                     })
                     .catch((err) => {
