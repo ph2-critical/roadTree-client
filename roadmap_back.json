@@ -449,67 +449,58 @@
           "category": "video"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
-          "grade": 0,
-          "amount": "총 17시간30분",
+          "uuid": "1",
+          "title": "쉽게 설명하는 AWS 기초 강좌",
+          "url": "https://www.youtube.com/playlist?list=PLfth0bK2MgIan-SzGpHIbfnCnjj583K2m",
+          "grade": 1,
+          "amount": "총 6시간15분",
           "price": 0,
           "category": "video"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
+          "uuid": "1",
+          "title": "생활코딩AWS",
+          "url": "https://www.youtube.com/playlist?list=PLuHgQVnccGMDNWIEgnXjaZ3jgbIo5zQGi",
           "grade": 0,
-          "amount": "총 17시간30분",
+          "amount": "총 5시간37분",
           "price": 0,
           "category": "video"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
+          "uuid": "1",
+          "title": "따라하며 배우는 AWS 네트워크 입문",
+          "url": "https://aws.amazon.com/ko/events/builders-online-series/",
           "grade": 0,
-          "amount": "총 17시간30분",
-          "price": 0,
-          "category": "video"
+          "amount": "총 520쪽",
+          "price": 30900,
+          "category": "book"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
+          "uuid": "4",
+          "title": "클라우드 네이티브를 위한 쿠버네티스 실전 프로젝트",
+          "url": "https://www.yes24.com/Product/Goods/102234803",
           "grade": 0,
-          "amount": "총 17시간30분",
-          "price": 0,
-          "category": "video"
+          "amount": "총 368쪽",
+          "price": 30000,
+          "category": "book"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
+          "uuid": "3",
+          "title": "Amazon VPC 네트워킹 원리와 보안",
+          "url": "https://www.yes24.com/Product/Goods/106043007",
           "grade": 0,
-          "amount": "총 17시간30분",
-          "price": 0,
-          "category": "video"
+          "amount": "총 428쪽",
+          "price": 32000,
+          "category": "book"
         },
         {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
+          "uuid": "2",
+          "title": "토리맘의 한글라이즈 프로젝트",
+          "url": "https://godekdls.github.io/Spring%20Cloud%20Data%20Flow/resources.reference-docs/",
           "grade": 0,
-          "amount": "총 17시간30분",
+          "amount": "총 0",
           "price": 0,
-          "category": "video"
-        },
-        {
-          "uuid": "0",
-          "title": "생활코딩java",
-          "url": "https://opentutorials.org/course/3930",
-          "grade": 0,
-          "amount": "총 17시간30분",
-          "price": 0,
-          "category": "video"
+          "category": "posting"
         }
       ],
       "child": [
@@ -520,12 +511,66 @@
       "ref": [
         {
           "uuid": "0",
-          "title": "생활코딩java",
+          "title": "디자인패턴 스터디",
+          "url": "https://younggeun0.github.io/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%8A%A4%ED%84%B0%EB%94%94/",
+          "grade": 3,
+          "amount": "",
+          "price": 0,
+          "category": "posting"
+        },
+        {
+          "uuid": "0",
+          "title": "자바로 된 디자인 패턴",
+          "url": "https://refactoring.guru/ko/design-patterns/java",
+          "grade": 3,
+          "amount": "",
+          "price": 0,
+          "category": "posting"
+        },
+        {
+          "uuid": "0",
+          "title": "코딩으로 학습하는 GoF의 디자인 패턴",
+          "url": "https://www.inflearn.com/course/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4",
+          "grade": 3,
+          "amount": "총 11시간37분",
+          "price": 88000,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "클린 코드",
+          "url": "https://www.yes24.com/Product/Goods/11681152",
+          "grade": 4,
+          "amount": "총 584쪽",
+          "price": 33000,
+          "category": "book"
+        },
+        {
+          "uuid": "0",
+          "title": "클린 아키텍처",
+          "url": "https://www.yes24.com/Product/Goods/77283734",
+          "grade": 4,
+          "amount": "총 432쪽",
+          "price": 29000,
+          "category": "book"
+        },
+        {
+          "uuid": "0",
+          "title": "개발자가 반드시 정복해야 할 객체 지향과 디자인 패턴",
           "url": "https://opentutorials.org/course/3930",
           "grade": 0,
-          "amount": "총 17시간30분",
+          "amount": "총 쪽",
           "price": 0,
-          "category": "video"
+          "category": "book"
+        },
+        {
+          "uuid": "0",
+          "title": "개발자가 반드시 정복해야 할 객체 지향과 디자인 패턴",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 쪽",
+          "price": 0,
+          "category": "book"
         }
       ],
       "child": [
@@ -534,6 +579,33 @@
     "algorithm": {
       "description": "디자인패턴 및 아키텍처 추천 소개글",
       "ref": [
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
+        {
+          "uuid": "0",
+          "title": "생활코딩java",
+          "url": "https://opentutorials.org/course/3930",
+          "grade": 0,
+          "amount": "총 17시간30분",
+          "price": 0,
+          "category": "video"
+        },
         {
           "uuid": "0",
           "title": "생활코딩java",
