@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useRoadTreeStore } from "./RoadTreeLayout";
+import { useRoadTreeStore } from './RoadTreeLayout';
 
 export default function SideBar() {
   const { select } = useRoadTreeStore();
-  const studyType = ["인터넷 강의", "도서", "웹사이트"];
+  const studyType = ['인터넷 강의', '도서', '웹사이트'];
   const studyContent = [
-    ["[한글자막]React 완벽가이드", "리액트를 다루는 기술", "React.js"],
-    ["리액트 도서", "리액트 도서", "리액트 도서"],
-    ["리액트 웹사이트", "리액트 웹사이트", "리액트 웹사이트"],
+    ['[한글자막]React 완벽가이드', '리액트를 다루는 기술', 'React.js'],
+    ['리액트 도서', '리액트 도서', '리액트 도서'],
+    ['리액트 웹사이트', '리액트 웹사이트', '리액트 웹사이트'],
   ];
   const studyDetailContent = [
     [
-      "웹 어플리케이션 배포까지",
-      "리액트를 다루는 기술",
-      "Tutorial for Beginners - Getting Started with React.js",
+      '웹 어플리케이션 배포까지',
+      '리액트를 다루는 기술',
+      'Tutorial for Beginners - Getting Started with React.js',
     ],
-    ["리액트 도서 상세1", "리액트 도서 상세2", "리액트 도서 상세3"],
-    ["리액트 웹사이트 상세1", "리액트 웹사이트 상세2", "리액트 웹사이트 상세3"],
+    ['리액트 도서 상세1', '리액트 도서 상세2', '리액트 도서 상세3'],
+    ['리액트 웹사이트 상세1', '리액트 웹사이트 상세2', '리액트 웹사이트 상세3'],
   ];
   return (
     <div className="p-5">
-      <div className="font-display leading-relaxed sm:leading-normal text-2xl font-bold  text-gray-900 pb-3">
+      <div className="pb-3 text-2xl font-bold leading-relaxed text-gray-900 font-display sm:leading-normal">
         {select}React 기초
       </div>
       <p>
@@ -35,7 +35,7 @@ export default function SideBar() {
             {studyContent[index].map((item, index) => {
               return (
                 <div
-                  key={"key" + index}
+                  key={'key' + index}
                   className="w-full h-20 mb-5 bg-white"
                 ></div>
               );

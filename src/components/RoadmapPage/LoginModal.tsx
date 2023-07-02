@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { create } from "zustand";
-import { auth } from "./Fbase";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { create } from 'zustand';
+import { auth } from './Fbase';
 
 interface ModalStore {
   onModal: boolean;
@@ -28,7 +28,7 @@ export default function LoginModal() {
     const provider = new GoogleAuthProvider(); // provider 구글 설정
     signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
       .then((data) => {
-        console.log("login success");
+        console.log('login success');
         setModalFalse();
       })
       .catch((err) => {
@@ -41,11 +41,11 @@ export default function LoginModal() {
       <div
         id="successModal"
         aria-hidden="true"
-        className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full inset-0 h-modal md:h-full bg-gray-900 bg-opacity-50"
+        className="fixed inset-0 top-0 left-0 right-0 z-50 flex items-center justify-center w-full overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-50 h-modal md:h-full"
         onClick={setModalFalse}
       >
         <div
-          className="relative p-4 w-full max-w-md md:h-auto"
+          className="relative w-full max-w-md p-4 md:h-auto"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
