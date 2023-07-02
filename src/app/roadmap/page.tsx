@@ -9,10 +9,8 @@ import { useSearchParams } from 'next/navigation';
 
 export default function Roadmap() {
   const [searchParams] = useSearchParams();
-  const { select } = useRoadTreeStore();
 
-  const isFront =
-    searchParams === undefined ? true : searchParams[0] === 'front';
+  const isFront = searchParams === undefined ? true : searchParams[0] === '0';
 
   return (
     <div className="flex flex-grow">

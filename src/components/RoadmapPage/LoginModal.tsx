@@ -1,47 +1,19 @@
 'use client';
 
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { create } from 'zustand';
-import { auth } from './Fbase';
-
-interface ModalStore {
-  onModal: boolean;
-  setModalTrue: () => void;
-  setModalFalse: () => void;
-  lastModalonId: number;
-  setLastModalonId: (id: number) => void;
-}
-
-export const useModalStore = create<ModalStore>((set) => ({
-  onModal: false,
-  setModalTrue: () => set(() => ({ onModal: true })),
-  setModalFalse: () => set(() => ({ onModal: false })),
-  lastModalonId: 3,
-  setLastModalonId: (id) => set(() => ({ lastModalonId: id })),
-}));
 
 export default function LoginModal() {
-  const { onModal, setModalFalse } = useModalStore();
-
-  function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider(); // provider 구글 설정
-    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-      .then(() => {
-        console.log('login success');
-        setModalFalse();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  const onModal = false; // TODO: 로그인 모달 상태
 
   return (
     onModal && (
       <div
-        id="successModal"
+        id="login-modal-outside"
         aria-hidden="true"
         className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full inset-0 h-modal md:h-full bg-gray-900 bg-opacity-50"
-        onClick={setModalFalse}
+        onClick={() => {
+          console.log('login modal close');
+        }}
       >
         <div
           className="relative p-4 w-full max-w-md md:h-auto"
@@ -58,7 +30,9 @@ export default function LoginModal() {
               <button
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                onClick={handleGoogleLogin}
+                onClick={() => {
+                  console.log('login 진행');
+                }}
               >
                 Sign in
               </button>

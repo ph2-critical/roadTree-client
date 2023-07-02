@@ -1,19 +1,20 @@
+import Link from 'next/link';
 import { SubHeader } from '../components/Main/subHeader';
 import { PostCard } from '../components/Post/postCard';
 import StartBut from '../components/RoadmapPage/StartBut';
 import { CheckIcon } from './assets/Icons';
 
 export default function Home() {
-  const title = ["프론트엔드 개발자", "백엔드 개발자", "인공지능 개발자"];
+  const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
   const content = [
-    "프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.",
-    "프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.",
-    "프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.",
+    '프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.',
+    '프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.',
+    '프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자를 말한다.',
   ];
   const detailcontent = [
-    ["UI 개발 업무", "UI 개발 업무", "개발자의 자존심"],
-    ["UI 개발 업무", "UI 개발 업무", "개발자의 자존심"],
-    ["UI 개발 업무", "UI 개발 업무", "개발자의 자존심"],
+    ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
+    ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
+    ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
   ];
   const canStart = [true, true, false];
 
@@ -27,15 +28,14 @@ export default function Home() {
           <div className="mt-8 space-y-6 font-display text-2xl lg:text-3xl tracking-tight text-gray-500">
             <div className="flex flex-col justify-center items-center">
               <div>
-                당신의{" "}
-                <span className="text-main font-bold">공부 러닝</span>{" "}
+                당신의 <span className="text-main font-bold">공부 러닝</span>{' '}
                 메이트,
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
               <div>
-                이제 <span className="text-main font-bold">RoadTree</span>{" "}
-                와 함께
+                이제 <span className="text-main font-bold">RoadTree</span> 와
+                함께
               </div>
             </div>
           </div>
@@ -75,7 +75,12 @@ export default function Home() {
                     })}
                   </ul>
                   {canStart[index] ? (
-                    <StartBut cid={index + 1} />
+                    <Link
+                      href={'/roadmap?' + index}
+                      className="text-white bg-main hover:brightness-95 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    >
+                      Get started
+                    </Link>
                   ) : (
                     <div className="text-white bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
                       준비 중 입니다.
