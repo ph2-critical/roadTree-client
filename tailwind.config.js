@@ -17,6 +17,9 @@ module.exports = {
       width: {
         128: '32rem',
       },
+      height: {
+        screenWithoutHeader: 'calc(100vh - 64px)',
+      },
       colors: {
         main: '#13D080',
         gray1: '#c3c3c3',

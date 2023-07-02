@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { SubHeader } from '../components/Main/subHeader';
 import { PostCard } from '../components/Post/postCard';
-import StartBut from '../components/RoadmapPage/StartBut';
 import { CheckIcon } from './assets/Icons';
 
 export default function Home() {
