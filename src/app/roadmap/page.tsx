@@ -15,7 +15,7 @@ export default function Roadmap() {
     searchParams === undefined ? true : searchParams[0] === 'front';
 
   return (
-    <div className="flex h-5/6 overflow-hidden">
+    <div className="flex flex-grow">
       <main
         className={
           'px-4 mx-auto max-w-screen-xl lg:px-6 flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10'
@@ -26,11 +26,11 @@ export default function Roadmap() {
       <div
         id="default-sidebar"
         className={
-          'top-0 right-0 z-40 w-128 h-full shrink-0 transition-transform bg-gray-200 border-l border-gray-200 overflow-y-scroll scrollbar-hide'
+          'top-0 right-0 z-40 w-128 h-full shrink-0 transition-transform overflow-y-scroll scrollbar-hide'
         }
         aria-label="Sidenav"
       >
-        <div className="py-5 px-3 border-gray-200">
+        <div className="py-5 px-3 border-l-2 border-gray-200 h-full">
           <SideBar />
         </div>
       </div>
