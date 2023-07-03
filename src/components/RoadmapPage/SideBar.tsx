@@ -1,6 +1,3 @@
-'use client';
-
-import Image from 'next/image';
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
 
