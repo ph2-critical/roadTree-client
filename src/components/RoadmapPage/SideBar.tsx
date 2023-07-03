@@ -10,7 +10,10 @@ export default function SideBar() {
   return (
     <div className="flex flex-col h-full">
       {/* side bar top height : 32 */}
-      <div id="roadmap_sidebar_top" className="flex justify-between h-8 my-2">
+      <div
+        id="roadmap_sidebar_top"
+        className="flex justify-between h-12 py-1 mx-5 border-b-2"
+      >
         {/* side bar content height : 24  */}
         <div className="font-display text-base font-bold text-gray-600 m-1">
           {select?.name}
@@ -30,7 +33,10 @@ export default function SideBar() {
           </svg>
         </div>
       </div>
-      <div id="roadmap_sidebar_body" className="flex-grow overflow-y-scroll">
+      <div
+        id="roadmap_sidebar_body"
+        className="flex-grow overflow-y-scroll px-5"
+      >
         <div className="font-display leading-relaxed sm:leading-normal text-2xl font-bold p-1">
           {select?.name}
         </div>

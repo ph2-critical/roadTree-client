@@ -39,7 +39,7 @@ export default function RefBlock(props: { refdata: reference }) {
           >
             {gradelist[refdata.grade]}
           </div>
-          <div className="text-base text-gray-600 font-semibold">
+          <div className="text-sm text-gray-600 font-semibold">
             {refdata.title}
           </div>
           <div className="text-gray1 text-xs">
@@ -47,11 +47,11 @@ export default function RefBlock(props: { refdata: reference }) {
           </div>
         </div>
       </div>
-      <div className="mt-auto w-31">
+      <div className="mt-auto w-32">
         <button
           id="studyDropdownButton"
           data-dropdown-toggle="dropdown"
-          className="text-gray-600 font-semibold bg-gray-300 hover:brightness-75 p-2 text-center text-sm mt-auto rounded-sm flex"
+          className="text-gray-600 font-semibold bg-gray-300 hover:brightness-75 p-1 text-center text-sm mt-auto ml-auto rounded-sm flex"
           onClick={(e: any) => {
             setShowDropdown((prev: boolean) => !prev);
             e.preventDefault();

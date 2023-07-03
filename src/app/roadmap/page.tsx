@@ -28,7 +28,7 @@ export default function Roadmap() {
         }
         aria-label="Sidenav"
       >
-        <div className="px-5 border-l-2 border-gray-200 h-full">
+        <div className="border-l-2 border-gray-200 h-full">
           <SideBar />
         </div>
       </div>
