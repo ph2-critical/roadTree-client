@@ -9,8 +9,8 @@ import { supabase } from '@/lib/supabase';
 export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
 
-  const Login = () => {
-    supabase.auth
+  const Login = async () => {
+    await supabase.auth
       .signInWithOAuth({
         provider: 'google',
         options: {
@@ -25,13 +25,13 @@ export default function Navbar() {
       });
   };
 
-  const Logout = () => {
-    supabase.auth.signOut();
+  const Logout = async () => {
+    await supabase.auth.signOut();
   };
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event, session);
+      console.log(session?.user);
       if (event === 'SIGNED_OUT') {
         setIsLogin(false);
       } else {
