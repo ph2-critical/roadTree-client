@@ -53,8 +53,7 @@
       ],
       "child": [
         "network",
-        "hardware",
-        "operaing_system"
+        "hardware_os"
       ]
     },
     {
