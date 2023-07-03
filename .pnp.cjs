@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.1"],\
             ["@emotion/server", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@emotion/styled", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
+            ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
             ["@supabase/supabase-js", "npm:2.26.0"],\
             ["@tailwindcss/custom-forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.2.1"],\
             ["@toast-ui/editor", "npm:3.2.2"],\
@@ -1903,6 +1904,53 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@rushstack-eslint-patch-npm-1.3.1-83ab0eb3f5-951023fffb.zip/node_modules/@rushstack/eslint-patch/",\
           "packageDependencies": [\
             ["@rushstack/eslint-patch", "npm:1.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-helpers-nextjs", [\
+        ["npm:0.7.2", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-helpers-nextjs-npm-0.7.2-22ca9c9abf-239bf29eee.zip/node_modules/@supabase/auth-helpers-nextjs/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-nextjs", "npm:0.7.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-nextjs-virtual-9941f6d4a9/0/cache/@supabase-auth-helpers-nextjs-npm-0.7.2-22ca9c9abf-239bf29eee.zip/node_modules/@supabase/auth-helpers-nextjs/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
+            ["@supabase/auth-helpers-shared", "virtual:9941f6d4a92749c1623e9310f937853f60fdc08ac4e6e8ba03b090bff51006fe3e46c0fc02a1131012f74de5164fff8bc93bfcdaaf4338e06aa875c34002c190#npm:0.4.1"],\
+            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@types/supabase__supabase-js", null],\
+            ["set-cookie-parser", "npm:2.6.0"]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-helpers-shared", [\
+        ["npm:0.4.1", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-helpers-shared-npm-0.4.1-0f0bef96a5-07e29f1212.zip/node_modules/@supabase/auth-helpers-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-shared", "npm:0.4.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:9941f6d4a92749c1623e9310f937853f60fdc08ac4e6e8ba03b090bff51006fe3e46c0fc02a1131012f74de5164fff8bc93bfcdaaf4338e06aa875c34002c190#npm:0.4.1", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-shared-virtual-a68df66df3/0/cache/@supabase-auth-helpers-shared-npm-0.4.1-0f0bef96a5-07e29f1212.zip/node_modules/@supabase/auth-helpers-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-shared", "virtual:9941f6d4a92749c1623e9310f937853f60fdc08ac4e6e8ba03b090bff51006fe3e46c0fc02a1131012f74de5164fff8bc93bfcdaaf4338e06aa875c34002c190#npm:0.4.1"],\
+            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@types/supabase__supabase-js", null],\
+            ["jose", "npm:4.14.4"]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5993,6 +6041,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jose", [\
+        ["npm:4.14.4", {\
+          "packageLocation": "./.yarn/cache/jose-npm-4.14.4-8255fd76fa-2d820a91a8.zip/node_modules/jose/",\
+          "packageDependencies": [\
+            ["jose", "npm:4.14.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["js-tokens", [\
         ["npm:4.0.0", {\
           "packageLocation": "./.yarn/cache/js-tokens-npm-4.0.0-0ac852e9e2-8a95213a5a.zip/node_modules/js-tokens/",\
@@ -8373,6 +8430,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.1"],\
             ["@emotion/server", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@emotion/styled", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
+            ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
             ["@supabase/supabase-js", "npm:2.26.0"],\
             ["@tailwindcss/custom-forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.2.1"],\
             ["@toast-ui/editor", "npm:3.2.2"],\
@@ -8514,6 +8572,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/set-blocking-npm-2.0.0-49e2cffa24-6e65a05f7c.zip/node_modules/set-blocking/",\
           "packageDependencies": [\
             ["set-blocking", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["set-cookie-parser", [\
+        ["npm:2.6.0", {\
+          "packageLocation": "./.yarn/cache/set-cookie-parser-npm-2.6.0-a7dd154236-bf11ebc594.zip/node_modules/set-cookie-parser/",\
+          "packageDependencies": [\
+            ["set-cookie-parser", "npm:2.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\

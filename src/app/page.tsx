@@ -1,7 +1,8 @@
-import { SubHeader } from '../components/Main/subHeader';
-import { PostCard } from '../components/Post/postCard';
-import StartBut from '../components/RoadmapPage/StartBut';
+import { SubHeader } from './components/Main/subHeader';
+import { PostCard } from './components/Post/postCard';
+import StartBut from './components/RoadmapPage/StartBut';
 import { CheckIcon } from './assets/Icons';
+import { supabase } from '@/lib/supabase';
 
 export default function Home() {
   const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
