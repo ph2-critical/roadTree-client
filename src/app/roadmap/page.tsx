@@ -13,10 +13,10 @@ export default function Roadmap() {
   const isFront = searchParams === undefined ? true : searchParams[0] === '0';
 
   return (
-    <div className="flex flex-grow h-screenWithoutHeader">
+    <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
       <main
         className={
-          'px-4 mx-auto max-w-screen-xl lg:px-6 flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10'
+          'mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10'
         }
       >
         <RoadTreeLayout isFront={isFront} />
@@ -28,7 +28,7 @@ export default function Roadmap() {
         }
         aria-label="Sidenav"
       >
-        <div className="h-full border-l-2 border-gray-200">
+        <div className="h-full border-l border-gray-200 shadow-deep-dark">
           <SideBar />
         </div>
       </div>

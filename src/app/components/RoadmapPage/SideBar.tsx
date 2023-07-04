@@ -39,13 +39,13 @@ export default function SideBar() {
           {select?.name}
         </div>
         <div className="p-1 text-sm">{select?.description}</div>
-        <div className="py-2">
-          <StudyDropMenu />
+        <div className="py-2 w-fit">
+          <StudyDropMenu rightOn />
         </div>
 
         <div className="pt-3 m-1">
           <div className="py-2 font-semibold text-gray-600">학습 내용</div>
-          <div className="border-2 border-gray-200 rounded shadow-md">
+          <div className="border border-gray-200 rounded shadow-md">
             {select?.ref?.map((item, index) => {
               return (
                 <div

@@ -33,23 +33,44 @@ const useDetectClose = (
   return [isOpen, ref, removeHandler];
 };
 
-export default function StudyDropMenu() {
+export default function StudyDropMenu(props: { rightOn?: boolean }) {
+  const rightOn: boolean = props.rightOn ?? false;
   const stateName: string[] = ['학습 안 함', '학습 중', '학습 완료'];
-  const statebgColor: string[] = ['bg-gray-300', 'bg-blue-300', 'bg-green-300'];
+  const statebgColor: string[] = [
+    'bg-gray-300',
+    'bg-indigo-500',
+    'bg-green-700',
+  ];
   const stateTextColor: string[] = [
     'text-gray-600',
-    'text-gray-600',
-    'text-gray-600',
+    'text-white',
+    'text-white',
   ];
+  const statePreviewbgColor: string[] = [
+    'bg-gray-200',
+    'bg-indigo-100',
+    'bg-green-100',
+  ];
+  const statePreviewTextColor: string[] = [
+    'text-gray-600',
+    'text-indigo-600',
+    'text-green-600',
+  ];
+
   const [stateNum, setStateNum] = useState(0);
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   return (
-    <div>
+    <div
+      className="relative"
+      onClick={(e) => {
+        e.preventDefault();
+      }}
+    >
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className={`${stateTextColor[stateNum]} font-semibold ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center`}
+        className={`${stateTextColor[stateNum]} font-semibold ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
         onClick={myPageHandler}
         ref={myPageRef}
       >
@@ -75,7 +96,9 @@ export default function StudyDropMenu() {
         id="dropdown"
         className={`${
           myPageIsOpen ? '' : 'hidden'
-        } z-1 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+        } border border-gray-200 z-50 absolute ${
+          rightOn ? 'left-0' : 'right-0'
+        } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -85,10 +108,15 @@ export default function StudyDropMenu() {
             if (index == stateNum) return;
             return (
               <div
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-2 py-1  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={() => setStateNum(index)}
               >
-                {item}
+                <div
+                  className={`${statePreviewbgColor[index]} 
+                  rounded-sm text-xs font-semibold px-1 w-fit ${statePreviewTextColor[index]} `}
+                >
+                  {item}
+                </div>
               </div>
             );
           })}

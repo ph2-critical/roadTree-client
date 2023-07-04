@@ -1,7 +1,7 @@
 import { reference } from '@/public/RoadTreeData';
 import Image from 'next/image';
-import { Dropdown } from 'flowbite-react';
 import StudyDropMenu from './StudyDropMenu';
+import Link from 'next/link';
 
 export default function RefBlock(props: { refdata: reference }) {
   const refdata: reference = props.refdata;
@@ -13,13 +13,21 @@ export default function RefBlock(props: { refdata: reference }) {
     'bg-green-400',
     'bg-green-500',
   ];
+  const categoryImage: { [key: string]: string } = {
+    book: '/book.svg',
+    posting: '/posting.png',
+    video: '/video.png',
+  };
   return (
-    <div className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200">
+    <Link
+      href={refdata.url}
+      className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
+    >
       <Image
-        src="book.svg"
-        alt="book"
-        width={14}
-        height={14}
+        src={categoryImage[refdata.category]}
+        alt={refdata.category}
+        width={512}
+        height={512}
         className="mr-3 w-14 h-14"
       ></Image>
       <div className="flex-grow w-32 h-14">
@@ -43,6 +51,6 @@ export default function RefBlock(props: { refdata: reference }) {
       <div className="p-1 mt-auto">
         <StudyDropMenu />
       </div>
-    </div>
+    </Link>
   );
 }
