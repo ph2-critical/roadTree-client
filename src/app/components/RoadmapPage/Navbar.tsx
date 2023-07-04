@@ -2,28 +2,27 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import LoginModal, { useModalStore } from './LoginModal';
 import { Logo } from '@/src/app/assets/Icons';
 import { supabase } from '@/lib/supabase';
 
+export const Login = async () => {
+  await supabase.auth
+    .signInWithOAuth({
+      provider: 'google',
+      options: {
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
-
-  const Login = async () => {
-    await supabase.auth
-      .signInWithOAuth({
-        provider: 'google',
-        options: {
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const Logout = async () => {
     await supabase.auth.signOut();
@@ -55,7 +54,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-      <LoginModal />
     </header>
   );
 }

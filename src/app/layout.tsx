@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={'h-screen w-full'}>
-        <Navbar />
+        <Header />
         {children}
       </body>
     </html>

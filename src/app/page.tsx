@@ -19,10 +19,10 @@ export default function Home() {
   const canStart = [true, true, false];
 
   return (
-    <main className="flex flex-col align-middle sm:pt-4 justify-centent">
+    <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent">
       <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="max-w-2xl m-10 mx-auto lg:max-w-4xl lg:px-12">
-          <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-5xl lg:text-6xl">
+          <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-5xl lg:text-5xl">
             프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
           </h1>
           <div className="mt-8 space-y-6 text-2xl tracking-tight text-gray-500 font-display lg:text-3xl">
