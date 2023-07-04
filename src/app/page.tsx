@@ -1,8 +1,4 @@
-import { SubHeader } from './components/Main/subHeader';
-import { PostCard } from './components/Post/postCard';
-import StartBut from './components/RoadmapPage/StartBut';
-import { CheckIcon } from './assets/Icons';
-import { supabase } from '@/lib/supabase';
+import Link from 'next/link';
 
 export default function Home() {
   const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
@@ -75,7 +71,12 @@ export default function Home() {
                     })}
                   </ul>
                   {canStart[index] ? (
-                    <StartBut cid={index + 1} />
+                    <Link
+                      href={'/roadmap?' + index}
+                      className="text-white bg-main hover:brightness-95 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    >
+                      Get started
+                    </Link>
                   ) : (
                     <div className="text-white bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
                       준비 중 입니다.
