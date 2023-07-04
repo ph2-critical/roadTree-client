@@ -1,5 +1,4 @@
 import { Header } from './components/Header';
-import Navbar from './components/RoadmapPage/Navbar';
 import { SideBar } from './components/SideBar';
 import './globals.css';
 

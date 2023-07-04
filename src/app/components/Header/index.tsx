@@ -1,5 +1,5 @@
 'use client';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/app/assets/Icons';
 import Link from 'next/link';
@@ -28,7 +28,7 @@ export const Header = () => {
     await supabase.auth.signOut();
   };
 
-  const path = usePathname();
+  // const path = usePathname();
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
