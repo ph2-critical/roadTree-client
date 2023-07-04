@@ -1,6 +1,5 @@
-import { Header } from '../components/Header';
-import Navbar from '../components/RoadmapPage/Navbar';
-import { SideBar } from '../components/SideBar';
+import { Header } from './components/Header';
+import { SideBar } from './components/SideBar';
 import './globals.css';
 
 export const metadata = {
@@ -26,11 +25,15 @@ export const metadata = {
 //   );
 // }
 
-export default function RootLayout({ children }: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className={"h-screen w-full"}>
-        <Navbar />
+      <body className={'h-screen w-full'}>
+        <Header />
         {children}
       </body>
     </html>
