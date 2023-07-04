@@ -37,7 +37,6 @@ export default function RootLayout({
         <Navbar />
         {children}
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
     </html>
   );
