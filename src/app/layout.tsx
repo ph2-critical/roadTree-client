@@ -35,6 +35,7 @@ export default function RootLayout({
       <body className={'h-screen w-full'}>
         <Header />
         {children}
+        <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 'use client';
 
 import { RoadData, back_data, front_data } from '@/public/RoadTreeData';
@@ -6,13 +7,13 @@ import { useEffect } from 'react';
 import { create } from 'zustand';
 
 interface RoadTreeStore {
-  select: number;
-  setSelect: (prop: number) => void;
+  select: RoadData | null;
+  setSelect: (prop: RoadData | null) => void;
 }
 
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
-  select: 0,
-  setSelect: (prop) => set((state) => ({ select: prop })),
+  select: null,
+  setSelect: (prop) => set(() => ({ select: prop })),
 }));
 
 export default function RoadTreeLayout(props: { isFront: boolean }) {
@@ -43,7 +44,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
     root.x0 = h / 2;
     root.y0 = 0;
-    setSelect(0);
+    setSelect(null);
     if (root.children instanceof Array) {
       root.children.map((child: RoadData) => {
         if (child.children !== undefined && child.children !== null) {
@@ -52,20 +53,21 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           });
           toggle_deleteselect(child);
         }
+        child.select = false;
       });
     }
 
     update(root);
 
     function update(source: any) {
-      const duration = d3.event && d3.event.altKey ? 5000 : 500;
+      let duration = d3.event && d3.event.altKey ? 5000 : 500;
 
       // Compute the new tree layout.
-      const nodes = tree.nodes(root).reverse();
+      let nodes = tree.nodes(root).reverse();
 
       // Normalize for fixed-depth.
       nodes.forEach(function (d: RoadData) {
-        const level = selecthistory[2]
+        let level = selecthistory[2]
           ? 3
           : selecthistory[1]
           ? 2
@@ -80,16 +82,16 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       });
 
       // Update the nodes…
-      const node = vis.selectAll('g.node').data(nodes, function (d: RoadData) {
+      let node = vis.selectAll('g.node').data(nodes, function (d: RoadData) {
         return d.id || (d.id = ++i);
       });
 
       // Enter any new nodes at the parent's previous position.
-      const nodeEnter = node
+      let nodeEnter = node
         .enter()
         .append('svg:g')
         .attr('class', 'node')
-        .attr('transform', function (d: RoadData) {
+        .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
         .on('click', function (d: RoadData) {
@@ -122,7 +124,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .attr('font-weight', 'bold');
 
       // Transition nodes to their new position.
-      const nodeUpdate = node
+      let nodeUpdate = node
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
@@ -143,7 +145,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .style('ry', '20');
 
       // Transition exiting nodes to the parent's new position.
-      const nodeExit = node
+      let nodeExit = node
         .exit()
         .transition()
         .duration(duration)
@@ -153,7 +155,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .remove();
 
       // Update the links…
-      const link = vis
+      let link = vis
         .selectAll('path.link')
         .data(tree.links(nodes), function (d: any) {
           return d.target.id;
@@ -165,7 +167,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .insert('svg:path', 'g')
         .attr('class', 'link fill-none stroke-black stroke-1')
         .attr('d', function (d: RoadData) {
-          const o = { x: source.x0, y: source.y0 };
+          let o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
         })
         .transition()
@@ -180,8 +182,8 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .exit()
         .transition()
         .duration(duration)
-        .attr('d', function (d: RoadData) {
-          const o = { x: source.x, y: source.y };
+        .attr('d', function () {
+          let o = { x: source.x, y: source.y };
           return diagonal({ source: o, target: o });
         })
         .remove();
@@ -213,13 +215,15 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
               }
             }
           }
-          selecthistory[d.depth - 1] = d;
+          if (d.children.length !== 0) {
+            selecthistory[d.depth - 1] = d;
+          }
         }
       }
 
       if (selectbefore !== null) selectbefore.select = false; // 이전 선택 내용 색 지우기
       d.select = true; // 선택된 내용 색 넣기
-      setSelect(d.nid);
+      setSelect(d);
       selectbefore = d; // 이전 선택 내용 업데이트
     }
 
@@ -237,7 +241,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
         if (selectbefore !== null) selectbefore.select = false;
         d.select = false;
-        setSelect(0);
+        setSelect(null);
         selectbefore = null;
       }
     }
