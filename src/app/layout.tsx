@@ -34,9 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={'h-screen w-full flex flex-col'}>
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <Navbar />
         {children}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
     </html>
   );

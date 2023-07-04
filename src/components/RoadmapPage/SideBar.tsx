@@ -1,5 +1,6 @@
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
+import StudyDropMenu from './StudyDropMenu';
 
 export default function SideBar() {
   const { select } = useRoadTreeStore();
@@ -9,7 +10,7 @@ export default function SideBar() {
       {/* side bar top height : 32 */}
       <div
         id="roadmap_sidebar_top"
-        className="flex justify-between h-12 py-1 mx-5 border-b-2"
+        className="flex justify-between h-12 py-1 mx-5 border-b-2 items-center"
       >
         {/* side bar content height : 24  */}
         <div className="font-display text-base font-bold text-gray-600 m-1">
@@ -38,6 +39,10 @@ export default function SideBar() {
           {select?.name}
         </div>
         <div className="text-sm p-1">{select?.description}</div>
+        <div className="py-2">
+          <StudyDropMenu />
+        </div>
+
         <div className="m-1 pt-3">
           <div className="font-semibold text-gray-600 py-2">학습 내용</div>
           <div className="rounded border-2 border-gray-200 shadow-md">

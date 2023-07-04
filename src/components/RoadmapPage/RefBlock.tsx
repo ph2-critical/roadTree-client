@@ -1,7 +1,6 @@
 import { reference } from '@/public/RoadTreeData';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
+import { Dropdown } from 'flowbite-react';
 import StudyDropMenu from './StudyDropMenu';
 
 export default function RefBlock(props: { refdata: reference }) {
@@ -41,7 +40,9 @@ export default function RefBlock(props: { refdata: reference }) {
           </div>
         </div>
       </div>
-      <StudyDropMenu />
+      <div className="mt-auto p-1">
+        <StudyDropMenu />
+      </div>
     </div>
   );
 }
