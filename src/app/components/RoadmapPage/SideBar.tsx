@@ -8,7 +8,7 @@ export default function SideBar() {
 
   return (
     <div
-      className={`fixed right-0 bg-white h-full z-40 w-128 border-l border-gray-200 shadow-deep-dark ${
+      className={`fixed right-0 bg-white h-screenWithoutHeader z-40 w-128 border-l border-gray-200 shadow-deep-dark ${
         select === null ? 'hidden' : ''
       }`}
     >
@@ -55,7 +55,7 @@ export default function SideBar() {
             <StudyDropMenu rightOn />
           </div>
 
-          <div className="pt-3 m-1">
+          <div className="py-3 m-1">
             <div className="py-2 font-semibold text-gray-600">학습 내용</div>
             <div className="border border-gray-200 rounded shadow-md">
               {select?.ref?.map((item, index) => {

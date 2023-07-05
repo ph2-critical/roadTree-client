@@ -2,6 +2,10 @@
 'use client';
 
 import { RoadData, back_data, front_data } from '@/public/RoadTreeData';
+import {
+  roadmap_back_public,
+  roadmap_front_public,
+} from '@/roadmap_json/roadmap_data';
 import * as d3 from 'd3';
 import { useEffect } from 'react';
 import { create } from 'zustand';
@@ -31,7 +35,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       w = 1280 - m[1] - m[3],
       h = 800 - m[0] - m[2],
       i = 0;
-    const root: RoadData = isFront ? front_data : back_data;
+    const root: RoadData = isFront ? roadmap_front_public : roadmap_back_public;
     const tree: any = d3.layout.tree().size([h, w]);
 
     const diagonal = d3.svg.diagonal().projection(function (d: RoadData) {
@@ -94,7 +98,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       let nodeEnter = node
         .enter()
         .append('svg:g')
-        .attr('class', 'node')
+        .attr('class', 'node cursor-pointer hover:brightness-95')
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
@@ -110,11 +114,11 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           return '#fff';
         })
         .style('width', '200')
-        .style('height', '80')
+        .style('height', '40')
         .style('x', '-100')
-        .style('y', '-40')
-        .style('rx', '20')
-        .style('ry', '20');
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
 
       nodeEnter
         .append('svg:text')
@@ -137,16 +141,16 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
       nodeUpdate
         .select('rect')
-        .attr('class', 'fill-white stroke-black stroke-2 cursor-pointer')
+        .attr('class', 'fill-white stroke-black stroke-2')
         .style('fill', function (d: RoadData) {
           return d.select ? 'lightsteelblue' : '#fff';
         })
         .style('width', '200')
-        .style('height', '80')
+        .style('height', '40')
         .style('x', '-100')
-        .style('y', '-40')
-        .style('rx', '20')
-        .style('ry', '20');
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
 
       // Transition exiting nodes to the parent's new position.
       let nodeExit = node
