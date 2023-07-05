@@ -9,15 +9,19 @@ import { create } from 'zustand';
 interface RoadTreeStore {
   select: RoadData | null;
   setSelect: (prop: RoadData | null) => void;
+  selectNullFunc: (prop: RoadData | null) => void;
+  setSelectNullFunc: (prop: (prop: RoadData | null) => void) => void;
 }
 
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
+  selectNullFunc: () => {},
+  setSelectNullFunc: (prop) => set(() => ({ selectNullFunc: prop })),
 }));
 
 export default function RoadTreeLayout(props: { isFront: boolean }) {
-  const { setSelect } = useRoadTreeStore();
+  const { setSelect, setSelectNullFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null];
   let selectbefore: null | RoadData = null;
   const isFront: boolean = props.isFront;
@@ -245,6 +249,19 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         selectbefore = null;
       }
     }
+
+    const selectNull = (select: RoadData | null) => {
+      console.log('selectNull');
+      if (select !== null) {
+        console.log('2');
+        select.select = false;
+        setSelect(null);
+        update(select);
+        console.log('3');
+      }
+    };
+
+    setSelectNullFunc(selectNull);
   }, []);
 
   return <div id="body" className="w-auto overflow-scroll scrollbar-hide" />;

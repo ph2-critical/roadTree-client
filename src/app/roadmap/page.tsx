@@ -21,17 +21,8 @@ export default function Roadmap() {
       >
         <RoadTreeLayout isFront={isFront} />
       </main>
-      <div
-        id="default-sidebar"
-        className={
-          'top-0 right-0 z-40 w-128 h-full shrink-0 transition-transform'
-        }
-        aria-label="Sidenav"
-      >
-        <div className="h-full border-l border-gray-200 shadow-deep-dark">
-          <SideBar />
-        </div>
-      </div>
+
+      <SideBar />
     </div>
   );
 }
