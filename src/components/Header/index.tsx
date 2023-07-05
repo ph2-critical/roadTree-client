@@ -1,7 +1,7 @@
 'use client';
 // import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Logo } from '@/src/app/assets/Icons';
+import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
@@ -42,7 +42,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
+    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link href={'/'}>
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>

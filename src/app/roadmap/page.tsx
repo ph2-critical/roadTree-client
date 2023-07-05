@@ -3,7 +3,7 @@
 import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
-import SideBar from '@/src/app/components/RoadmapPage/SideBar';
+import SideBar from '@/src/components/RoadmapPage/SideBar';
 
 import { useSearchParams } from 'next/navigation';
 
