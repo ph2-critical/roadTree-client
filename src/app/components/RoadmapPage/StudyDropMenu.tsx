@@ -33,26 +33,35 @@ const useDetectClose = (
   return [isOpen, ref, removeHandler];
 };
 
-export default function StudyDropMenu(props: { rightOn?: boolean }) {
-  const rightOn: boolean = props.rightOn ?? false;
-  const stateName: string[] = ['학습 안 함', '학습 중', '학습 완료'];
+export default function StudyDropMenu(props: { node?: boolean }) {
+  const rightOn: boolean = props.node ?? false;
+  const stateName: string[] = [
+    '학습 안 함',
+    '학습 예정',
+    '학습 중',
+    '학습 완료',
+  ];
   const statebgColor: string[] = [
     'bg-gray-300',
+    'bg-yellow-400',
     'bg-indigo-500',
     'bg-green-700',
   ];
   const stateTextColor: string[] = [
     'text-gray-600',
+    'text-yellow-800',
     'text-white',
     'text-white',
   ];
   const statePreviewbgColor: string[] = [
     'bg-gray-200',
+    'bg-yellow-200',
     'bg-indigo-100',
     'bg-green-100',
   ];
   const statePreviewTextColor: string[] = [
     'text-gray-600',
+    'text-yellow-600',
     'text-indigo-600',
     'text-green-600',
   ];

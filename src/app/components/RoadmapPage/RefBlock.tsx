@@ -1,4 +1,4 @@
-import { reference } from '@/public/RoadTreeData';
+import { reference } from '@/roadmap_json/roadmap_data';
 import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
 import Link from 'next/link';

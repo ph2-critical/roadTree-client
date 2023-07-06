@@ -4,7 +4,7 @@ import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
 
 export default function SideBar() {
-  const { select, setSelect, selectNullFunc } = useRoadTreeStore();
+  const { select, setSelect, updateFunc } = useRoadTreeStore();
 
   return (
     <div
@@ -25,8 +25,11 @@ export default function SideBar() {
           <div
             className="p-1 rounded hover:bg-gray-100"
             onClick={() => {
-              selectNullFunc(select);
-              console.log('click');
+              if (select !== null) {
+                select.select = false;
+                setSelect(null);
+                updateFunc(select);
+              }
             }}
           >
             <svg
@@ -52,7 +55,7 @@ export default function SideBar() {
           </div>
           <div className="p-1 text-sm">{select?.description}</div>
           <div className="py-2 w-fit">
-            <StudyDropMenu rightOn />
+            <StudyDropMenu node />
           </div>
 
           <div className="py-3 m-1">
