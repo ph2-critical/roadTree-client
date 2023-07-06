@@ -3,12 +3,13 @@ import { useEffect, useState, useRef, RefObject } from 'react';
 
 const useDetectClose = (
   initialState: boolean,
-): [boolean, RefObject<HTMLButtonElement>, () => void] => {
+): [boolean, RefObject<HTMLButtonElement>, (e: any) => void] => {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
   const ref = useRef<HTMLButtonElement>(null);
 
-  const removeHandler: () => void = () => {
+  const removeHandler: (e: any) => void = (e) => {
     setIsOpen(!isOpen);
+    e.stopPropagation();
   };
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const useDetectClose = (
         !ref.current.contains(e.target as HTMLButtonElement)
       ) {
         setIsOpen(!isOpen);
+        e.stopPropagation();
       }
     };
 
@@ -33,8 +35,14 @@ const useDetectClose = (
   return [isOpen, ref, removeHandler];
 };
 
-export default function StudyDropMenu(props: { node?: boolean }) {
+export default function StudyDropMenu(props: {
+  node?: boolean;
+  stateNum: number;
+  setStateNum: (prop: number) => void;
+}) {
   const rightOn: boolean = props.node ?? false;
+  const stateNum = props.stateNum;
+  const setStateNum = props.setStateNum;
   const stateName: string[] = [
     '학습 안 함',
     '학습 예정',
@@ -66,14 +74,13 @@ export default function StudyDropMenu(props: { node?: boolean }) {
     'text-green-600',
   ];
 
-  const [stateNum, setStateNum] = useState(0);
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   return (
     <div
       className="relative"
       onClick={(e) => {
-        e.preventDefault();
+        // e.preventDefault();
       }}
     >
       <button
@@ -108,6 +115,7 @@ export default function StudyDropMenu(props: { node?: boolean }) {
         } border border-gray-200 z-50 absolute ${
           rightOn ? 'left-0' : 'right-0'
         } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
+        onClick={myPageHandler}
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -116,9 +124,11 @@ export default function StudyDropMenu(props: { node?: boolean }) {
           {stateName.map((item, index) => {
             if (index == stateNum) return;
             return (
-              <div
+              <li
                 className="block px-2 py-1  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                onClick={() => setStateNum(index)}
+                onClick={(e: any) => {
+                  setStateNum(index);
+                }}
               >
                 <div
                   className={`${statePreviewbgColor[index]} 
@@ -126,7 +136,7 @@ export default function StudyDropMenu(props: { node?: boolean }) {
                 >
                   {item}
                 </div>
-              </div>
+              </li>
             );
           })}
         </ul>

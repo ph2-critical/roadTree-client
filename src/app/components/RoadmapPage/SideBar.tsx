@@ -2,8 +2,10 @@ import Image from 'next/image';
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
+import { useState } from 'react';
 
 export default function SideBar() {
+  const [stateNum, setStateNum] = useState<number>(0);
   const { select, setSelect, updateFunc } = useRoadTreeStore();
 
   return (
@@ -55,7 +57,7 @@ export default function SideBar() {
           </div>
           <div className="p-1 text-sm">{select?.description}</div>
           <div className="py-2 w-fit">
-            <StudyDropMenu node />
+            <StudyDropMenu node stateNum={stateNum} setStateNum={setStateNum} />
           </div>
 
           <div className="py-3 m-1">
