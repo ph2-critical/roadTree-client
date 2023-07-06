@@ -31,13 +31,14 @@ export const Header = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      await supabase.auth.getUser().then((res) => {
-        if (res.data.user === null) {
-          setIsLogin(false);
-        } else {
-          setIsLogin(true);
-        }
-      });
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
     };
 
     checkUser();
