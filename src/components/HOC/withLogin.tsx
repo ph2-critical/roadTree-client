@@ -3,24 +3,24 @@
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
-const isAuth = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  supabase.auth.onAuthStateChange((event) => {
-    if (event === 'SIGNED_OUT') {
-      setIsLogin(false);
-    } else {
-      setIsLogin(true);
+// interface WrapProps {
+//   WrapperComponent: React.ComponentProps<any> | React.ComponentType<any>;
+// }
+
+const isAuth = async () => {
+  await supabase.auth.getUser().then((res) => {
+    if (res.data.user === null) {
+      return false;
     }
   });
-
-  return isLogin;
+  return true;
 };
 
-export const WithLogin = (WrapperComponent: React.ComponentType<any>): any => {
-  const HOC = (props: any) => {
-    //any type 추후 수정해야함!!!!!!!!!!!!!!!!!!!!!!
-    if (isAuth()) {
-      return <WrapperComponent {...props} />;
+export const WithLogin = (WrapperComponent: React.ComponentProps<any>): any => {
+  //any type 추후 수정해야함!!!!!!!!!!!!!!!!!!!!!!
+  const HOC = async () => {
+    if (await isAuth()) {
+      return <WrapperComponent />;
     } else {
       return supabase.auth
         .signInWithOAuth({
@@ -35,6 +35,8 @@ export const WithLogin = (WrapperComponent: React.ComponentType<any>): any => {
         .catch((error) => {
           console.log(error);
         });
+
+      return <></>;
     }
   };
 

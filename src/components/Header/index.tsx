@@ -26,19 +26,21 @@ export const Header = () => {
 
   const Logout = async () => {
     await supabase.auth.signOut();
+    setIsLogin(false);
   };
 
-  // const path = usePathname();
-
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log(session?.user);
-      if (event === 'SIGNED_OUT') {
-        setIsLogin(false);
-      } else {
-        setIsLogin(true);
-      }
-    });
+    const checkUser = async () => {
+      await supabase.auth.getUser().then((res) => {
+        if (res.data.user === null) {
+          setIsLogin(false);
+        } else {
+          setIsLogin(true);
+        }
+      });
+    };
+
+    checkUser();
   }, []);
 
   return (
