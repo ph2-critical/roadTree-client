@@ -3,9 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 // import LoginModal, { useModalStore } from './LoginModal';
-import { auth } from './Fbase';
 import { useRouter } from 'next/navigation';
-import { onAuthStateChanged } from 'firebase/auth';
 
 export default function StartBut(props: { cid: number }) {
   // const { setModalTrue, lastModalonId, setLastModalonId } = useModalStore();

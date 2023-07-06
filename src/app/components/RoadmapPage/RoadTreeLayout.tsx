@@ -2,6 +2,10 @@
 'use client';
 
 import { RoadData, back_data, front_data } from '@/public/RoadTreeData';
+import {
+  roadmap_back_public,
+  roadmap_front_public,
+} from '@/roadmap_json/roadmap_data';
 import * as d3 from 'd3';
 import { useEffect } from 'react';
 import { create } from 'zustand';
@@ -9,15 +13,19 @@ import { create } from 'zustand';
 interface RoadTreeStore {
   select: RoadData | null;
   setSelect: (prop: RoadData | null) => void;
+  selectNullFunc: (prop: RoadData | null) => void;
+  setSelectNullFunc: (prop: (prop: RoadData | null) => void) => void;
 }
 
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
+  selectNullFunc: () => {},
+  setSelectNullFunc: (prop) => set(() => ({ selectNullFunc: prop })),
 }));
 
 export default function RoadTreeLayout(props: { isFront: boolean }) {
-  const { setSelect } = useRoadTreeStore();
+  const { setSelect, setSelectNullFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null];
   let selectbefore: null | RoadData = null;
   const isFront: boolean = props.isFront;
@@ -27,7 +35,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       w = 1280 - m[1] - m[3],
       h = 800 - m[0] - m[2],
       i = 0;
-    const root: RoadData = isFront ? front_data : back_data;
+    const root: RoadData = isFront ? roadmap_front_public : roadmap_back_public;
     const tree: any = d3.layout.tree().size([h, w]);
 
     const diagonal = d3.svg.diagonal().projection(function (d: RoadData) {
@@ -75,7 +83,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           ? 1
           : 0;
         if (d.depth) {
-          d.y = (d.depth - level / 3) * 300 + 300;
+          d.y = (d.depth - level / 3) * 300 + 100;
         } else {
           d.y = (0 - level / 3) * 300 + 300;
         }
@@ -90,7 +98,12 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       let nodeEnter = node
         .enter()
         .append('svg:g')
-        .attr('class', 'node')
+        .attr('class', function (d: RoadData) {
+          return (
+            'node cursor-pointer hover:brightness-95' +
+            (d.depth === 0 ? ' hidden' : '')
+          );
+        })
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
@@ -102,15 +115,13 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       nodeEnter
         .append('svg:rect')
         .attr('class', 'fill-white stroke-black stroke-2 cursor-pointer')
-        .style('fill', function (d: RoadData) {
-          return '#fff';
-        })
+        .style('fill', '#fff')
         .style('width', '200')
-        .style('height', '80')
+        .style('height', '40')
         .style('x', '-100')
-        .style('y', '-40')
-        .style('rx', '20')
-        .style('ry', '20');
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
 
       nodeEnter
         .append('svg:text')
@@ -133,16 +144,16 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
       nodeUpdate
         .select('rect')
-        .attr('class', 'fill-white stroke-black stroke-2 cursor-pointer')
+        .attr('class', 'fill-white stroke-black stroke-2')
         .style('fill', function (d: RoadData) {
           return d.select ? 'lightsteelblue' : '#fff';
         })
         .style('width', '200')
-        .style('height', '80')
+        .style('height', '40')
         .style('x', '-100')
-        .style('y', '-40')
-        .style('rx', '20')
-        .style('ry', '20');
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
 
       // Transition exiting nodes to the parent's new position.
       let nodeExit = node
@@ -165,7 +176,15 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       link
         .enter()
         .insert('svg:path', 'g')
-        .attr('class', 'link fill-none stroke-black stroke-1')
+        .attr('class', function (d: { source: RoadData; target: RoadData }) {
+          console.log(d.source);
+          console.log(d.source.depth);
+          console.log(d.source.depth === 0);
+          return (
+            'link fill-none stroke-black stroke-1' +
+            (d.source.depth === 0 ? ' hidden' : '')
+          );
+        })
         .attr('d', function (d: RoadData) {
           let o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
@@ -245,6 +264,16 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         selectbefore = null;
       }
     }
+
+    const selectNull = (select: RoadData | null) => {
+      if (select !== null) {
+        select.select = false;
+        setSelect(null);
+        update(select);
+      }
+    };
+
+    setSelectNullFunc(selectNull);
   }, []);
 
   return <div id="body" className="w-auto overflow-scroll scrollbar-hide" />;

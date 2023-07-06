@@ -1,85 +1,127 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, RefObject } from 'react';
 
-// const dropdownTheme: CustomFlowbiteTheme['dropdown'] = {
-//   floating: {
-//     target: '',
-//   },
-//   inlineWrapper:
-//     'text-gray-600 font-semibold bg-gray-300 hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center',
-// };
+const useDetectClose = (
+  initialState: boolean,
+): [boolean, RefObject<HTMLButtonElement>, () => void] => {
+  const [isOpen, setIsOpen] = useState<boolean>(initialState);
+  const ref = useRef<HTMLButtonElement>(null);
 
-// const useDetectClose = (initialState :boolean) => {
-//   const [isOpen, setIsOpen] = useState<boolean>(initialState);
-//   const ref = useRef(null);
+  const removeHandler: () => void = () => {
+    setIsOpen(!isOpen);
+  };
 
-//   const removeHandler = () => {
-//     setIsOpen(!isOpen);
-//   }
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (
+        ref.current !== null &&
+        !ref.current.contains(e.target as HTMLButtonElement)
+      ) {
+        setIsOpen(!isOpen);
+      }
+    };
 
-//   useEffect(() => {
-//     const onClick = (e) => {
-//       if (ref.current !== null && !ref.current.contains(e.target)) {
-//         setIsOpen(!isOpen)
-//       }
-//     };
+    if (isOpen) {
+      window.addEventListener('click', onClick);
+    }
 
-//     if (isOpen) {
-//       window.addEventListener("click", onClick);
-//     }
+    return () => {
+      window.removeEventListener('click', onClick);
+    };
+  }, [isOpen]);
 
-//     return () => {
-//       window.removeEventListener("click", onClick);
-//     };
-//   }, [isOpen]);
+  return [isOpen, ref, removeHandler];
+};
 
-//   return [isOpen, ref, removeHandler];
-// };
-
-export default function StudyDropMenu() {
+export default function StudyDropMenu(props: { rightOn?: boolean }) {
+  const rightOn: boolean = props.rightOn ?? false;
   const stateName: string[] = ['학습 안 함', '학습 중', '학습 완료'];
+  const statebgColor: string[] = [
+    'bg-gray-300',
+    'bg-indigo-500',
+    'bg-green-700',
+  ];
+  const stateTextColor: string[] = [
+    'text-gray-600',
+    'text-white',
+    'text-white',
+  ];
+  const statePreviewbgColor: string[] = [
+    'bg-gray-200',
+    'bg-indigo-100',
+    'bg-green-100',
+  ];
+  const statePreviewTextColor: string[] = [
+    'text-gray-600',
+    'text-indigo-600',
+    'text-green-600',
+  ];
+
   const [stateNum, setStateNum] = useState(0);
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   return (
-    <div>개발중</div>
-    // <div>
-    //   <div onClick={myPageHandler} ref={myPageRef}>
-    //     마이페이지
-    //   </div>
-    //   <div isDropped={myPageIsOpen}>
-    //     <div>
-    //       <div>
-    //         <div href="#1-1">메뉴1</div>
-    //       </div>
-    //       <div>
-    //         <div href="#1-2">메뉴2</div>
-    //       </div>
-    //       <div>
-    //         <div href="#1-3">메뉴3</div>
-    //       </div>
-    //     </Ul>
-    //   </Menu>
-    // </DropdownContainer>
-    // // <Dropdown
-    // //   inline
-    // //   theme={dropdownTheme}
-    // //   label={stateName[stateNum]}
-    // //   onClick={(e: any) => {
-    // //     e.preventDefault();
-    // //   }}
-    // // >
-    // //   {stateName.map((item, index) => {
-    // //     if (index == stateNum) return;
-    // //     return (
-    // //       <Dropdown.Item
-    // //         onClick={() => {
-    // //           setStateNum(index);
-    // //         }}
-    // //       >
-    // //         {item}
-    // //       </Dropdown.Item>
-    // //     );
-    // //   })}
-    // // </Dropdown>
+    <div
+      className="relative"
+      onClick={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <button
+        id="dropdownDefaultButton"
+        data-dropdown-toggle="dropdown"
+        className={`${stateTextColor[stateNum]} font-semibold ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
+        onClick={myPageHandler}
+        ref={myPageRef}
+      >
+        {stateName[stateNum]}
+        <svg
+          className="w-4 h-4 ml-2"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+      </button>
+      {/* <!-- Dropdown menu --> */}
+      <div
+        id="dropdown"
+        className={`${
+          myPageIsOpen ? '' : 'hidden'
+        } border border-gray-200 z-50 absolute ${
+          rightOn ? 'left-0' : 'right-0'
+        } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
+      >
+        <ul
+          className="py-2 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownDefaultButton"
+        >
+          {stateName.map((item, index) => {
+            if (index == stateNum) return;
+            return (
+              <div
+                className="block px-2 py-1  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                onClick={() => setStateNum(index)}
+              >
+                <div
+                  className={`${statePreviewbgColor[index]} 
+                  rounded-sm text-xs font-semibold px-1 w-fit ${statePreviewTextColor[index]} `}
+                >
+                  {item}
+                </div>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
   );
 }
