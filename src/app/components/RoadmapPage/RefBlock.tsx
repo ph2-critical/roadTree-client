@@ -19,8 +19,10 @@ export default function RefBlock(props: { refdata: reference }) {
     video: '/video.png',
   };
   return (
-    <Link
-      href={refdata.url}
+    <div
+      onClick={() => {
+        window.open(refdata.url);
+      }}
       className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
     >
       <Image
@@ -51,6 +53,6 @@ export default function RefBlock(props: { refdata: reference }) {
       <div className="p-1 mt-auto">
         <StudyDropMenu />
       </div>
-    </Link>
+    </div>
   );
 }
