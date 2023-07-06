@@ -1,7 +1,7 @@
-import { RoadData } from '@/public/RoadTreeData';
+import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const network_data_private: RoadData = {
-  nid: 0,
+  nid: 2,
   depth: 2,
   name: '네트워크',
   description:

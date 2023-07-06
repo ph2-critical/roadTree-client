@@ -22,7 +22,6 @@ export interface RoadData {
 
   ref?: reference[];
 
-  id?: number;
   x0?: number;
   y0?: number;
   x?: number;

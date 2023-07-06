@@ -83,7 +83,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           ? 1
           : 0;
         if (d.depth) {
-          d.y = (d.depth - level / 3) * 300 + 300;
+          d.y = (d.depth - level / 3) * 300 + 100;
         } else {
           d.y = (0 - level / 3) * 300 + 300;
         }
@@ -98,7 +98,12 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       let nodeEnter = node
         .enter()
         .append('svg:g')
-        .attr('class', 'node cursor-pointer hover:brightness-95')
+        .attr('class', function (d: RoadData) {
+          return (
+            'node cursor-pointer hover:brightness-95' +
+            (d.depth === 0 ? ' hidden' : '')
+          );
+        })
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
@@ -110,9 +115,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       nodeEnter
         .append('svg:rect')
         .attr('class', 'fill-white stroke-black stroke-2 cursor-pointer')
-        .style('fill', function (d: RoadData) {
-          return '#fff';
-        })
+        .style('fill', '#fff')
         .style('width', '200')
         .style('height', '40')
         .style('x', '-100')
@@ -173,7 +176,15 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       link
         .enter()
         .insert('svg:path', 'g')
-        .attr('class', 'link fill-none stroke-black stroke-1')
+        .attr('class', function (d: { source: RoadData; target: RoadData }) {
+          console.log(d.source);
+          console.log(d.source.depth);
+          console.log(d.source.depth === 0);
+          return (
+            'link fill-none stroke-black stroke-1' +
+            (d.source.depth === 0 ? ' hidden' : '')
+          );
+        })
         .attr('d', function (d: RoadData) {
           let o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
@@ -255,13 +266,10 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
     }
 
     const selectNull = (select: RoadData | null) => {
-      console.log('selectNull');
       if (select !== null) {
-        console.log('2');
         select.select = false;
         setSelect(null);
         update(select);
-        console.log('3');
       }
     };
 

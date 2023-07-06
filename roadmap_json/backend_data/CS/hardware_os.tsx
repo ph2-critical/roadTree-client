@@ -1,4 +1,4 @@
-import { RoadData } from '@/public/RoadTreeData';
+import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const hardware_os_data_private: RoadData = {
   nid: 1,

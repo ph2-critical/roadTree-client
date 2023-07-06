@@ -1,16 +1,15 @@
-import { RoadData } from '../roadmap_data';
+import { RoadData } from '@/roadmap_json/roadmap_data';
 import { hardware_os_data_private } from './CS/hardware_os';
 import { network_data_private } from './CS/network';
 import { mysql_data_private } from './db/mysql';
 
 export const roadmap_back_private: RoadData = {
-  nid: 0,
+  nid: 1,
   depth: 0,
   name: 'Back-end',
-
   children: [
     {
-      nid: 0,
+      nid: 1,
       depth: 1,
       name: 'computer_science',
       description:
@@ -65,7 +64,7 @@ export const roadmap_back_private: RoadData = {
       children: [network_data_private, hardware_os_data_private],
     },
     {
-      nid: 1,
+      nid: 2,
       depth: 1,
       name: 'java',
       description: '추천 소개글',
@@ -164,7 +163,7 @@ export const roadmap_back_private: RoadData = {
       // children: ['study'],
     },
     {
-      nid: 2,
+      nid: 3,
       depth: 1,
       name: 'database',
       description:
@@ -237,7 +236,7 @@ export const roadmap_back_private: RoadData = {
       children: [mysql_data_private], // 'mysql', 'oracle', 'mongodb'],
     },
     {
-      nid: 3,
+      nid: 4,
       depth: 1,
       name: 'springboot',
       description:
@@ -361,10 +360,10 @@ export const roadmap_back_private: RoadData = {
       // children: ['MVC', 'DB', 'JUnit'],
     },
     {
-      nid: 4,
+      nid: 5,
       depth: 1,
       name: 'JPA',
-      url: 'https://docs.spring.io/spring-data/jpa/docs/current/reference/html/',
+      // url: 'https://docs.spring.io/spring-data/jpa/docs/current/reference/html/',
       description:
         'DB와 연결하여 데이터를 읽고 쓰기 위해서 SQL쿼리문을 알아야하지만, JPA을 사용하면 객체중심으로 애플리케이션 개발이 가능하여 생산성을 높여줄 수 있어 많은 개발자들이 사용하고 있습니다.',
       ref: [
@@ -445,10 +444,10 @@ export const roadmap_back_private: RoadData = {
       // children: ['면접질문', 'Redis', 'Security'],
     },
     {
-      nid: 5,
+      nid: 6,
       depth: 1,
       name: 'aws_cloud',
-      url: 'https://docs.aws.amazon.com/',
+      // url: 'https://docs.aws.amazon.com/',
       description: '추천 소개글',
       ref: [
         {
@@ -518,7 +517,7 @@ export const roadmap_back_private: RoadData = {
       // children: ['docker', 'kubernetes'],
     },
     {
-      nid: 6,
+      nid: 7,
       depth: 1,
       name: 'code',
       description:
@@ -609,7 +608,7 @@ export const roadmap_back_private: RoadData = {
       children: [],
     },
     {
-      nid: 7,
+      nid: 8,
       depth: 1,
       name: 'algorithm',
       description:
