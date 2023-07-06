@@ -23,8 +23,10 @@ export default function RefBlock(props: { refdata: reference }) {
 
   return (
     <div
-      onClick={() => {
-        window.open(refdata.url);
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          window.open(refdata.url);
+        }
       }}
       className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
     >

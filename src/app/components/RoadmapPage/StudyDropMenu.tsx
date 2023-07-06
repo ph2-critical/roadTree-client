@@ -19,7 +19,6 @@ const useDetectClose = (
         !ref.current.contains(e.target as HTMLButtonElement)
       ) {
         setIsOpen(!isOpen);
-        e.stopPropagation();
       }
     };
 

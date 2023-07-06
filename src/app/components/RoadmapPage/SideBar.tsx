@@ -67,8 +67,7 @@ export default function SideBar() {
                 return (
                   <div
                     key={'key' + index}
-                    className="w-full h-20 bg-white border-b-2"
-                    // border 1px이 없음
+                    className="w-full h-20 bg-white border-b-1"
                   >
                     <RefBlock refdata={item}></RefBlock>
                   </div>
