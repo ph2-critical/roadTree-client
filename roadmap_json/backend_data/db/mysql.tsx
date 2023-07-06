@@ -9,7 +9,7 @@ export const mysql_data_private: RoadData = {
   // url: 'https://www.mysql.com/',
   ref: [
     {
-      uuid: 1,
+      uuid: '1',
       title: '생활코딩 - MySQL',
       url: 'https://www.youtube.com/playlist?list=PLuHgQVnccGMCgrP_9HL3dAcvdt8qOZxjW',
       grade: 1,
@@ -18,7 +18,7 @@ export const mysql_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: 2,
+      uuid: '2',
       title: '갖고노는 MySQL 데이터베이스 by 얄코',
       url: 'https://www.inflearn.com/course/%EC%96%84%EC%BD%94-%EB%A7%88%EC%9D%B4%EC%97%90%EC%8A%A4%ED%81%90%EC%97%98#curriculum',
       grade: 1,
@@ -27,7 +27,7 @@ export const mysql_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: 3,
+      uuid: '3',
       title: '[애플코딩]한 번에 끝내는 SQL & Database',
       url: 'https://codingapple.com/course/sql-and-database/',
       grade: 1,

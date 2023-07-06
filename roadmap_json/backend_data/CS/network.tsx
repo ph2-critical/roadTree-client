@@ -8,7 +8,7 @@ export const network_data_private: RoadData = {
     '우리가 웹/앱서비스를 이용할 수 있는 이유는 네트워크라는 통신 덕분이다. 이덕분에 다른 컴퓨터랑 데이터를 주고 받을 수 있끼 때문에 개발자가 알아야하는 매우 기본 소양이다. 하지만, 알면 알수록 내용들이 매우 깊게까지 있기 때문에, 틈틈이 하나하나 차근차근 알아가는 것을 추천한다.',
   ref: [
     {
-      uuid: 1,
+      uuid: '1',
       title: '한 권으로 끝내는 네트워크 기초',
       url: 'https://www.yes24.com/Product/Goods/109742201',
       grade: 1,
@@ -17,7 +17,7 @@ export const network_data_private: RoadData = {
       category: 'book',
     },
     {
-      uuid: 2,
+      uuid: '2',
       title: '모든 개발자를 위한 HTTP 웹 기본 지식',
       url: 'https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard',
       grade: 1,
@@ -26,7 +26,7 @@ export const network_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: 3,
+      uuid: '3',
       title: 'WEB1- HTML & Internet(생활코딩)',
       url: 'https://www.youtube.com/playlist?list=PLuHgQVnccGMDZP7FJ_ZsUrdCGH68ppvPb',
       grade: 0,
@@ -35,7 +35,7 @@ export const network_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: 4,
+      uuid: '4',
       title: '그림으로 이해하는 네트워크 용어',
       url: 'https://product.kyobobook.co.kr/detail/S000001834837',
       grade: 1,
