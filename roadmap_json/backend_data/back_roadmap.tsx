@@ -4,6 +4,10 @@ import { network_data_private } from './CS/network';
 import { mysql_data_private } from './db/mysql';
 import { mongodb_data_private } from './db/mongodb';
 import { redis_data_private } from './db/redis';
+import { sprig_db_data_private } from '@/roadmap_json/backend_data/spring/DB';
+import { sprig_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
+import { sprig_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
+import { sprig_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,
@@ -355,7 +359,7 @@ export const roadmap_back_private: RoadData = {
           category: 'book',
         },
       ],
-      // children: ['MVC', 'DB', 'JUnit', 'Security'],
+      children: [sprig_db_data_private, sprig_mvc_data_private, sprig_junit_data_private, sprig_security_data_private],
     },
     {
       nid: 4,
