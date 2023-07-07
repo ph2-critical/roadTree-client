@@ -188,7 +188,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
-          return 'translate(' + source.y + ',' + source.x + ')';
+          return 'translate(' + selectbefore!.y + ',' + selectbefore!.x + ')';
         })
         .remove();
 
@@ -226,7 +226,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .transition()
         .duration(duration)
         .attr('d', function () {
-          let o = { x: source.x, y: source.y };
+          let o = { x: selectbefore!.x, y: selectbefore!.y };
           return diagonal({ source: o, target: o });
         })
         .remove();
@@ -281,6 +281,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         if (selectcurrent !== null) selectcurrent.select = false;
         d.select = false;
         setSelect(null);
+        selectbefore = selectcurrent;
         selectcurrent = null;
       }
     }
