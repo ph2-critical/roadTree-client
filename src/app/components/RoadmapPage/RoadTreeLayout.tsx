@@ -27,13 +27,14 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 export default function RoadTreeLayout(props: { isFront: boolean }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null, null];
-  let selectbefore: null | RoadData = null; // 현재 선택된 내용. 이전 선택 내용과 비교하여 색을 지우기 위함
+  let selectcurrent: null | RoadData = null; // 현재 선택된 내용
+  let selectbefore: null | RoadData = null; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   const isFront: boolean = props.isFront;
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
-    if (selectbefore === null || selectbefore.depth === undefined) return 0;
-    else return selectbefore.depth;
+    if (selectcurrent === null || selectcurrent.depth === undefined) return 0;
+    else return selectcurrent.depth;
   };
 
   useEffect(() => {
@@ -148,20 +149,20 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .attr('font-weight', 'bold');
 
       // Transition nodes to their new position.
-      let nodeUpdate = node
+      node
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
-      nodeUpdate = nodeUpdate.select('g').attr('class', function (d: RoadData) {
+      let nodeUpdate = node.select('g').attr('class', function (d: RoadData) {
         return (
           'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
           (d.depth === 0 ? ' hidden ' : '') +
           (d.select
             ? 'brightness-90'
-            : selectbefore !== null &&
-              selectbefore.select === true &&
+            : selectcurrent !== null &&
+              selectcurrent.select === true &&
               d !== selecthistory[d.depth! - 1] &&
               getLevel() >= (d.depth === undefined ? 0 : d.depth)
             ? 'opacity-20'
@@ -259,10 +260,10 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         selecthistory[d.depth - 1] = d;
       }
 
-      if (selectbefore !== null) selectbefore.select = false; // 이전 선택 내용 색 지우기
+      if (selectcurrent !== null) selectcurrent.select = false; // 이전 선택 내용 색 지우기
       d.select = true; // 선택된 내용 색 넣기
       setSelect(d);
-      selectbefore = d; // 이전 선택 내용 업데이트
+      selectcurrent = d; // 이전 선택 내용 업데이트
     }
 
     // 선택해제
@@ -277,10 +278,10 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           }
         }
 
-        if (selectbefore !== null) selectbefore.select = false;
+        if (selectcurrent !== null) selectcurrent.select = false;
         d.select = false;
         setSelect(null);
-        selectbefore = null;
+        selectcurrent = null;
       }
     }
 
