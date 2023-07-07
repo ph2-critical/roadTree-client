@@ -26,9 +26,15 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 
 export default function RoadTreeLayout(props: { isFront: boolean }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
-  const selecthistory: (null | RoadData)[] = [null, null, null];
-  let selectbefore: null | RoadData = null;
+  const selecthistory: (null | RoadData)[] = [null, null, null, null];
+  let selectbefore: null | RoadData = null; // 현재 선택된 내용. 이전 선택 내용과 비교하여 색을 지우기 위함
   const isFront: boolean = props.isFront;
+
+  // getLevel: 현재 선택된 노드의 레벨을 반환
+  const getLevel: () => number = () => {
+    if (selectbefore === null || selectbefore.depth === undefined) return 0;
+    else return selectbefore.depth;
+  };
 
   useEffect(() => {
     let m = [20, 120, 20, 20],
@@ -75,13 +81,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
       // Normalize for fixed-depth.
       nodes.forEach(function (d: RoadData) {
-        let level = selecthistory[2]
-          ? 3
-          : selecthistory[1]
-          ? 2
-          : selecthistory[0]
-          ? 1
-          : 0;
+        let level: number = getLevel();
         if (d.depth) {
           d.y = (d.depth - level / 3) * 300 + 100;
         } else {
@@ -98,18 +98,31 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       let nodeEnter = node
         .enter()
         .append('svg:g')
-        .attr('class', function (d: RoadData) {
-          return (
-            'node cursor-pointer hover:brightness-95' +
-            (d.depth === 0 ? ' hidden' : '')
-          );
-        })
+        .attr('class', 'node')
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
         .on('click', function (d: RoadData) {
           toggle_select(d);
           update(d);
+        });
+      nodeEnter
+        .append('svg:rect')
+        .attr('class', 'fill-white')
+        .style('fill', '#fff')
+        .style('width', '200')
+        .style('height', '40')
+        .style('x', '-100')
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
+      nodeEnter = nodeEnter
+        .append('svg:g')
+        .attr('class', function (d: RoadData) {
+          return (
+            'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
+            (d.depth === 0 ? ' hidden ' : '')
+          );
         });
 
       nodeEnter
@@ -141,12 +154,25 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .attr('transform', function (d: RoadData) {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
+      nodeUpdate = nodeUpdate.select('g').attr('class', function (d: RoadData) {
+        return (
+          'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
+          (d.depth === 0 ? ' hidden ' : '') +
+          (d.select
+            ? 'brightness-90'
+            : selectbefore !== null &&
+              selectbefore.select === true &&
+              d !== selecthistory[d.depth! - 1] &&
+              getLevel() >= (d.depth === undefined ? 0 : d.depth)
+            ? 'opacity-20'
+            : '')
+        );
+      });
 
       nodeUpdate
         .select('rect')
         .attr('class', function (d: RoadData) {
-          console.log(d.select);
-          return 'stroke-black stroke-2 ' + (d.select ? 'brightness-90' : '');
+          return 'stroke-black stroke-2  ';
         })
         .style('width', '200')
         .style('height', '40')
@@ -218,23 +244,19 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         return;
       }
 
-      if (d._children) {
-        // 선택
-        d.children = d._children;
-        d._children = null;
+      // 선택
+      d.children = d._children;
+      d._children = null;
 
-        if (d.depth) {
-          if (selecthistory[d.depth - 1] !== null) {
-            for (let i = 2; i >= d.depth - 1; i--) {
-              if (selecthistory[i] !== null) {
-                toggle_deleteselect(selecthistory[i]!);
-              }
+      if (d.depth) {
+        if (selecthistory[d.depth - 1] !== null) {
+          for (let i = 2; i >= d.depth - 1; i--) {
+            if (selecthistory[i] !== null) {
+              toggle_deleteselect(selecthistory[i]!);
             }
           }
-          if (d.children.length !== 0) {
-            selecthistory[d.depth - 1] = d;
-          }
         }
+        selecthistory[d.depth - 1] = d;
       }
 
       if (selectbefore !== null) selectbefore.select = false; // 이전 선택 내용 색 지우기
