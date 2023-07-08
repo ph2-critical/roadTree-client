@@ -99,7 +99,9 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       let nodeEnter = node
         .enter()
         .append('svg:g')
-        .attr('class', 'node')
+        .attr('class', function (d: RoadData) {
+          return 'node' + (d.depth === 0 ? ' hidden ' : '');
+        })
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
@@ -120,10 +122,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       nodeEnter = nodeEnter
         .append('svg:g')
         .attr('class', function (d: RoadData) {
-          return (
-            'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
-            (d.depth === 0 ? ' hidden ' : '')
-          );
+          return 'cursor-pointer hover:brightness-95 hover:opacity-100 ';
         });
 
       nodeEnter
