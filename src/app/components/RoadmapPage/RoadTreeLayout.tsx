@@ -28,7 +28,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null, null];
   let selectcurrent: null | RoadData = null; // 현재 선택된 내용
-  let selectbefore: null | RoadData = null; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
+  let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   const isFront: boolean = props.isFront;
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
@@ -188,7 +188,17 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
-          return 'translate(' + selectbefore!.y + ',' + selectbefore!.x + ')';
+          console.log(selecthistorybefore);
+          console.log((d!.depth ?? 2) - 2);
+          console.log(d);
+          console.log(selecthistorybefore[(d!.depth ?? 2) - 2]);
+          return (
+            'translate(' +
+            selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
+            ',' +
+            selecthistorybefore[(d!.depth ?? 2) - 2]!.x +
+            ')'
+          );
         })
         .remove();
 
@@ -209,7 +219,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
             (d.source.depth === 0 ? ' hidden' : '')
           );
         })
-        .attr('d', function (d: RoadData) {
+        .attr('d', function () {
           let o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
         })
@@ -225,8 +235,11 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .exit()
         .transition()
         .duration(duration)
-        .attr('d', function () {
-          let o = { x: selectbefore!.x, y: selectbefore!.y };
+        .attr('d', function (d: RoadData) {
+          let o = {
+            x: selecthistorybefore[d.depth ?? 1 - 1]!.x,
+            y: selecthistorybefore[d.depth ?? 1 - 1]!.y,
+          };
           return diagonal({ source: o, target: o });
         })
         .remove();
@@ -274,6 +287,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           d._children = d.children;
           d.children = null;
           if (d.depth) {
+            selecthistorybefore[d.depth - 1] = selecthistory[d.depth - 1];
             selecthistory[d.depth - 1] = null;
           }
         }
@@ -281,7 +295,6 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         if (selectcurrent !== null) selectcurrent.select = false;
         d.select = false;
         setSelect(null);
-        selectbefore = selectcurrent;
         selectcurrent = null;
       }
     }
