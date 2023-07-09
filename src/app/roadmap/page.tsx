@@ -1,13 +1,14 @@
 'use client';
 
+import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
-import SideBar from '@/src/app/components/RoadmapPage/SideBar';
+import SideBar from '@/src/components/RoadmapPage/SideBar';
 
 import { useSearchParams } from 'next/navigation';
 
-export default function Roadmap() {
+function Roadmap() {
   const [searchParams] = useSearchParams();
 
   const isFront = searchParams === undefined ? true : searchParams[0] === '0';
@@ -35,3 +36,7 @@ export default function Roadmap() {
     </div>
   );
 }
+
+const RoadMapWithLogin = WithLogin(Roadmap);
+
+export default RoadMapWithLogin;

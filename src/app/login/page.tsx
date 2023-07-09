@@ -1,6 +1,7 @@
 'use client';
 
 import { supabase } from '@/lib/supabase';
+import { useEffect } from 'react';
 
 const Login = () => {
   const LoginTest = () => {
@@ -18,15 +19,11 @@ const Login = () => {
         console.log(error);
       });
   };
-  return (
-    <button
-      onClick={() => {
-        LoginTest();
-      }}
-    >
-      test
-    </button>
-  );
+
+  useEffect(() => {
+    LoginTest();
+  }, []);
+  return <div></div>;
 };
 
 export default Login;

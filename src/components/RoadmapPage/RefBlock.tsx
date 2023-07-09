@@ -1,6 +1,5 @@
 import { reference } from '@/public/RoadTreeData';
 import Image from 'next/image';
-import { Dropdown } from 'flowbite-react';
 import StudyDropMenu from './StudyDropMenu';
 
 export default function RefBlock(props: { refdata: reference }) {
