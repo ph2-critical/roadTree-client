@@ -11,7 +11,7 @@ export const roadmap_front_private: RoadData = {
       nid: 11,
       ref: [
         {
-          uuid: 1,
+          uuid: '1',
           title: '생활 코딩 HTML',
           url: 'https://opentutorials.org/course/3084',
           grade: 0,
@@ -20,7 +20,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 2,
+          uuid: '2',
           title: '노마드 코더 카카오톡 클론코딩',
           url: 'https://nomadcoders.co/kokoa-clone',
           grade: 0,
@@ -29,7 +29,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 3,
+          uuid: '3',
           title: '코드카데미 HTML (영어)',
           url: 'https://www.codecademy.com/learn/learn-html',
           grade: 0,
@@ -38,7 +38,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 4,
+          uuid: '4',
           title: 'Do it HTML+CSS+JS',
           url: 'https://www.yes24.com/Product/Goods/96674934',
           category: 'book',
@@ -47,7 +47,7 @@ export const roadmap_front_private: RoadData = {
           price: 30000,
         },
         {
-          uuid: 5,
+          uuid: '5',
           title: 'MDN HTML',
           url: 'https://developer.mozilla.org/ko/docs/Web/HTML',
           grade: 0,
@@ -66,7 +66,7 @@ export const roadmap_front_private: RoadData = {
       nid: 12,
       ref: [
         {
-          uuid: 0,
+          uuid: '0',
           title: '생활 코딩 CSS',
           url: 'https://opentutorials.org/course/3086',
           grade: 0,
@@ -75,7 +75,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 1,
+          uuid: '1',
           title: '노마드 코더 카카오톡 클론코딩',
           url: 'https://nomadcoders.co/kokoa-clone',
           grade: 0,
@@ -84,7 +84,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 2,
+          uuid: '2',
           title: '코딩애플 HTML/CSS',
           url: 'https://codingapple.com/course/html-basics/',
           grade: 1,
@@ -94,7 +94,7 @@ export const roadmap_front_private: RoadData = {
         },
 
         {
-          uuid: 3,
+          uuid: '3',
           title: 'Do it HTML+CSS+JS',
           url: 'https://www.yes24.com/Product/Goods/96674934',
           category: 'book',
@@ -103,7 +103,7 @@ export const roadmap_front_private: RoadData = {
           price: 30000,
         },
         {
-          uuid: 4,
+          uuid: '4',
           title: 'MDN CSS',
           url: 'https://developer.mozilla.org/ko/docs/Web/CSS',
           grade: 0,
@@ -113,7 +113,7 @@ export const roadmap_front_private: RoadData = {
         },
 
         {
-          uuid: 5,
+          uuid: '5',
           title: '1분 코딩 CSS 그리디',
           url: 'https://studiomeal.com/archives/533',
           grade: 1,
@@ -122,7 +122,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 6,
+          uuid: '6',
           title: '1분 코딩 CSS Flex',
           url: 'https://studiomeal.com/archives/197',
           grade: 1,
@@ -131,7 +131,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 7,
+          uuid: '7',
           title: 'BootStrap',
           url: 'https://getbootstrap.kr/',
           grade: 0,
@@ -149,7 +149,7 @@ export const roadmap_front_private: RoadData = {
       nid: 13,
       ref: [
         {
-          uuid: 0,
+          uuid: '0',
           title: '생활코딩 JavaScript',
           url: 'https://opentutorials.org/course/3085',
           grade: 0,
@@ -158,7 +158,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 1,
+          uuid: '1',
           title: '노마드 코더 카카오톡 클론코딩',
           url: 'https://nomadcoders.co/kokoa-clone',
           grade: 0,
@@ -167,7 +167,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 2,
+          uuid: '2',
           title: 'Do it HTML+CSS+JS',
           url: 'https://www.yes24.com/Product/Goods/96674934',
           category: 'book',
@@ -176,7 +176,7 @@ export const roadmap_front_private: RoadData = {
           price: 30000,
         },
         {
-          uuid: 3,
+          uuid: '3',
           title: '코어 자바스크립트',
           url: 'https://search.shopping.naver.com/book/catalog/32466950627',
           grade: 0,
@@ -185,7 +185,7 @@ export const roadmap_front_private: RoadData = {
           price: 22000,
         },
         {
-          uuid: 4,
+          uuid: '4',
           title: '모던 자바스크립트 Deep Dive',
           url: 'https://www.yes24.com/Product/Goods/92742567',
           grade: 1,
@@ -194,7 +194,7 @@ export const roadmap_front_private: RoadData = {
           price: 45000,
         },
         {
-          uuid: 5,
+          uuid: '5',
           title: ' 모던 자바스크립트',
           url: 'https://ko.javascript.info/',
           grade: 1,
@@ -203,7 +203,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 6,
+          uuid: '6',
           title: 'MDN JS',
           url: 'https://developer.mozilla.org/ko/docs/Web/JavaScript',
           grade: 0,
@@ -212,7 +212,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 7,
+          uuid: '7',
           title: '드림코딩의 포트폴리오 웹사이트 클론 코딩',
           url: 'https://academy.dream-coding.com/courses/portfolio',
           grade: 1,
@@ -221,7 +221,7 @@ export const roadmap_front_private: RoadData = {
           price: 90000,
         },
         {
-          uuid: 8,
+          uuid: '8',
           title: 'TCP 스쿨 자바스크립트',
           url: 'http://www.tcpschool.com/javascript/intro',
           grade: 0,
@@ -230,7 +230,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 9,
+          uuid: '9',
           title: '프로그래머스 무료 강의',
           url: 'https://school.programmers.co.kr/learn/courses/3/3-hello-javascript-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%9E%85%EB%AC%B8',
           grade: 0,
@@ -239,7 +239,7 @@ export const roadmap_front_private: RoadData = {
           price: 0,
         },
         {
-          uuid: 10,
+          uuid: '10',
           title: '얄코의 javaScript 끝장내기',
           url: 'https://www.youtube.com/watch?v=RHoPpjKRT38',
           grade: 0,

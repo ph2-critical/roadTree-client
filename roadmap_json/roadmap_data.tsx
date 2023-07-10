@@ -20,6 +20,7 @@ export interface RoadData {
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
 
+  id?: number;
   ref?: reference[];
 
   x0?: number;

@@ -2,16 +2,40 @@ import Image from 'next/image';
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
+import { useState } from 'react';
+import mouseDragHook from './hook/mouseDragHook';
 
 export default function SideBar() {
-  const { select, setSelect, selectNullFunc } = useRoadTreeStore();
+  const [stateNum, setStateNum] = useState<number>(0);
+  const { select, setSelect, updateFunc } = useRoadTreeStore();
+  const [sidebarWeight, setSidebarWeight] = useState<number>(512);
+  const [resizing, setResizing] = useState<boolean>(false);
+
+  const sidebarWeightChange: (deltaX: number) => void = (deltaX: number) => {
+    if (
+      sidebarWeight - deltaX > 512 - 150 &&
+      sidebarWeight - deltaX < 512 + 150
+    ) {
+      setSidebarWeight(sidebarWeight - deltaX);
+    }
+  };
 
   return (
     <div
-      className={`fixed right-0 bg-white h-screenWithoutHeader z-40 w-128 border-l border-gray-200 shadow-deep-dark ${
-        select === null ? 'hidden' : ''
+      className={`fixed right-0 bg-white h-screenWithoutHeader z-40 w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${
+        (select === null ? 'hidden' : '') + (resizing ? 'select-none' : '')
       }`}
     >
+      <div
+        id="changeSidebarWeight"
+        className={
+          `h-full w-5 absolute left-[-10px]  cursor-w-resize flex hover:opacity-100 justify-center` +
+          (resizing ? ' opacity-100' : ' opacity-0')
+        }
+        {...mouseDragHook(sidebarWeightChange, setResizing)}
+      >
+        <div className="bg-blue-400 w-[2px] h-full"></div>
+      </div>
       <div className="flex flex-col h-full">
         {/* side bar top height : 32 */}
         <div
@@ -25,8 +49,11 @@ export default function SideBar() {
           <div
             className="p-1 rounded hover:bg-gray-100"
             onClick={() => {
-              selectNullFunc(select);
-              console.log('click');
+              if (select !== null) {
+                select.select = false;
+                setSelect(null);
+                updateFunc(select);
+              }
             }}
           >
             <svg
@@ -52,7 +79,7 @@ export default function SideBar() {
           </div>
           <div className="p-1 text-sm">{select?.description}</div>
           <div className="py-2 w-fit">
-            <StudyDropMenu rightOn />
+            <StudyDropMenu node stateNum={stateNum} setStateNum={setStateNum} />
           </div>
 
           <div className="py-3 m-1">
@@ -62,8 +89,7 @@ export default function SideBar() {
                 return (
                   <div
                     key={'key' + index}
-                    className="w-full h-20 bg-white border-b-2"
-                    // border 1px이 없음
+                    className="w-full h-20 bg-white border-b-1"
                   >
                     <RefBlock refdata={item}></RefBlock>
                   </div>

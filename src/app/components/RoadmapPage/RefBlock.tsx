@@ -1,7 +1,7 @@
-import { reference } from '@/public/RoadTreeData';
+import { reference } from '@/roadmap_json/roadmap_data';
 import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
-import Link from 'next/link';
+import { useState } from 'react';
 
 export default function RefBlock(props: { refdata: reference }) {
   const refdata: reference = props.refdata;
@@ -18,9 +18,16 @@ export default function RefBlock(props: { refdata: reference }) {
     posting: '/posting.png',
     video: '/video.png',
   };
+
+  const [stateNum, setStateNum] = useState<number>(0);
+
   return (
-    <Link
-      href={refdata.url}
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          window.open(refdata.url);
+        }
+      }}
       className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
     >
       <Image
@@ -49,8 +56,8 @@ export default function RefBlock(props: { refdata: reference }) {
         </div>
       </div>
       <div className="p-1 mt-auto">
-        <StudyDropMenu />
+        <StudyDropMenu stateNum={stateNum} setStateNum={setStateNum} />
       </div>
-    </Link>
+    </div>
   );
 }

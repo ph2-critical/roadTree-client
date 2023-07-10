@@ -1,8 +1,8 @@
 /* eslint-disable prefer-const */
 'use client';
 
-import { RoadData, back_data, front_data } from '@/public/RoadTreeData';
 import {
+  RoadData,
   roadmap_back_public,
   roadmap_front_public,
 } from '@/roadmap_json/roadmap_data';
@@ -13,22 +13,29 @@ import { create } from 'zustand';
 interface RoadTreeStore {
   select: RoadData | null;
   setSelect: (prop: RoadData | null) => void;
-  selectNullFunc: (prop: RoadData | null) => void;
-  setSelectNullFunc: (prop: (prop: RoadData | null) => void) => void;
+  updateFunc: (prop: RoadData) => void;
+  setUpdateFunc: (prop: (prop: RoadData) => void) => void;
 }
 
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
-  selectNullFunc: () => {},
-  setSelectNullFunc: (prop) => set(() => ({ selectNullFunc: prop })),
+  updateFunc: () => {},
+  setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
 export default function RoadTreeLayout(props: { isFront: boolean }) {
-  const { setSelect, setSelectNullFunc } = useRoadTreeStore();
-  const selecthistory: (null | RoadData)[] = [null, null, null];
-  let selectbefore: null | RoadData = null;
+  const { setSelect, setUpdateFunc } = useRoadTreeStore();
+  const selecthistory: (null | RoadData)[] = [null, null, null, null];
+  let selectcurrent: null | RoadData = null; // 현재 선택된 내용
+  let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   const isFront: boolean = props.isFront;
+
+  // getLevel: 현재 선택된 노드의 레벨을 반환
+  const getLevel: () => number = () => {
+    if (selectcurrent === null || selectcurrent.depth === undefined) return 0;
+    else return selectcurrent.depth;
+  };
 
   useEffect(() => {
     let m = [20, 120, 20, 20],
@@ -67,7 +74,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
     update(root);
 
-    function update(source: any) {
+    function update(source: RoadData) {
       let duration = d3.event && d3.event.altKey ? 5000 : 500;
 
       // Compute the new tree layout.
@@ -75,13 +82,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
 
       // Normalize for fixed-depth.
       nodes.forEach(function (d: RoadData) {
-        let level = selecthistory[2]
-          ? 3
-          : selecthistory[1]
-          ? 2
-          : selecthistory[0]
-          ? 1
-          : 0;
+        let level: number = getLevel();
         if (d.depth) {
           d.y = (d.depth - level / 3) * 300 + 100;
         } else {
@@ -99,10 +100,7 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .enter()
         .append('svg:g')
         .attr('class', function (d: RoadData) {
-          return (
-            'node cursor-pointer hover:brightness-95' +
-            (d.depth === 0 ? ' hidden' : '')
-          );
+          return 'node' + (d.depth === 0 ? ' hidden ' : '');
         })
         .attr('transform', function () {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
@@ -110,6 +108,21 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .on('click', function (d: RoadData) {
           toggle_select(d);
           update(d);
+        });
+      nodeEnter
+        .append('svg:rect')
+        .attr('class', 'fill-white')
+        .style('fill', '#fff')
+        .style('width', '200')
+        .style('height', '40')
+        .style('x', '-100')
+        .style('y', '-20')
+        .style('rx', '10')
+        .style('ry', '10');
+      nodeEnter = nodeEnter
+        .append('svg:g')
+        .attr('class', function (d: RoadData) {
+          return 'cursor-pointer hover:brightness-95 hover:opacity-100 ';
         });
 
       nodeEnter
@@ -135,18 +148,31 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .attr('font-weight', 'bold');
 
       // Transition nodes to their new position.
-      let nodeUpdate = node
+      node
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
+      let nodeUpdate = node.select('g').attr('class', function (d: RoadData) {
+        return (
+          'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
+          (d.depth === 0 ? ' hidden ' : '') +
+          (d.select
+            ? 'brightness-90'
+            : selectcurrent !== null &&
+              selectcurrent.select === true &&
+              d !== selecthistory[d.depth! - 1] &&
+              getLevel() >= (d.depth === undefined ? 0 : d.depth)
+            ? 'opacity-20'
+            : '')
+        );
+      });
 
       nodeUpdate
         .select('rect')
-        .attr('class', 'fill-white stroke-black stroke-2')
-        .style('fill', function (d: RoadData) {
-          return d.select ? 'lightsteelblue' : '#fff';
+        .attr('class', function (d: RoadData) {
+          return 'stroke-black stroke-2  ';
         })
         .style('width', '200')
         .style('height', '40')
@@ -161,7 +187,17 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
-          return 'translate(' + source.y + ',' + source.x + ')';
+          console.log(selecthistorybefore);
+          console.log((d!.depth ?? 2) - 2);
+          console.log(d);
+          console.log(selecthistorybefore[(d!.depth ?? 2) - 2]);
+          return (
+            'translate(' +
+            selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
+            ',' +
+            selecthistorybefore[(d!.depth ?? 2) - 2]!.x +
+            ')'
+          );
         })
         .remove();
 
@@ -177,15 +213,12 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .enter()
         .insert('svg:path', 'g')
         .attr('class', function (d: { source: RoadData; target: RoadData }) {
-          console.log(d.source);
-          console.log(d.source.depth);
-          console.log(d.source.depth === 0);
           return (
             'link fill-none stroke-black stroke-1' +
             (d.source.depth === 0 ? ' hidden' : '')
           );
         })
-        .attr('d', function (d: RoadData) {
+        .attr('d', function () {
           let o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
         })
@@ -201,8 +234,11 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .exit()
         .transition()
         .duration(duration)
-        .attr('d', function () {
-          let o = { x: source.x, y: source.y };
+        .attr('d', function (d: RoadData) {
+          let o = {
+            x: selecthistorybefore[d.depth ?? 1 - 1]!.x,
+            y: selecthistorybefore[d.depth ?? 1 - 1]!.y,
+          };
           return diagonal({ source: o, target: o });
         })
         .remove();
@@ -221,29 +257,25 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         return;
       }
 
-      if (d._children) {
-        // 선택
-        d.children = d._children;
-        d._children = null;
+      // 선택
+      d.children = d._children;
+      d._children = null;
 
-        if (d.depth) {
-          if (selecthistory[d.depth - 1] !== null) {
-            for (let i = 2; i >= d.depth - 1; i--) {
-              if (selecthistory[i] !== null) {
-                toggle_deleteselect(selecthistory[i]!);
-              }
+      if (d.depth) {
+        if (selecthistory[d.depth - 1] !== null) {
+          for (let i = 2; i >= d.depth - 1; i--) {
+            if (selecthistory[i] !== null) {
+              toggle_deleteselect(selecthistory[i]!);
             }
           }
-          if (d.children.length !== 0) {
-            selecthistory[d.depth - 1] = d;
-          }
         }
+        selecthistory[d.depth - 1] = d;
       }
 
-      if (selectbefore !== null) selectbefore.select = false; // 이전 선택 내용 색 지우기
+      if (selectcurrent !== null) selectcurrent.select = false; // 이전 선택 내용 색 지우기
       d.select = true; // 선택된 내용 색 넣기
       setSelect(d);
-      selectbefore = d; // 이전 선택 내용 업데이트
+      selectcurrent = d; // 이전 선택 내용 업데이트
     }
 
     // 선택해제
@@ -254,26 +286,21 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
           d._children = d.children;
           d.children = null;
           if (d.depth) {
+            selecthistorybefore[d.depth - 1] = selecthistory[d.depth - 1];
             selecthistory[d.depth - 1] = null;
           }
         }
 
-        if (selectbefore !== null) selectbefore.select = false;
+        if (selectcurrent !== null) selectcurrent.select = false;
         d.select = false;
         setSelect(null);
-        selectbefore = null;
+        selectcurrent = null;
       }
     }
 
-    const selectNull = (select: RoadData | null) => {
-      if (select !== null) {
-        select.select = false;
-        setSelect(null);
-        update(select);
-      }
-    };
-
-    setSelectNullFunc(selectNull);
+    setUpdateFunc((select: RoadData) => {
+      update(select);
+    });
   }, []);
 
   return <div id="body" className="w-auto overflow-scroll scrollbar-hide" />;
