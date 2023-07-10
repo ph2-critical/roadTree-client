@@ -8,7 +8,7 @@ import mouseDragHook from './hook/mouseDragHook';
 import { useEffect, useState } from 'react';
 
 export default function SideBar() {
-  const [stateNum, setStateNum] = useState<number>(0); // 0: not started, 1: will go, 2: in progress, 3: completed
+  const [nodeStateNum, setNodeStateNum] = useState<number>(0); // 0: not started, 1: will go, 2: in progress, 3: completed
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
   const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
@@ -33,15 +33,15 @@ export default function SideBar() {
 
   useEffect(() => {
     if (select !== null) {
-      select.state = stateNum;
+      select.state = nodeStateNum;
       updateFunc(select);
     }
-  }, [stateNum]);
+  }, [nodeStateNum]);
 
   useEffect(() => {
     console.log(select?.nid);
-    if (select !== null && select.state !== stateNum) {
-      setStateNum(select.state ?? 0);
+    if (select !== null && select.state !== nodeStateNum) {
+      setNodeStateNum(select.state ?? 0);
     }
   }, [select]);
 
@@ -107,8 +107,8 @@ export default function SideBar() {
             <div className="py-2 w-fit">
               <StudyDropMenu
                 node
-                stateNum={stateNum}
-                setStateNum={setStateNum}
+                stateNum={nodeStateNum}
+                setStateNum={setNodeStateNum}
               />
             </div>
 

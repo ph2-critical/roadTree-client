@@ -19,7 +19,7 @@ export default function RefBlock(props: { refdata: reference }) {
     video: '/video.png',
   };
 
-  const [stateNum, setStateNum] = useState<number>(0);
+  const [refStateNum, setRefStateNum] = useState<number>(0);
 
   return (
     <div
@@ -56,7 +56,7 @@ export default function RefBlock(props: { refdata: reference }) {
         </div>
       </div>
       <div className="p-1 mt-auto">
-        <StudyDropMenu stateNum={stateNum} setStateNum={setStateNum} />
+        <StudyDropMenu stateNum={refStateNum} setStateNum={setRefStateNum} />
       </div>
     </div>
   );
