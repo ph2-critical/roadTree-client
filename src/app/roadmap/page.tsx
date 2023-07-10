@@ -3,13 +3,8 @@
 import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
-<<<<<<< HEAD
-} from '@/src/app/components/RoadmapPage/RoadTreeLayout';
-import SideBar from '@/src/app/components/RoadmapPage/SideBar';
-=======
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
 import SideBar from '@/src/components/RoadmapPage/SideBar';
->>>>>>> f819bba8b7aa15ad0faf07c6d3e6effc5694d8f4
 
 import { useSearchParams } from 'next/navigation';
 

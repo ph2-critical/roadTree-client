@@ -45,11 +45,7 @@ export const Header = () => {
   }, []);
 
   return (
-<<<<<<< HEAD:src/app/components/Header/index.tsx
-    <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
-=======
-    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
->>>>>>> f819bba8b7aa15ad0faf07c6d3e6effc5694d8f4:src/components/Header/index.tsx
+    <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link href={'/'}>
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
