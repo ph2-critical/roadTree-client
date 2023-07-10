@@ -19,7 +19,6 @@ export const roadmap_back_private: RoadData = {
     {
       nid: 0,
       name: 'Computer_Science',
-      state: 1,
       description:
         '보통 컴퓨터과학분야의 내용들은 컴퓨터가 어떻게 변화했는지 역사를 가지고 있습니다. 그리고 그 역사안에는 어떤 문제가 발생했고, 그 문제를 어떻게 해결했는지를 가지고 있기때문에, 문제 해결능력을 키울 수 있습니다. 또한, 새로운 기술이 나오더라도 결국 핵심은 컴퓨터과학을 기반으로 진화하기때문에 본인의 수용력도 키울 수 있어 좋습니다.',
       ref: [
@@ -362,7 +361,13 @@ export const roadmap_back_private: RoadData = {
           category: 'book',
         },
       ],
-      children: [sprig_db_data_private, sprig_mvc_data_private, sprig_junit_data_private, sprig_security_data_private, sprig_JPA_data_private],
+      children: [
+        sprig_db_data_private,
+        sprig_mvc_data_private,
+        sprig_junit_data_private,
+        sprig_security_data_private,
+        sprig_JPA_data_private,
+      ],
     },
     {
       nid: 4,

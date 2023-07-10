@@ -39,7 +39,6 @@ export default function SideBar() {
   }, [nodeStateNum]);
 
   useEffect(() => {
-    console.log(select?.nid);
     if (select !== null && select.state !== nodeStateNum) {
       setNodeStateNum(select.state ?? 0);
     }
