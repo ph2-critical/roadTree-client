@@ -4,6 +4,12 @@ import { network_data_private } from './CS/network';
 import { mysql_data_private } from './db/mysql';
 import { mongodb_data_private } from './db/mongodb';
 import { redis_data_private } from './db/redis';
+import { sprig_db_data_private } from '@/roadmap_json/backend_data/spring/DB';
+import { sprig_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
+import { sprig_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
+import { sprig_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
+import { sprig_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
+import { java_blog_private } from '@/roadmap_json/backend_data/java/personal_blog';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,
@@ -161,7 +167,7 @@ export const roadmap_back_private: RoadData = {
           category: 'video',
         },
       ],
-      children: [],
+      children: [java_blog_private],
     },
     {
       nid: 2,
@@ -356,99 +362,16 @@ export const roadmap_back_private: RoadData = {
           category: 'book',
         },
       ],
-      // children: ['MVC', 'DB', 'JUnit', 'Security'],
+      children: [sprig_db_data_private, sprig_mvc_data_private, sprig_junit_data_private, sprig_security_data_private, sprig_JPA_data_private],
     },
     {
       nid: 4,
-      name: 'JPA',
-      // url: 'https://docs.spring.io/spring-data/jpa/docs/current/reference/html/',
-      description:
-        'DB와 연결하여 데이터를 읽고 쓰기 위해서 SQL쿼리문을 알아야하지만, JPA을 사용하면 객체중심으로 애플리케이션 개발이 가능하여 생산성을 높여줄 수 있어 많은 개발자들이 사용하고 있습니다.',
-      ref: [
-        {
-          uuid: '0',
-          title: '자바 ORM 표준 JPA 프로그래밍 - 기본편(김영한)',
-          url: 'https://www.inflearn.com/course/ORM-JPA-Basic',
-          grade: 2,
-          amount: '총 16시간3분',
-          price: 121000,
-          category: 'video',
-        },
-        {
-          uuid: '1',
-          title: 'JPA For Beginner(나무소리)',
-          url: 'https://www.youtube.com/playlist?list=PLOSNUO27qFbvzGd3yWbHISxHctPRKkctO',
-          grade: 2,
-          amount: '총 3시간58분',
-          price: 0,
-          category: 'video',
-        },
-        {
-          uuid: '2',
-          title: 'JPA 퀵스타트',
-          url: 'https://product.kyobobook.co.kr/detail/S000001891098',
-          grade: 2,
-          amount: '총 708쪽',
-          price: 30000,
-          category: 'book',
-        },
-        {
-          uuid: '3',
-          title: '실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발(김영한)',
-          url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1',
-          grade: 2,
-          amount: '총 7시간44분',
-          price: 88000,
-          category: 'video',
-        },
-        {
-          uuid: '4',
-          title:
-            '실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화(김영한)',
-          url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94',
-          grade: 2,
-          amount: '총 6시간35분',
-          price: 88000,
-          category: 'video',
-        },
-        {
-          uuid: '5',
-          title: '실전! 스프링 데이터 JPA(김영한)',
-          url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84',
-          grade: 3,
-          amount: '총 7시간17분',
-          price: 88000,
-          category: 'video',
-        },
-        {
-          uuid: '6',
-          title: '자바 ORM 표준 JPA 프로그래밍',
-          url: 'https://product.kyobobook.co.kr/detail/S000000935744',
-          grade: 3,
-          amount: '총 734쪽',
-          price: 43000,
-          category: 'book',
-        },
-        {
-          uuid: '7',
-          title: '실전! Querydsl(김영한)',
-          url: 'https://www.inflearn.com/course/querydsl-%EC%8B%A4%EC%A0%84',
-          grade: 4,
-          amount: '총 6시간24분',
-          price: 88000,
-          category: 'video',
-        },
-      ],
-      children: [],
-    },
-    {
-      nid: 5,
       name: 'aws_cloud',
       // url: 'https://docs.aws.amazon.com/',
       description: '추천 소개글',
       ref: [
         {
-          uuid: '0',
+          uuid: '1',
           title: 'AWS(Amazon Web Service) 입문자를 위한 강의',
           url: 'https://www.udemy.com/course/aws-beginner-sk/?utm_source=adwords&utm_medium=udemyads&utm_campaign=AWS_Search_la.KR_cc.KR&utm_term=_._ag_145452346958_._ad_641862376242_._kw_aws%EA%B0%95%EC%9D%98_._de_c_._dm__._pl__._ti_kwd-380915330158_._li_1009893_._pd__._&matchtype=b&gad=1',
           grade: 1,
@@ -457,7 +380,7 @@ export const roadmap_back_private: RoadData = {
           category: 'video',
         },
         {
-          uuid: '1',
+          uuid: '2',
           title: '쉽게 설명하는 AWS 기초 강좌',
           url: 'https://www.youtube.com/playlist?list=PLfth0bK2MgIan-SzGpHIbfnCnjj583K2m',
           grade: 1,
@@ -466,7 +389,7 @@ export const roadmap_back_private: RoadData = {
           category: 'video',
         },
         {
-          uuid: '1',
+          uuid: '3',
           title: '생활코딩AWS',
           url: 'https://www.youtube.com/playlist?list=PLuHgQVnccGMDNWIEgnXjaZ3jgbIo5zQGi',
           grade: 0,
@@ -475,7 +398,7 @@ export const roadmap_back_private: RoadData = {
           category: 'video',
         },
         {
-          uuid: '1',
+          uuid: '4',
           title: '따라하며 배우는 AWS 네트워크 입문',
           url: 'https://aws.amazon.com/ko/events/builders-online-series/',
           grade: 0,
@@ -484,7 +407,7 @@ export const roadmap_back_private: RoadData = {
           category: 'book',
         },
         {
-          uuid: '4',
+          uuid: '5',
           title: '클라우드 네이티브를 위한 쿠버네티스 실전 프로젝트',
           url: 'https://www.yes24.com/Product/Goods/102234803',
           grade: 0,
@@ -493,7 +416,7 @@ export const roadmap_back_private: RoadData = {
           category: 'book',
         },
         {
-          uuid: '3',
+          uuid: '6',
           title: 'Amazon VPC 네트워킹 원리와 보안',
           url: 'https://www.yes24.com/Product/Goods/106043007',
           grade: 0,
@@ -501,20 +424,11 @@ export const roadmap_back_private: RoadData = {
           price: 32000,
           category: 'book',
         },
-        {
-          uuid: '2',
-          title: '토리맘의 한글라이즈 프로젝트',
-          url: 'https://godekdls.github.io/Spring%20Cloud%20Data%20Flow/resources.reference-docs/',
-          grade: 0,
-          amount: '총 0',
-          price: 0,
-          category: 'posting',
-        },
       ],
       // children: ['docker', 'kubernetes'],
     },
     {
-      nid: 6,
+      nid: 5,
       name: 'code',
       description:
         "개발을 하다보면 반복하게 되는 부분이 발생할 때가 있고, 그런 반복되는 부분을 수정해야되는 상황도 생깁니다. 반복되는 내용이 2~3번정도라면 일일이해도 되지만 양이 많아진다면 불필요한 리소스낭비가 되기때문에, 이런 반복되는 부분을 재사용하기 위해 만들어진 것이 바로 '코드섹션'입니다. 코드를 잘 작성하고 잘 관리하면, 개발자의 생산성을 높일 수 있습니다. 코드를 잘 작성하기 위해서는, 코드의 가독성, 유지보수성, 재사용성, 확장성, 테스트 용이성 등을 고려해야합니다. 이러한 코드의 품질을 높이기 위해, 코드를 작성할 때는 코드 컨벤션을 지키고, 코드 리뷰를 통해 피드백을 받아야합니다. 또한, 코드를 작성할 때는, SOLID 원칙을 지키고, 디자인 패턴을 적용해야합니다. 이러한 코드의 품질을 높이는 것은 개발자의 역량을 높이는 것과도 연관이 있습니다. 따라서, 코드의 품질을 높이기 위해, 코드 컨벤션, 코드 리뷰, SOLID 원칙, 디자인 패턴 등을 공부하고, 실제로 적용해보는 것이 중요합니다.",
@@ -604,7 +518,7 @@ export const roadmap_back_private: RoadData = {
       children: [],
     },
     {
-      nid: 7,
+      nid: 6,
       name: 'algorithm',
       description:
         '알고리즘(자료구조)는 메모리를 효율적으로 사용하면서 데이터를 빠르고 안정적으로 처리하는 것이 궁금적인 목표입니다.알고리즘과 자료구조를 잘못 쓰게되면 느리고 불안정해질 수 있지만, 특정 상황에 맞게 유용하게 사용하게되면 효율적이고 빠른 성능을 낼 수 있습니다.',
