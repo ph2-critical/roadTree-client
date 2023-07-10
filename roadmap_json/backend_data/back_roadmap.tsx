@@ -9,6 +9,7 @@ import { sprig_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
 import { sprig_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
 import { sprig_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
 import { sprig_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
+import { java_blog_private } from '@/roadmap_json/backend_data/java/personal_blog';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,
@@ -165,7 +166,7 @@ export const roadmap_back_private: RoadData = {
           category: 'video',
         },
       ],
-      children: [],
+      children: [java_blog_private],
     },
     {
       nid: 2,
