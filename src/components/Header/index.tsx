@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export const Login = async () => {
   await supabase.auth
@@ -22,6 +23,10 @@ export const Login = async () => {
 };
 
 export const Header = () => {
+  const navMenu = ['Front-end', 'Back-end', 'Ai'];
+  const searchParams: string = usePathname().split('/')[2];
+  const whatStudy: number = parseInt(searchParams);
+
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
@@ -59,7 +64,20 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+      <div className="hidden h-12 mr-10 items-center sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        {navMenu.map((menu, idx) => {
+          return (
+            <Link
+              href={`/roadmap/${idx}`}
+              className={`p-3  font-semibold text-base hover:text-gray-400 ${
+                whatStudy === idx ? 'text-main' : 'text-gray-500'
+              }`}
+            >
+              {menu}
+            </Link>
+          );
+        })}
+        <div className="w-5"></div>
         <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
           onClick={isLogin ? Logout : Login}

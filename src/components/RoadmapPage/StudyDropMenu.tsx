@@ -42,12 +42,7 @@ export default function StudyDropMenu(props: {
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   return (
-    <div
-      className="relative"
-      onClick={(e) => {
-        // e.preventDefault();
-      }}
-    >
+    <div className="relative">
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
