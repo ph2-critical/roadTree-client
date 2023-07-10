@@ -239,16 +239,107 @@
             }
         ],
         "child" : [
-            "basic",
-            "promise",
-            "react"
+            "reactBasic",
+            "hooks",
+            "css library",
+            "data management",
+            "promise"
         ]
         },
         
-        "basic" : {},
+        "reactBasic" : {
+            "description" : "React는 사용자 인터페이스(UI)를 구현하기 위한 라이브러리입니다. React는 사용자 인터페이스를 구성하는 각 요소를 컴포넌트 단위로 만들어 복잡한 UI를 구성할 수 있도록 돕습니다. 가상돔을 활용하여 JS만을 사용할 떄 보다 훨씬 효율적인 UI를 구현할 수 있습니다.",
+            "id" : 23,
+            "ref" : [
+                {
+                "id": 24,
+                "title" : "생활코딩 React",
+                "url" : "https://opentutorials.org/course/4900",
+                "grade": 1,
+                "category" : "video",  
+                "amount" : "총 10챕터",
+                "price" : 0
+                },
+                {
+                    "id": 25,
+                    "title" : " 노마드코더 영화 웹서비스 만들기", 
+                    "url" : "https://nomadcoders.co/react-for-beginners",
+                    "grade": 1,
+                    "category" : "video",
+                    "amount" : "총 6시간",
+                    "price" : "0"
+                    },
+                {
+                    "id": 26,
+                    "title" : "코딩애플 기초부터 쇼핑몰 프로젝트까지 ", 
+                    "url" : "https://codingapple.com/course/react-basic/",
+                    "grade": 1,
+                    "category" :  "video",
+                    "amount" : "총 46개 강의",
+                    "price" : 1700000
+                    },
+                {
+                    "id": 27,
+                    "title" : "리액트를 다루는 기술(김민준)",
+                    "url" : "https://thebook.io/080203/",
+                    "grade": 1,
+                    "category" :  "book",
+                    "amount" : "총 908쪽",
+                    "price" : 0
+                    },
+                {
+                    "id": 28,
+                    "title" :"velopert 리액트 포스팅(김민준)", 
+                    "url" : "https://velopert.com/category/dev-log",
+                    "grade": 2,
+                    "category" :  "posting",
+                    "amount" : "0",
+                    "price" : 0
+                    },
+            ] 
+        },
         "promise" : {},
-        "react" : {
-
+        "vue" : {
+            "description" : "Vue 역시 사용자 인터페이스를 구성하기 위한 프레임워크입니다. 상대적으로 배우기 쉽기 때문에 빠른 개발이 필요하거나 입문하기엔 좋은 프레임워크입니다. React와 마찬가지로 가상돔을 활용하여 효율적인 UI를 구현할 수 있습니다.",
+            "id" : 29,
+            "ref" : [
+                {
+                "id": 30,
+                "title" : "캡틴판교  Vue2 시작하기",
+                "url" : "https://www.inflearn.com/course/age-of-vuejs",
+                "grade": 1,
+                "category" : "video",  
+                "amount" : "총 5시간 25분",
+                "price" : 44000
+                },
+            {
+                "id": 31,
+                "title" :"Do it Vue.js 입문", 
+                "url" : "https://www.yes24.com/Product/Goods/58206961",
+                "grade": 1,
+                "category" : "book",  
+                "amount" : "총 232쪽",
+                "price" : 15000
+                },
+            {
+                "id": 32,
+                "title" : "고양이도 할 수 있는 Vue.js",
+                "url" : "https://rintiantta.github.io/jpub-vue/guide/chapter1.html#s04-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0",
+                "grade": 0,
+                "category" :  "posting",
+                "amount" : "총 10챕터",
+                "price" : 0
+                },
+            {
+                "id": 33,
+                "title" : "인스타그램을 만들며 배워보는 Vue.js 3",
+                "url" : "https://codingapple.com/course/vue-js/",
+                "grade": 1,
+                "category" :  "video",
+                "amount" : "총 43개 강의",
+                "price" : 170000
+                }
+            ]
         },
         "typescript" : {
 

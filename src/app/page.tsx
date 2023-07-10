@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { StartBtn } from '../components/RoadmapPage/StartBtn';
 
 export default function Home() {
   const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
@@ -13,12 +13,17 @@ export default function Home() {
     ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
   ];
   const canStart = [true, true, false];
+  const studyTable: { [key: number]: string } = {
+    0: 'front',
+    1: 'back',
+    2: 'ai',
+  };
 
   return (
-    <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent">
+    <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
       <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="max-w-2xl m-10 mx-auto lg:max-w-4xl lg:px-12">
-          <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-5xl lg:text-5xl">
+          <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-5xl lg:text-5xl dark:text-white">
             프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
           </h1>
           <div className="mt-8 space-y-6 text-2xl tracking-tight text-gray-500 font-display lg:text-3xl">
@@ -71,14 +76,9 @@ export default function Home() {
                     })}
                   </ul>
                   {canStart[index] ? (
-                    <Link
-                      href={'/roadmap?' + index}
-                      className="text-white bg-main hover:brightness-95 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                      Get started
-                    </Link>
+                    <StartBtn index={index} />
                   ) : (
-                    <div className="text-white bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
+                    <div className="text-white cursor-not-allowed bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
                       준비 중 입니다.
                     </div>
                   )}

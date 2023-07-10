@@ -24,12 +24,12 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
-export default function RoadTreeLayout(props: { isFront: boolean }) {
+export default function RoadTreeLayout(props: { whatStudy: number }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null, null];
   let selectcurrent: null | RoadData = null; // 현재 선택된 내용
   let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
-  const isFront: boolean = props.isFront;
+  const whatStudy: number = props.whatStudy;
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -42,7 +42,8 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
       w = 1280 - m[1] - m[3],
       h = 800 - m[0] - m[2],
       i = 0;
-    const root: RoadData = isFront ? roadmap_front_public : roadmap_back_public;
+    const root: RoadData =
+      whatStudy == 0 ? roadmap_front_public : roadmap_back_public;
     const tree: any = d3.layout.tree().size([h, w]);
 
     const diagonal = d3.svg.diagonal().projection(function (d: RoadData) {
@@ -187,10 +188,6 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         .transition()
         .duration(duration)
         .attr('transform', function (d: RoadData) {
-          console.log(selecthistorybefore);
-          console.log((d!.depth ?? 2) - 2);
-          console.log(d);
-          console.log(selecthistorybefore[(d!.depth ?? 2) - 2]);
           return (
             'translate(' +
             selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
@@ -257,13 +254,18 @@ export default function RoadTreeLayout(props: { isFront: boolean }) {
         return;
       }
 
-      // 선택
-      d.children = d._children;
-      d._children = null;
+      if (d._children !== null) {
+        // 선택
+        d.children = d._children;
+        d._children = null;
+      }
 
       if (d.depth) {
-        if (selecthistory[d.depth - 1] !== null) {
-          for (let i = 2; i >= d.depth - 1; i--) {
+        if (
+          selecthistory[d.depth - 1] !== null &&
+          selecthistory[d.depth - 1] !== d
+        ) {
+          for (let i = 3; i >= d.depth - 1; i--) {
             if (selecthistory[i] !== null) {
               toggle_deleteselect(selecthistory[i]!);
             }

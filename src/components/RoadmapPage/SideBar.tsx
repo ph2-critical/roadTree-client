@@ -1,22 +1,32 @@
-import Image from 'next/image';
+'use client';
+
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
-import { useState } from 'react';
 import mouseDragHook from './hook/mouseDragHook';
+import { useState } from 'react';
 
 export default function SideBar() {
   const [stateNum, setStateNum] = useState<number>(0);
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
+  const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
   const [resizing, setResizing] = useState<boolean>(false);
 
   const sidebarWeightChange: (deltaX: number) => void = (deltaX: number) => {
     if (
-      sidebarWeight - deltaX > 512 - 150 &&
-      sidebarWeight - deltaX < 512 + 150
+      sidebarWeight - deltaX > 512 - 100 &&
+      sidebarWeight - deltaX < window.innerWidth
     ) {
-      setSidebarWeight(sidebarWeight - deltaX);
+      if (sidebarWeight - deltaX > window.innerWidth - 20) {
+        setIsEntireSize(true);
+        setSidebarWeight(window.innerWidth);
+      } else if (sidebarWeight - deltaX < window.innerWidth - 20) {
+        setIsEntireSize(false);
+        setSidebarWeight(sidebarWeight - deltaX);
+      } else {
+        setSidebarWeight(sidebarWeight - deltaX);
+      }
     }
   };
 
