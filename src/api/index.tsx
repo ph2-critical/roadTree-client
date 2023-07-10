@@ -1,19 +1,19 @@
 // insert, update ,delete
 import { supabase } from '@/lib/supabase';
 
-interface getProps {
+export interface getProps {
   db: string;
   user_id: string;
 }
 
-interface postProps {
+export interface postProps {
   db: string;
   state: string;
   node_id: number;
   user_id: string;
 }
 
-interface deleteProps {
+export interface deleteProps {
   db: string;
   node_id: number;
   user_id: string;

@@ -9,12 +9,12 @@ import { supabase } from '@/lib/supabase';
 
 export const WithLogin = (WrapperComponent: React.ComponentProps<any>): any => {
   //any type 추후 수정해야함!!!!!!!!!!!!!!!!!!!!!!
-  const HOC = async () => {
+  const HOC = async (props: any) => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
     if (user) {
-      return <WrapperComponent />;
+      return <WrapperComponent {...props} />;
     } else {
       supabase.auth.signInWithOAuth({
         provider: 'google',
