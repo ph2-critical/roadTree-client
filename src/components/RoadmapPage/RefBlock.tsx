@@ -1,6 +1,7 @@
-import { reference } from '@/public/RoadTreeData';
+import { reference } from '@/roadmap_json/roadmap_data';
 import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
+import { useState } from 'react';
 
 export default function RefBlock(props: { refdata: reference }) {
   const refdata: reference = props.refdata;
@@ -12,13 +13,28 @@ export default function RefBlock(props: { refdata: reference }) {
     'bg-green-400',
     'bg-green-500',
   ];
+  const categoryImage: { [key: string]: string } = {
+    book: '/book.svg',
+    posting: '/posting.png',
+    video: '/video.png',
+  };
+
+  const [stateNum, setStateNum] = useState<number>(0);
+
   return (
-    <div className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          window.open(refdata.url);
+        }
+      }}
+      className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
+    >
       <Image
-        src="book.svg"
-        alt="book"
-        width={14}
-        height={14}
+        src={categoryImage[refdata.category]}
+        alt={refdata.category}
+        width={512}
+        height={512}
         className="mr-3 w-14 h-14"
       ></Image>
       <div className="flex-grow w-32 h-14">
@@ -40,7 +56,7 @@ export default function RefBlock(props: { refdata: reference }) {
         </div>
       </div>
       <div className="p-1 mt-auto">
-        <StudyDropMenu />
+        <StudyDropMenu stateNum={stateNum} setStateNum={setStateNum} />
       </div>
     </div>
   );
