@@ -4,7 +4,7 @@ import {
   ChatIcon,
   ClipIcon,
   ListBulletIcon,
-} from '@/src/app/assets/Icons';
+} from '@/src/assets/Icons';
 import { usePathname } from 'next/navigation';
 
 export const SideBar = () => {

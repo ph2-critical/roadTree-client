@@ -1,7 +1,7 @@
 'use client';
 // import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Logo } from '@/src/app/assets/Icons';
+import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
@@ -26,23 +26,30 @@ export const Header = () => {
 
   const Logout = async () => {
     await supabase.auth.signOut();
+    setIsLogin(false);
   };
 
-  // const path = usePathname();
-
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log(session?.user);
-      if (event === 'SIGNED_OUT') {
-        setIsLogin(false);
-      } else {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
         setIsLogin(true);
+      } else {
+        setIsLogin(false);
       }
-    });
+    };
+
+    checkUser();
   }, []);
 
   return (
+<<<<<<< HEAD:src/app/components/Header/index.tsx
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
+=======
+    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
+>>>>>>> f819bba8b7aa15ad0faf07c6d3e6effc5694d8f4:src/components/Header/index.tsx
       <Link href={'/'}>
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
