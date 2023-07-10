@@ -23,7 +23,7 @@ export const Login = async () => {
 };
 
 export const Header = () => {
-  const navMenu = ['Front-end', 'Back-end', 'Ai'];
+  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
   const searchParams: string = usePathname().split('/')[2];
   const whatStudy: number = parseInt(searchParams);
 

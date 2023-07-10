@@ -31,6 +31,8 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
   let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   const whatStudy: number = props.whatStudy;
 
+  const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
+
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
     if (selectcurrent === null || selectcurrent.depth === undefined) return 0;
@@ -160,12 +162,12 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
           'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
           (d.depth === 0 ? ' hidden ' : '') +
           (d.select
-            ? 'brightness-90'
+            ? 'brightness-90 '
             : selectcurrent !== null &&
               selectcurrent.select === true &&
               d !== selecthistory[d.depth! - 1] &&
               getLevel() >= (d.depth === undefined ? 0 : d.depth)
-            ? 'opacity-20'
+            ? 'opacity-20 '
             : '')
         );
       });
@@ -180,7 +182,10 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         .style('x', '-100')
         .style('y', '-20')
         .style('rx', '10')
-        .style('ry', '10');
+        .style('ry', '10')
+        .style('fill', function (d: RoadData) {
+          return statebgColor[d.state ?? 0];
+        });
 
       // Transition exiting nodes to the parent's new position.
       let nodeExit = node

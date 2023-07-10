@@ -12,12 +12,7 @@ export default function Home() {
     ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
     ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
   ];
-  const canStart = [true, true, false];
-  const studyTable: { [key: number]: string } = {
-    0: 'front',
-    1: 'back',
-    2: 'ai',
-  };
+  const canStart = [true, true, true];
 
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
