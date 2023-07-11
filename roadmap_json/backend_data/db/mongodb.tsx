@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const mongodb_data_private: RoadData = {
-  nid: 1,
+  nid: 4,
   depth: 2,
   name: 'MongoDB',
   description:

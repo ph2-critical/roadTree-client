@@ -9,7 +9,8 @@ import { spring_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC'
 import { spring_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
 import { spring_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
 import { spring_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
-import { java_blog_private } from '@/roadmap_json/backend_data/java/personal_blog';
+import { personal_java_data_private } from '@/roadmap_json/backend_data/java/personal_blog';
+import { docker_and_kubernetes_data_private } from '@/roadmap_json/backend_data/aws_cloud/docker_kubernetes';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,
@@ -29,7 +30,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 13시간43분',
           price: 28000,
-          category: 'video',
+          category: '유튜브',
         },
         {
           uuid: '2',
@@ -38,7 +39,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '',
           price: 0,
-          category: 'video',
+          category: '부스트코스',
         },
         {
           uuid: '2',
@@ -47,7 +48,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 292쪽',
           price: 24000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '3',
@@ -118,7 +119,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 520쪽',
           price: 30000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '4',
@@ -127,7 +128,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 520쪽',
           price: 36000,
-          category: 'video',
+          category: '도서',
         },
         {
           uuid: '5',
@@ -136,7 +137,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '',
           price: 0,
-          category: 'posting',
+          category: '도서',
         },
         {
           uuid: '6',
@@ -163,10 +164,10 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 8시간40분',
           price: 30000,
-          category: 'video',
+          category: '유튜브',
         },
       ],
-      children: [java_blog_private],
+      children: [personal_java_data_private],
     },
     {
       nid: 2,
@@ -181,7 +182,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 2시간23분',
           price: 0,
-          category: 'video',
+          category: '유튜브',
         },
         {
           uuid: '1',
@@ -199,7 +200,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 453쪽',
           price: 27000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '3',
@@ -208,7 +209,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 634쪽',
           price: 45000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '4',
@@ -226,7 +227,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 320쪽',
           price: 18000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '6',
@@ -235,7 +236,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 368쪽',
           price: 25000,
-          category: 'book',
+          category: '도서',
         },
       ],
       children: [mysql_data_private, mongodb_data_private, redis_data_private],
@@ -254,7 +255,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 5시간 21분',
           price: 0,
-          category: 'video',
+          category: '인프런',
         },
         {
           uuid: '1',
@@ -263,7 +264,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 12시간 5분',
           price: 88000,
-          category: 'video',
+          category: '인프런',
         },
         {
           uuid: '2',
@@ -272,7 +273,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 2시간 26분',
           price: 0,
-          category: 'video',
+          category: '인프런',
         },
         {
           uuid: '4',
@@ -281,7 +282,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 492쪽',
           price: 26500,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '5',
@@ -291,7 +292,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 492쪽',
           price: 30000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '6',
@@ -301,7 +302,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 760쪽',
           price: 38000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '7',
@@ -320,7 +321,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 11시간 6분',
           price: 99000,
-          category: 'video',
+          category: '인프런',
         },
         {
           uuid: '9',
@@ -329,7 +330,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 1720쪽',
           price: 75000,
-          category: 'video',
+          category: '도서',
         },
         {
           uuid: '10',
@@ -339,7 +340,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 700쪽',
           price: 35000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '11',
@@ -358,16 +359,14 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 416쪽',
           price: 22000,
-          category: 'book',
+          category: '도서',
         },
       ],
-      children: [
-        spring_db_data_private,
+      children: [spring_db_data_private,
         spring_mvc_data_private,
         spring_junit_data_private,
         spring_security_data_private,
-        spring_JPA_data_private,
-      ],
+        spring_JPA_data_private],
     },
     {
       nid: 4,
@@ -382,7 +381,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 9시간',
           price: 99000,
-          category: 'video',
+          category: '유데미',
         },
         {
           uuid: '2',
@@ -391,7 +390,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 6시간15분',
           price: 0,
-          category: 'video',
+          category: '유튜브',
         },
         {
           uuid: '3',
@@ -400,7 +399,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 5시간37분',
           price: 0,
-          category: 'video',
+          category: '유튜브',
         },
         {
           uuid: '4',
@@ -409,7 +408,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 520쪽',
           price: 30900,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '5',
@@ -418,7 +417,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 368쪽',
           price: 30000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '6',
@@ -427,10 +426,10 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 428쪽',
           price: 32000,
-          category: 'book',
+          category: '도서',
         },
       ],
-      // children: ['docker', 'kubernetes'],
+      children: [docker_and_kubernetes_data_private],
     },
     {
       nid: 5,
@@ -445,7 +444,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '',
           price: 0,
-          category: 'posting',
+          category: '깃허브',
         },
         {
           uuid: '1',
@@ -454,7 +453,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '',
           price: 0,
-          category: 'posting',
+          category: '개인블로그',
         },
         {
           uuid: '2',
@@ -463,7 +462,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 11시간37분',
           price: 88000,
-          category: 'video',
+          category: '인프런',
         },
         {
           uuid: '3',
@@ -472,7 +471,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 584쪽',
           price: 33000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -481,7 +480,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 432쪽',
           price: 29000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -490,7 +489,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 656쪽',
           price: 36000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -499,7 +498,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 264쪽',
           price: 20000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -508,7 +507,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 260쪽',
           price: 20000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -517,7 +516,7 @@ export const roadmap_back_private: RoadData = {
           grade: 4,
           amount: '총 656쪽',
           price: 38000,
-          category: 'book',
+          category: '도서',
         },
       ],
       children: [],
@@ -535,7 +534,7 @@ export const roadmap_back_private: RoadData = {
           grade: 3,
           amount: '총 1062쪽',
           price: 50000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -544,7 +543,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 604쪽',
           price: 34000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -553,7 +552,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 664쪽',
           price: 34000,
-          category: 'book',
+          category: '도서',
         },
         {
           uuid: '0',
@@ -563,7 +562,7 @@ export const roadmap_back_private: RoadData = {
           grade: 2,
           amount: '총 13시간',
           price: 0,
-          category: 'video',
+          category: '유데미',
         },
       ],
       children: [],
