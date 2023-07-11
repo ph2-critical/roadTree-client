@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@amplitude/analytics-browser", "npm:2.1.2"],\
             ["@emotion/babel-plugin", "npm:11.11.0"],\
             ["@emotion/css", "npm:11.11.0"],\
             ["@emotion/react", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.1"],\
@@ -80,6 +81,88 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@alloc-quick-lru-npm-5.2.0-eb83517088-bdc35758b5.zip/node_modules/@alloc/quick-lru/",\
           "packageDependencies": [\
             ["@alloc/quick-lru", "npm:5.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/analytics-browser", [\
+        ["npm:2.1.2", {\
+          "packageLocation": "./.yarn/cache/@amplitude-analytics-browser-npm-2.1.2-30566c33c2-82b6fbb8ff.zip/node_modules/@amplitude/analytics-browser/",\
+          "packageDependencies": [\
+            ["@amplitude/analytics-browser", "npm:2.1.2"],\
+            ["@amplitude/analytics-client-common", "npm:2.0.4"],\
+            ["@amplitude/analytics-core", "npm:2.0.3"],\
+            ["@amplitude/analytics-types", "npm:2.1.1"],\
+            ["@amplitude/plugin-page-view-tracking-browser", "npm:2.0.4"],\
+            ["@amplitude/plugin-web-attribution-browser", "npm:2.0.4"],\
+            ["tslib", "npm:2.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/analytics-client-common", [\
+        ["npm:2.0.4", {\
+          "packageLocation": "./.yarn/cache/@amplitude-analytics-client-common-npm-2.0.4-09198734c6-f7a67b2c8a.zip/node_modules/@amplitude/analytics-client-common/",\
+          "packageDependencies": [\
+            ["@amplitude/analytics-client-common", "npm:2.0.4"],\
+            ["@amplitude/analytics-connector", "npm:1.4.8"],\
+            ["@amplitude/analytics-core", "npm:2.0.3"],\
+            ["@amplitude/analytics-types", "npm:2.1.1"],\
+            ["tslib", "npm:2.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/analytics-connector", [\
+        ["npm:1.4.8", {\
+          "packageLocation": "./.yarn/cache/@amplitude-analytics-connector-npm-1.4.8-6e7550ff2b-72b94cc201.zip/node_modules/@amplitude/analytics-connector/",\
+          "packageDependencies": [\
+            ["@amplitude/analytics-connector", "npm:1.4.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/analytics-core", [\
+        ["npm:2.0.3", {\
+          "packageLocation": "./.yarn/cache/@amplitude-analytics-core-npm-2.0.3-ec53e0fe86-5b09277d88.zip/node_modules/@amplitude/analytics-core/",\
+          "packageDependencies": [\
+            ["@amplitude/analytics-core", "npm:2.0.3"],\
+            ["@amplitude/analytics-types", "npm:2.1.1"],\
+            ["tslib", "npm:2.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/analytics-types", [\
+        ["npm:2.1.1", {\
+          "packageLocation": "./.yarn/cache/@amplitude-analytics-types-npm-2.1.1-3c0e75184f-491cba429c.zip/node_modules/@amplitude/analytics-types/",\
+          "packageDependencies": [\
+            ["@amplitude/analytics-types", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/plugin-page-view-tracking-browser", [\
+        ["npm:2.0.4", {\
+          "packageLocation": "./.yarn/cache/@amplitude-plugin-page-view-tracking-browser-npm-2.0.4-46800de842-79b384e67b.zip/node_modules/@amplitude/plugin-page-view-tracking-browser/",\
+          "packageDependencies": [\
+            ["@amplitude/plugin-page-view-tracking-browser", "npm:2.0.4"],\
+            ["@amplitude/analytics-client-common", "npm:2.0.4"],\
+            ["@amplitude/analytics-types", "npm:2.1.1"],\
+            ["tslib", "npm:2.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@amplitude/plugin-web-attribution-browser", [\
+        ["npm:2.0.4", {\
+          "packageLocation": "./.yarn/cache/@amplitude-plugin-web-attribution-browser-npm-2.0.4-4f1ed1d37f-8310b80915.zip/node_modules/@amplitude/plugin-web-attribution-browser/",\
+          "packageDependencies": [\
+            ["@amplitude/plugin-web-attribution-browser", "npm:2.0.4"],\
+            ["@amplitude/analytics-client-common", "npm:2.0.4"],\
+            ["@amplitude/analytics-core", "npm:2.0.3"],\
+            ["@amplitude/analytics-types", "npm:2.1.1"],\
+            ["tslib", "npm:2.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7090,6 +7173,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["roadtree", "workspace:."],\
+            ["@amplitude/analytics-browser", "npm:2.1.2"],\
             ["@emotion/babel-plugin", "npm:11.11.0"],\
             ["@emotion/css", "npm:11.11.0"],\
             ["@emotion/react", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.1"],\
@@ -7875,6 +7959,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-2.5.3-7756051e02-88902b309a.zip/node_modules/tslib/",\
           "packageDependencies": [\
             ["tslib", "npm:2.5.3"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:2.6.0", {\
+          "packageLocation": "./.yarn/cache/tslib-npm-2.6.0-4d336a6824-c01066038f.zip/node_modules/tslib/",\
+          "packageDependencies": [\
+            ["tslib", "npm:2.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\

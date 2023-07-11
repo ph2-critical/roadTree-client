@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { usePathname, useSearchParams } from 'next/navigation';
+import initAmplitude from '@/lib/amplitude/amplitude';
 
 export const Login = async () => {
   await supabase.auth
@@ -22,6 +24,10 @@ export const Login = async () => {
 };
 
 export const Header = () => {
+  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
+  const searchParams: string = usePathname().split('/')[2];
+  const whatStudy: number = parseInt(searchParams);
+
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
@@ -44,6 +50,8 @@ export const Header = () => {
     checkUser();
   }, []);
 
+  initAmplitude();
+
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link href={'/'}>
@@ -59,7 +67,20 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+      <div className="hidden h-12 mr-10 items-center sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        {navMenu.map((menu, idx) => {
+          return (
+            <Link
+              href={`/roadmap/${idx}`}
+              className={`p-3  font-semibold text-base hover:text-gray-400 ${
+                whatStudy === idx ? 'text-main' : 'text-gray-500'
+              }`}
+            >
+              {menu}
+            </Link>
+          );
+        })}
+        <div className="w-5"></div>
         <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
           onClick={isLogin ? Logout : Login}
