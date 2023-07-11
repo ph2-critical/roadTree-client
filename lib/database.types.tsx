@@ -1,5 +1,5 @@
 export type UserDB = {
-  id: number;
+  user_id: number;
   created_at: Date;
   email: string;
 };

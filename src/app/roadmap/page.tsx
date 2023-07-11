@@ -28,6 +28,7 @@ function Roadmap() {
   );
 }
 
-const RoadMapWithLogin = WithLogin(Roadmap);
+// const RoadMapWithLogin = WithLogin(Roadmap);
+const RoadMapWithLogin = Roadmap;
 
 export default RoadMapWithLogin;
