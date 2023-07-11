@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { spring_db_blog_private } from './db/personal_blog';
+import { personal_springDB_data_private } from '@/roadmap_json/backend_data/spring/db/personal_data';
 
-export const sprig_db_data_private: RoadData = {
+export const spring_db_data_private: RoadData = {
   nid: 1,
   depth: 2,
   name: 'Spring DB',
@@ -36,5 +36,5 @@ export const sprig_db_data_private: RoadData = {
       category: 'video',
     },
   ],
-  children: [spring_db_blog_private],
+  children: [personal_springDB_data_private],
 };

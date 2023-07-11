@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
-export const sprig_security_data_private: RoadData = {
+export const spring_security_data_private: RoadData = {
   nid: 10,
   depth: 2,
   name: 'spring security',

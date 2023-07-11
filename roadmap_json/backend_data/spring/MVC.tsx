@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
 export const spring_mvc_data_private: RoadData = {
   nid: 7,
@@ -44,5 +45,6 @@ export const spring_mvc_data_private: RoadData = {
       category: '유데미',
     },
   ],
+  children: [personal_springMVC_data_private],
 };
 
