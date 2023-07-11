@@ -198,6 +198,7 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
           else return duration;
         })
         .attr('transform', function (d: RoadData) {
+          console.log(selecthistorybefore);
           return (
             'translate(' +
             selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
@@ -264,7 +265,11 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
     // 선택
     function toggle_select(d: RoadData) {
       if (d.select === true) {
-        toggle_deleteselect(d);
+        for (let i = 3; i >= (d.depth ?? 1) - 1; i--) {
+          if (selecthistory[i] !== null) {
+            toggle_deleteselect(selecthistory[i]!);
+          }
+        }
         return;
       }
 
