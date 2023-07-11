@@ -6,13 +6,17 @@ import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
 import mouseDragHook from './hook/mouseDragHook';
 import { useEffect, useState } from 'react';
+import { postNodeData, postProps } from '@/src/api';
 
-export default function SideBar() {
+export default function SideBar(props: { whatStudy: number }) {
   const [nodeStateNum, setNodeStateNum] = useState<number>(0); // 0: not started, 1: will go, 2: in progress, 3: completed
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
   const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
   const [resizing, setResizing] = useState<boolean>(false);
+  const whatStudyTable = ['front', 'back', 'ai'];
+  const stateTable = ['학습안함', '학습예정', '학습중', '학습완료'];
+  const whatStudy: string = whatStudyTable[props.whatStudy];
 
   const sidebarWeightChange: (deltaX: number) => void = (deltaX: number) => {
     if (
@@ -34,6 +38,17 @@ export default function SideBar() {
   useEffect(() => {
     if (select !== null) {
       select.state = nodeStateNum;
+
+      const postData: postProps = {
+        roadmap_type: whatStudy,
+        depth: select.depth ?? 1,
+        state: stateTable[nodeStateNum],
+        node_id: select.nid,
+        user_id: process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '',
+      };
+
+      postNodeData(postData);
+
       updateFunc(select);
     }
   }, [nodeStateNum]);
