@@ -1,7 +1,8 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
 export const sprig_security_data_private: RoadData = {
-  nid: 3,
+  nid: 10,
   depth: 2,
   name: 'spring security',
   description: '스프링에서 제공하는 보안 프레임워크',
@@ -14,7 +15,7 @@ export const sprig_security_data_private: RoadData = {
       grade: 3,
       amount: '총 44시31분',
       price: 121000,
-      category: 'video',
+      category: '인프런',
     },
     {
       uuid: '2',
@@ -23,7 +24,7 @@ export const sprig_security_data_private: RoadData = {
       grade: 2,
       amount: '총 20시간58분',
       price: 88000,
-      category: 'video',
+      category: '인프런',
     },
     {
       uuid: '3',
@@ -32,7 +33,7 @@ export const sprig_security_data_private: RoadData = {
       grade: 3,
       amount: '총 2시간2분',
       price: 0,
-      category: 'video',
+      category: '인프런',
     },
     {
       uuid: '4',
@@ -41,7 +42,7 @@ export const sprig_security_data_private: RoadData = {
       grade: 4,
       amount: '총 22시간10분',
       price: 86900,
-      category: 'video',
+      category: '인프런',
     },{
       uuid: '5',
       title: '토리맘의 한글라이즈 프로젝트',
@@ -52,5 +53,6 @@ export const sprig_security_data_private: RoadData = {
       category: '공식문서한글화',
     }
   ],
+  children: [personal_springMVC_data_private],
 };
 

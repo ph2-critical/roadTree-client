@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const mysql_data_private: RoadData = {
-  nid: 1,
+  nid: 3,
   depth: 2,
   name: 'MySQL',
   description:
