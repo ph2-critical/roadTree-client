@@ -1,5 +1,4 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
 export const personal_mysql_data_private: RoadData = {
   nid: 3,
