@@ -8,5 +8,13 @@
         "browser": true,
         "node": true
     },
-    "rules": { "@typescript-eslint/explicit-module-boundary-types": "off" }
+    "rules": { 
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "prettier/prettier": [
+        "warn",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+     }
 }
