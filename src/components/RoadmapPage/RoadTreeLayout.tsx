@@ -27,8 +27,9 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 export default function RoadTreeLayout(props: { whatStudy: number }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null];
-  let selectcurrent: null | RoadData = null; // 현재 선택된 내용
   let selecthistorybefore: (null | RoadData)[] = [null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
+  let selectcurrent: null | RoadData = null; // 현재 선택된 내용
+  let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
 
   const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
@@ -110,6 +111,7 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         })
         .on('click', function (d: RoadData) {
           toggle_select(d);
+          lastclick = d;
           update(d);
         });
       nodeEnter
@@ -191,7 +193,10 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
       let nodeExit = node
         .exit()
         .transition()
-        .duration(duration)
+        .duration(function (d: RoadData) {
+          if ((d.depth ?? 1) - (lastclick!.depth ?? 1) >= 2) return 0;
+          else return duration;
+        })
         .attr('transform', function (d: RoadData) {
           return (
             'translate(' +
@@ -235,7 +240,11 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
       link
         .exit()
         .transition()
-        .duration(duration)
+        .duration(function (d: { source: RoadData; target: RoadData }) {
+          console.log((d.source.depth ?? 1) - (lastclick!.depth ?? 1));
+          if ((d.source.depth ?? 1) - (lastclick!.depth ?? 1) >= 1) return 0;
+          else return duration;
+        })
         .attr('d', function (d: { source: RoadData; target: RoadData }) {
           let o = {
             x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x,
