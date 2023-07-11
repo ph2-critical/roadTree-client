@@ -1,13 +1,15 @@
 'use client';
 
+import { supabase } from '@/lib/supabase';
 import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
 import SideBar from '@/src/components/RoadmapPage/SideBar';
 import { track } from '@amplitude/analytics-browser';
-import Link from 'next/link';
+
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface roadmapParams {
   studyType: number;
@@ -18,7 +20,19 @@ function page({ params }: { params: roadmapParams }) {
   const whatStudy: number = studyType;
   const whatStudyTable = ['front', 'back', 'ai'];
 
-  track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+  const [id, setId] = useState<string>('');
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await supabase.auth.getUser();
+      const userId: string | undefined = user.data.user?.id;
+      userId && setId(userId);
+    };
+    getUser();
+
+    console.log(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    track(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+  }, []);
 
   if (whatStudy == 2) {
     alert('Ai 과정은 준비중입니다.');
@@ -33,7 +47,7 @@ function page({ params }: { params: roadmapParams }) {
           'mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10'
         }
       >
-        <RoadTreeLayout whatStudy={whatStudy} />
+        <RoadTreeLayout whatStudy={whatStudy} userId={id} />
       </main>
 
       <SideBar />
@@ -41,6 +55,6 @@ function page({ params }: { params: roadmapParams }) {
   );
 }
 
-const RoadMapWithLogin = page;
+const RoadMapWithLogin = WithLogin(page);
 
 export default RoadMapWithLogin;

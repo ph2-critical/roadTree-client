@@ -6,6 +6,7 @@ import {
   roadmap_back_public,
   roadmap_front_public,
 } from '@/roadmap_json/roadmap_data';
+import { getDatas, getProps } from '@/src/api';
 import * as d3 from 'd3';
 import { useEffect } from 'react';
 import { create } from 'zustand';
@@ -24,13 +25,19 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
-export default function RoadTreeLayout(props: { whatStudy: number }) {
+export interface RoadTreeLayOutProps {
+  whatStudy: number;
+  userId: string;
+}
+
+export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null];
   let selecthistorybefore: (null | RoadData)[] = [null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   let selectcurrent: null | RoadData = null; // 현재 선택된 내용
   let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
+  const userId: string = props.userId;
 
   const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
 
@@ -39,6 +46,19 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
     if (selectcurrent === null || selectcurrent.depth === undefined) return 0;
     else return selectcurrent.depth;
   };
+
+  useEffect(() => {
+    console.log('user id :' + userId);
+    const getDataRequest: getProps = {
+      db: 'front_node_depth2',
+      user_id: userId,
+    };
+    const getData = async () => {
+      const data = await getDatas(getDataRequest);
+      console.log(data);
+    };
+    getData();
+  }, [userId]);
 
   useEffect(() => {
     let m = [20, 120, 20, 20],

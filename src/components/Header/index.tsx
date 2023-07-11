@@ -48,9 +48,8 @@ export const Header = () => {
     };
 
     checkUser();
+    initAmplitude();
   }, []);
-
-  initAmplitude();
 
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
