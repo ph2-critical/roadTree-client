@@ -15,12 +15,7 @@ const KEY: string =
 
 const initAmplitude = () => {
   console.log('init amplitude with 개발환경: ', process.env.NODE_ENV);
-  init(KEY, `roadtree-${userId}`),
-    {
-      defaultTrackig: {
-        pageViews: false,
-      },
-    };
+  init(KEY, `roadtree-${userId}`);
 };
 
 export default initAmplitude;

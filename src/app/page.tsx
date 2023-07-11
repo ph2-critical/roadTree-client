@@ -1,3 +1,5 @@
+'use client';
+
 import { track } from '@amplitude/analytics-browser';
 import { StartBtn } from '../components/RoadmapPage/StartBtn';
 
@@ -15,7 +17,8 @@ export default function Home() {
   ];
   const canStart = [true, true, true];
 
-  track(`enter_main_page`);
+  console.log('[amplitude] enter_main_page');
+  track('enter_main_page');
 
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
