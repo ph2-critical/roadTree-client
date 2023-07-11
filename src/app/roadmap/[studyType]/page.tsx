@@ -5,6 +5,7 @@ import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
 import SideBar from '@/src/components/RoadmapPage/SideBar';
+import { track } from '@amplitude/analytics-browser';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -15,10 +16,13 @@ interface roadmapParams {
 function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
+  const whatStudyTable = ['front', 'back', 'ai'];
 
-  const router = useRouter();
+  track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+
   if (whatStudy == 2) {
     alert('Ai 과정은 준비중입니다.');
+    const router = useRouter();
     router.push('/');
   }
 

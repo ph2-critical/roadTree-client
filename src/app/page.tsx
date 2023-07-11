@@ -1,3 +1,4 @@
+import { track } from '@amplitude/analytics-browser';
 import { StartBtn } from '../components/RoadmapPage/StartBtn';
 
 export default function Home() {
@@ -13,6 +14,8 @@ export default function Home() {
     ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
   ];
   const canStart = [true, true, true];
+
+  track(`enter_main_page`);
 
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
