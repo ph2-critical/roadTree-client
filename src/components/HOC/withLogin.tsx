@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase, midbase } from '@/lib/supabase';
 
 // interface WrapProps {
 //   WrapperComponent: React.ComponentProps<any> | React.ComponentType<any>;
@@ -12,20 +12,22 @@ export const WithLogin = (WrapperComponent: React.ComponentProps<any>): any => {
   const HOC = async (props: any) => {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      return <WrapperComponent {...props} />;
-    } else {
-      supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
-      });
-    }
+    } = await midbase.auth.getUser();
+    console.log(user);
+    // if (user) {
+    //   return <WrapperComponent {...props} />;
+    // } else {
+    //   // midbase.auth.signInWithOAuth({
+    //   //   provider: 'google',
+    //   //   options: {
+    //   //     queryParams: {
+    //   //       access_type: 'offline',
+    //   //       prompt: 'consent',
+    //   //     },
+    //   //   },
+    //   // });
+    //   console.log('hi');
+    // }
   };
 
   return HOC;

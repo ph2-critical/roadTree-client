@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const redis_data_private: RoadData = {
-  nid: 2,
+  nid: 5,
   depth: 2,
   name: 'Redis(레디스)',
   description:

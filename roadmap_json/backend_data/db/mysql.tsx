@@ -1,7 +1,8 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_mysql_data_private } from './mysql/personal_data';
 
 export const mysql_data_private: RoadData = {
-  nid: 1,
+  nid: 3,
   depth: 2,
   name: 'MySQL',
   description:
@@ -36,4 +37,5 @@ export const mysql_data_private: RoadData = {
       category: 'video',
     },
   ],
+  children: [personal_mysql_data_private],
 };

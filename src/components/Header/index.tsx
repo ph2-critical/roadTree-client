@@ -1,12 +1,14 @@
 'use client';
-// import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { midbase } from '@/lib/supabase';
+import { usePathname, useSearchParams } from 'next/navigation';
+import initAmplitude from '@/lib/amplitude/amplitude';
+import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
-  await supabase.auth
+  await midbase.auth
     .signInWithOAuth({
       provider: 'google',
       options: {
@@ -22,26 +24,33 @@ export const Login = async () => {
 };
 
 export const Header = () => {
+  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
+  const searchParams: string = usePathname().split('/')[2];
+  const whatStudy: number = parseInt(searchParams);
+  const router = useRouter();
+
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
-    await supabase.auth.signOut();
+    await midbase.auth.signOut();
     setIsLogin(false);
+    router.refresh();
   };
 
   useEffect(() => {
     const checkUser = async () => {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await midbase.auth.getUser();
       if (user) {
         setIsLogin(true);
       } else {
         setIsLogin(false);
       }
+      // console.log((await midbase.auth.getSession()).data.session);
     };
-    console.log(supabase.auth.getSession());
     checkUser();
+    initAmplitude();
   }, []);
 
   return (
@@ -59,7 +68,20 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+      <div className="items-center hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        {navMenu.map((menu, idx) => {
+          return (
+            <Link
+              href={`/roadmap/${idx}`}
+              className={`p-3  font-semibold text-base hover:text-gray-400 ${
+                whatStudy === idx ? 'text-main' : 'text-gray-500'
+              }`}
+            >
+              {menu}
+            </Link>
+          );
+        })}
+        <div className="w-5"></div>
         <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
           onClick={isLogin ? Logout : Login}
