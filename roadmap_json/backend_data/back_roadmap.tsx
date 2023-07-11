@@ -9,10 +9,7 @@ import { sprig_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
 import { sprig_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
 import { sprig_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
 import { sprig_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
-import { personal_java_data_private } from '@/roadmap_json/backend_data/java/personal_blog';
-import {
-  docker_and_kubernetes_data_private
-} from '@/roadmap_json/backend_data/aws_cloud/docker_kubernetes';
+import { java_blog_private } from '@/roadmap_json/backend_data/java/personal_blog';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,
@@ -85,7 +82,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 17시간30분',
           price: 0,
-          category: '유튜브',
+          category: 'video',
         },
         {
           uuid: '1',
@@ -94,7 +91,7 @@ export const roadmap_back_private: RoadData = {
           grade: 0,
           amount: '총 17시간30분',
           price: 0,
-          category: '프로그래머스',
+          category: 'video',
         },
         {
           uuid: '2',
@@ -103,7 +100,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 17시간30분',
           price: 0,
-          category: '프로그래머스',
+          category: 'video',
         },
         {
           uuid: '3',
@@ -112,7 +109,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '총 700쪽',
           price: 25000,
-          category: '도서',
+          category: 'book',
         },
         {
           uuid: '4',
@@ -139,7 +136,7 @@ export const roadmap_back_private: RoadData = {
           grade: 1,
           amount: '',
           price: 0,
-          category: '도',
+          category: '도서',
         },
         {
           uuid: '6',
@@ -364,7 +361,11 @@ export const roadmap_back_private: RoadData = {
           category: '도서',
         },
       ],
-      children: [sprig_db_data_private, sprig_mvc_data_private, sprig_junit_data_private, sprig_security_data_private, sprig_JPA_data_private],
+      children: [sprig_db_data_private, 
+        sprig_mvc_data_private,
+        sprig_junit_data_private, 
+        sprig_security_data_private,
+        sprig_JPA_data_private],
     },
     {
       nid: 4,

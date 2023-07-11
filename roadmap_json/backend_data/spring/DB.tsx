@@ -1,7 +1,8 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { spring_db_blog_private } from './db/personal_blog';
 
 export const sprig_db_data_private: RoadData = {
-  nid: 8,
+  nid: 1,
   depth: 2,
   name: 'Spring DB',
   description: 'spring DB는 실제 외부에 있는 다른 DB에 접근할 수 있는 기술들을 제공해줍니다. 서버와 DB가 연결하는 과정은 엄청나게 많은 리소스가 필요한데, Spring은 이 경우를 driver로 미리 준비해두는 pool를 사용하여 관리하기 때문에 Spring DB에 대해 알고 사용하면 좋습니다.',
@@ -35,4 +36,5 @@ export const sprig_db_data_private: RoadData = {
       category: 'video',
     },
   ],
+  children: [spring_db_blog_private],
 };

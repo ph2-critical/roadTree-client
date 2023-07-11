@@ -1,13 +1,12 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
-export const sprig_mvc_data_private: RoadData = {
+export const spring_mvc_data_private: RoadData = {
   nid: 7,
   depth: 2,
   name: 'Spring MVC',
   description: 'Spring MVC는 디자인패턴을 말하며, Model-View-Controller 패턴을 사용하여 구현되었습니다. 각 영역이 확실히 구분되어 있기때문에 여러개발자가 역할을 나누어 개발 할 수 있고 중복코드없이 확장성 있는 유연한 코딩도 가능합니다. 다만, 규모가 크고 파일이 많아지기 때문에 적은 개발자 인원으로는 오히려 유지보수 시간이 길어질 수 있습니다.',
   //"url": "https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html",
   ref: [
-
     {
       uuid: '1',
       title: '스프링 MVC 하루만에 배우기',

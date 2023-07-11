@@ -5,6 +5,7 @@ import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
+import initAmplitude from '@/lib/amplitude/amplitude';
 
 export const Login = async () => {
   await supabase.auth
@@ -23,7 +24,7 @@ export const Login = async () => {
 };
 
 export const Header = () => {
-  const navMenu = ['Front-end', 'Back-end', 'Ai'];
+  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
   const searchParams: string = usePathname().split('/')[2];
   const whatStudy: number = parseInt(searchParams);
 
@@ -48,6 +49,8 @@ export const Header = () => {
 
     checkUser();
   }, []);
+
+  initAmplitude();
 
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">

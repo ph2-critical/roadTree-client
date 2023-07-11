@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
-export const sprig_junit_data_private: RoadData = {
-  nid: 9,
+export const spring_junit_data_private: RoadData = {
+  nid: 2,
   depth: 2,
   name: 'Spring JUnit',
   description: 'spring JUnit은 자바 개발자 93% 사용하는 단위 테스트 프레임워크이며, java8이상 버전부터 지원합니다. Springboot의 경우는 2.2버전부터 기본적으로 제공되고 있으며, 추후 자동배포화를 구축할 때에도 필요하기때문에 거의 필수로 가지고 갑니다.',

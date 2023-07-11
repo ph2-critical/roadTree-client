@@ -26,10 +26,13 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 
 export default function RoadTreeLayout(props: { whatStudy: number }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
-  const selecthistory: (null | RoadData)[] = [null, null, null, null];
+  const selecthistory: (null | RoadData)[] = [null, null, null];
+  let selecthistorybefore: (null | RoadData)[] = [null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   let selectcurrent: null | RoadData = null; // 현재 선택된 내용
-  let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
+  let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
+
+  const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -108,6 +111,7 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         })
         .on('click', function (d: RoadData) {
           toggle_select(d);
+          lastclick = d;
           update(d);
         });
       nodeEnter
@@ -160,12 +164,12 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
           'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
           (d.depth === 0 ? ' hidden ' : '') +
           (d.select
-            ? 'brightness-90'
+            ? 'brightness-90 '
             : selectcurrent !== null &&
               selectcurrent.select === true &&
               d !== selecthistory[d.depth! - 1] &&
               getLevel() >= (d.depth === undefined ? 0 : d.depth)
-            ? 'opacity-20'
+            ? 'opacity-30 '
             : '')
         );
       });
@@ -180,13 +184,19 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         .style('x', '-100')
         .style('y', '-20')
         .style('rx', '10')
-        .style('ry', '10');
+        .style('ry', '10')
+        .style('fill', function (d: RoadData) {
+          return statebgColor[d.state ?? 0];
+        });
 
       // Transition exiting nodes to the parent's new position.
       let nodeExit = node
         .exit()
         .transition()
-        .duration(duration)
+        .duration(function (d: RoadData) {
+          if ((d.depth ?? 1) - (lastclick!.depth ?? 1) >= 2) return 0;
+          else return duration;
+        })
         .attr('transform', function (d: RoadData) {
           return (
             'translate(' +
@@ -230,11 +240,14 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
       link
         .exit()
         .transition()
-        .duration(duration)
-        .attr('d', function (d: RoadData) {
+        .duration(function (d: { source: RoadData; target: RoadData }) {
+          if ((d.source.depth ?? 1) - (lastclick!.depth ?? 1) >= 1) return 0;
+          else return duration;
+        })
+        .attr('d', function (d: { source: RoadData; target: RoadData }) {
           let o = {
-            x: selecthistorybefore[d.depth ?? 1 - 1]!.x,
-            y: selecthistorybefore[d.depth ?? 1 - 1]!.y,
+            x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x,
+            y: selecthistorybefore[(d.source.depth ?? 1) - 1]!.y,
           };
           return diagonal({ source: o, target: o });
         })
@@ -250,7 +263,11 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
     // 선택
     function toggle_select(d: RoadData) {
       if (d.select === true) {
-        toggle_deleteselect(d);
+        for (let i = 3; i >= (d.depth ?? 1) - 1; i--) {
+          if (selecthistory[i] !== null) {
+            toggle_deleteselect(selecthistory[i]!);
+          }
+        }
         return;
       }
 

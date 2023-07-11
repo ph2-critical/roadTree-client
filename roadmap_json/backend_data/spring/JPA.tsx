@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
-export const sprig_JPA_data_private: RoadData = {
-  nid: 11,
+export const spring_JPA_data_private: RoadData = {
+  nid: 4,
   depth: 2,
   name: 'spring JPA',
   description: 'DB와 연결하여 데이터를 읽고 쓰기 위해서 SQL쿼리문을 알아야하지만, JPA을 사용하면 객체중심으로 애플리케이션 개발이 가능하여 생산성을 높여줄 수 있어 많은 개발자들이 사용하고 있습니다.',
@@ -56,8 +56,7 @@ export const sprig_JPA_data_private: RoadData = {
     },
     {
       uuid: '6',
-      title:
-        '코드로 배우는 스프링 웹 프로젝트 현업 개발을 위한 단계별 실습서',
+      title: '코드로 배우는 스프링 웹 프로젝트 현업 개발을 위한 단계별 실습서',
       url: 'https://www.yes24.com/Product/Goods/62268795',
       grade: 2,
       amount: '총 760쪽',

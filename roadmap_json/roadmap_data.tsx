@@ -9,6 +9,7 @@ export interface reference {
   category: string;
   amount: string;
   price: number;
+  state?: number;
 }
 
 export interface RoadData {
@@ -17,6 +18,7 @@ export interface RoadData {
   description?: string;
   select?: boolean;
   depth?: number;
+  state?: number;
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
 
