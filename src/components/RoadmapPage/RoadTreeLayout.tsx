@@ -198,7 +198,6 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
           else return duration;
         })
         .attr('transform', function (d: RoadData) {
-          console.log(selecthistorybefore);
           return (
             'translate(' +
             selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
@@ -242,7 +241,6 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         .exit()
         .transition()
         .duration(function (d: { source: RoadData; target: RoadData }) {
-          console.log((d.source.depth ?? 1) - (lastclick!.depth ?? 1));
           if ((d.source.depth ?? 1) - (lastclick!.depth ?? 1) >= 1) return 0;
           else return duration;
         })
