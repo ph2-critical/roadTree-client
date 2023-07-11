@@ -4,11 +4,11 @@ import { network_data_private } from './CS/network';
 import { mysql_data_private } from './db/mysql';
 import { mongodb_data_private } from './db/mongodb';
 import { redis_data_private } from './db/redis';
-import { sprig_db_data_private } from '@/roadmap_json/backend_data/spring/DB';
-import { sprig_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
-import { sprig_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
-import { sprig_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
-import { sprig_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
+import { spring_db_data_private } from '@/roadmap_json/backend_data/spring/DB';
+import { spring_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
+import { spring_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
+import { spring_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
+import { spring_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
 import { java_blog_private } from '@/roadmap_json/backend_data/java/personal_blog';
 
 export const roadmap_back_private: RoadData = {
@@ -362,11 +362,11 @@ export const roadmap_back_private: RoadData = {
         },
       ],
       children: [
-        sprig_db_data_private,
-        sprig_mvc_data_private,
-        sprig_junit_data_private,
-        sprig_security_data_private,
-        sprig_JPA_data_private,
+        spring_db_data_private,
+        spring_mvc_data_private,
+        spring_junit_data_private,
+        spring_security_data_private,
+        spring_JPA_data_private,
       ],
     },
     {

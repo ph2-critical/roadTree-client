@@ -26,9 +26,9 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 
 export default function RoadTreeLayout(props: { whatStudy: number }) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
-  const selecthistory: (null | RoadData)[] = [null, null, null, null];
+  const selecthistory: (null | RoadData)[] = [null, null, null];
   let selectcurrent: null | RoadData = null; // 현재 선택된 내용
-  let selecthistorybefore: (null | RoadData)[] = [null, null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
+  let selecthistorybefore: (null | RoadData)[] = [null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
   const whatStudy: number = props.whatStudy;
 
   const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
@@ -167,7 +167,7 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
               selectcurrent.select === true &&
               d !== selecthistory[d.depth! - 1] &&
               getLevel() >= (d.depth === undefined ? 0 : d.depth)
-            ? 'opacity-20 '
+            ? 'opacity-30 '
             : '')
         );
       });
@@ -236,10 +236,10 @@ export default function RoadTreeLayout(props: { whatStudy: number }) {
         .exit()
         .transition()
         .duration(duration)
-        .attr('d', function (d: RoadData) {
+        .attr('d', function (d: { source: RoadData; target: RoadData }) {
           let o = {
-            x: selecthistorybefore[d.depth ?? 1 - 1]!.x,
-            y: selecthistorybefore[d.depth ?? 1 - 1]!.y,
+            x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x,
+            y: selecthistorybefore[(d.source.depth ?? 1) - 1]!.y,
           };
           return diagonal({ source: o, target: o });
         })
