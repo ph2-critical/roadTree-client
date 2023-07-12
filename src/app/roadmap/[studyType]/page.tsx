@@ -25,7 +25,8 @@ function page({ params }: { params: roadmapParams }) {
   useEffect(() => {
     const getUser = async () => {
       const user = await supabase.auth.getUser();
-      const userId: string | undefined = user.data.user?.id;
+      // const userId: string | undefined = user.data.user?.id;
+      const userId = process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '';
       userId && setId(userId);
     };
     getUser();
@@ -50,7 +51,7 @@ function page({ params }: { params: roadmapParams }) {
         <RoadTreeLayout whatStudy={whatStudy} userId={id} />
       </main>
 
-      <SideBar whatStudy={whatStudy} />
+      <SideBar whatStudy={whatStudy} userId={id} />
     </div>
   );
 }

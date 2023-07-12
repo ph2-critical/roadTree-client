@@ -2,7 +2,7 @@ import { roadmap_back_private } from './backend_data/back_roadmap';
 import { roadmap_front_private } from './frontend_data/front_roadmap';
 
 export interface reference {
-  uuid: String;
+  uuid: string;
   title: string;
   url: string;
   grade: number;
@@ -41,13 +41,6 @@ export interface roadDataState {
     };
   };
 }
-
-interface referenceState {}
-
-// export interface stateManager {
-//   roadData: roadDataState;
-//   reference: referenceState;
-// }
 
 export const roadmap_front_public: RoadData = roadmap_front_private;
 export const roadmap_back_public: RoadData = roadmap_back_private;

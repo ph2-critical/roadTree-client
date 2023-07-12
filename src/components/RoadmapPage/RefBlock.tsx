@@ -1,11 +1,31 @@
+'use client';
+
 import { reference } from '@/roadmap_json/roadmap_data';
 import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  getRefDatas,
+  getRefProps,
+  postRefDatas,
+  postRefProps,
+} from '@/src/api';
 
-export default function RefBlock(props: { refdata: reference }) {
+export default function RefBlock(props: {
+  refdata: reference;
+  whatStudy: string;
+  userId: string;
+}) {
   const refdata: reference = props.refdata;
+  const userId: string = props.userId;
   const gradelist: string[] = ['초급', '초중급', '중급', '중고급', '고급'];
+  const stateTable = ['학습안함', '학습예정', '학습중', '학습완료'];
+  const state2num: { [key: string]: number } = {
+    학습안함: 0,
+    학습예정: 1,
+    학습중: 2,
+    학습완료: 3,
+  };
   const refCatagoryClassificationTable: { [key: string]: string } = {
     인프런: '영상',
     유튜브: '영상',
@@ -44,46 +64,79 @@ export default function RefBlock(props: { refdata: reference }) {
     부스트코스: '/roadmapRef/boostcourseLogo.png',
   };
 
-  const [refStateNum, setRefStateNum] = useState<number>(0);
+  const [init, setInit] = useState<boolean>(false);
+  const [stateNum, setStateNum] = useState<number>(0);
 
-  return (
-    <div
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          window.open(refdata.url);
+  useEffect(() => {
+    if (userId && init === false) {
+      const getProp: getRefProps = {
+        roadmap_type: props.whatStudy,
+        user_id: userId,
+        ref_id: refdata.uuid,
+      };
+
+      getRefDatas(getProp).then((data) => {
+        if (data.data && data.data.length > 0) {
+          setStateNum(state2num[data.data[0].state]);
         }
-      }}
-      className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
-    >
-      <Image
-        src={categoryImage[refdata.category]}
-        alt={refdata.category}
-        width={512}
-        height={512}
-        className="mr-3 w-14 h-14"
-      ></Image>
-      <div className="flex-grow w-32 h-14">
-        <div className="flex flex-col items-start">
-          <div
-            className={
-              'border px-2 rounded-md border-gray1 text-xs text-gray1 ' +
-              gradeColor[refdata.grade]
-            }
-          >
-            {gradelist[refdata.grade]}
-          </div>
-          <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
-            {refdata.title}
-          </div>
-          <div className="text-xs text-gray1 max-w-full truncate ...">
-            {refdata.amount} | {refdata.price} |{' '}
-            {refCatagoryClassificationTable[refdata.category]}
+        setInit(true);
+      });
+    }
+  }, []);
+
+  const setRefStateNum: (num: number) => void = (num) => {
+    const postData: postRefProps = {
+      roadmap_type: props.whatStudy,
+      ref_id: refdata.uuid,
+      state: stateTable[num],
+      user_id: userId,
+    };
+
+    postRefDatas(postData);
+  };
+
+  if (init) {
+    return (
+      <div
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            window.open(refdata.url);
+          }
+        }}
+        className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
+      >
+        <Image
+          src={categoryImage[refdata.category]}
+          alt={refdata.category}
+          width={512}
+          height={512}
+          className="mr-3 w-14 h-14"
+        ></Image>
+        <div className="flex-grow w-32 h-14">
+          <div className="flex flex-col items-start">
+            <div
+              className={
+                'border px-2 rounded-md border-gray1 text-xs text-gray1 ' +
+                gradeColor[refdata.grade]
+              }
+            >
+              {gradelist[refdata.grade]}
+            </div>
+            <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
+              {refdata.title}
+            </div>
+            <div className="text-xs text-gray1 max-w-full truncate ...">
+              {refdata.amount} | {refdata.price} |{' '}
+              {refCatagoryClassificationTable[refdata.category]}
+            </div>
           </div>
         </div>
+        <div className="p-1 mt-auto">
+          <StudyDropMenu stateNum={stateNum} setStateNum={setRefStateNum} />
+        </div>
       </div>
-      <div className="p-1 mt-auto">
-        <StudyDropMenu stateNum={refStateNum} setStateNum={setRefStateNum} />
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return <div></div>;
+  }
 }

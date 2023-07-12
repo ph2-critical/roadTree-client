@@ -12,12 +12,6 @@ export default function StudyDropMenu(props: {
   const stateNum = props.stateNum;
   const setStateNum = props.setStateNum;
 
-  const [innerState, setInnerState] = useState<number>(stateNum);
-
-  useEffect(() => {
-    setInnerState(stateNum);
-  }, [stateNum]);
-
   const stateName: string[] = [
     '학습 안 함',
     '학습 예정',
@@ -56,11 +50,11 @@ export default function StudyDropMenu(props: {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className={`${stateTextColor[innerState]} font-semibold ${statebgColor[innerState]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
+        className={`${stateTextColor[stateNum]} font-semibold ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
         onClick={myPageHandler}
         ref={myPageRef}
       >
-        {stateName[innerState]}
+        {stateName[stateNum]}
         <svg
           className="w-4 h-4 ml-2"
           aria-hidden="true"
@@ -92,13 +86,12 @@ export default function StudyDropMenu(props: {
           aria-labelledby="dropdownDefaultButton"
         >
           {stateName.map((item, index) => {
-            if (index == innerState) return;
+            if (index == stateNum) return;
             return (
               <li
                 className="block px-2 py-1  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={() => {
                   setStateNum(index);
-                  setInnerState(index);
                 }}
               >
                 <div

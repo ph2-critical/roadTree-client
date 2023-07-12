@@ -61,13 +61,13 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     stateStore[whatStudyTable[whatStudy]] = {};
     return Promise.all(
       [1, 2, 3].map((i) => {
-        const getData: getProps = {
+        const getProp: getProps = {
           roadmap_type: whatStudyTable[whatStudy],
           depth: i,
           user_id: process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '',
         };
 
-        return getNodeDatas(getData).then((res) => {
+        return getNodeDatas(getProp).then((res) => {
           if (res.data === null) return;
           stateStore[whatStudyTable[whatStudy]][i] = {};
           res.data.map((data: any) => {
