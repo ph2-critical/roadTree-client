@@ -362,11 +362,13 @@ export const roadmap_back_private: RoadData = {
           category: '도서',
         },
       ],
-      children: [spring_db_data_private,
+      children: [
+        spring_db_data_private,
         spring_mvc_data_private,
         spring_junit_data_private,
         spring_security_data_private,
-        spring_JPA_data_private],
+        spring_JPA_data_private,
+      ],
     },
     {
       nid: 4,

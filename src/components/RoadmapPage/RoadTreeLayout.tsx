@@ -5,6 +5,7 @@ import {
   RoadData,
   roadmap_back_public,
   roadmap_front_public,
+  roadDataState,
 } from '@/roadmap_json/roadmap_data';
 import { getNodeDatas, getProps } from '@/src/api';
 import d3 from 'd3';
@@ -32,6 +33,7 @@ export interface RoadTreeLayOutProps {
 
 export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const [init, setInit] = useState<boolean>(false);
+  const [stateStore] = useState<roadDataState>({});
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const selecthistory: (null | RoadData)[] = [null, null, null];
   let selecthistorybefore: (null | RoadData)[] = [null, null, null]; // 이전에 선택된 내용. 이 내용을 토대로 노드가 사라짐
@@ -39,6 +41,13 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
   const userId: string = props.userId;
+  const whatStudyTable: string[] = ['front', 'back', 'ai'];
+  const state2num: { [key: string]: number } = {
+    학습안함: 0,
+    학습예정: 1,
+    학습중: 2,
+    학습완료: 3,
+  };
 
   const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
 
@@ -48,10 +57,37 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     else return selectcurrent.depth;
   };
 
+  async function setInitNodeState() {
+    stateStore[whatStudyTable[whatStudy]] = {};
+    return Promise.all(
+      [1, 2, 3].map((i) => {
+        const getData: getProps = {
+          roadmap_type: whatStudyTable[whatStudy],
+          depth: i,
+          user_id: process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '',
+        };
+
+        return getNodeDatas(getData).then((res) => {
+          if (res.data === null) return;
+          stateStore[whatStudyTable[whatStudy]][i] = {};
+          res.data.map((data: any) => {
+            stateStore[whatStudyTable[whatStudy]][i][data.node_id] = {
+              state: state2num[data.state],
+            };
+          });
+        });
+      }),
+    );
+  }
+
   useEffect(() => {
     if (userId && init === false) {
       console.log('user id :' + userId);
-      setInit(true);
+
+      setInitNodeState().then((res) => {
+        console.log(stateStore);
+        setInit(true);
+      });
     }
   }, [userId]);
 
@@ -88,7 +124,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             });
             toggle_deleteselect(child);
           }
-          child.select = false;
         });
       }
 
@@ -202,7 +237,21 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .style('rx', '10')
           .style('ry', '10')
           .style('fill', function (d: RoadData) {
-            return statebgColor[d.state ?? 0];
+            if (d.state === undefined) {
+              d.state =
+                !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
+                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
+                  d.depth ?? 0,
+                ) ||
+                !stateStore[whatStudyTable[whatStudy]][
+                  d.depth ?? 0
+                ].hasOwnProperty(d.nid)
+                  ? 0
+                  : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
+                      .state;
+              console.log(whatStudyTable[whatStudy], d.depth, d.nid, d.state);
+            }
+            return statebgColor[d.state];
           });
 
         // Transition exiting nodes to the parent's new position.

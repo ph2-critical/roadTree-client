@@ -52,7 +52,5 @@ export const docker_and_kubernetes_data_private: RoadData = {
       price: 990000,
       category: '패스트캠퍼스',
     },
-
-
   ],
 };
