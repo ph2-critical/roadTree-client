@@ -6,8 +6,8 @@ import {
   roadmap_back_public,
   roadmap_front_public,
 } from '@/roadmap_json/roadmap_data';
-import { getDatas, getProps } from '@/src/api';
-import * as d3 from 'd3';
+import { getNodeDatas, getProps } from '@/src/api';
+import d3 from 'd3';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';
 
@@ -65,8 +65,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         whatStudy == 0 ? roadmap_front_public : roadmap_back_public;
       const tree: any = d3.layout.tree().size([h, w]);
 
-      const diagonal = d3.svg.diagonal().projection(function (d: RoadData) {
-        return [d.y, d.x];
+      const diagonal = d3.svg.diagonal().projection(function (d) {
+        return [d.y ?? 0, d.x ?? 0];
       });
 
       const vis = d3
@@ -94,8 +94,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
       update(root);
 
-      function update(source: RoadData) {
-        let duration = d3.event && d3.event.altKey ? 5000 : 500;
+      function update(source: any) {
+        let duration = 500;
 
         // Compute the new tree layout.
         let nodes = tree.nodes(root).reverse();
@@ -111,21 +111,21 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         });
 
         // Update the nodes…
-        let node = vis.selectAll('g.node').data(nodes, function (d: RoadData) {
-          return d.id || (d.id = ++i);
+        let node = vis.selectAll('g.node').data(nodes, function (d: any) {
+          return d.id || (d!.id = ++i);
         });
 
         // Enter any new nodes at the parent's previous position.
         let nodeEnter = node
           .enter()
           .append('svg:g')
-          .attr('class', function (d: RoadData) {
+          .attr('class', function (d) {
             return 'node' + (d.depth === 0 ? ' hidden ' : '');
           })
           .attr('transform', function () {
             return 'translate(' + source.y0 + ',' + source.x0 + ')';
           })
-          .on('click', function (d: RoadData) {
+          .on('click', function (d) {
             toggle_select(d);
             lastclick = d;
             update(d);
@@ -260,10 +260,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if ((d.source.depth ?? 1) - (lastclick!.depth ?? 1) >= 1) return 0;
             else return duration;
           })
-          .attr('d', function (d: { source: RoadData; target: RoadData }) {
+          .attr('d', function (d: { source: any; target: any }) {
             let o = {
-              x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x,
-              y: selecthistorybefore[(d.source.depth ?? 1) - 1]!.y,
+              x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x ?? 0,
+              y: selecthistorybefore[(d.source.depth ?? 1) - 1]!.y ?? 0,
             };
             return diagonal({ source: o, target: o });
           })

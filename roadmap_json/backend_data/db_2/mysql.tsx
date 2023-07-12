@@ -1,5 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { mysql_blog_private } from '@/roadmap_json/backend_data/db_2/mysql_3/personal_blog';
+import { personal_mysql_data_private } from '@/roadmap_json/backend_data/db_2/mysql_3/personal_blog';
 
 export const mysql_data_private: RoadData = {
   nid: 3,
@@ -37,5 +37,5 @@ export const mysql_data_private: RoadData = {
       category: 'video',
     },
   ],
-  children: [mysql_blog_private],
+  children: [personal_mysql_data_private],
 };

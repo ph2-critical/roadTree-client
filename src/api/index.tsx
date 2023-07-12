@@ -1,13 +1,13 @@
 // insert, update ,delete
 import { supabase } from '@/lib/supabase';
 
-interface getProps {
+export interface getProps {
   roadmap_type: string; // front, back, ai
   depth: number;
   user_id: string;
 }
 
-interface postProps {
+export interface postProps {
   roadmap_type: string; // front, back, ai
   depth: number;
   state: string;
@@ -15,7 +15,7 @@ interface postProps {
   user_id: string;
 }
 
-interface deleteProps {
+export interface deleteProps {
   roadmap_type: string; // front, back, ai
   depth: number;
   node_id: number;
@@ -32,6 +32,7 @@ export const getNodeDatas = async (props: getProps) => {
 };
 
 export const postNodeData = async (props: postProps) => {
+  console.log('postNodeData', props);
   const { data } = await supabase
     .from(`${props.roadmap_type}_node_depth${props.depth}`)
     .upsert([
@@ -41,7 +42,10 @@ export const postNodeData = async (props: postProps) => {
         node_id: props.node_id,
       },
     ])
-    .eq('user_id', props.user_id);
+    .eq('user_id', props.user_id)
+    .eq('node_id', props.node_id);
+
+  console.log(data);
 
   return data;
 };

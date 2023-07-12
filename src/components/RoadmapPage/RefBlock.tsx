@@ -12,7 +12,8 @@ export default function RefBlock(props: { refdata: reference }) {
     유데미: '영상',
     코딩애플: '영상',
     video: '영상',
-    book: '책',
+    book: '도서',
+    도서: '도서',
     posting: '포스팅',
     공식문서한글화: '포스팅',
     공식문서: '포스팅',
@@ -32,10 +33,15 @@ export default function RefBlock(props: { refdata: reference }) {
     코딩애플: '/roadmapRef/codingappleLogo.jpg',
     video: '/roadmapRef/video.png',
     book: '/roadmapRef/book.svg',
+    도서: '/roadmapRef/book.svg',
     posting: '/roadmapRef/posting.png',
+    개인블로그: '/roadmapRef/posting.png',
     공식문서한글화: '/roadmapRef/posting.png',
     공식문서: '/roadmapRef/posting.png',
     위키독스: '/roadmapRef/posting.png',
+    패스트캠퍼스: '/roadmapRef/fastcampusLogo.png',
+    깃허브: '/roadmapRef/githubLogo.svg',
+    부스트코스: '/roadmapRef/boostcourseLogo.png',
   };
 
   const [refStateNum, setRefStateNum] = useState<number>(0);
