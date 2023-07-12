@@ -1,5 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { personal_mysql_data_private } from './mysql/personal_data';
+import { personal_mysql_data_private } from '@/roadmap_json/backend_data/db_2/mysql_3/personal_blog';
 
 export const mysql_data_private: RoadData = {
   nid: 3,
