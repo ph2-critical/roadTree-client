@@ -1,16 +1,16 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { hardware_os_data_private } from './CS/hardware_os';
-import { network_data_private } from './CS/network';
-import { mysql_data_private } from './db/mysql';
-import { mongodb_data_private } from './db/mongodb';
-import { redis_data_private } from './db/redis';
-import { spring_db_data_private } from '@/roadmap_json/backend_data/spring/DB';
-import { spring_mvc_data_private } from '@/roadmap_json/backend_data/spring/MVC';
-import { spring_junit_data_private } from '@/roadmap_json/backend_data/spring/JUnit';
-import { spring_security_data_private } from '@/roadmap_json/backend_data/spring/Security';
-import { spring_JPA_data_private } from '@/roadmap_json/backend_data/spring/JPA';
-import { personal_java_data_private } from '@/roadmap_json/backend_data/java/personal_blog';
-import { docker_and_kubernetes_data_private } from '@/roadmap_json/backend_data/aws_cloud/docker_kubernetes';
+import { hardware_os_data_private } from '@/roadmap_json/backend_data/CS_2/hardware_os';
+import { network_data_private } from '@/roadmap_json/backend_data/CS_2/network';
+import { mysql_data_private } from './db_2/mysql';
+import { mongodb_data_private } from './db_2/mongodb';
+import { redis_data_private } from './db_2/redis';
+import { spring_db_data_private } from '@/roadmap_json/backend_data/spring_2/DB';
+import { spring_mvc_data_private } from '@/roadmap_json/backend_data/spring_2/MVC';
+import { spring_junit_data_private } from '@/roadmap_json/backend_data/spring_2/JUnit';
+import { spring_security_data_private } from '@/roadmap_json/backend_data/spring_2/Security';
+import { spring_JPA_data_private } from '@/roadmap_json/backend_data/spring_2/JPA';
+import { personal_java_data_private } from '@/roadmap_json/backend_data/java_2/personal_blog';
+import { docker_and_kubernetes_data_private } from '@/roadmap_json/backend_data/aws_cloud_2/docker_kubernetes';
 
 export const roadmap_back_private: RoadData = {
   nid: 1,

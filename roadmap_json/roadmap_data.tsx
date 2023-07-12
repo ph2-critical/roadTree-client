@@ -2,7 +2,7 @@ import { roadmap_back_private } from './backend_data/back_roadmap';
 import { roadmap_front_private } from './frontend_data/front_roadmap';
 
 export interface reference {
-  rid: number;
+  uuid: String;
   title: string;
   url: string;
   grade: number;

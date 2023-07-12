@@ -1,5 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { personal_springDB_data_private } from '@/roadmap_json/backend_data/spring/db/personal_data';
+import { personal_springDB_data_private } from '@/roadmap_json/backend_data/spring_2/db_3/personal_data';
 
 export const spring_db_data_private: RoadData = {
   nid: 1,
