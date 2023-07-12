@@ -12,4 +12,4 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const midbase = createClientComponentClient({ supabaseUrl, supabaseKey });
 
 // Export for usage by the rest of the app
-export { supabase, midbase };
+export { supabase, midbase, supabaseUrl, supabaseKey };

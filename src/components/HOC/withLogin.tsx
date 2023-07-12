@@ -13,21 +13,20 @@ export const WithLogin = (WrapperComponent: React.ComponentProps<any>): any => {
     const {
       data: { user },
     } = await midbase.auth.getUser();
-    console.log(user);
-    // if (user) {
-    //   return <WrapperComponent {...props} />;
-    // } else {
-    //   // midbase.auth.signInWithOAuth({
-    //   //   provider: 'google',
-    //   //   options: {
-    //   //     queryParams: {
-    //   //       access_type: 'offline',
-    //   //       prompt: 'consent',
-    //   //     },
-    //   //   },
-    //   // });
-    //   console.log('hi');
-    // }
+    if (user) {
+      return <WrapperComponent {...props} />;
+    } else {
+      midbase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+      // console.log('hi');
+    }
   };
 
   return HOC;

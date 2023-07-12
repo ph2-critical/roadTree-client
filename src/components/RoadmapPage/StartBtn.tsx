@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { WithLogin } from '../HOC/withLogin';
 
 interface btnProps {
   index: number;

@@ -1,6 +1,6 @@
 'use client';
 
-import { supabase } from '@/lib/supabase';
+import { midbase, supabase, supabaseUrl, supabaseKey } from '@/lib/supabase';
 import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
@@ -24,7 +24,7 @@ function page({ params }: { params: roadmapParams }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const user = await supabase.auth.getUser();
+      const user = await midbase.auth.getUser();
       const userId: string | undefined = user.data.user?.id;
       userId && setId(userId);
     };
@@ -55,7 +55,7 @@ function page({ params }: { params: roadmapParams }) {
   );
 }
 
-// const RoadMapWithLogin = page;
-const RoadMapWithLogin = WithLogin(page);
+const RoadMapWithLogin = page;
+// const RoadMapWithLogin = WithLogin(page);
 
 export default RoadMapWithLogin;

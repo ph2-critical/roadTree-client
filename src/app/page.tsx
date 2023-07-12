@@ -17,7 +17,6 @@ export default function Home() {
   ];
   const canStart = [true, true, true];
 
-  console.log('[amplitude] enter_main_page');
   track('enter_main_page');
 
   return (

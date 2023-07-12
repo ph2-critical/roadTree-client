@@ -2,12 +2,13 @@
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
-import { midbase } from '@/lib/supabase';
+import { midbase, supabase } from '@/lib/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
 import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
+  // const router = useRouter();
   await midbase.auth
     .signInWithOAuth({
       provider: 'google',
@@ -21,13 +22,14 @@ export const Login = async () => {
     .catch((error) => {
       console.log(error);
     });
+  // router.refresh();
 };
 
 export const Header = () => {
+  const router = useRouter();
   const navMenu = ['프론트엔드', '백엔드', '인공지능'];
   const searchParams: string = usePathname().split('/')[2];
   const whatStudy: number = parseInt(searchParams);
-  const router = useRouter();
 
   const [isLogin, setIsLogin] = useState(false);
 
@@ -47,7 +49,7 @@ export const Header = () => {
       } else {
         setIsLogin(false);
       }
-      // console.log((await midbase.auth.getSession()).data.session);
+      console.log((await midbase.auth.getUser()).data.user);
     };
     checkUser();
     initAmplitude();
