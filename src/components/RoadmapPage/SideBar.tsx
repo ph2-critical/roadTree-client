@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import { postNodeData, postProps } from '@/src/api';
 
 export default function SideBar(props: { whatStudy: number }) {
-  const [nodeStateNum, setNodeStateNum] = useState<number>(0); // 0: not started, 1: will go, 2: in progress, 3: completed
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
   const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
@@ -35,14 +34,16 @@ export default function SideBar(props: { whatStudy: number }) {
     }
   };
 
-  useEffect(() => {
+  const changeNodeStateNum: (num: number) => void = (num: number) => {
+    console.log(num);
+
     if (select !== null) {
-      select.state = nodeStateNum;
+      select.state = num;
 
       const postData: postProps = {
         roadmap_type: whatStudy,
         depth: select.depth ?? 1,
-        state: stateTable[nodeStateNum],
+        state: stateTable[num],
         node_id: select.nid,
         user_id: process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '',
       };
@@ -51,13 +52,7 @@ export default function SideBar(props: { whatStudy: number }) {
 
       updateFunc(select);
     }
-  }, [nodeStateNum]);
-
-  useEffect(() => {
-    if (select !== null && select.state !== nodeStateNum) {
-      setNodeStateNum(select.state ?? 0);
-    }
-  }, [select]);
+  };
 
   if (select !== null) {
     return (
@@ -121,8 +116,8 @@ export default function SideBar(props: { whatStudy: number }) {
             <div className="py-2 w-fit">
               <StudyDropMenu
                 node
-                stateNum={nodeStateNum}
-                setStateNum={setNodeStateNum}
+                stateNum={select.state ?? 0}
+                setStateNum={changeNodeStateNum}
               />
             </div>
 

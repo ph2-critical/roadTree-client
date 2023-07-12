@@ -124,6 +124,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             });
             toggle_deleteselect(child);
           }
+          child.select = false;
         });
       }
 
