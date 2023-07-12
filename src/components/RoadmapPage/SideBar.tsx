@@ -11,6 +11,7 @@ import { postNodeData, postProps } from '@/src/api';
 export default function SideBar(props: { whatStudy: number; userId: string }) {
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
+  const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
   const [nodeState, setNodeStateNum] = useState<number>(0); // 0: 학습안함, 1: 학습예정, 2: 학습중, 3: 학습완료
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
   const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
@@ -61,6 +62,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   useEffect(() => {
     if (select !== null && select !== init) {
       setNodeStateNum(select.state ?? 0);
+      setRefBlockInit(false);
       // 초기화 작업 진행
       setInit(select);
     }
@@ -150,6 +152,8 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                           refdata={item}
                           whatStudy={whatStudy}
                           userId={userId}
+                          refBlockInit={refBlockInit}
+                          setRefBlockInit={setRefBlockInit}
                         ></RefBlock>
                       </div>
                     );
@@ -161,7 +165,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
         </div>
       );
     } else {
-      return <> </>; // 스켈레톤 화면
+      return <></>; // 스켈레톤 화면
     }
   } else {
     return <></>; // 없는 화면

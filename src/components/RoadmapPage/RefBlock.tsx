@@ -15,7 +15,11 @@ export default function RefBlock(props: {
   refdata: reference;
   whatStudy: string;
   userId: string;
+  refBlockInit: boolean;
+  setRefBlockInit: (prop: boolean) => void;
 }) {
+  const refBlockInit: boolean = props.refBlockInit;
+  const setRefBlockInit: (prop: boolean) => void = props.setRefBlockInit;
   const refdata: reference = props.refdata;
   const userId: string = props.userId;
   const gradelist: string[] = ['초급', '초중급', '중급', '중고급', '고급'];
@@ -64,11 +68,10 @@ export default function RefBlock(props: {
     부스트코스: '/roadmapRef/boostcourseLogo.png',
   };
 
-  const [init, setInit] = useState<boolean>(false);
   const [stateNum, setStateNum] = useState<number>(0);
 
   useEffect(() => {
-    if (userId && init === false) {
+    if (userId && refBlockInit === false) {
       const getProp: getRefProps = {
         roadmap_type: props.whatStudy,
         user_id: userId,
@@ -79,12 +82,13 @@ export default function RefBlock(props: {
         if (data.data && data.data.length > 0) {
           setStateNum(state2num[data.data[0].state]);
         }
-        setInit(true);
+        setRefBlockInit(true);
       });
     }
-  }, []);
+  }, [refBlockInit]);
 
   const setRefStateNum: (num: number) => void = (num) => {
+    setStateNum(num);
     const postData: postRefProps = {
       roadmap_type: props.whatStudy,
       ref_id: refdata.uuid,
@@ -95,7 +99,7 @@ export default function RefBlock(props: {
     postRefDatas(postData);
   };
 
-  if (init) {
+  if (refBlockInit) {
     return (
       <div
         onClick={(e) => {
