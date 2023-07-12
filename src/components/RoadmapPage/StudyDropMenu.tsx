@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDetectClose } from './hook/detectDropDownClose';
 
 export default function StudyDropMenu(props: {
@@ -11,7 +11,13 @@ export default function StudyDropMenu(props: {
   const rightOn: boolean = props.node ?? false;
   const stateNum = props.stateNum;
   const setStateNum = props.setStateNum;
+
   const [innerState, setInnerState] = useState<number>(stateNum);
+
+  useEffect(() => {
+    setInnerState(stateNum);
+  }, [stateNum]);
+
   const stateName: string[] = [
     '학습 안 함',
     '학습 예정',
