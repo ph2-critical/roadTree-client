@@ -16,7 +16,6 @@ export const useDetectClose = (
     e,
   ) => {
     setIsOpen(!isOpen);
-    e.stopPropagation();
   };
 
   useEffect(() => {

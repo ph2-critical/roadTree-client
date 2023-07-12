@@ -102,8 +102,14 @@ export default function RefBlock(props: {
   if (refBlockInit) {
     return (
       <div
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
+        onClick={(e: React.MouseEvent<Element, MouseEvent>) => {
+          if (
+            e.target instanceof Element &&
+            !e.target.classList.contains('dropdown')
+          ) {
+            console.log(e.target);
+            console.log(e.target.classList);
+            console.log(e.target.classList.contains('dropdown'));
             window.open(refdata.url);
           }
         }}
