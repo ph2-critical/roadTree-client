@@ -1,7 +1,8 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_mongodb_data_private } from '@/roadmap_json/backend_data/db_2/mongodb_3/personal_data';
 
 export const mongodb_data_private: RoadData = {
-  nid: 4,
+  nid: 12,
   depth: 2,
   name: 'MongoDB',
   description:
@@ -9,50 +10,51 @@ export const mongodb_data_private: RoadData = {
   // url: 'https://www.mongodb.com/',
   ref: [
     {
-      uuid: '1',
+      uuid: '121',
       title: '2시간만에 웹서버 쉽게 개발하기 (Node.js + MongoDB)',
       url: 'https://www.youtube.com/playlist?list=PLfLgtT94nNq1qmsvIii_CAxFlD7tvB5NE',
       grade: 1,
       amount: '총 1시간3분',
       price: 0,
-      category: 'video',
+      category: '유튜브',
     },
     {
-      uuid: '2',
+      uuid: '122',
       title: '노드교과서 개정3판(몽고DB 부분만) ',
       url: 'https://youtube.com/playlist?list=PLcdZj4ySPhX2su16PGiXRiegRl0oQvIBO',
       grade: 1,
       amount: '총 1시간13분',
       price: 0,
-      category: 'video',
+      category: '유튜브',
     },
     {
-      uuid: '3',
+      uuid: '123',
       title: 'MongoDB기초부터 실무까지(feat.Node.js)',
       url: 'https://www.inflearn.com/course/%EB%AA%BD%EA%B3%A0%EB%94%94%EB%B9%84-%EA%B8%B0%EC%B4%88-%EC%8B%A4%EB%AC%B4#curriculum',
       grade: 2,
       amount: '총 11시간56분',
       price: 77000,
-      category: 'video',
+      category: '인프런',
     },
     {
-      uuid: '4',
+      uuid: '124',
       title:
         '처음하는 MongoDB(몽고DB) 와 NoSQL(빅데이터) 데이터베이스 부트캠프 [입문부터 활용까지] ',
       url: 'https://www.inflearn.com/course/nosql-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%AA%BD%EA%B3%A0db-%EC%9E%94%EC%9E%AC%EB%AF%B8%EC%BD%94%EB%94%A9#curriculum',
       grade: 2,
       amount: '총 9시간36분',
       price: 66000,
-      category: 'video',
+      category: '인프런',
     },
     {
-      uuid: '5',
+      uuid: '125',
       title: 'MongoDB vs MySQL 비교',
       url: 'https://www.mongodb.com/ko-kr/compare/mongodb-mysql',
       grade: 3,
       amount: '',
       price: 0,
-      category: 'posting',
+      category: '기업블로그',
     },
   ],
+  children: [personal_mongodb_data_private]
 };
