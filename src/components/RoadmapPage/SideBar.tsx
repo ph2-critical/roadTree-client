@@ -64,6 +64,15 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
 
   const changeNodeStateNum: (num: number) => void = (num: number) => {
     if (select !== null) {
+      console.log('[amplitude] change_node_state');
+      track('change_node_state', {
+        roadmapCat: whatStudy,
+        selectNodeId: select.nid,
+        selectNodeName: select.name,
+        beforeState: stateTable[select.state ?? 0],
+        afterState: stateTable[num],
+      });
+
       setNodeStateNum(num);
       select.state = num;
 

@@ -90,6 +90,22 @@ export default function RefBlock(props: {
   }, [refBlockInit]);
 
   const setRefStateNum: (num: number) => void = (num) => {
+    console.log('[amplitude] click_ref_state');
+    track('click_ref_state', {
+      roadmapCat: props.whatStudy,
+      refId: refdata.uuid,
+      refName: refdata.title,
+      refCat: refdata.category,
+      refGrade: refdata.grade,
+      refAmount: refdata.amount,
+      refPrice: refdata.price,
+      refUrl: refdata.url,
+      beforeState: stateTable[stateNum],
+      afterState: stateTable[num],
+      selectNodeId: props.select?.nid,
+      selectNodeName: props.select?.name,
+    });
+
     setStateNum(num);
     const postData: postRefProps = {
       roadmap_type: props.whatStudy,
