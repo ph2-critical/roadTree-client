@@ -25,8 +25,7 @@ function page({ params }: { params: roadmapParams }) {
   useEffect(() => {
     const getUser = async () => {
       const user = await supabase.auth.getUser();
-      // const userId: string | undefined = user.data.user?.id;
-      const userId = process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '';
+      const userId: string | undefined = user.data.user?.id;
       userId && setId(userId);
     };
     getUser();
