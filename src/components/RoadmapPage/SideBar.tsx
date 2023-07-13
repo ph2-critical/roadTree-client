@@ -51,6 +51,8 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
         user_id: userId,
       };
 
+      console.log(postProp);
+
       postNodeData(postProp);
 
       updateFunc(select);

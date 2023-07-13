@@ -66,7 +66,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           depth: i,
           user_id: userId,
         };
-
+        console.log(getProp);
         return getNodeDatas(getProp).then((res) => {
           if (res.data === null) return;
           stateStore[whatStudyTable[whatStudy]][i] = {};
@@ -250,7 +250,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
                   ? 0
                   : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
                       .state;
-              console.log(whatStudyTable[whatStudy], d.depth, d.nid, d.state);
             }
             return statebgColor[d.state];
           });
