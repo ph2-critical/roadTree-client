@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
+import { track } from '@amplitude/analytics-browser';
 
 export const Login = async () => {
   await supabase.auth
@@ -25,7 +26,8 @@ export const Login = async () => {
 
 export const Header = () => {
   const navMenu = ['프론트엔드', '백엔드', '인공지능'];
-  const searchParams: string = usePathname().split('/')[2];
+  const pathName = usePathname();
+  const searchParams: string = pathName.split('/')[2];
   const whatStudy: number = parseInt(searchParams);
 
   const [isLogin, setIsLogin] = useState(false);
@@ -53,7 +55,13 @@ export const Header = () => {
 
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
-      <Link href={'/'}>
+      <Link
+        href={'/'}
+        onClick={() => {
+          console.log('[amplitude] click_go_home_header_logo');
+          track('click_go_home_header_logo', { from: pathName });
+        }}
+      >
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
       {/* {path === '/' ? (
@@ -71,6 +79,13 @@ export const Header = () => {
           return (
             <Link
               href={`/roadmap/${idx}`}
+              onClick={() => {
+                console.log('[amplitude] click_go_roadpage_header_menu_button');
+                track('click_go_roadpage_header_menu_button', {
+                  menuName: menu,
+                  from: pathName,
+                });
+              }}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
