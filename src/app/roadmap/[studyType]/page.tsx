@@ -18,7 +18,7 @@ interface roadmapParams {
 function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
-  const whatStudyTable = ['front', 'back', 'ai'];
+  const whatStudyTable = ['frontend', 'backend', 'ai'];
 
   const [id, setId] = useState<string>('');
 

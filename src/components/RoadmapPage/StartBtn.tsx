@@ -9,7 +9,7 @@ interface btnProps {
 }
 
 export function StartBtn(props: btnProps) {
-  const whatStudyTable: string[] = ['front', 'back', 'ai'];
+  const whatStudyTable: string[] = ['frontend', 'backend', 'ai'];
   return (
     <Link
       href={`roadmap/${props.index}`}
