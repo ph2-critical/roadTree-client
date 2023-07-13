@@ -1,14 +1,15 @@
 'use client';
-// import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { supabase, midbase } from '@/lib/supabase/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
+import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
-  await supabase.auth
+  // const router = useRouter();
+  await midbase.auth
     .signInWithOAuth({
       provider: 'google',
       options: {
@@ -21,9 +22,11 @@ export const Login = async () => {
     .catch((error) => {
       console.log(error);
     });
+  // router.refresh();
 };
 
 export const Header = () => {
+  const router = useRouter();
   const navMenu = ['프론트엔드', '백엔드', '인공지능'];
   const searchParams: string = usePathname().split('/')[2];
   const whatStudy: number = parseInt(searchParams);
@@ -31,28 +34,28 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
-    await supabase.auth.signOut();
+    await midbase.auth.signOut();
     setIsLogin(false);
+    router.push('/');
   };
 
   useEffect(() => {
     const checkUser = async () => {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await midbase.auth.getUser();
       if (user) {
         setIsLogin(true);
       } else {
         setIsLogin(false);
       }
     };
-
     checkUser();
     initAmplitude();
   }, []);
 
   return (
-    <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
+    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link href={'/'}>
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
@@ -66,14 +69,19 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="hidden h-12 mr-10 items-center sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+      <div className="items-center hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
         {navMenu.map((menu, idx) => {
           return (
             <Link
-              href={`/roadmap/${idx}`}
+              href={`${idx !== 2 ? `roadmap/${idx}` : '/'}`}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
+              onClick={() => {
+                if (idx === 2) {
+                  alert('AI 과정은 준비중입니다.');
+                }
+              }}
             >
               {menu}
             </Link>
