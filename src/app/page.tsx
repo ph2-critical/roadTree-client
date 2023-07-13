@@ -1,6 +1,3 @@
-'use client';
-
-import { track } from '@amplitude/analytics-browser';
 import { StartBtn } from '../components/RoadmapPage/StartBtn';
 
 export default function Home() {
@@ -16,8 +13,6 @@ export default function Home() {
     ['UI 개발 업무', 'UI 개발 업무', '개발자의 자존심'],
   ];
   const canStart = [true, true, true];
-
-  track('enter_main_page');
 
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
@@ -75,13 +70,7 @@ export default function Home() {
                       );
                     })}
                   </ul>
-                  {canStart[index] ? (
-                    <StartBtn index={index} />
-                  ) : (
-                    <div className="text-white cursor-not-allowed bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
-                      준비 중 입니다.
-                    </div>
-                  )}
+                  <StartBtn index={index} />
                 </div>
               );
             })}

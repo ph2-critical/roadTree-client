@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
-import { midbase, supabase } from '@/lib/supabase';
+import { supabase, midbase } from '@/lib/supabase/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
 import { useRouter } from 'next/navigation';
@@ -36,7 +36,7 @@ export const Header = () => {
   const Logout = async () => {
     await midbase.auth.signOut();
     setIsLogin(false);
-    router.refresh();
+    router.push('/');
   };
 
   useEffect(() => {
@@ -49,7 +49,6 @@ export const Header = () => {
       } else {
         setIsLogin(false);
       }
-      console.log((await midbase.auth.getUser()).data.user);
     };
     checkUser();
     initAmplitude();
@@ -74,10 +73,15 @@ export const Header = () => {
         {navMenu.map((menu, idx) => {
           return (
             <Link
-              href={`/roadmap/${idx}`}
+              href={`${idx !== 2 ? `roadmap/${idx}` : '/'}`}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
+              onClick={() => {
+                if (idx === 2) {
+                  alert('AI 과정은 준비중입니다.');
+                }
+              }}
             >
               {menu}
             </Link>

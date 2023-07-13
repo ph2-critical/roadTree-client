@@ -1,14 +1,12 @@
 'use client';
 
-import { midbase, supabase, supabaseUrl, supabaseKey } from '@/lib/supabase';
+import { supabase, midbase } from '@/lib/supabase/supabase';
 import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
 import SideBar from '@/src/components/RoadmapPage/SideBar';
 import { track } from '@amplitude/analytics-browser';
-
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface roadmapParams {
@@ -30,15 +28,8 @@ function page({ params }: { params: roadmapParams }) {
     };
     getUser();
 
-    console.log(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
     track(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
-
-  if (whatStudy == 2) {
-    alert('Ai 과정은 준비중입니다.');
-    const router = useRouter();
-    router.push('/');
-  }
 
   return (
     <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
@@ -55,7 +46,7 @@ function page({ params }: { params: roadmapParams }) {
   );
 }
 
-const RoadMapWithLogin = page;
-// const RoadMapWithLogin = WithLogin(page);
+// const RoadMapWithLogin = page;
+const RoadMapWithLogin = WithLogin(page);
 
 export default RoadMapWithLogin;

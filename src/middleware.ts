@@ -10,11 +10,11 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const sb = createMiddlewareClient({ req, res }, { supabaseUrl, supabaseKey });
+  // const sb = createMiddlewareClient({ req, res }, { supabaseUrl, supabaseKey });
 
-  const user = (await sb.auth.getUser()).data.user;
-  // return res;
-  if (!user) {
-    return NextResponse.redirect(new URL('/', req.nextUrl));
-  }
+  // const user = (await sb.auth.getUser()).data.user;
+  // // return res;
+  // if (!user) {
+  //   return NextResponse.redirect(new URL('/', req.nextUrl));
+  // }
 }
