@@ -23,24 +23,16 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   const whatStudy: string = whatStudyTable[props.whatStudy];
   const userId: string = props.userId;
 
-  const sidebarWeightStart: () => void = () => {
-    console.log('[amplitude] resize_sidebar_start');
-    track('resize_sidebar_start', {
-      sidebarWeight: sidebarWeight,
-      roadmapCat: whatStudy,
-      selectNodeId: select?.nid,
-      selectNodeName: select?.name,
-    });
-  };
-
   const sidebarWeightEnd: () => void = () => {
-    console.log('[amplitude] resize_sidebar_end');
-    track('resize_sidebar_end', {
-      sidebarWeight: sidebarWeightVar,
+    console.log('[amplitude] resize_sidebar');
+    track('resize_sidebar', {
+      beforeSidebarWeight: sidebarWeight,
+      afterSidebarWeight: sidebarWeightVar,
       roadmapCat: whatStudy,
       selectNodeId: select?.nid,
       selectNodeName: select?.name,
-      isEntireSize: isEntireSize,
+      userScreenWidth: window.innerWidth,
+      userScreenHeight: window.innerHeight,
     });
   };
 
@@ -117,7 +109,6 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
               (resizing ? ' opacity-100' : ' opacity-0')
             }
             {...mouseDragHook(
-              sidebarWeightStart,
               sidebarWeightChange,
               sidebarWeightEnd,
               setResizing,

@@ -4,15 +4,12 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 import { track } from '@amplitude/analytics-browser';
 
 export default function mouseDragHook(
-  onDragStart: () => void,
   onDragChange: (deltaX: number) => void,
   onDragEnd: () => void,
   setResizing: (resizing: boolean) => void,
 ) {
   return {
     onMouseDown: (clickEvent: React.MouseEvent<Element, MouseEvent>) => {
-      onDragStart();
-
       // 2️⃣
       clickEvent.stopPropagation();
       setResizing(true);
