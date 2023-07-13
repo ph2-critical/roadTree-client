@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_javascript_data_private } from '@/roadmap_json/backend_data/language_2/javascript_3/personal_blog';
 
 export const javascript_data_private: RoadData = {
   nid: 7,
@@ -17,4 +18,5 @@ export const javascript_data_private: RoadData = {
       category: 'video',
     },
   ],
+  children: [personal_javascript_data_private],
 };
