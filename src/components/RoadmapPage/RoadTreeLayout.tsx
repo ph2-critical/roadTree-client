@@ -6,7 +6,6 @@ import {
   roadmap_back_public,
   roadmap_front_public,
 } from '@/roadmap_json/roadmap_data';
-import { getDatas, getProps } from '@/src/api';
 import * as d3 from 'd3';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';

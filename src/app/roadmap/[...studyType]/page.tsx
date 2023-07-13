@@ -8,6 +8,7 @@ import RoadTreeLayout, {
 import SideBar from '@/src/components/RoadmapPage/SideBar';
 import { track } from '@amplitude/analytics-browser';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface roadmapParams {
   studyType: number;
@@ -17,6 +18,7 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
   const whatStudyTable = ['front', 'back', 'ai'];
+  const router = useRouter();
 
   const [id, setId] = useState<string>('');
 
@@ -30,6 +32,10 @@ function page({ params }: { params: roadmapParams }) {
 
     track(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
+
+  if (whatStudy !== (0 | 1)) {
+    router.push('/');
+  }
 
   return (
     <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
