@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { WithLogin } from '../HOC/withLogin';
 import { track } from '@amplitude/analytics-browser';
 
 interface btnProps {

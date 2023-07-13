@@ -79,13 +79,7 @@ export default function Home() {
                       );
                     })}
                   </ul>
-                  {canStart[index] ? (
-                    <StartBtn index={index} />
-                  ) : (
-                    <div className="text-white cursor-not-allowed bg-main opacity-50  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">
-                      준비 중 입니다.
-                    </div>
-                  )}
+                  <StartBtn index={index} />
                 </div>
               );
             })}
