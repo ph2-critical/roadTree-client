@@ -7,10 +7,10 @@ import { supabase, midbase } from '@/lib/supabase/supabase';
 //   WrapperComponent: React.ComponentProps<any> | React.ComponentType<any>;
 // }
 
-export const WithLogin = (WrapperComponent: React.ComponentProps<any>): any => {
+export const WithLogin = (WrapperComponent: React.ComponentProps<any>) => {
   //any type 추후 수정해야함!!!!!!!!!!!!!!!!!!!!!!
 
-  const HOC = async (props: any) => {
+  const HOC = (props: any) => {
     useEffect(() => {
       midbase.auth.getUser().then((res) => {
         if (!res.data.user) {
