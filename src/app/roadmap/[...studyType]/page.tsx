@@ -30,13 +30,14 @@ function page({ params }: { params: roadmapParams }) {
     const getUser = async () => {
       const user = await supabase.auth.getUser();
       if (!user.data.user) {
-        console.log('로그인 시작');
         supabase.auth
           .signInWithOAuth({
             provider: 'google',
             options: {
               redirectTo:
-                'http://localhost:3000/roadmap/' + whatStudy.toString(),
+                (process.env.NEXT_PUBLIC_URL_HOST ?? '') +
+                '/roadmap/' +
+                whatStudy.toString(),
               queryParams: {
                 access_type: 'offline',
                 prompt: 'consent',
