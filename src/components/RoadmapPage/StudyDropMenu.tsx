@@ -56,7 +56,7 @@ export default function StudyDropMenu(props: {
       >
         {stateName[stateNum]}
         <svg
-          className="w-4 h-4 ml-2"
+          className="w-4 h-4 ml-2  dropdown"
           aria-hidden="true"
           fill="none"
           stroke="currentColor"
