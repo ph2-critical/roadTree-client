@@ -42,12 +42,5 @@ export interface roadDataState {
   };
 }
 
-interface referenceState {}
-
-// export interface stateManager {
-//   roadData: roadDataState;
-//   reference: referenceState;
-// }
-
 export const roadmap_front_public: RoadData = roadmap_front_private;
 export const roadmap_back_public: RoadData = roadmap_back_private;
