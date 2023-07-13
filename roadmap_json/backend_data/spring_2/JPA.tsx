@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_springJPA_data_private } from '@/roadmap_json/backend_data/spring_2/JPA_3/personal_data';
 
 export const spring_JPA_data_private: RoadData = {
   nid: 191,
@@ -111,7 +112,5 @@ export const spring_JPA_data_private: RoadData = {
       category: '도서',
     },
   ],
-  children: [
-    /*개인 블로그*/
-  ],
+  children: [personal_springJPA_data_private],
 };

@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_springSecurity_data_private } from '@/roadmap_json/backend_data/spring_2/Security_3/personal_data';
 // import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
 export const spring_security_data_private: RoadData = {
@@ -56,5 +57,5 @@ export const spring_security_data_private: RoadData = {
       category: '공식문서한글화',
     },
   ],
-  children: [],
+  children: [personal_springSecurity_data_private],
 };
