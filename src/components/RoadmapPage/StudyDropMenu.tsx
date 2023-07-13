@@ -1,4 +1,6 @@
-import { useRoadTreeStore } from './RoadTreeLayout';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { useDetectClose } from './hook/detectDropDownClose';
 
 export default function StudyDropMenu(props: {
@@ -9,6 +11,7 @@ export default function StudyDropMenu(props: {
   const rightOn: boolean = props.node ?? false;
   const stateNum = props.stateNum;
   const setStateNum = props.setStateNum;
+
   const stateName: string[] = [
     '학습 안 함',
     '학습 예정',
@@ -47,7 +50,7 @@ export default function StudyDropMenu(props: {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className={`${stateTextColor[stateNum]} font-semibold ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
+        className={`${stateTextColor[stateNum]} font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
         onClick={myPageHandler}
         ref={myPageRef}
       >
@@ -73,27 +76,27 @@ export default function StudyDropMenu(props: {
         id="dropdown"
         className={`${
           myPageIsOpen ? '' : 'hidden'
-        } border border-gray-200 z-50 absolute ${
+        } border border-gray-200 z-50 dropdown absolute ${
           rightOn ? 'left-0' : 'right-0'
         } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
         onClick={myPageHandler}
       >
         <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
+          className="py-2 text-sm text-gray-700 dropdown dark:text-gray-200"
           aria-labelledby="dropdownDefaultButton"
         >
           {stateName.map((item, index) => {
             if (index == stateNum) return;
             return (
               <li
-                className="block px-2 py-1  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-2 py-1 dropdown  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={() => {
                   setStateNum(index);
                 }}
               >
                 <div
                   className={`${statePreviewbgColor[index]} 
-                  rounded-sm text-xs font-semibold px-1 w-fit ${statePreviewTextColor[index]} `}
+                  rounded-sm text-xs font-semibold dropdown px-1 w-fit ${statePreviewTextColor[index]} `}
                 >
                   {item}
                 </div>

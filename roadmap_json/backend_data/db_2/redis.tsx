@@ -1,7 +1,8 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_redis_data_private } from '@/roadmap_json/backend_data/db_2/redis_3/personal_data';
 
 export const redis_data_private: RoadData = {
-  nid: 5,
+  nid: 13,
   depth: 2,
   name: 'Redis(레디스)',
   description:
@@ -9,31 +10,32 @@ export const redis_data_private: RoadData = {
   // url: 'https://redis.io/',
   ref: [
     {
-      uuid: '1',
+      uuid: '131',
       title: '레디스 게이트(커뮤니티)',
       url: 'http://redisgate.kr/redisgate/ent/ent_intro.php',
       grade: 3,
       amount: '',
       price: 0,
-      category: 'posting',
+      category: '커뮤니티',
     },
     {
-      uuid: '2',
+      uuid: '132',
       title: '[우아한테크세미나] 191121 우아한레디스 by 강대명님',
       url: 'https://youtu.be/mPB2CZiAkKM',
       grade: 2,
       amount: '총 1시간39분',
       price: 0,
-      category: 'video',
+      category: '유튜브',
     },
     {
-      uuid: '3',
+      uuid: '133',
       title: '빅데이터 저장 및 분석을 위한 NoSQL & Redis',
       url: 'https://product.kyobobook.co.kr/detail/S000001594159',
       grade: 2,
       amount: '총 282쪽',
       price: 32000,
-      category: 'book',
+      category: '도서',
     },
   ],
+  children: [personal_redis_data_private],
 };
