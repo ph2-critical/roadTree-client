@@ -64,7 +64,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         const getProp: getProps = {
           roadmap_type: whatStudyTable[whatStudy],
           depth: i,
-          user_id: process.env.NEXT_PUBLIC_SUPABASE_PHIL_TOKEN ?? '',
+          user_id: userId,
         };
 
         return getNodeDatas(getProp).then((res) => {
