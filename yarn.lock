@@ -5084,6 +5084,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "prettier@npm:3.0.0"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 6a832876a1552dc58330d2467874e5a0b46b9ccbfc5d3531eb69d15684743e7f83dc9fbd202db6270446deba9c82b79d24383d09924c462b457136a759425e33
+  languageName: node
+  linkType: hard
+
 "pretty-hrtime@npm:^1.0.3":
   version: 1.0.3
   resolution: "pretty-hrtime@npm:1.0.3"
@@ -5472,6 +5481,7 @@ __metadata:
     postcss: 8.4.24
     postcss-cli: ^10.1.0
     postcss-nested: ^6.0.1
+    prettier: ^3.0.0
     react: 18.2.0
     react-dom: 18.2.0
     tailwind-scrollbar-hide: ^1.1.7
