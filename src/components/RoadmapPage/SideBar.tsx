@@ -7,6 +7,7 @@ import StudyDropMenu from './StudyDropMenu';
 import mouseDragHook from './hook/mouseDragHook';
 import { useEffect, useState } from 'react';
 import { postNodeData, postProps } from '@/src/api';
+import { track } from '@amplitude/analytics-browser';
 
 export default function SideBar(props: { whatStudy: number; userId: string }) {
   const { select, setSelect, updateFunc } = useRoadTreeStore();
@@ -14,12 +15,26 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
   const [nodeState, setNodeStateNum] = useState<number>(0); // 0: 학습안함, 1: 학습예정, 2: 학습중, 3: 학습완료
   const [sidebarWeight, setSidebarWeight] = useState<number>(512);
+  let sidebarWeightVar: number = 0; // amplitude track을 위함
   const [isEntireSize, setIsEntireSize] = useState<boolean>(false);
   const [resizing, setResizing] = useState<boolean>(false);
   const whatStudyTable = ['front', 'back', 'ai'];
   const stateTable = ['학습안함', '학습예정', '학습중', '학습완료'];
   const whatStudy: string = whatStudyTable[props.whatStudy];
   const userId: string = props.userId;
+
+  const sidebarWeightEnd: () => void = () => {
+    console.log('[amplitude] resize_sidebar');
+    track('resize_sidebar', {
+      beforeSidebarWeight: sidebarWeight,
+      afterSidebarWeight: sidebarWeightVar,
+      roadmapCat: whatStudy,
+      selectNodeId: select?.nid,
+      selectNodeName: select?.name,
+      userScreenWidth: window.innerWidth,
+      userScreenHeight: window.innerHeight,
+    });
+  };
 
   const sidebarWeightChange: (deltaX: number) => void = (deltaX: number) => {
     if (
@@ -36,10 +51,20 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
         setSidebarWeight(sidebarWeight - deltaX);
       }
     }
+    sidebarWeightVar = sidebarWeight - deltaX;
   };
 
   const changeNodeStateNum: (num: number) => void = (num: number) => {
     if (select !== null) {
+      console.log('[amplitude] change_node_state');
+      track('change_node_state', {
+        roadmapCat: whatStudy,
+        selectNodeId: select.nid,
+        selectNodeName: select.name,
+        beforeState: stateTable[select.state ?? 0],
+        afterState: stateTable[num],
+      });
+
       setNodeStateNum(num);
       select.state = num;
 
@@ -85,7 +110,11 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
               `h-full w-5 absolute left-[-10px]  cursor-w-resize flex hover:opacity-100 justify-center` +
               (resizing ? ' opacity-100' : ' opacity-0')
             }
-            {...mouseDragHook(sidebarWeightChange, setResizing)}
+            {...mouseDragHook(
+              sidebarWeightChange,
+              sidebarWeightEnd,
+              setResizing,
+            )}
           >
             <div className="bg-blue-400 w-[2px] h-full"></div>
           </div>
@@ -103,6 +132,14 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                 className="p-1 rounded hover:bg-gray-100"
                 onClick={() => {
                   if (select !== null) {
+                    console.log('[amplitude] click_close_roadmap_sidebar_btn');
+                    track('click_close_roadmap_sidebar_btn', {
+                      from: window.location.pathname,
+                      roadmapCat: whatStudy,
+                      selectNodeId: select.nid,
+                      selectNodeName: select.name,
+                    });
+
                     select.select = false;
                     setSelect(null);
                     updateFunc(select);
@@ -156,6 +193,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                           userId={userId}
                           refBlockInit={refBlockInit}
                           setRefBlockInit={setRefBlockInit}
+                          select={select}
                         ></RefBlock>
                       </div>
                     );

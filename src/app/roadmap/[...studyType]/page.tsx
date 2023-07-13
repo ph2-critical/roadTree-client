@@ -17,11 +17,16 @@ interface roadmapParams {
 function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
-  const whatStudyTable = ['front', 'back', 'ai'];
+  const whatStudyTable = ['frontend', 'backend', 'ai'];
 
   const [id, setId] = useState<string>('');
 
   useEffect(() => {
+    if (whatStudy == 2) {
+      alert('Ai 과정은 준비중입니다.');
+      const router = useRouter();
+      router.push('/');
+    }
     const getUser = async () => {
       const user = await supabase.auth.getUser();
       if (!user.data.user) {
@@ -48,7 +53,8 @@ function page({ params }: { params: roadmapParams }) {
     };
     getUser();
 
-    track(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    console.log(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
 
   return (

@@ -8,6 +8,7 @@ import {
   roadDataState,
 } from '@/roadmap_json/roadmap_data';
 import { getNodeDatas, getProps } from '@/src/api';
+import { track } from '@amplitude/analytics-browser';
 import d3 from 'd3';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';
@@ -82,10 +83,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   useEffect(() => {
     if (userId && init === false) {
-      console.log('user id :' + userId);
-
       setInitNodeState().then((res) => {
-        console.log(stateStore);
         setInit(true);
       });
     }
@@ -162,6 +160,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return 'translate(' + source.y0 + ',' + source.x0 + ')';
           })
           .on('click', function (d) {
+            console.log(
+              `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
+            );
+            track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
+              node_id: d.nid,
+              node_name: d.name,
+              isSelect: !d.select,
+            });
+
             toggle_select(d);
             lastclick = d;
             update(d);
