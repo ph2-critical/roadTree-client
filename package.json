@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^2.1.2",
-    "@aws-amplify/cli": "^12.1.1",
     "@emotion/css": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
