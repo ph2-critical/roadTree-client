@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_springJUnit_data_private } from '@/roadmap_json/backend_data/spring_2/JUnit_3/personal_data';
 
 export const spring_junit_data_private: RoadData = {
   nid: 17,
@@ -36,4 +37,5 @@ export const spring_junit_data_private: RoadData = {
       category: 'posting',
     },
   ],
+  children: [personal_springJUnit_data_private],
 };

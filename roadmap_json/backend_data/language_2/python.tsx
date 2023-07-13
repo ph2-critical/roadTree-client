@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_python_data_private } from '@/roadmap_json/backend_data/language_2/python_3/personal_blog';
 
 export const python_data_private: RoadData = {
   nid: 6,
@@ -17,4 +18,5 @@ export const python_data_private: RoadData = {
       category: 'video',
     },
   ],
+  children: [personal_python_data_private],
 };

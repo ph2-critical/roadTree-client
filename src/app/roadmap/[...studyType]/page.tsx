@@ -1,7 +1,7 @@
 'use client';
 
-import { supabase, midbase } from '@/lib/supabase/supabase';
-import { WithLogin } from '@/src/components/HOC/withLogin';
+import { supabase } from '@/lib/supabase/supabase';
+// import { WithLogin } from '@/src/components/HOC/withLogin';
 import RoadTreeLayout, {
   useRoadTreeStore,
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
@@ -18,15 +18,33 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
   const whatStudyTable = ['front', 'back', 'ai'];
-  const router = useRouter();
 
   const [id, setId] = useState<string>('');
 
   useEffect(() => {
     const getUser = async () => {
-      const user = await midbase.auth.getUser();
-      const userId: string | undefined = user.data.user?.id;
-      userId && setId(userId);
+      const user = await supabase.auth.getUser();
+      if (!user.data.user) {
+        console.log('로그인 시작');
+        supabase.auth
+          .signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo:
+                'http://localhost:3000/roadmap/' + whatStudy.toString(),
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+              },
+            },
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else if (user.data.user) {
+        const userId: string | undefined = user.data.user?.id;
+        userId && setId(userId);
+      }
     };
     getUser();
 
@@ -48,6 +66,6 @@ function page({ params }: { params: roadmapParams }) {
   );
 }
 
-const RoadMapWithLogin = WithLogin(page);
+const RoadMapWithLogin = page;
 
 export default RoadMapWithLogin;
