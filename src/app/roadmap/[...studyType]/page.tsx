@@ -18,13 +18,13 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
   const whatStudyTable = ['frontend', 'backend', 'ai'];
+  const router = useRouter();
 
   const [id, setId] = useState<string>('');
 
   useEffect(() => {
     if (whatStudy == 2) {
       alert('Ai 과정은 준비중입니다.');
-      const router = useRouter();
       router.push('/');
     }
     const getUser = async () => {
