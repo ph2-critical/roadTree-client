@@ -1,5 +1,5 @@
 // insert, update ,delete
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/supabase';
 
 export interface getProps {
   roadmap_type: string; // front, back, ai

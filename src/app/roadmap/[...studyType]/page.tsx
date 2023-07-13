@@ -33,10 +33,6 @@ function page({ params }: { params: roadmapParams }) {
     track(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
 
-  if (whatStudy !== (0 | 1)) {
-    router.push('/');
-  }
-
   return (
     <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
       <main
@@ -52,7 +48,6 @@ function page({ params }: { params: roadmapParams }) {
   );
 }
 
-// const RoadMapWithLogin = page;
 const RoadMapWithLogin = WithLogin(page);
 
 export default RoadMapWithLogin;
