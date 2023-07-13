@@ -80,9 +80,9 @@ export const Header = () => {
             <Link
               href={`/roadmap/${idx}`}
               onClick={() => {
-                console.log('[amplitude] click_go_roadpage_header_menu_button');
-                track('click_go_roadpage_header_menu_button', {
-                  menuName: menu,
+                console.log('[amplitude] click_go_roadpage_header_menu_btn');
+                track('click_go_roadpage_header_menu_btn', {
+                  roadmapCat: menu,
                   from: pathName,
                 });
               }}
