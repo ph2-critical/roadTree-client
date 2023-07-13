@@ -191,6 +191,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                           userId={userId}
                           refBlockInit={refBlockInit}
                           setRefBlockInit={setRefBlockInit}
+                          select={select}
                         ></RefBlock>
                       </div>
                     );
