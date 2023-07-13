@@ -18,17 +18,28 @@ export interface RoadData {
   description?: string;
   select?: boolean;
   depth?: number;
-  state?: number;
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
 
   id?: number;
   ref?: reference[];
 
+  state?: number;
+
   x0?: number;
   y0?: number;
   x?: number;
   y?: number;
+}
+
+export interface roadDataState {
+  [roadmap_type: string]: {
+    [depth: number]: {
+      [node_id: number]: {
+        state: number;
+      };
+    };
+  };
 }
 
 export const roadmap_front_public: RoadData = roadmap_front_private;

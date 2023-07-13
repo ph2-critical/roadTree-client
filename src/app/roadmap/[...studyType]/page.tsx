@@ -47,7 +47,7 @@ function page({ params }: { params: roadmapParams }) {
         <RoadTreeLayout whatStudy={whatStudy} userId={id} />
       </main>
 
-      <SideBar />
+      <SideBar whatStudy={whatStudy} userId={id} />
     </div>
   );
 }
