@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
-import { supabase, midbase } from '@/lib/supabase/supabase';
+import { supabase } from '@/lib/supabase/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
 import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
   // const router = useRouter();
-  await midbase.auth
+  await supabase.auth
     .signInWithOAuth({
       provider: 'google',
       options: {
@@ -34,7 +34,7 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
-    await midbase.auth.signOut();
+    await supabase.auth.signOut();
     setIsLogin(false);
     router.push('/');
   };
@@ -43,7 +43,7 @@ export const Header = () => {
     const checkUser = async () => {
       const {
         data: { user },
-      } = await midbase.auth.getUser();
+      } = await supabase.auth.getUser();
       if (user) {
         setIsLogin(true);
       } else {

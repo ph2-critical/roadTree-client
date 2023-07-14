@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { supabase, midbase } from '@/lib/supabase/supabase';
+import { supabase } from '@/lib/supabase/supabase';
 
 // interface WrapProps {
 //   WrapperComponent: React.ComponentProps<any> | React.ComponentType<any>;
@@ -12,9 +12,9 @@ export const WithLogin = (WrapperComponent: React.ComponentProps<any>) => {
 
   const HOC = (props: any) => {
     useEffect(() => {
-      midbase.auth.getUser().then((res) => {
+      supabase.auth.getUser().then((res) => {
         if (!res.data.user) {
-          midbase.auth.signInWithOAuth({
+          supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
               queryParams: {
