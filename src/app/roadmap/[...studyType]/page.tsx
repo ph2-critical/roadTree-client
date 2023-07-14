@@ -7,6 +7,7 @@ import RoadTreeLayout, {
 } from '@/src/components/RoadmapPage/RoadTreeLayout';
 import SideBar from '@/src/components/RoadmapPage/SideBar';
 import { track } from '@amplitude/analytics-browser';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface roadmapParams {
@@ -17,10 +18,15 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
   const whatStudyTable = ['frontend', 'backend', 'ai'];
+  const router = useRouter();
 
   const [id, setId] = useState<string>('');
 
   useEffect(() => {
+    if (whatStudy == 2) {
+      alert('Ai 과정은 준비중입니다.');
+      router.push('/');
+    }
     const getUser = async () => {
       const user = await supabase.auth.getUser();
       const userId: string | undefined = user.data.user?.id;
