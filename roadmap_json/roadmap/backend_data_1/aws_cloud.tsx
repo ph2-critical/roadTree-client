@@ -1,20 +1,13 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-<<<<<<< HEAD:roadmap_json/backend_data/aws_cloud.tsx
-import { docker_and_kubernetes_data_private } from '@/roadmap_json/backend_data/aws_cloud_2/docker_kubernetes';
-=======
 import { docker_and_kubernetes_data_private } from '@/roadmap_json/roadmap/backend_data_1/aws_cloud_2/docker_kubernetes';
->>>>>>> 084cd446b7c0a101cbf22c0c5301f31ad191899f:roadmap_json/roadmap/backend_data_1/aws_cloud.tsx
 
 export const back_aws_cloud_data_private: RoadData = {
   nid: 5,
   name: 'aws_cloud',
   // url: 'https://docs.aws.amazon.com/',
-<<<<<<< HEAD:roadmap_json/backend_data/aws_cloud.tsx
-  description: '추천 소개글',
-=======
-  description: '웹이든, 앱이든 네트워크를 활용한 서비스를 하려면 인프라 구축해야할 때가 옵니다. 이때, 시스템에 필요한 컴퓨터 및 장비들을 일일이 구매하는 것은 쉽지 않은 일 입니다.' +
+  description:
+    '웹이든, 앱이든 네트워크를 활용한 서비스를 하려면 인프라 구축해야할 때가 옵니다. 이때, 시스템에 필요한 컴퓨터 및 장비들을 일일이 구매하는 것은 쉽지 않은 일 입니다.' +
     ' 보안, 비용, 확장성등 고려할 사항이 많습니다. 이때, 클라우드 서비스를 이용하면 필요한 만큼의 컴퓨터 및 장비를 사용할 수 있습니다.',
->>>>>>> 084cd446b7c0a101cbf22c0c5301f31ad191899f:roadmap_json/roadmap/backend_data_1/aws_cloud.tsx
   ref: [
     {
       uuid: '51',
