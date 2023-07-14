@@ -1,0 +1,105 @@
+import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_java_data_private } from '@/roadmap_json/roadmap/backend_data_1/language_2/java_3/personal_blog';
+
+
+export const java_data_private: RoadData = {
+  nid: 5,
+  depth: 2,
+  name: 'java',
+  description: 'java는 객체지향 프로그래밍 언어입니다. java는 다양한 운영체제에서 실행될 수 있습니다. java는 웹 서버 개발, 안드로이드 앱 개발, 빅데이터 처리 등 다양한 분야에서 사용됩니다.',
+  ref: [
+    {
+      uuid: '81',
+      title: '생활코딩java',
+      url: 'https://www.youtube.com/playlist?list=PLuHgQVnccGMAIluRRVsC1e79ri-dwnBmR',
+      grade: 0,
+      amount: '총 17시간30분',
+      price: 0,
+      category: 'video',
+    },
+    {
+      uuid: '82',
+      title: '프로그래머스 java 입문',
+      url: 'https://school.programmers.co.kr/learn/courses/5/5-%EB%AC%B4%EB%A3%8C-%EC%9E%90%EB%B0%94-%EC%9E%85%EB%AC%B8',
+      grade: 0,
+      amount: '총 17시간30분',
+      price: 0,
+      category: 'video',
+    },
+    {
+      uuid: '83',
+      title: '프로그래머스 java 심화',
+      url: 'https://school.programmers.co.kr/learn/courses/9/9-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89',
+      grade: 1,
+      amount: '총 17시간30분',
+      price: 0,
+      category: 'video',
+    },
+    {
+      uuid: '84',
+      title: 'java의 정석 : 기초편',
+      url: 'https://www.yes24.com/Product/Goods/85632276',
+      grade: 1,
+      amount: '총 700쪽',
+      price: 25000,
+      category: 'book',
+    },
+    {
+      uuid: '85',
+      title: '이펙티브java',
+      url: 'https://product.kyobobook.co.kr/detail/S000001033066',
+      grade: 4,
+      amount: '총 520쪽',
+      price: 30000,
+      category: '도서',
+    },
+    {
+      uuid: '86',
+      title: '이펙티브java',
+      url: 'https://product.kyobobook.co.kr/detail/S000001033066',
+      grade: 4,
+      amount: '총 520쪽',
+      price: 36000,
+      category: '도서',
+    },
+    {
+      uuid: '87',
+      title: '점프 투 자바',
+      url: 'https://wikidocs.net/book/31',
+      grade: 1,
+      amount: '',
+      price: 0,
+      category: '도서',
+    },
+    {
+      uuid: '88',
+      title: 'TCP스쿨 java',
+      url: 'http://tcpschool.com/java/intro',
+      grade: 1,
+      amount: '',
+      price: 0,
+      category: 'posting',
+    },
+    {
+      uuid: '89',
+      title: 'dev쿠마 java',
+      url: 'https://www.devkuma.com/docs/java/',
+      grade: 1,
+      amount: '',
+      price: 0,
+      category: 'posting',
+    },
+    {
+      uuid: '90',
+      title: '나도코딩',
+      url: 'https://www.youtube.com/watch?v=NQq0dOoEPUM',
+      grade: 1,
+      amount: '총 8시간40분',
+      price: 30000,
+      category: '유튜브',
+    }
+  ],
+  children: [personal_java_data_private],
+
+}
+

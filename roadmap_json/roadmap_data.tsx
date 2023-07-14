@@ -1,5 +1,5 @@
-import { roadmap_back_private } from './backend_data/back_roadmap';
-import { roadmap_front_private } from './frontend_data/front_roadmap';
+import { roadmap_back_private } from '@/roadmap_json/roadmap/back_roadmap';
+import { roadmap_front_private } from '@/roadmap_json/roadmap/front_roadmap';
 
 export interface reference {
   uuid: string;
