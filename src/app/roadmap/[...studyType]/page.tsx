@@ -8,7 +8,6 @@ import RoadTreeLayout, {
 import SideBar from '@/src/components/RoadmapPage/SideBar';
 import { track } from '@amplitude/analytics-browser';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 interface roadmapParams {
   studyType: number;
@@ -18,7 +17,6 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const whatStudy: number = studyType;
   const whatStudyTable = ['front', 'back', 'ai'];
-  const router = useRouter();
 
   const [id, setId] = useState<string>('');
 

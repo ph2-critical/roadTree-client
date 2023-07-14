@@ -8,7 +8,6 @@ import initAmplitude from '@/lib/amplitude/amplitude';
 import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
-  // const router = useRouter();
   await supabase.auth
     .signInWithOAuth({
       provider: 'google',
@@ -22,7 +21,6 @@ export const Login = async () => {
     .catch((error) => {
       console.log(error);
     });
-  // router.refresh();
 };
 
 export const Header = () => {
@@ -73,7 +71,7 @@ export const Header = () => {
         {navMenu.map((menu, idx) => {
           return (
             <Link
-              href={`${idx !== 2 ? `roadmap/${idx}` : '/'}`}
+              href={`${idx !== 2 ? `/roadmap/${idx}` : '/'}`}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
