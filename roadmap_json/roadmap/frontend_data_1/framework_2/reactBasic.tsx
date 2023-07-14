@@ -41,6 +41,15 @@ export const front_react_data_private: RoadData = {
       amount : "총 908쪽",
       price : 0,
       category : "도서"
+    },{
+      uuid: '105',
+      title : "리액트 디자인 패턴과 모범 사례",
+      url : "https://product.kyobobook.co.kr/detail/S000001804610",
+      grade: 4,
+      amount : "총 400쪽",
+      price : 30000,
+      category : "도서"
+
     }
 
   ],

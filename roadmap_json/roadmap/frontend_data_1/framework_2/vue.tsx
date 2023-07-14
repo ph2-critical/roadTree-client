@@ -41,7 +41,7 @@ export const front_vue_data_private: RoadData = {
       amount : "총 8시간 17분",
       price : 80000,
       category : "코딩애플"
-    }
+    },
 
   ]
 }
