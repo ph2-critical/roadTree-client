@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import { personal_kubernetes_data_private } from '@/roadmap_json/backend_data/aws_cloud_2/kubernetes_3/personal_data';
 
 export const docker_and_kubernetes_data_private: RoadData = {
   nid: 30,
@@ -53,4 +54,5 @@ export const docker_and_kubernetes_data_private: RoadData = {
       category: '패스트캠퍼스',
     },
   ],
+  children: [personal_kubernetes_data_private],
 };
