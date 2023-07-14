@@ -42,15 +42,7 @@ export const front_react_data_private: RoadData = {
       price : 0,
       category : "도서"
     }
-    ,
-    {
-      uuid: '105',
-      title : "velopert 리액트 포스팅(김민준)",
-      url : "https://velopert.com/category/dev-log",
-      grade: 2,
-      amount : "",
-      price : 0,
-      category : "개인블로그"
-    }
-  ]
+
+  ],
+  children : []
 }
