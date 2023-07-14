@@ -1,16 +1,63 @@
 'use client';
-import { usePathname } from 'next/navigation';
-import { Logo } from '@/src/app/assets/Icons';
+import { useState, useEffect } from 'react';
+import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabase/supabase';
+import { usePathname, useSearchParams } from 'next/navigation';
+import initAmplitude from '@/lib/amplitude/amplitude';
+import { useRouter } from 'next/navigation';
+
+export const Login = async () => {
+  await supabase.auth
+    .signInWithOAuth({
+      provider: 'google',
+      options: {
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const Header = () => {
-  const path = usePathname();
+  const router = useRouter();
+  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
+  const searchParams: string = usePathname().split('/')[2];
+  const whatStudy: number = parseInt(searchParams);
+
+  const [isLogin, setIsLogin] = useState(false);
+
+  const Logout = async () => {
+    await supabase.auth.signOut();
+    setIsLogin(false);
+    router.push('/');
+  };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
+    };
+    checkUser();
+    initAmplitude();
+  }, []);
+
   return (
-    <div className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b">
+    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link href={'/'}>
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
-      {path === '/' ? (
+      {/* {path === '/' ? (
         <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
           <input
             type="search"
@@ -19,7 +66,33 @@ export const Header = () => {
             className="flex-grow px-4 text-sm rounded-lg focus:outline-none"
           />
         </span>
-      ) : null}
+      ) : null} */}
+      <div className="items-center hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        {navMenu.map((menu, idx) => {
+          return (
+            <Link
+              href={`${idx !== 2 ? `/roadmap/${idx}` : '/'}`}
+              className={`p-3  font-semibold text-base hover:text-gray-400 ${
+                whatStudy === idx ? 'text-main' : 'text-gray-500'
+              }`}
+              onClick={() => {
+                if (idx === 2) {
+                  alert('AI 과정은 준비중입니다.');
+                }
+              }}
+            >
+              {menu}
+            </Link>
+          );
+        })}
+        <div className="w-5"></div>
+        <button
+          className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+          onClick={isLogin ? Logout : Login}
+        >
+          {isLogin ? '로그아웃' : '로그인'}
+        </button>
+      </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
         <button>
           <svg
@@ -34,6 +107,6 @@ export const Header = () => {
           </svg>
         </button>
       </div>
-    </div>
+    </nav>
   );
 };

@@ -14,10 +14,12 @@
     }
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.1.2",
     "@emotion/css": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@supabase/auth-helpers-nextjs": "^0.7.2",
     "@tailwindcss/custom-forms": "^0.2.1",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-chart": "^3.0.1",
@@ -26,12 +28,14 @@
     "@toast-ui/editor-plugin-table-merged-cell": "^3.1.0",
     "@toast-ui/editor-plugin-uml": "^3.0.1",
     "@toast-ui/react-editor": "^3.2.3",
+    "@types/d3": "3",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "cssnano": "^6.0.1",
+    "d3": "3",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
     "next": "13.4.5",
@@ -40,6 +44,7 @@
     "postcss-nested": "^6.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.3.2",
     "typescript": "5.1.3",
     "zustand": "^4.3.8"
@@ -55,7 +60,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.8",
     "twin.macro": "^3.3.1"
   }
 }
