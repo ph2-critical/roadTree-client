@@ -50,7 +50,14 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     학습완료: 3,
   };
 
-  const statebgColor: string[] = ['#fff', '#fef08a', '#e0e7ff', '#dcf7e7'];
+  const statebgColor: string[] = ['#fff', '#e3f6ed', '#9adfbe', '#489d72'];
+  const stateBorderColor: string[] = [
+    'stroke-green-300',
+    'stroke-green-300',
+    'stroke-green-500',
+    'stroke-green-800',
+  ];
+  const stateTextColor: string[] = ['#86efac', '#86efac', '#22c55e', '#166534'];
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -154,6 +161,20 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .enter()
           .append('svg:g')
           .attr('class', function (d) {
+            if (d.state === undefined) {
+              d.state =
+                !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
+                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
+                  d.depth ?? 0,
+                ) ||
+                !stateStore[whatStudyTable[whatStudy]][
+                  d.depth ?? 0
+                ].hasOwnProperty(d.nid)
+                  ? 0
+                  : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
+                      .state;
+            }
+
             return 'node' + (d.depth === 0 ? ' hidden ' : '');
           })
           .attr('transform', function () {
@@ -236,7 +257,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         nodeUpdate
           .select('rect')
           .attr('class', function (d: RoadData) {
-            return 'stroke-black stroke-2  ';
+            return 'stroke-2 ' + stateBorderColor[d.state ?? 0];
           })
           .style('width', '200')
           .style('height', '40')
@@ -245,20 +266,16 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .style('rx', '10')
           .style('ry', '10')
           .style('fill', function (d: RoadData) {
-            if (d.state === undefined) {
-              d.state =
-                !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
-                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
-                  d.depth ?? 0,
-                ) ||
-                !stateStore[whatStudyTable[whatStudy]][
-                  d.depth ?? 0
-                ].hasOwnProperty(d.nid)
-                  ? 0
-                  : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
-                      .state;
-            }
-            return statebgColor[d.state];
+            return statebgColor[d.state ?? 0];
+          });
+
+        nodeUpdate
+          .select('text')
+          .attr('class', function (d: RoadData) {
+            return d.state === 3 ? ' line-through ' : '';
+          })
+          .style('fill', function (d: RoadData) {
+            return stateTextColor[d.state ?? 0];
           });
 
         // Transition exiting nodes to the parent's new position.
