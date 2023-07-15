@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={'h-screenWithoutHeader w-full'}>
+      <body className={'h-screenWithoutHeader w-full dark:bg-gray-900'}>
         <Header />
         {children}
         <script src="https://cdn.tailwindcss.com"></script>
