@@ -1,7 +1,7 @@
 import { RoadData } from '../../roadmap_data';
 import { css_template_private } from '@/roadmap_json/roadmap/frontend_data_1/CSS_2/template';
 
-export const front_css_private: RoadData = {
+export const 가front_css_private: RoadData = {
   nid: 31,
   name: 'CSS',
   description:
@@ -27,7 +27,7 @@ export const front_css_private: RoadData = {
     },
     {
       uuid: '3005',
-      title: '코딩애플 HTML/CSS',
+      title: '코딩애플 HTML/CSS - All in one',
       url: 'https://codingapple.com/course/html-basics/',
       grade: 1,
       amount: '총 8시간 12분',
