@@ -4,7 +4,7 @@ import { front_vue_data_private } from '@/roadmap_json/roadmap/frontend_data_1/f
 import { front_next_data_private } from '@/roadmap_json/roadmap/frontend_data_1/framework_2/nextjs';
 
 export const front_framework_private: RoadData = {
-  nid: 4,
+  nid: 33,
   depth: 1,
   name: '프레임워크',
   ref: [
