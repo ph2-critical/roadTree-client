@@ -27,7 +27,7 @@ export const front_css_private: RoadData = {
     },
     {
       uuid: '3005',
-      title: '코딩애플 HTML/CSS',
+      title: '코딩애플 HTML/CSS - All in one',
       url: 'https://codingapple.com/course/html-basics/',
       grade: 1,
       amount: '총 8시간 12분',
