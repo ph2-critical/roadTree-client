@@ -9,6 +9,8 @@ import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 
 export const Login = async () => {
+  console.log('[amplitude] click_login_header_btn');
+  track('click_login_header_btn');
   await supabase.auth
     .signInWithOAuth({
       provider: 'google',
@@ -34,6 +36,8 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
+    console.log('[amplitude] click_logout_header_btn');
+    track('click_logout_header_btn', { from: pathName });
     await supabase.auth.signOut();
     setIsLogin(false);
     router.push('/');
@@ -46,12 +50,13 @@ export const Header = () => {
       } = await supabase.auth.getUser();
       if (user) {
         setIsLogin(true);
+        initAmplitude(user.id);
       } else {
         setIsLogin(false);
+        initAmplitude('');
       }
     };
     checkUser();
-    initAmplitude();
   }, []);
 
   return (
