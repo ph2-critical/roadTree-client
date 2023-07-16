@@ -2,7 +2,7 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 import { personal_mongodb_data_private } from '@/roadmap_json/roadmap/backend_data_1/db_2/mongodb_3/personal_data';
 
 export const mongodb_data_private: RoadData = {
-  nid: 12,
+  nid: 111,
   depth: 2,
   name: 'MongoDB',
   description:
@@ -10,7 +10,7 @@ export const mongodb_data_private: RoadData = {
   // url: 'https://www.mongodb.com/',
   ref: [
     {
-      uuid: '121',
+      uuid: '111000',
       title: '2시간만에 웹서버 쉽게 개발하기 (Node.js + MongoDB)',
       url: 'https://www.youtube.com/playlist?list=PLfLgtT94nNq1qmsvIii_CAxFlD7tvB5NE',
       grade: 1,
@@ -19,7 +19,7 @@ export const mongodb_data_private: RoadData = {
       category: '유튜브',
     },
     {
-      uuid: '122',
+      uuid: '111001',
       title: '노드교과서 개정3판(몽고DB 부분만) ',
       url: 'https://youtube.com/playlist?list=PLcdZj4ySPhX2su16PGiXRiegRl0oQvIBO',
       grade: 1,
@@ -28,7 +28,7 @@ export const mongodb_data_private: RoadData = {
       category: '유튜브',
     },
     {
-      uuid: '123',
+      uuid: '111002',
       title: 'MongoDB기초부터 실무까지(feat.Node.js)',
       url: 'https://www.inflearn.com/course/%EB%AA%BD%EA%B3%A0%EB%94%94%EB%B9%84-%EA%B8%B0%EC%B4%88-%EC%8B%A4%EB%AC%B4#curriculum',
       grade: 2,
@@ -37,7 +37,7 @@ export const mongodb_data_private: RoadData = {
       category: '인프런',
     },
     {
-      uuid: '124',
+      uuid: '111003',
       title:
         '처음하는 MongoDB(몽고DB) 와 NoSQL(빅데이터) 데이터베이스 부트캠프 [입문부터 활용까지] ',
       url: 'https://www.inflearn.com/course/nosql-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%AA%BD%EA%B3%A0db-%EC%9E%94%EC%9E%AC%EB%AF%B8%EC%BD%94%EB%94%A9#curriculum',
@@ -46,15 +46,7 @@ export const mongodb_data_private: RoadData = {
       price: 66000,
       category: '인프런',
     },
-    {
-      uuid: '125',
-      title: 'MongoDB vs MySQL 비교',
-      url: 'https://www.mongodb.com/ko-kr/compare/mongodb-mysql',
-      grade: 3,
-      amount: '',
-      price: 0,
-      category: '기업블로그',
-    },
+
   ],
   children: [personal_mongodb_data_private]
 };

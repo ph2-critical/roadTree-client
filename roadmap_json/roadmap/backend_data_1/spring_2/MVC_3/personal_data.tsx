@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const personal_springMVC_data_private: RoadData = {
-  nid: 115,
+  nid: 12000,
   depth: 3,
   name: 'SpringMVC 개인 자료들',
   description:
@@ -9,7 +9,7 @@ export const personal_springMVC_data_private: RoadData = {
   //url: '',
   ref: [
     {
-      uuid: '1151',
+      uuid: '12000000',
       title: 'Spring MVC-구조이해',
       url: 'https://catsbi.oopy.io/f52511f3-1455-4a01-b8b7-f10875895d5b',
       grade: 2,
@@ -18,7 +18,7 @@ export const personal_springMVC_data_private: RoadData = {
       category: '개인블로그',
     },
     {
-      uuid: '1152',
+      uuid: '12000001',
       title: 'dev 쿠마 - Spring MVC',
       url: 'https://www.devkuma.com/docs/spring-framework/mvc/',
       grade: 2,

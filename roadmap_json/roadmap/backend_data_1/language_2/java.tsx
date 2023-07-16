@@ -3,13 +3,13 @@ import { personal_java_data_private } from '@/roadmap_json/roadmap/backend_data_
 
 
 export const java_data_private: RoadData = {
-  nid: 5,
+  nid: 100,
   depth: 2,
   name: 'java',
-  description: 'java는 객체지향 프로그래밍 언어입니다. java는 다양한 운영체제에서 실행될 수 있습니다. java는 웹 서버 개발, 안드로이드 앱 개발, 빅데이터 처리 등 다양한 분야에서 사용됩니다.',
+  description: '자바는 java는 웹 서버 개발, 안드로이드 앱 개발, 빅데이터 처리 등 다양한 분야에서 사용되고 있고, 국내에서 가장 많이 사용하는 서버언어입니다. 다른 언어에 비해 안정적이기 때문에, 자바를 배우는 것을 추천합니다.',
   ref: [
     {
-      uuid: '81',
+      uuid: '100000',
       title: '생활코딩java',
       url: 'https://www.youtube.com/playlist?list=PLuHgQVnccGMAIluRRVsC1e79ri-dwnBmR',
       grade: 0,
@@ -18,7 +18,7 @@ export const java_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: '82',
+      uuid: '100001',
       title: '프로그래머스 java 입문',
       url: 'https://school.programmers.co.kr/learn/courses/5/5-%EB%AC%B4%EB%A3%8C-%EC%9E%90%EB%B0%94-%EC%9E%85%EB%AC%B8',
       grade: 0,
@@ -27,7 +27,7 @@ export const java_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: '83',
+      uuid: '100002',
       title: '프로그래머스 java 심화',
       url: 'https://school.programmers.co.kr/learn/courses/9/9-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89',
       grade: 1,
@@ -36,7 +36,7 @@ export const java_data_private: RoadData = {
       category: 'video',
     },
     {
-      uuid: '84',
+      uuid: '100003',
       title: 'java의 정석 : 기초편',
       url: 'https://www.yes24.com/Product/Goods/85632276',
       grade: 1,
@@ -45,7 +45,7 @@ export const java_data_private: RoadData = {
       category: 'book',
     },
     {
-      uuid: '85',
+      uuid: '100004',
       title: '이펙티브java',
       url: 'https://product.kyobobook.co.kr/detail/S000001033066',
       grade: 4,
@@ -54,7 +54,7 @@ export const java_data_private: RoadData = {
       category: '도서',
     },
     {
-      uuid: '86',
+      uuid: '100005',
       title: '이펙티브java',
       url: 'https://product.kyobobook.co.kr/detail/S000001033066',
       grade: 4,
@@ -63,7 +63,7 @@ export const java_data_private: RoadData = {
       category: '도서',
     },
     {
-      uuid: '87',
+      uuid: '100006',
       title: '점프 투 자바',
       url: 'https://wikidocs.net/book/31',
       grade: 1,
@@ -72,7 +72,7 @@ export const java_data_private: RoadData = {
       category: '도서',
     },
     {
-      uuid: '88',
+      uuid: '100007',
       title: 'TCP스쿨 java',
       url: 'http://tcpschool.com/java/intro',
       grade: 1,
@@ -81,7 +81,7 @@ export const java_data_private: RoadData = {
       category: 'posting',
     },
     {
-      uuid: '89',
+      uuid: '100008',
       title: 'dev쿠마 java',
       url: 'https://www.devkuma.com/docs/java/',
       grade: 1,
@@ -90,7 +90,7 @@ export const java_data_private: RoadData = {
       category: 'posting',
     },
     {
-      uuid: '90',
+      uuid: '100009',
       title: '나도코딩',
       url: 'https://www.youtube.com/watch?v=NQq0dOoEPUM',
       grade: 1,
