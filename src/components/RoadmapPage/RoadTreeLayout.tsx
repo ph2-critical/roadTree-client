@@ -153,8 +153,11 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
         // Update the nodes…
         let node = vis.selectAll('g.node').data(nodes, function (d: any) {
-          return d.id || (d!.id = ++i);
+          i++;
+          return d.id || (d!.id = d.parent?.nid * 50 + d.nid);
         });
+
+        console.log(source);
 
         // Enter any new nodes at the parent's previous position.
         let nodeEnter = node
