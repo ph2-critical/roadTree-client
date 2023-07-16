@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
 import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
+import { hotjar } from 'react-hotjar';
 
 export const Login = async () => {
   console.log('[amplitude] click_login_header_btn');
@@ -57,6 +58,12 @@ export const Header = () => {
       }
     };
     checkUser();
+    if (process.env.NODE_ENV !== 'development') {
+      hotjar.initialize(
+        Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
+        Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
+      );
+    }
   }, []);
 
   return (
