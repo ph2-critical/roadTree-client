@@ -2,7 +2,7 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 import { personal_springJUnit_data_private } from '@/roadmap_json/roadmap/backend_data_1/spring_2/JUnit_3/personal_data';
 
 export const spring_junit_data_private: RoadData = {
-  nid: 17,
+  nid: 122,
   depth: 2,
   name: 'Spring JUnit',
   description:
@@ -10,7 +10,7 @@ export const spring_junit_data_private: RoadData = {
   //"url": "https://docs.spring.io/spring-framework/reference/testing.html#testing",
   ref: [
     {
-      uuid: '171',
+      uuid: '122000',
       title: 'Java/Spring 테스트를 추가하고 싶은 개발자들의 오답노트',
       url: 'https://www.inflearn.com/course/%EC%9E%90%EB%B0%94-%EC%8A%A4%ED%94%84%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EC%98%A4%EB%8B%B5%EB%85%B8%ED%8A%B8#curriculum',
       grade: 2,
@@ -19,7 +19,7 @@ export const spring_junit_data_private: RoadData = {
       category: '인프런',
     },
     {
-      uuid: '172',
+      uuid: '122001',
       title: '[유데미]Learn Java Unit Testing with Junit & Mockito in 30 Steps',
       url: 'https://www.udemy.com/course/mockito-tutorial-with-junit-examples/',
       grade: 3,
@@ -28,7 +28,7 @@ export const spring_junit_data_private: RoadData = {
       category: '유데미',
     },
     {
-      uuid: '173',
+      uuid: '122002',
       title: 'JUnit5 공식문서',
       url: 'https://junit.org/junit5/docs/current/user-guide/',
       grade: 4,

@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 
 export const personal_springDB_data_private: RoadData = {
-  nid: 116,
+  nid: 12100,
   depth: 2,
   name: 'spring db 개인 자료들',
   description:
@@ -9,13 +9,13 @@ export const personal_springDB_data_private: RoadData = {
   //url = '',
   ref: [
     {
-      uuid: '1',
-      title: '',
+      uuid: '12100000',
+      title: '준비중',
       url: '',
-      grade: 3,
-      amount: '총 ',
-      price: 121000,
-      category: 'video',
+      grade: 30,
+      amount: '',
+      price: 0,
+      category: '',
     },
   ],
 };

@@ -3,7 +3,7 @@ import { personal_springMVC_data_private } from '@/roadmap_json/roadmap/backend_
 // import { personal_springMVC_data_private } from '@/roadmap_json/backend_data/spring/MVC/personal_data';
 
 export const spring_mvc_data_private: RoadData = {
-  nid: 15,
+  nid: 120,
   depth: 2,
   name: 'Spring MVC',
   description:
@@ -11,7 +11,7 @@ export const spring_mvc_data_private: RoadData = {
   //"url": "https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html",
   ref: [
     {
-      uuid: '151',
+      uuid: '120000',
       title: '스프링 MVC 하루만에 배우기',
       url: 'https://wikidocs.net/115235',
       grade: 2,
@@ -20,7 +20,7 @@ export const spring_mvc_data_private: RoadData = {
       category: '위키독스',
     },
     {
-      uuid: '152',
+      uuid: '120001',
       title: '스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술',
       url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1',
       grade: 2,
@@ -29,7 +29,7 @@ export const spring_mvc_data_private: RoadData = {
       category: '인프런',
     },
     {
-      uuid: '153',
+      uuid: '120002',
       title: '스프링 MVC 2편 - 백엔드 웹 개발 핵심 기술',
       url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2',
       grade: 3,
@@ -38,7 +38,7 @@ export const spring_mvc_data_private: RoadData = {
       category: '인프런',
     },
     {
-      uuid: '154',
+      uuid: '120003',
       title:
         '【한글자막】 Spring Boot 3 & Spring Framework 6 마스터 (2023 Java 최신)',
       url: 'https://www.udemy.com/course/spring-boot-and-spring-framework-korean/?utm_source=adwords&utm_medium=udemyads&utm_campaign=Spring_Search_la.KR_cc.KR&utm_term=_._ag_150291554763_._ad_663807185195_._kw_spring+framework_._de_c_._dm__._pl__._ti_kwd-261473458_._li_1009893_._pd__._&matchtype=b&gad=1',
