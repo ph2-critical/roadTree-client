@@ -52,12 +52,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   const statebgColor: string[] = ['#fff', '#e3f6ed', '#9adfbe', '#489d72'];
   const stateBorderColor: string[] = [
-    'stroke-green-300',
-    'stroke-green-300',
-    'stroke-green-500',
-    'stroke-green-800',
+    'stroke-black',
+    'stroke-black',
+    'stroke-black',
+    'stroke-black',
   ];
-  const stateTextColor: string[] = ['#86efac', '#86efac', '#22c55e', '#166534'];
+  const stateTextColor: string[] = ['#000', '#000', '#000', '#000'];
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
