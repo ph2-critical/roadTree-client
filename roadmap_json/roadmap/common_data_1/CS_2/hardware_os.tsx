@@ -1,7 +1,7 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
 import {
   personal_hardware_os_blog_private,
-} from '@/roadmap_json/roadmap/backend_data_1/CS_2/hardware_os_3/personal_blog';
+} from '@/roadmap_json/roadmap/common_data_1/CS_2/hardware_os_3/personal_blog';
 
 export const hardware_os_data_private: RoadData = {
   nid: 10,

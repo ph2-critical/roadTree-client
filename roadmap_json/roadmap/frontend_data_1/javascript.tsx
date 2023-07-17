@@ -79,7 +79,7 @@ export const front_javascript_private: RoadData = {
       grade: 0,
       amount: '총 2시간 16분',
       price: 0,
-      category: '프로그래머스 강의',
+      category: '프로그래머스',
     },
     {
       uuid: '3206',
