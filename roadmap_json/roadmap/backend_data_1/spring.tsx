@@ -7,7 +7,7 @@ import { spring_JPA_data_private } from '@/roadmap_json/roadmap/backend_data_1/s
 
 export const back_spring_data_private: RoadData = {
   nid: 12,
-  name: 'springboot',
+  name: 'Springboot',
   description:
     'Spring은 java기반 웹 프레임워크로, 오리지날 Java를 최대한 활용하고 java가 지향하는 OOP설계에 맞춰 좋은 코드를 짤수 있게 도와주는 오픈소스 프레임워크입니다. 현재 국내에서 제일 많이 사용하는 프레임워크이기도 합니다. 참고로 springboot는 spring의 복잡한 환경설정을 개선하고자 나타났습니다.',
   ref: [

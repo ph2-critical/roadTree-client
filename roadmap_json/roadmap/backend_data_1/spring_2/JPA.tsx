@@ -4,7 +4,7 @@ import { personal_springJPA_data_private } from '@/roadmap_json/roadmap/backend_
 export const spring_JPA_data_private: RoadData = {
   nid: 124,
   depth: 2,
-  name: 'spring JPA',
+  name: 'Spring JPA',
   description:
     'DB와 연결하여 데이터를 읽고 쓰기 위해서 SQL쿼리문을 알아야하지만, JPA을 사용하면 객체중심으로 애플리케이션 개발이 가능하여 생산성을 높여줄 수 있어 많은 개발자들이 사용하고 있습니다.',
   // url: 'https://docs.spring.io/spring-data/jpa/docs/current/reference/html/',

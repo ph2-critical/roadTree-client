@@ -3,7 +3,7 @@ import { docker_and_kubernetes_data_private } from '@/roadmap_json/roadmap/backe
 
 export const back_aws_cloud_data_private: RoadData = {
   nid: 13,
-  name: 'aws_cloud',
+  name: 'AWS Cloud',
   // url: 'https://docs.aws.amazon.com/',
   description:
     '웹이든, 앱이든 네트워크를 활용한 서비스를 하려면 인프라 구축해야할 때가 옵니다. 이때, 시스템에 필요한 컴퓨터 및 장비들을 일일이 구매하는 것은 쉽지 않은 일 입니다.' +

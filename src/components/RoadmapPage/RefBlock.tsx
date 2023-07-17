@@ -165,7 +165,8 @@ export default function RefBlock(props: {
           </div>
         </div>
         <div className="p-1 mt-auto">
-          <StudyDropMenu stateNum={stateNum} setStateNum={setRefStateNum} />
+          {refdata.title !== '준비중' ? <StudyDropMenu stateNum={stateNum} setStateNum={setRefStateNum} /> : ''}
+          
         </div>
       </div>
     );

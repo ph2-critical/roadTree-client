@@ -4,7 +4,7 @@ import { personal_python_data_private } from '@/roadmap_json/roadmap/backend_dat
 export const python_data_private: RoadData = {
   nid: 101,
   depth: 2,
-  name: 'python',
+  name: 'Python',
   description:
     'python으로 서버개발도 가능합니다.다른 언어보다 사람에 맞춘 개발언어로 비교적 배우기 쉬운 언어입니다.라이브러리도 많고, 데이터분석, 머신러닝, 딥러닝 등 다양한 분야에서 사용되고 있습니다.',
   //url =''

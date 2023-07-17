@@ -4,7 +4,7 @@ import { personal_javascript_data_private } from '@/roadmap_json/roadmap/backend
 export const javascript_data_private: RoadData = {
   nid: 102,
   depth: 2,
-  name: 'javascript',
+  name: 'Javascript',
   description:
     'javascript로 서버개발에도 사용하게되면, 프론트/백 동일하게 사용하여  새로운 언어를 습득하지 않아도 되며, 서버 설치부터 화면 띄우는 것까지 금방 처리됩니다. 또한 이벤트 기반 비동기방식이라 서버에도 무리가 적어 빠르게 배포를 진행해야되는 곳에 많이 쓰입니다.',
   ref: [
