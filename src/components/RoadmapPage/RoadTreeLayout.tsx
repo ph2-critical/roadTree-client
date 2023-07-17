@@ -190,7 +190,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
               node_id: d.nid,
               node_name: d.name,
+              node_depth: d.depth,
               isSelect: !d.select,
+
             });
 
             toggle_select(d);
