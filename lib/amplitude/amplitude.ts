@@ -13,7 +13,7 @@ const KEY: string =
     : AMPLITUDE_PROD_API_KEY;
 
 const initAmplitude = (userId: string) => {
-  console.log('init amplitude with 개발환경: ', process.env.NODE_ENV);
+  // console.log('init amplitude with 개발환경: ', process.env.NODE_ENV);
   if (userId === '' || !userId) init(KEY);
   else init(KEY, `roadtree-${userId}`);
 };

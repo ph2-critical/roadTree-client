@@ -86,7 +86,7 @@ export default function RefBlock(props: {
   }, [refBlockInit]);
 
   const setRefStateNum: (num: number) => void = (num) => {
-    console.log('[amplitude] click_ref_state');
+    // console.log('[amplitude] click_ref_state');
     track('click_ref_state', {
       roadmapCat: props.whatStudy,
       refId: refdata.uuid,
@@ -121,11 +121,7 @@ export default function RefBlock(props: {
             e.target instanceof Element &&
             !e.target.classList.contains('dropdown')
           ) {
-            console.log(e.target);
-            console.log(e.target.classList);
-            console.log(e.target.classList.contains('dropdown'));
-
-            console.log('[amplitude] click_ref_link');
+            // console.log('[amplitude] click_ref_link');
             track('click_ref_link', {
               roadmapCat: props.whatStudy,
               refId: refdata.uuid,

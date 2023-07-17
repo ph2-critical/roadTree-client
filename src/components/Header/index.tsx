@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
 
 export const Login = async () => {
-  console.log('[amplitude] click_login_header_btn');
+  // console.log('[amplitude] click_login_header_btn');
   track('click_login_header_btn');
   await supabase.auth
     .signInWithOAuth({
@@ -23,7 +23,7 @@ export const Login = async () => {
       },
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
     });
 };
 
@@ -37,7 +37,7 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
-    console.log('[amplitude] click_logout_header_btn');
+    // console.log('[amplitude] click_logout_header_btn');
     track('click_logout_header_btn', { from: pathName });
     await supabase.auth.signOut();
     setIsLogin(false);
@@ -71,7 +71,7 @@ export const Header = () => {
       <Link
         href={'/'}
         onClick={() => {
-          console.log('[amplitude] click_go_home_header_logo');
+          // console.log('[amplitude] click_go_home_header_logo');
           track('click_go_home_header_logo', { from: pathName });
         }}
       >
