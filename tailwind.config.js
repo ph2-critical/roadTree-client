@@ -14,6 +14,16 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      width: {
+        128: '32rem',
+      },
+      height: {
+        screenWithoutHeader: 'calc(100vh - 73px)',
+      },
+      boxShadow: {
+        'deep-dark':
+          'var(--ds-shadow-overlay,0 2px 4px 0 rgba(0,0,0,0.5),0 0 0 1px rgba(9,30,66,0.08))',
+      },
       colors: {
         main: '#13D080',
         gray1: '#c3c3c3',
@@ -85,7 +95,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+    require('tailwind-scrollbar-hide'),
+  ],
 };
 
 // mode: 'jit',

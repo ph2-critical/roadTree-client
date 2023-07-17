@@ -1,5 +1,5 @@
 'use client';
-import { CheckIcon } from '@/src/app/assets/Icons';
+import { CheckIcon } from '@/src/assets/Icons';
 import { useState } from 'react';
 import Link from 'next/link';
 
