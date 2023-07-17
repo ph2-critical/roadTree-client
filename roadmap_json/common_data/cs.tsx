@@ -1,6 +1,6 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
-import { network_data_private } from '@/roadmap_json/backend_data/CS_2/network';
-import { hardware_os_data_private } from '@/roadmap_json/backend_data/CS_2/hardware_os';
+import { network_data_private } from '@/roadmap_json/roadmap/backend_data_1/CS_2/network';
+import { hardware_os_data_private } from '@/roadmap_json/roadmap/backend_data_1/CS_2/hardware_os';
 
 export const cs_data_private: RoadData = {
 
