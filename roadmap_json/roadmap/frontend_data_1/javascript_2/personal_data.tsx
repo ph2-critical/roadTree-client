@@ -14,7 +14,7 @@ export const personal_javascript_data_private: RoadData = {
       grade: 0,
       amount: '',
       price: 0,
-      category: '기업 블로그',
+      category: '기업블로그',
     },
 
   ],

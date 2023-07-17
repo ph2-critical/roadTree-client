@@ -16,7 +16,7 @@ export const redis_data_private: RoadData = {
       grade: 3,
       amount: '',
       price: 0,
-      category: '커뮤니티',
+      category: '개인블로그',
     },
     {
       uuid: '112001',
