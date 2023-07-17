@@ -6,7 +6,7 @@ export const PostCard = () => {
     fetch(
       'http://ec2-3-38-171-194.ap-northeast-2.compute.amazonaws.com:8080/api/v1/posts/2',
     ).then((res) => {
-      console.log(res.json());
+      // console.log(res.json());
     });
   });
   return (

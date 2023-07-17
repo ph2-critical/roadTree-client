@@ -82,7 +82,7 @@ export const getRefDatas = async (props: getRefProps) => {
 };
 
 export const postRefDatas = async (props: postRefProps) => {
-  console.log(props);
+  // console.log(props);
   const data = await supabase
     .from(`${props.roadmap_type}_ref`)
     .upsert([
@@ -94,6 +94,6 @@ export const postRefDatas = async (props: postRefProps) => {
     ])
     .eq('user_id', props.user_id)
     .eq('ref_id', props.ref_id);
-  console.log(data);
+  // console.log(data);
   return data;
 };

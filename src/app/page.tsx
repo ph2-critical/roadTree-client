@@ -19,7 +19,7 @@ export default function Home() {
   const canStart = [true, true, true];
 
   useEffect(() => {
-    console.log('[amplitude] enter_main_page');
+    // console.log('[amplitude] enter_main_page');
     track('enter_main_page');
   }, []);
 

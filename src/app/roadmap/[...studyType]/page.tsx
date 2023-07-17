@@ -34,7 +34,7 @@ function page({ params }: { params: roadmapParams }) {
     };
     getUser();
 
-    console.log(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    // console.log(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
     track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
 
