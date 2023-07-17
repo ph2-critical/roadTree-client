@@ -35,11 +35,11 @@ export default function RefBlock(props: {
 
 
   const gradeColor: string[] = [
-    'bg-green-100',
-    'bg-green-200',
-    'bg-green-300',
-    'bg-green-400',
-    'bg-green-500',
+    'yellow-500',
+    'blue-500',
+    'green-500',
+    'red-500',
+    'black',
   ];
   const categoryImage: { [key: string]: string } = {
     인프런: '/roadmapRef/inflearnLogo.svg',
@@ -155,8 +155,8 @@ export default function RefBlock(props: {
           <div className="flex flex-col items-start">
             <div
               className={
-                'border px-2 rounded-md border-gray1 text-xs text-gray1 ' +
-                gradeColor[refdata.grade]
+                `border px-2 rounded-md border-${gradeColor[refdata.grade]} text-xs text-${gradeColor[refdata.grade]}`
+                
               }
             >
               {gradelist[refdata.grade]}
