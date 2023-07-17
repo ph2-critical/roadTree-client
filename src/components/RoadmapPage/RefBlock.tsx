@@ -32,42 +32,38 @@ export default function RefBlock(props: {
     학습중: 2,
     학습완료: 3,
   };
-  const refCatagoryClassificationTable: { [key: string]: string } = {
-    인프런: '영상',
-    유튜브: '영상',
-    유데미: '영상',
-    코딩애플: '영상',
-    video: '영상',
-    book: '도서',
-    도서: '도서',
-    posting: '포스팅',
-    공식문서한글화: '포스팅',
-    공식문서: '포스팅',
-    위키독스: '포스팅',
-  };
+
+
   const gradeColor: string[] = [
-    'bg-green-100',
-    'bg-green-200',
-    'bg-green-300',
-    'bg-green-400',
-    'bg-green-500',
+    'yellow-500',
+    'blue-500',
+    'green-500',
+    'red-500',
+    'black',
   ];
   const categoryImage: { [key: string]: string } = {
     인프런: '/roadmapRef/inflearnLogo.svg',
     유튜브: '/roadmapRef/youtubeLogo.svg',
     유데미: '/roadmapRef/udemyLogo.svg',
     코딩애플: '/roadmapRef/codingappleLogo.jpg',
+    노마드코더: '/roadmapRef/nomadcodersLogo.svg',
     video: '/roadmapRef/video.png',
     book: '/roadmapRef/book.svg',
     도서: '/roadmapRef/book.svg',
     posting: '/roadmapRef/posting.png',
     개인블로그: '/roadmapRef/posting.png',
+    기업블로그: '/roadmapRef/posting.png',
     공식문서한글화: '/roadmapRef/posting.png',
     공식문서: '/roadmapRef/posting.png',
     위키독스: '/roadmapRef/posting.png',
     패스트캠퍼스: '/roadmapRef/fastcampusLogo.png',
     깃허브: '/roadmapRef/githubLogo.svg',
     부스트코스: '/roadmapRef/boostcourseLogo.png',
+    MDN문서: '/roadmapRef/mdnLogo.svg',
+    코드아카데미: '/roadmapRef/codeacademyLogo.svg',
+    프로그래머스: '/roadmapRef/programmersLogo.JPG',
+    오픈소스: '/roadmapRef/opensourceLogo.png',
+    드림코딩: '/roadmapRef/dreamcodingLogo.svg',
   };
 
   const [stateNum, setStateNum] = useState<number>(0);
@@ -159,8 +155,8 @@ export default function RefBlock(props: {
           <div className="flex flex-col items-start">
             <div
               className={
-                'border px-2 rounded-md border-gray1 text-xs text-gray1 ' +
-                gradeColor[refdata.grade]
+                `border px-2 rounded-md border-${gradeColor[refdata.grade]} text-xs text-${gradeColor[refdata.grade]}`
+                
               }
             >
               {gradelist[refdata.grade]}
@@ -169,8 +165,8 @@ export default function RefBlock(props: {
               {refdata.title}
             </div>
             <div className="text-xs text-gray1 max-w-full truncate ...">
-              {refdata.amount} | {refdata.price} |{' '}
-              {refCatagoryClassificationTable[refdata.category]}
+              {refdata.amount !== '0' && refdata.amount ? refdata.amount + ' | ' : ''}{refdata.price ? refdata.price.toLocaleString() + '원 | ' : ''}
+              {refdata.category}
             </div>
           </div>
         </div>
