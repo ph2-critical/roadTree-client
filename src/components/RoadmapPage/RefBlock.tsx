@@ -45,7 +45,7 @@ export default function RefBlock(props: {
     인프런: '/roadmapRef/inflearnLogo.svg',
     유튜브: '/roadmapRef/youtubeLogo.svg',
     유데미: '/roadmapRef/udemyLogo.svg',
-    코딩애플: '/roadmapRef/codingappleLogo.jpg',
+    코딩애플: '/roadmapRef/codingappleLogo.svg',
     노마드코더: '/roadmapRef/nomadcodersLogo.svg',
     video: '/roadmapRef/video.png',
     book: '/roadmapRef/book.svg',

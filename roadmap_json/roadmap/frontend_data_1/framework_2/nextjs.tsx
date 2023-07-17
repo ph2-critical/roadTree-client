@@ -48,7 +48,7 @@ export const front_next_data_private: RoadData = {
       grade: 2,
       amount : "총 6시간 46분",
       price : 75000,
-      category : "애플코딩"
+      category : "코딩애플"
     }
   ],
   children: [personal_next_data_private]
