@@ -2,7 +2,7 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 import { personal_springDB_data_private } from '@/roadmap_json/roadmap/backend_data_1/spring_2/db_3/personal_data';
 
 export const spring_db_data_private: RoadData = {
-  nid: 16,
+  nid: 121,
   depth: 2,
   name: 'Spring DB',
   description:
@@ -10,7 +10,7 @@ export const spring_db_data_private: RoadData = {
   // "url": "https://spring.io/projects/spring-data",
   ref: [
     {
-      uuid: '161',
+      uuid: '121000',
       title: '[spring] DB를 사용하는 주요 기술 5가지',
       url: 'https://velog.io/@woply/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%A3%BC%EC%9A%94-DB-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95-5%EA%B0%80%EC%A7%80?comment_id=9b2d3158-2750-41ef-8a0c-c0f43f1689ef',
       grade: 1,
@@ -19,7 +19,7 @@ export const spring_db_data_private: RoadData = {
       category: '개인블로그',
     },
     {
-      uuid: '162',
+      uuid: '121001',
       title: '스프링 DB 1편 - 데이터 접근 핵심 원리',
       url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1',
       grade: 2,
@@ -28,7 +28,7 @@ export const spring_db_data_private: RoadData = {
       category: '인프런',
     },
     {
-      uuid: '163',
+      uuid: '121002',
       title: '스프링 DB 2편 - 데이터 접근 활용 기술',
       url: 'https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-2',
       grade: 3,
