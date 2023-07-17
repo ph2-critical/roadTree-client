@@ -13,7 +13,7 @@ export const css_template_private: RoadData = {
       title: '대표적인 CSS 오픈소스 BootStrap',
       url: 'https://getbootstrap.kr/',
       grade: 0,
-      category: 'CSS 오픈소스',
+      category: '오픈소스',
       amount: '0',
       price: 0,
     },

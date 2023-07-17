@@ -27,12 +27,12 @@ export const front_vue_data_private: RoadData = {
     },
     {
       uuid: '331002',
-      title : "고양이도 할 수 ㅊ있는 Vue.js",
+      title : "고양이도 할 수 있는 Vue.js",
       url : "https://rintiantta.github.io/jpub-vue/guide/#%ED%95%99%EC%8A%B5-%ED%8F%AC%EC%9D%B8%ED%8A%B8",
       grade: 1,
       amount : "총 368쪽",
       price : 83000,
-      category : "책 블로그"
+      category : "블로그"
     },
     {
       uuid: '331003',
