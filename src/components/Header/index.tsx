@@ -5,9 +5,13 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase/supabase';
 import { usePathname, useSearchParams } from 'next/navigation';
 import initAmplitude from '@/lib/amplitude/amplitude';
+import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
+import { hotjar } from 'react-hotjar';
 
 export const Login = async () => {
+  console.log('[amplitude] click_login_header_btn');
+  track('click_login_header_btn');
   await supabase.auth
     .signInWithOAuth({
       provider: 'google',
@@ -26,12 +30,15 @@ export const Login = async () => {
 export const Header = () => {
   const router = useRouter();
   const navMenu = ['프론트엔드', '백엔드', '인공지능'];
-  const searchParams: string = usePathname().split('/')[2];
+  const pathName = usePathname();
+  const searchParams: string = pathName.split('/')[2];
   const whatStudy: number = parseInt(searchParams);
 
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
+    console.log('[amplitude] click_logout_header_btn');
+    track('click_logout_header_btn', { from: pathName });
     await supabase.auth.signOut();
     setIsLogin(false);
     router.push('/');
@@ -44,17 +51,30 @@ export const Header = () => {
       } = await supabase.auth.getUser();
       if (user) {
         setIsLogin(true);
+        initAmplitude(user.id);
       } else {
         setIsLogin(false);
+        initAmplitude('');
       }
     };
     checkUser();
-    initAmplitude();
+    if (process.env.NODE_ENV !== 'development') {
+      hotjar.initialize(
+        Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
+        Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
+      );
+    }
   }, []);
 
   return (
-    <nav className="fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
-      <Link href={'/'}>
+    <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
+      <Link
+        href={'/'}
+        onClick={() => {
+          console.log('[amplitude] click_go_home_header_logo');
+          track('click_go_home_header_logo', { from: pathName });
+        }}
+      >
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
       {/* {path === '/' ? (
@@ -71,15 +91,17 @@ export const Header = () => {
         {navMenu.map((menu, idx) => {
           return (
             <Link
-              href={`${idx !== 2 ? `/roadmap/${idx}` : '/'}`}
+              href={`/roadmap/${idx}`}
+              onClick={() => {
+                console.log('[amplitude] click_go_roadpage_header_menu_btn');
+                track('click_go_roadpage_header_menu_btn', {
+                  roadmapCat: menu,
+                  from: pathName,
+                });
+              }}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
-              onClick={() => {
-                if (idx === 2) {
-                  alert('AI 과정은 준비중입니다.');
-                }
-              }}
             >
               {menu}
             </Link>

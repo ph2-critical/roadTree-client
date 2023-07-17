@@ -60,8 +60,7 @@ export const back_spring_data_private: RoadData = {
     },
     {
       uuid: '1205',
-      title:
-        '코드로 배우는 스프링 웹 프로젝트 현업 개발을 위한 단계별 실습서',
+      title: '코드로 배우는 스프링 웹 프로젝트 현업 개발을 위한 단계별 실습서',
       url: 'https://www.yes24.com/Product/Goods/62268795',
       grade: 2,
       amount: '총 760쪽',

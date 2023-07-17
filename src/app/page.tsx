@@ -1,4 +1,8 @@
+'use client';
+
+import { track } from '@amplitude/analytics-browser';
 import { StartBtn } from '../components/RoadmapPage/StartBtn';
+import { useEffect } from 'react';
 
 export default function Home() {
   const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
@@ -13,6 +17,11 @@ export default function Home() {
     ['데이터 전처리', '모델 훈련 및 개발', '시스템 구현'],
   ];
   const canStart = [true, true, true];
+
+  useEffect(() => {
+    console.log('[amplitude] enter_main_page');
+    track('enter_main_page');
+  }, []);
 
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">

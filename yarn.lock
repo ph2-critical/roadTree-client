@@ -5169,6 +5169,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hotjar@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "react-hotjar@npm:6.1.0"
+  checksum: 555600eb277a08ba01268b42d9552a44014fad4fcc5db37229657d386673f0399e9b7e1fb25bf287afeec09ee8f2546def374f448ca68ae23745f4ace03d5e3a
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -5400,6 +5407,7 @@ __metadata:
     postcss-nested: ^6.0.1
     react: 18.2.0
     react-dom: 18.2.0
+    react-hotjar: ^6.1.0
     tailwind-scrollbar-hide: ^1.1.7
     tailwindcss: ^3.3.2
     twin.macro: ^3.3.1

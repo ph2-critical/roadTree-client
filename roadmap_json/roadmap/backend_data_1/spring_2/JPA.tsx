@@ -95,7 +95,8 @@ export const spring_JPA_data_private: RoadData = {
     },
     {
       uuid: '124009',
-      title: '스프링 인 액션, 스프링 5의 강력한 기능과 생산성을 활용한 웹 애플리케이션 개발',
+      title:
+        '스프링 인 액션, 스프링 5의 강력한 기능과 생산성을 활용한 웹 애플리케이션 개발',
       url: 'https://product.kyobobook.co.kr/detail/S000001942493',
       grade: 3,
       amount: '총 700쪽',

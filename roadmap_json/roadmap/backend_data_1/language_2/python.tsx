@@ -5,12 +5,14 @@ export const python_data_private: RoadData = {
   nid: 101,
   depth: 2,
   name: 'python',
-  description: 'python으로 서버개발도 가능합니다.다른 언어보다 사람에 맞춘 개발언어로 비교적 배우기 쉬운 언어입니다.라이브러리도 많고, 데이터분석, 머신러닝, 딥러닝 등 다양한 분야에서 사용되고 있습니다.',
+  description:
+    'python으로 서버개발도 가능합니다.다른 언어보다 사람에 맞춘 개발언어로 비교적 배우기 쉬운 언어입니다.라이브러리도 많고, 데이터분석, 머신러닝, 딥러닝 등 다양한 분야에서 사용되고 있습니다.',
   //url =''
   ref: [
     {
       uuid: '101000',
-      title: '파이썬 코딩 무료 강의 (기본편) - 6시간 뒤면 여러분도 개발자가 될 수 있어요',
+      title:
+        '파이썬 코딩 무료 강의 (기본편) - 6시간 뒤면 여러분도 개발자가 될 수 있어요',
       url: 'https://youtu.be/kWiCuklohdY',
       grade: 0,
       amount: '총 6시간',
@@ -55,7 +57,8 @@ export const python_data_private: RoadData = {
     },
     {
       uuid: '101006',
-      title: '【한글자막】 Python 부트캠프 : 100개의 프로젝트로 Python 개발 완전 정복',
+      title:
+        '【한글자막】 Python 부트캠프 : 100개의 프로젝트로 Python 개발 완전 정복',
       url: 'https://www.udemy.com/share/105Cic/',
       grade: 2,
       amount: '총 60시간',

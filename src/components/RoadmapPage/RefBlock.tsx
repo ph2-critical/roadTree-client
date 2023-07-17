@@ -1,6 +1,6 @@
 'use client';
 
-import { reference } from '@/roadmap_json/roadmap_data';
+import { RoadData, reference } from '@/roadmap_json/roadmap_data';
 import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
 import { useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import {
   postRefDatas,
   postRefProps,
 } from '@/src/api';
+import { track } from '@amplitude/analytics-browser';
 
 export default function RefBlock(props: {
   refdata: reference;
@@ -17,6 +18,7 @@ export default function RefBlock(props: {
   userId: string;
   refBlockInit: boolean;
   setRefBlockInit: (prop: boolean) => void;
+  select: RoadData | null;
 }) {
   const refBlockInit: boolean = props.refBlockInit;
   const setRefBlockInit: (prop: boolean) => void = props.setRefBlockInit;
@@ -88,6 +90,22 @@ export default function RefBlock(props: {
   }, [refBlockInit]);
 
   const setRefStateNum: (num: number) => void = (num) => {
+    console.log('[amplitude] click_ref_state');
+    track('click_ref_state', {
+      roadmapCat: props.whatStudy,
+      refId: refdata.uuid,
+      refName: refdata.title,
+      refCat: refdata.category,
+      refGrade: refdata.grade,
+      refAmount: refdata.amount,
+      refPrice: refdata.price,
+      refUrl: refdata.url,
+      beforeState: stateTable[stateNum],
+      afterState: stateTable[num],
+      selectNodeId: props.select?.nid,
+      selectNodeName: props.select?.name,
+    });
+
     setStateNum(num);
     const postData: postRefProps = {
       roadmap_type: props.whatStudy,
@@ -110,6 +128,21 @@ export default function RefBlock(props: {
             console.log(e.target);
             console.log(e.target.classList);
             console.log(e.target.classList.contains('dropdown'));
+
+            console.log('[amplitude] click_ref_link');
+            track('click_ref_link', {
+              roadmapCat: props.whatStudy,
+              refId: refdata.uuid,
+              refName: refdata.title,
+              refCat: refdata.category,
+              refGrade: refdata.grade,
+              refAmount: refdata.amount,
+              refPrice: refdata.price,
+              refUrl: refdata.url,
+              refState: stateTable[stateNum],
+              selectNodeId: props.select?.nid,
+              selectNodeName: props.select?.name,
+            });
             window.open(refdata.url);
           }
         }}

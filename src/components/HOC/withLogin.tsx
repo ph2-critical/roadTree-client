@@ -3,10 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/supabase';
 
-// interface WrapProps {
-//   WrapperComponent: React.ComponentProps<any> | React.ComponentType<any>;
-// }
-
 export const WithLogin = (WrapperComponent: React.ComponentProps<any>) => {
   //any type 추후 수정해야함!!!!!!!!!!!!!!!!!!!!!!
 
