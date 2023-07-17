@@ -157,7 +157,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           return d.id || (d!.id = d.parent?.nid * 50 + d.nid);
         });
 
-        // console.log(source);
+        //  (source);
 
         // Enter any new nodes at the parent's previous position.
         let nodeEnter = node
@@ -184,7 +184,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return 'translate(' + source.y0 + ',' + source.x0 + ')';
           })
           .on('click', function (d) {
-            // console.log(
+            //  (
             //   `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
             // );
             track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
