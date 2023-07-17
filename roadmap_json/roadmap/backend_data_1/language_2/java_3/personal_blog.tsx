@@ -15,7 +15,7 @@ export const personal_java_data_private: RoadData = {
       grade: 0,
       amount: '',
       price: 0,
-      category: '',
+      category: '개인블로그',
     }
   ],
 

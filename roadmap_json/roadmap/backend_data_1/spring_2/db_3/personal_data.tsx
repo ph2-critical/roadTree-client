@@ -15,7 +15,7 @@ export const personal_springDB_data_private: RoadData = {
       grade: 30,
       amount: '',
       price: 0,
-      category: '',
+      category: '개인블로그',
     },
   ],
 };
