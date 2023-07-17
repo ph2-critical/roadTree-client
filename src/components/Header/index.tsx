@@ -87,7 +87,7 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="items-center hidden h-12 mr-10 sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+      <div className="items-center hidden h-12 mr-10 sm:flex grow lg:basis-0 justify-end">
         {navMenu.map((menu, idx) => {
           return (
             <Link

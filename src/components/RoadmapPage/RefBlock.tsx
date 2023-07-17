@@ -165,7 +165,7 @@ export default function RefBlock(props: {
               {refdata.title}
             </div>
             <div className="text-xs text-gray1 max-w-full truncate ...">
-              {refdata.amount !== '0' && refdata.amount ? refdata.amount + ' | ' : ''}{refdata.price ? refdata.price + ' | ' : ''}
+              {refdata.amount !== '0' && refdata.amount ? refdata.amount + ' | ' : ''}{refdata.price ? refdata.price.toLocaleString() + '원 | ' : ''}
               {refdata.category}
             </div>
           </div>
