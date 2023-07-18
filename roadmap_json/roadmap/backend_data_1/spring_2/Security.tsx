@@ -5,7 +5,7 @@ import { personal_springSecurity_data_private } from '@/roadmap_json/roadmap/bac
 export const spring_security_data_private: RoadData = {
   nid: 123,
   depth: 2,
-  name: 'spring security',
+  name: 'Spring Security',
   description: '스프링에서 제공하는 보안 프레임워크',
   //"url": "https://spring.io/projects/spring-security",
   ref: [

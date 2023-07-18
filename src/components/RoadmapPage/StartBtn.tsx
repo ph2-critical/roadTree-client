@@ -13,7 +13,6 @@ export function StartBtn(props: btnProps) {
     <Link
       href={`roadmap/${props.index}`}
       onClick={() => {
-        // console.log('[amplitude] click_start_roadpage_btn_on_home');
         track('click_start_roadpage_btn_on_home', {
           roadmapCat: whatStudyTable[props.index],
         });

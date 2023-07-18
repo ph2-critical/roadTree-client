@@ -24,7 +24,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   const userId: string = props.userId;
 
   const sidebarWeightEnd: () => void = () => {
-    // console.log('[amplitude] resize_sidebar');
+    //  ('[amplitude] resize_sidebar');
     track('resize_sidebar', {
       beforeSidebarWeight: sidebarWeight,
       afterSidebarWeight: sidebarWeightVar,
@@ -56,7 +56,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
 
   const changeNodeStateNum: (num: number) => void = (num: number) => {
     if (select !== null) {
-      // console.log('[amplitude] change_node_state');
+      //  ('[amplitude] change_node_state');
       track('change_node_state', {
         roadmapCat: whatStudy,
         selectNodeId: select.nid,
@@ -130,7 +130,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                 className="p-1 rounded hover:bg-gray-100"
                 onClick={() => {
                   if (select !== null) {
-                    // console.log('[amplitude] click_close_roadmap_sidebar_btn');
+                    //  ('[amplitude] click_close_roadmap_sidebar_btn');
                     track('click_close_roadmap_sidebar_btn', {
                       from: window.location.pathname,
                       roadmapCat: whatStudy,

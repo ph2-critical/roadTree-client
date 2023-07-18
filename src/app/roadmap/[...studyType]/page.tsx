@@ -24,7 +24,7 @@ function page({ params }: { params: roadmapParams }) {
 
   useEffect(() => {
     if (whatStudy == 2) {
-      alert('Ai 과정은 준비중입니다.');
+      alert('AI 과정은 준비중입니다.');
       router.push('/');
     }
     const getUser = async () => {
@@ -34,7 +34,6 @@ function page({ params }: { params: roadmapParams }) {
     };
     getUser();
 
-    // console.log(`[amplitude] enter_${whatStudyTable[whatStudy]}_roadmap_page`);
     track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
 

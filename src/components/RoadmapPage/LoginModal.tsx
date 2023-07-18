@@ -12,7 +12,6 @@ export default function LoginModal() {
         aria-hidden="true"
         className="fixed inset-0 top-0 left-0 right-0 z-50 flex items-center justify-center w-full overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-50 h-modal md:h-full"
         onClick={() => {
-          // console.log('login modal close');
         }}
       >
         <div
@@ -31,7 +30,6 @@ export default function LoginModal() {
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 onClick={() => {
-                  // console.log('login 진행');
                 }}
               >
                 Sign in

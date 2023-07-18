@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
 
 export const Login = async () => {
-  // console.log('[amplitude] click_login_header_btn');
   track('click_login_header_btn');
   await supabase.auth
     .signInWithOAuth({
@@ -37,7 +36,7 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
-    // console.log('[amplitude] click_logout_header_btn');
+    //  ('[amplitude] click_logout_header_btn');
     track('click_logout_header_btn', { from: pathName });
     await supabase.auth.signOut();
     setIsLogin(false);
@@ -71,7 +70,7 @@ export const Header = () => {
       <Link
         href={'/'}
         onClick={() => {
-          // console.log('[amplitude] click_go_home_header_logo');
+          //  ('[amplitude] click_go_home_header_logo');
           track('click_go_home_header_logo', { from: pathName });
         }}
       >
@@ -87,13 +86,13 @@ export const Header = () => {
           />
         </span>
       ) : null} */}
-      <div className="items-center hidden h-12 mr-10 sm:flex grow lg:basis-0 justify-end">
+      <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
         {navMenu.map((menu, idx) => {
           return (
             <Link
               href={`/roadmap/${idx}`}
               onClick={() => {
-                console.log('[amplitude] click_go_roadpage_header_menu_btn');
+                 ('[amplitude] click_go_roadpage_header_menu_btn');
                 track('click_go_roadpage_header_menu_btn', {
                   roadmapCat: menu,
                   from: pathName,

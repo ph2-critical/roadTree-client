@@ -32,7 +32,7 @@ export const front_vue_data_private: RoadData = {
       grade: 1,
       amount : "총 368쪽",
       price : 83000,
-      category : "블로그"
+      category : "개인블로그"
     },
     {
       uuid: '331003',

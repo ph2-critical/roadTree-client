@@ -5,7 +5,7 @@ import { personal_java_data_private } from '@/roadmap_json/roadmap/backend_data_
 export const java_data_private: RoadData = {
   nid: 100,
   depth: 2,
-  name: 'java',
+  name: 'Java',
   description: '자바는 java는 웹 서버 개발, 안드로이드 앱 개발, 빅데이터 처리 등 다양한 분야에서 사용되고 있고, 국내에서 가장 많이 사용하는 서버언어입니다. 다른 언어에 비해 안정적이기 때문에, 자바를 배우는 것을 추천합니다.',
   ref: [
     {
