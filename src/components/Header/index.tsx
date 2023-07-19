@@ -8,6 +8,7 @@ import initAmplitude from '@/lib/amplitude/amplitude';
 import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
+import InApp from '../InApp';
 
 export const Login = async () => {
   track('click_login_header_btn');
@@ -57,12 +58,15 @@ export const Header = () => {
       }
     };
     checkUser();
+
     if (process.env.NODE_ENV !== 'development') {
       hotjar.initialize(
         Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
         Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
       );
     }
+
+    InApp();
   }, []);
 
   return (
@@ -76,6 +80,7 @@ export const Header = () => {
       >
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
+
       {/* {path === '/' ? (
         <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
           <input
@@ -87,6 +92,8 @@ export const Header = () => {
         </span>
       ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
+      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+
         {navMenu.map((menu, idx) => {
           return (
             <Link
