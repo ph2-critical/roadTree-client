@@ -54,6 +54,7 @@ export default function RootLayout({
         <Header />
         {children}
         <script src="https://cdn.tailwindcss.com"></script>
+        
       </body>
     </html>
   );

@@ -8,6 +8,7 @@ import initAmplitude from '@/lib/amplitude/amplitude';
 import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
+import InApp from '../InApp';
 
 export const Login = async () => {
   track('click_login_header_btn');
@@ -57,12 +58,15 @@ export const Header = () => {
       }
     };
     checkUser();
+
     if (process.env.NODE_ENV !== 'development') {
       hotjar.initialize(
         Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
         Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
       );
     }
+
+    InApp();
   }, []);
 
   return (
