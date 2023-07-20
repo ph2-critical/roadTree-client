@@ -49,7 +49,7 @@ export const spring_JPA_data_private: RoadData = {
     {
       uuid: '124004',
       title: '실전! Querydsl',
-      url: 'https://www.yes24.com/Product/Goods/103453774',
+      url: 'https://inf.run/PUCe',
       grade: 4,
       amount: '총 6시간 24분',
       price: 88000,
