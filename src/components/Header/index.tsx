@@ -1,48 +1,48 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Logo } from '@/src/assets/Icons';
-import Link from 'next/link';
-import { supabase } from '@/lib/supabase/supabase';
-import { usePathname, useSearchParams } from 'next/navigation';
-import initAmplitude from '@/lib/amplitude/amplitude';
-import { track } from '@amplitude/analytics-browser';
-import { useRouter } from 'next/navigation';
-import { hotjar } from 'react-hotjar';
-import LoginModal from '../RoadmapPage/LoginModal';
-import InApp from '../InApp';
+"use client";
+import { useState, useEffect } from "react";
+import { Logo } from "@/src/assets/Icons";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase/supabase";
+import { usePathname } from "next/navigation";
+import initAmplitude from "@/lib/amplitude/amplitude";
+import { track } from "@amplitude/analytics-browser";
+import { useRouter } from "next/navigation";
+import { hotjar } from "react-hotjar";
+import LoginModal from "../RoadmapPage/LoginModal";
+import InApp from "../InApp";
 
 export const Login = async () => {
-  track('click_login_header_btn');
+  track("click_login_header_btn");
   await supabase.auth
     .signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: {
         queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
+          access_type: "offline",
+          prompt: "consent",
         },
       },
     })
     .catch((error) => {
-      // console.log(error);
+      console.log(error);
     });
 };
 
 export const Header = () => {
   const router = useRouter();
-  const navMenu = ['프론트엔드', '백엔드', '인공지능'];
+  const navMenu = ["프론트엔드", "백엔드", "인공지능"];
   const pathName = usePathname();
-  const searchParams: string = pathName.split('/')[2];
+  const searchParams: string = pathName.split("/")[2];
   const whatStudy: number = parseInt(searchParams);
 
   const [isLogin, setIsLogin] = useState(false);
 
   const Logout = async () => {
     //  ('[amplitude] click_logout_header_btn');
-    track('click_logout_header_btn', { from: pathName });
+    track("click_logout_header_btn", { from: pathName });
     await supabase.auth.signOut();
     setIsLogin(false);
-    router.push('/');
+    router.push("/");
   };
 
   useEffect(() => {
@@ -55,12 +55,12 @@ export const Header = () => {
         initAmplitude(user.id);
       } else {
         setIsLogin(false);
-        initAmplitude('');
+        initAmplitude("");
       }
     };
     checkUser();
 
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV !== "development") {
       hotjar.initialize(
         Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
         Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
@@ -73,41 +73,35 @@ export const Header = () => {
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link
-        href={'/'}
+        href={"/"}
         onClick={() => {
           //  ('[amplitude] click_go_home_header_logo');
-          track('click_go_home_header_logo', { from: pathName });
+          track("click_go_home_header_logo", { from: pathName });
         }}
       >
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
-
-      {/* {path === '/' ? (
-        <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
-          <input
-            type="search"
-            name="serch"
-            placeholder="검색어를 입력해주세요."
-            className="flex-grow px-4 text-sm rounded-lg focus:outline-none"
-          />
-        </span>
-      ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
-      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+        <a
+          className="p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab"
+          href="https://tally.so/r/mYRE70"
+        >
+          피드백
+        </a>
 
         {navMenu.map((menu, idx) => {
           return (
             <Link
               href={`/roadmap/${idx}`}
               onClick={() => {
-                 ('[amplitude] click_go_roadpage_header_menu_btn');
-                track('click_go_roadpage_header_menu_btn', {
+                ("[amplitude] click_go_roadpage_header_menu_btn");
+                track("click_go_roadpage_header_menu_btn", {
                   roadmapCat: menu,
                   from: pathName,
                 });
               }}
               className={`p-3  font-semibold text-base hover:text-gray-400 ${
-                whatStudy === idx ? 'text-main' : 'text-gray-500'
+                whatStudy === idx ? "text-main" : "text-gray-500"
               }`}
             >
               {menu}
@@ -119,7 +113,7 @@ export const Header = () => {
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
           onClick={isLogin ? Logout : Login}
         >
-          {isLogin ? '로그아웃' : '로그인'}
+          {isLogin ? "로그아웃" : "로그인"}
         </button>
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
@@ -136,7 +130,8 @@ export const Header = () => {
           </svg>
         </button>
       </div>
-      <LoginModal/>
+
+      <LoginModal />
     </nav>
   );
 };

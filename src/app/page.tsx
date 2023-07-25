@@ -75,11 +75,13 @@ export default function Home() {
                           </svg>
                           <span>{detail}</span>
                         </li>
+                        
                       );
                     })}
                   </ul>
                   <StartBtn index={index} />
                 </div>
+                
               );
             })}
           </div>
