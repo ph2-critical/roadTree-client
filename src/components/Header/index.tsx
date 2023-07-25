@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { hotjar } from "react-hotjar";
 import LoginModal from "../RoadmapPage/LoginModal";
 import InApp from "../InApp";
+import { ModalPortal } from "@/src/utils/usePortal";
+import { useModal } from "@/src/utils/useModal";
 
 export const Login = async () => {
   track("click_login_header_btn");
@@ -29,6 +31,7 @@ export const Login = async () => {
 };
 
 export const Header = () => {
+  const { isOpen, toggleModal } = useModal();
   const router = useRouter();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
   const pathName = usePathname();
@@ -37,13 +40,13 @@ export const Header = () => {
 
   const [isLogin, setIsLogin] = useState(false);
 
-  const Logout = async () => {
-    //  ('[amplitude] click_logout_header_btn');
-    track("click_logout_header_btn", { from: pathName });
-    await supabase.auth.signOut();
-    setIsLogin(false);
-    router.push("/");
-  };
+  //   const Logout = async () => {
+  //     //  ('[amplitude] click_logout_header_btn');
+  //     track("click_logout_header_btn", { from: pathName });
+  //     await supabase.auth.signOut();
+  //     setIsLogin(false);
+  //     router.push("/");
+  //   };
 
   useEffect(() => {
     const checkUser = async () => {
@@ -111,9 +114,11 @@ export const Header = () => {
         <div className="w-5"></div>
         <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-          onClick={isLogin ? Logout : Login}
+          onClick={() => {
+            toggleModal();
+          }}
         >
-          {isLogin ? "로그아웃" : "로그인"}
+          로그인
         </button>
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
@@ -130,8 +135,11 @@ export const Header = () => {
           </svg>
         </button>
       </div>
-
-      <LoginModal />
+      {isOpen && (
+        <ModalPortal>
+          <LoginModal toggleModal={toggleModal} />
+        </ModalPortal>
+      )}
     </nav>
   );
 };
