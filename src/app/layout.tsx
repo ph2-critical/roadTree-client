@@ -50,6 +50,7 @@ export default function RootLayout({
           content="/logo.png"
         />
       </head>
+      <div id="modal_root"></div>
       <body className={'h-screenWithoutHeader w-full dark:bg-gray-900'}>
         <Header />
         {children}

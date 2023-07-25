@@ -8,6 +8,7 @@ import initAmplitude from '@/lib/amplitude/amplitude';
 import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
+import LoginModal from '../RoadmapPage/LoginModal';
 import InApp from '../InApp';
 
 export const Login = async () => {
@@ -135,6 +136,7 @@ export const Header = () => {
           </svg>
         </button>
       </div>
+      <LoginModal/>
     </nav>
   );
 };
