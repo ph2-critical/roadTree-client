@@ -9,6 +9,7 @@ import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
 import InApp from '../InApp';
+import Image from 'next/image';
 
 export const Login = async () => {
   track('click_login_header_btn');
@@ -92,7 +93,7 @@ export const Header = () => {
         </span>
       ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
-      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+      <a className='p-3 text-base font-semibold text-red-300 hover:brightness-95 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
 
         {navMenu.map((menu, idx) => {
           return (
@@ -105,7 +106,7 @@ export const Header = () => {
                   from: pathName,
                 });
               }}
-              className={`p-3  font-semibold text-base hover:text-gray-400 ${
+              className={`p-3  font-semibold text-base hover:brightness-150 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
             >
@@ -114,12 +115,34 @@ export const Header = () => {
           );
         })}
         <div className="w-5"></div>
-        <button
+        {isLogin 
+        ? <div className='flex items-center'>
+          <Link href={'./notifications'}>
+            <Image
+              src={'header/notifications.svg'}
+              alt={'notification'}
+              width={512}
+              height={512}
+              className="w-5 h-5 hover:brightness-150"
+            ></Image>
+          </Link>
+          <div className="w-4"></div>
+          <Link href={'./mypage'}>
+                <Image
+              src={'header/user.svg'}
+              alt={'notification'}
+              width={512}
+              height={512}
+              className="w-7 h-7 hover:brightness-150"
+            ></Image>
+          </Link>
+        </div> 
+        : <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-          onClick={isLogin ? Logout : Login}
+          onClick={Login}
         >
-          {isLogin ? '로그아웃' : '로그인'}
-        </button>
+          로그인
+        </button>}
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
         <button>
