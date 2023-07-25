@@ -80,6 +80,7 @@ export const Header = () => {
       >
         <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
       </Link>
+
       {/* {path === '/' ? (
         <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
           <input
@@ -91,6 +92,8 @@ export const Header = () => {
         </span>
       ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
+      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+
         {navMenu.map((menu, idx) => {
           return (
             <Link
