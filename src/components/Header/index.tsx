@@ -93,7 +93,7 @@ export const Header = () => {
         </span>
       ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
-      <a className='p-3 text-base font-semibold text-red-300 hover:brightness-95 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer' href='https://tally.so/r/mYRE70'>피드백</a>
 
         {navMenu.map((menu, idx) => {
           return (
@@ -106,7 +106,7 @@ export const Header = () => {
                   from: pathName,
                 });
               }}
-              className={`p-3  font-semibold text-base hover:brightness-150 ${
+              className={`p-3  font-semibold text-base hover:text-gray-400 ${
                 whatStudy === idx ? 'text-main' : 'text-gray-500'
               }`}
             >
@@ -114,7 +114,7 @@ export const Header = () => {
             </Link>
           );
         })}
-        <div className="w-5"></div>
+        <div className="w-3"></div>
         {isLogin 
         ? <div className='flex items-center'>
           <Link href={'./notifications'}>
@@ -126,7 +126,7 @@ export const Header = () => {
               className="w-5 h-5 hover:brightness-150"
             ></Image>
           </Link>
-          <div className="w-4"></div>
+          <div className="w-6"></div>
           <Link href={'./mypage'}>
                 <Image
               src={'header/user.svg'}
