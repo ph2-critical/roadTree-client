@@ -4,7 +4,7 @@ import Link from "next/link";
 import { track } from "@amplitude/analytics-browser";
 import { useModal } from "@/src/utils/hooks/useModal";
 import { useLoginStore } from "@/src/status/store";
-import LoginModal from "./LoginModal";
+import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 
 interface btnProps {
