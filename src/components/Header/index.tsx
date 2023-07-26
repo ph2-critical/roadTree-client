@@ -75,82 +75,88 @@ export const Header = () => {
 
   return (
     <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
-      <Link
-        href={'/'}
-        onClick={() => {
-          //  ('[amplitude] click_go_home_header_logo');
-          track('click_go_home_header_logo', { from: pathName });
-        }}
-      >
-        <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
-      </Link>
-
-      {/* {path === '/' ? (
-        <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
-          <input
-            type="search"
-            name="serch"
-            placeholder="검색어를 입력해주세요."
-            className="flex-grow px-4 text-sm rounded-lg focus:outline-none"
-          />
-        </span>
-      ) : null} */}
-      <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
-      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer' href='https://tally.so/r/mYRE70'>피드백</a>
-
-        {navMenu.map((menu, idx) => {
-          return (
-            <Link
-              href={`/roadmap/${idx}`}
-              onClick={() => {
-                 ('[amplitude] click_go_roadpage_header_menu_btn');
-                track('click_go_roadpage_header_menu_btn', {
-                  roadmapCat: menu,
-                  from: pathName,
-                });
-              }}
-              className={`p-3  font-semibold text-base hover:text-gray-400 ${
-                whatStudy === idx ? 'text-main' : 'text-gray-500'
-              }`}
-            >
-              {menu}
-            </Link>
-          );
-        })}
-        <div className="w-3"></div>
-        {isLogin 
-        ? <div className='flex items-center'>
-            <Alarm />
-            <Link href={'./mypage'} className='p-3'>
-                  <Image
-                src={'header/user.svg'}
-                alt={'notification'}
-                width={512}
-                height={512}
-                className="w-7 h-7 hover:brightness-150"
-              ></Image>
-            </Link>
-          </div> 
-        : <button
-          className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-          onClick={Login}
-        >
-          로그인
-        </button>}
-      </div>
-      <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
-        <button>
-          <svg
-            width="20"
-            height="20"
-            fill="currentColor"
-            className="w-8 h-8"
-            viewBox="0 0 1792 1792"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className='max-w-7xl w-full mx-auto'>
+        <div className='flex px-8'>
+          <Link
+            href={'/'}
+            onClick={() => {
+              //  ('[amplitude] click_go_home_header_logo');
+              track('click_go_home_header_logo', { from: pathName });
+            }}
           >
-            <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
-          </svg>
-        </button>
+            <Logo className="text-lg text-white md:flex hover:cursor-pointer" />
+          </Link>
+
+          {/* {path === '/' ? (
+            <span className="flex w-full h-10 ml-4 text-sm border border-gray-300 rounded-lg cursor-pointer md:ml-52 md:w-1/2">
+              <input
+                type="search"
+                name="serch"
+                placeholder="검색어를 입력해주세요."
+                className="flex-grow px-4 text-sm rounded-lg focus:outline-none"
+              />
+            </span>
+          ) : null} */}
+          <div className="items-center justify-end h-12 flex ml-auto">
+            <div id='headerMenu' className='md:flex hidden'>
+              <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
+                onClick={() => {window.open('https://tally.so/r/mYRE70')}}>피드백</div>
+              {navMenu.map((menu, idx) => {
+                return (
+                  <Link
+                    href={`/roadmap/${idx}`}
+                    onClick={() => {
+                      ('[amplitude] click_go_roadpage_header_menu_btn');
+                      track('click_go_roadpage_header_menu_btn', {
+                        roadmapCat: menu,
+                        from: pathName,
+                      });
+                    }}
+                    className={`p-3  font-semibold text-base hover:text-gray-400 ${
+                      whatStudy === idx ? 'text-main' : 'text-gray-500'
+                    }`}
+                  >
+                    {menu}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="w-3"></div>
+            {isLogin 
+            ? <div className='flex items-center'>
+                <Alarm />
+                <Link href={'./mypage'} className='p-3 md:flex hidden '>
+                      <Image
+                    src={'header/user.svg'}
+                    alt={'user'}
+                    width={512}
+                    height={512}
+                    className="w-7 h-7 hover:brightness-150"
+                  ></Image>
+                </Link>
+              </div> 
+            : <button
+              className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+              onClick={Login}
+            >
+              로그인
+            </button>}
+            <div className="flex flex-row-reverse text-gray-500 md:hidden p-3">
+              <button>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  className="w-7 h-7"
+                  viewBox="0 0 1792 1792"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
