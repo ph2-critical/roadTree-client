@@ -1,7 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useDetectClose } from './hook/detectDropDownClose';
+import { useDetectClose } from '../Hook/detectDropDownClose';
 
 export default function StudyDropMenu(props: {
   node?: boolean;

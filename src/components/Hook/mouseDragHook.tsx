@@ -1,8 +1,5 @@
 'client side';
 
-import { RoadData } from '@/roadmap_json/roadmap_data';
-import { track } from '@amplitude/analytics-browser';
-
 export default function mouseDragHook(
   onDragChange: (deltaX: number) => void,
   onDragEnd: () => void,

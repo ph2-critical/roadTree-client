@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { Logo } from '@/src/assets/Icons';
 import Link from 'next/link';
@@ -9,6 +10,9 @@ import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
 import InApp from '../InApp';
+import Image from 'next/image';
+import { useDetectClose } from '../Hook/detectDropDownClose';
+import { Alarm } from '../Alarm';
 
 export const Login = async () => {
   track('click_login_header_btn');
@@ -92,7 +96,7 @@ export const Header = () => {
         </span>
       ) : null} */}
       <div className="items-center justify-end hidden h-12 mr-10 sm:flex grow lg:basis-0">
-      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-grab' href='https://tally.so/r/mYRE70'>피드백</a>
+      <a className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer' href='https://tally.so/r/mYRE70'>피드백</a>
 
         {navMenu.map((menu, idx) => {
           return (
@@ -113,13 +117,26 @@ export const Header = () => {
             </Link>
           );
         })}
-        <div className="w-5"></div>
-        <button
+        <div className="w-3"></div>
+        {isLogin 
+        ? <div className='flex items-center'>
+            <Alarm />
+            <Link href={'./mypage'} className='p-3'>
+                  <Image
+                src={'header/user.svg'}
+                alt={'notification'}
+                width={512}
+                height={512}
+                className="w-7 h-7 hover:brightness-150"
+              ></Image>
+            </Link>
+          </div> 
+        : <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-          onClick={isLogin ? Logout : Login}
+          onClick={Login}
         >
-          {isLogin ? '로그아웃' : '로그인'}
-        </button>
+          로그인
+        </button>}
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
         <button>
