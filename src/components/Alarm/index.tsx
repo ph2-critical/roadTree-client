@@ -1,7 +1,7 @@
 'use client'
 
+import { useDetectClose } from "@/src/utils/hooks/detectDropDownClose";
 import Image from "next/image";
-import { useDetectClose } from "../Hook/detectDropDownClose";
 
 export const Alarm = () => {
     const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
@@ -16,7 +16,7 @@ export const Alarm = () => {
                     alt={'notification'}
                     width={512}
                     height={512}
-                    className="w-5 h-5"
+                    className="w-5 h-5" 
                 ></Image>
             </button>
 

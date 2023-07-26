@@ -67,15 +67,12 @@ export const Header = () => {
           track("click_go_home_header_logo", { from: pathName });
         }}
       >
-        <Logo className="hidden ml-20 text-lg text-white md:flex hover:cursor-pointer" />
+        <Logo className="text-lg text-white hover:cursor-pointer" />
       </Link>
       <div className="items-center justify-end h-12 flex ml-auto">
             <div id='headerMenu' className='md:flex hidden'>
               <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
                 onClick={() => {window.open('https://tally.so/r/mYRE70')}}>피드백</div>
-
-
-
 
         {navMenu.map((menu, idx) => {
           return (
