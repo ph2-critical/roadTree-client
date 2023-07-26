@@ -119,9 +119,7 @@ export const Header = () => {
         <div className="w-3"></div>
         {isLogin 
         ? <div className='flex items-center'>
-            <div className='p-3 flex items-center cursor-pointer'>
-              <Alarm />
-            </div>
+            <Alarm />
             <Link href={'./mypage'} className='p-3'>
                   <Image
                 src={'header/user.svg'}
