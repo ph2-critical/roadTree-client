@@ -1,4 +1,4 @@
-'client side';
+"client side";
 
 export default function mouseDragHook(
   onDragChange: (deltaX: number) => void,
@@ -20,14 +20,14 @@ export default function mouseDragHook(
 
       // 5️⃣
       const mouseUpHandler = () => {
-        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener("mousemove", mouseMoveHandler);
         setResizing(false);
         onDragEnd();
       };
 
       // 1️⃣
-      document.addEventListener('mousemove', mouseMoveHandler);
-      document.addEventListener('mouseup', mouseUpHandler, { once: true });
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler, { once: true });
     },
   };
 }
