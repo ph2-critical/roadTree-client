@@ -4,7 +4,7 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 import RefBlock from './RefBlock';
 import { useRoadTreeStore } from './RoadTreeLayout';
 import StudyDropMenu from './StudyDropMenu';
-import mouseDragHook from './hook/mouseDragHook';
+import mouseDragHook from '../Hook/mouseDragHook';
 import { useEffect, useState } from 'react';
 import { postNodeData, postProps } from '@/src/api';
 import { track } from '@amplitude/analytics-browser';

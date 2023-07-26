@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import { hotjar } from 'react-hotjar';
 import InApp from '../InApp';
 import Image from 'next/image';
+import { useDetectClose } from '../Hook/detectDropDownClose';
+import { Alarm } from '../Alarm';
 
 export const Login = async () => {
   track('click_login_header_btn');
@@ -117,26 +119,19 @@ export const Header = () => {
         <div className="w-3"></div>
         {isLogin 
         ? <div className='flex items-center'>
-          <Link href={'./notifications'}>
-            <Image
-              src={'header/notifications.svg'}
-              alt={'notification'}
-              width={512}
-              height={512}
-              className="w-5 h-5 hover:brightness-150"
-            ></Image>
-          </Link>
-          <div className="w-6"></div>
-          <Link href={'./mypage'}>
-                <Image
-              src={'header/user.svg'}
-              alt={'notification'}
-              width={512}
-              height={512}
-              className="w-7 h-7 hover:brightness-150"
-            ></Image>
-          </Link>
-        </div> 
+            <div className='p-3 flex items-center cursor-pointer'>
+              <Alarm />
+            </div>
+            <Link href={'./mypage'} className='p-3'>
+                  <Image
+                src={'header/user.svg'}
+                alt={'notification'}
+                width={512}
+                height={512}
+                className="w-7 h-7 hover:brightness-150"
+              ></Image>
+            </Link>
+          </div> 
         : <button
           className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
           onClick={Login}
