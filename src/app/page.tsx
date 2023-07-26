@@ -1,25 +1,24 @@
-'use client';
+"use client";
 
-import { track } from '@amplitude/analytics-browser';
-import { StartBtn } from '../components/RoadmapPage/StartBtn';
-import { useEffect } from 'react';
+import { track } from "@amplitude/analytics-browser";
+import { StartBtn } from "../components/RoadmapPage/StartBtn";
+import { useEffect } from "react";
 
 export default function Home() {
-  const title = ['프론트엔드 개발자', '백엔드 개발자', '인공지능 개발자'];
+  const title = ["프론트엔드 개발자", "백엔드 개발자", "인공지능 개발자"];
   const content = [
-    '프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자입니다.',
-    '백엔드 개발자는 애플리케이션의 핵심 비즈니스 로직과 기능 등 실제 서비스에서 보이진 않지만, 서비스가 돌아가기위해 필요한 뒷단의 부분을 만드는 개발자입니다.',
-    'AI 개발자는 현실 세계의 문제를 해결하고 예측하기 위해 인공지능 시스템의 알고리즘과 모델을 개발하고 데이터를 활용하여 시스템을 훈련시키는 전문가입니다.',
+    "프론트엔드 개발자는 백엔드 API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자와 대화하는 사용자 인터페이스 부분을 작업하는 개발자입니다.",
+    "백엔드 개발자는 애플리케이션의 핵심 비즈니스 로직과 기능 등 실제 서비스에서 보이진 않지만, 서비스가 돌아가기위해 필요한 뒷단의 부분을 만드는 개발자입니다.",
+    "AI 개발자는 현실 세계의 문제를 해결하고 예측하기 위해 인공지능 시스템의 알고리즘과 모델을 개발하고 데이터를 활용하여 시스템을 훈련시키는 전문가입니다.",
   ];
   const detailcontent = [
-    ['UI 개발 업무', 'UX 개발 업무', '백엔드/디자이너와 협업'],
-    ['API 개발 업무', 'DB 관리 업무', '핵심 비즈니스 관리'],
-    ['데이터 전처리', '모델 훈련 및 개발', '시스템 구현'],
+    ["UI 개발 업무", "UX 개발 업무", "백엔드/디자이너와 협업"],
+    ["API 개발 업무", "DB 관리 업무", "핵심 비즈니스 관리"],
+    ["데이터 전처리", "모델 훈련 및 개발", "시스템 구현"],
   ];
-  const canStart = [true, true, true];
 
   useEffect(() => {
-    track('enter_main_page');
+    track("enter_main_page");
   }, []);
 
   return (
@@ -32,7 +31,7 @@ export default function Home() {
           <div className="mt-8 space-y-6 text-2xl tracking-tight text-gray-500 font-display lg:text-3xl">
             <div className="flex flex-col items-center justify-center">
               <div>
-                당신의 <span className="font-bold text-main">공부 러닝</span>{' '}
+                당신의 <span className="font-bold text-main">공부 러닝</span>{" "}
                 메이트,
               </div>
             </div>

@@ -1,6 +1,6 @@
-'client side';
+"client side";
 
-import { useEffect, useState, useRef, RefObject } from 'react';
+import { useEffect, useState, useRef, RefObject } from "react";
 
 export const useDetectClose = (
   initialState: boolean,
@@ -12,9 +12,9 @@ export const useDetectClose = (
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
   const ref = useRef<HTMLButtonElement>(null);
 
-  const removeHandler: (e: React.MouseEvent<Element, MouseEvent>) => void = (
-    e,
-  ) => {
+  const removeHandler: (
+    e: React.MouseEvent<Element, MouseEvent>,
+  ) => void = () => {
     setIsOpen(!isOpen);
   };
 
@@ -29,11 +29,11 @@ export const useDetectClose = (
     };
 
     if (isOpen) {
-      window.addEventListener('click', onClick);
+      window.addEventListener("click", onClick);
     }
 
     return () => {
-      window.removeEventListener('click', onClick);
+      window.removeEventListener("click", onClick);
     };
   }, [isOpen]);
 
