@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useDetectClose } from "../../utils/hooks/detectDropDownClose";
+import { useDetectClose } from "@/src/utils/hooks/detectDropDownClose";
 
 export const Alarm = () => {
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
