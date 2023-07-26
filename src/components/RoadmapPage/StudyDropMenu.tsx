@@ -1,7 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useDetectClose } from './hook/detectDropDownClose';
+import { useDetectClose } from "../../utils/hooks/detectDropDownClose";
 
 export default function StudyDropMenu(props: {
   node?: boolean;
@@ -13,34 +10,34 @@ export default function StudyDropMenu(props: {
   const setStateNum = props.setStateNum;
 
   const stateName: string[] = [
-    '학습 안 함',
-    '학습 예정',
-    '학습 중',
-    '학습 완료',
+    "학습 안 함",
+    "학습 예정",
+    "학습 중",
+    "학습 완료",
   ];
   const statebgColor: string[] = [
-    'bg-gray-300',
-    'bg-yellow-400',
-    'bg-indigo-500',
-    'bg-green-700',
+    "bg-gray-300",
+    "bg-yellow-400",
+    "bg-indigo-500",
+    "bg-green-700",
   ];
   const stateTextColor: string[] = [
-    'text-gray-600',
-    'text-yellow-800',
-    'text-white',
-    'text-white',
+    "text-gray-600",
+    "text-yellow-800",
+    "text-white",
+    "text-white",
   ];
   const statePreviewbgColor: string[] = [
-    'bg-gray-200',
-    'bg-yellow-200',
-    'bg-indigo-100',
-    'bg-green-100',
+    "bg-gray-200",
+    "bg-yellow-200",
+    "bg-indigo-100",
+    "bg-green-100",
   ];
   const statePreviewTextColor: string[] = [
-    'text-gray-600',
-    'text-yellow-600',
-    'text-indigo-600',
-    'text-green-600',
+    "text-gray-600",
+    "text-yellow-600",
+    "text-indigo-600",
+    "text-green-600",
   ];
 
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
@@ -56,7 +53,7 @@ export default function StudyDropMenu(props: {
       >
         {stateName[stateNum]}
         <svg
-          className="w-4 h-4 ml-2  dropdown"
+          className="w-4 h-4 ml-2 dropdown"
           aria-hidden="true"
           fill="none"
           stroke="currentColor"
@@ -75,9 +72,9 @@ export default function StudyDropMenu(props: {
       <div
         id="dropdown"
         className={`${
-          myPageIsOpen ? '' : 'hidden'
+          myPageIsOpen ? "" : "hidden"
         } border border-gray-200 z-50 dropdown absolute ${
-          rightOn ? 'left-0' : 'right-0'
+          rightOn ? "left-0" : "right-0"
         } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
         onClick={myPageHandler}
       >
@@ -89,7 +86,7 @@ export default function StudyDropMenu(props: {
             if (index == stateNum) return;
             return (
               <li
-                className="block px-2 py-1 dropdown  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-2 py-1 dropdown hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={() => {
                   setStateNum(index);
                 }}

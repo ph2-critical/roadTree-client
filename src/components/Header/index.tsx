@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect } from "react";
 import { Logo } from "@/src/assets/Icons";
 import Link from "next/link";
@@ -8,29 +9,16 @@ import initAmplitude from "@/lib/amplitude/amplitude";
 import { track } from "@amplitude/analytics-browser";
 import { hotjar } from "react-hotjar";
 import LoginModal from "../RoadmapPage/LoginModal";
-import InApp from "../InApp";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
-
-export const Login = async () => {
-  track("click_login_header_btn");
-  await supabase.auth
-    .signInWithOAuth({
-      provider: "google",
-      options: {
-        queryParams: {
-          access_type: "offline",
-          prompt: "consent",
-        },
-      },
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+import InApp from "../InApp";
+import Image from "next/image";
+import { Alarm } from "../Alarm";
+import { useLoginStore } from "@/src/status/store";
 
 export const Header = () => {
   const { isOpen, modalRef, toggleModal } = useModal();
+  const { isLogin, setLogin, setLogout } = useLoginStore();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
   const pathName = usePathname();
   const searchParams: string = pathName.split("/")[2];
@@ -51,8 +39,10 @@ export const Header = () => {
       } = await supabase.auth.getUser();
       if (user) {
         initAmplitude(user.id);
+        setLogin();
       } else {
         initAmplitude("");
+        setLogout();
       }
     };
     checkUser();
@@ -72,7 +62,6 @@ export const Header = () => {
       <Link
         href={"/"}
         onClick={() => {
-          //  ('[amplitude] click_go_home_header_logo');
           track("click_go_home_header_logo", { from: pathName });
         }}
       >
@@ -105,15 +94,30 @@ export const Header = () => {
             </Link>
           );
         })}
-        <div className="w-5"></div>
-        <button
-          className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-          onClick={() => {
-            toggleModal();
-          }}
-        >
-          로그인
-        </button>
+        <div className="w-3"></div>
+        {isLogin ? (
+          <div className="flex items-center">
+            <Alarm />
+            <Link href={"./profile"} className="p-3">
+              <Image
+                src={"header/user.svg"}
+                alt={"notification"}
+                width={512}
+                height={512}
+                className="w-7 h-7 hover:brightness-150"
+              ></Image>
+            </Link>
+          </div>
+        ) : (
+          <button
+            className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+            onClick={() => {
+              toggleModal();
+            }}
+          >
+            로그인
+          </button>
+        )}
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
         <button>
@@ -129,7 +133,7 @@ export const Header = () => {
           </svg>
         </button>
       </div>
-      {isOpen && (
+      {!isLogin && isOpen && (
         <ModalPortal>
           <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
         </ModalPortal>
