@@ -1,17 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Logo } from "@/src/assets/Icons";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase";
 import { usePathname } from "next/navigation";
 import initAmplitude from "@/lib/amplitude/amplitude";
 import { track } from "@amplitude/analytics-browser";
-import { useRouter } from "next/navigation";
 import { hotjar } from "react-hotjar";
 import LoginModal from "../RoadmapPage/LoginModal";
 import InApp from "../InApp";
-import { ModalPortal } from "@/src/utils/usePortal";
-import { useModal } from "@/src/utils/useModal";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
+import { useModal } from "@/src/utils/hooks/useModal";
 
 export const Login = async () => {
   track("click_login_header_btn");
@@ -31,14 +30,11 @@ export const Login = async () => {
 };
 
 export const Header = () => {
-  const { isOpen, toggleModal } = useModal();
-  const router = useRouter();
+  const { isOpen, modalRef, toggleModal } = useModal();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
   const pathName = usePathname();
   const searchParams: string = pathName.split("/")[2];
   const whatStudy: number = parseInt(searchParams);
-
-  const [isLogin, setIsLogin] = useState(false);
 
   //   const Logout = async () => {
   //     //  ('[amplitude] click_logout_header_btn');
@@ -54,10 +50,8 @@ export const Header = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        setIsLogin(true);
         initAmplitude(user.id);
       } else {
-        setIsLogin(false);
         initAmplitude("");
       }
     };
@@ -74,7 +68,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <nav className="z-50 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
+    <nav className=" fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <Link
         href={"/"}
         onClick={() => {
@@ -137,7 +131,7 @@ export const Header = () => {
       </div>
       {isOpen && (
         <ModalPortal>
-          <LoginModal toggleModal={toggleModal} />
+          <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
         </ModalPortal>
       )}
     </nav>
