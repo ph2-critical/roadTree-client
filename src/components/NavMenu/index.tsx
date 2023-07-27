@@ -2,8 +2,11 @@
 
 import { useModal } from "@/src/utils/hooks/useModal";
 import Image from "next/image";
+import Link from "next/link";
 
-export const NavMenu = () => {
+export const NavMenu = (
+    { setLogout }: { setLogout: () => void }
+) => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
     return (
         <div className="h-14 relative sm:py-0.5" ref={modalRef}>
@@ -32,7 +35,7 @@ export const NavMenu = () => {
             </div>
 
             {isOpen && (
-                <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:w-auto">
+                <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:absolute sm:w-auto">
                     <div className="text-black bg-white sm:w-40 top-auto shadow-deep-dark rounded-md w-full">
                         <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
                             <div className="px-4 py-3" role="none">
@@ -43,14 +46,28 @@ export const NavMenu = () => {
                                     neil.sims@flowbite.com
                                 </p>
                             </div>
-                            <ul className="py-1" role="none">
+                            <ul className="xpy-1" role="none">
                                 <li>
-                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">내 프로필</a>
+                                    <Link href={'/profile'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">내 프로필</Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">로그아웃</a>
+                                    <div onClick={setLogout} className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">로그아웃</div>
                                 </li>
 
+                            </ul>
+                            <ul className="xpy-1 md:hidden">
+                                <li>
+                                    <div onClick={() => { window.open('https://tally.so/r/mYRE70') }} className="block px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">피드백</div>
+                                </li>
+                                <li>
+                                    <Link href={'/roadmap/0'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">프론트엔드</Link>
+                                </li>
+                                <li>
+                                    <Link href={'/roadmap/1'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">백엔드</Link>
+                                </li>
+                                <li>
+                                    <Link href={'roadmap/2'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">인공지능</Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

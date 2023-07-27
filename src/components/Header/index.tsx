@@ -98,7 +98,7 @@ export const Header = () => {
             {isLogin ? (
               <div className="flex items-center">
                 <Alarm />
-                <NavMenu />
+                <NavMenu setLogout={setLogout} />
               </div>
             ) : (
               <button
