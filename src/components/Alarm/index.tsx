@@ -1,15 +1,15 @@
 'use client'
 
-import { useDetectClose } from "@/src/utils/hooks/detectDropDownClose";
+import { useModal } from "@/src/utils/hooks/useModal";
 import Image from "next/image";
 
 export const Alarm = () => {
-    const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
+    const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
     return (
-        <div className="h-11 relative">
+        <div className="h-11 relative"
+            ref={modalRef}>
             <button
-                onClick={myPageHandler}
-                ref={myPageRef}
+                onClick={toggleModal}
                 className="p-3 hover:brightness-150">
                 <Image
                     src={'header/notifications.svg'}
@@ -20,7 +20,7 @@ export const Alarm = () => {
                 ></Image>
             </button>
 
-            {myPageIsOpen && (
+            {isOpen && (
                 <div className="z-10 text-black bg-white sm:absolute sm:w-96 sm:h-auto sm:mt-5 sm:top-auto sm:right-[-30px] sm:shadow-deep-dark sm:rounded-md
                 fixed w-full right-0 top-[72px] h-screenWithoutHeader px-2">
                     {[1, 2, 3].map((item, index) => {

@@ -6,10 +6,9 @@ import Image from "next/image";
 export const NavMenu = () => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
     return (
-        <div className="h-14 relative sm:py-0.5">
+        <div className="h-14 relative sm:py-0.5" ref={modalRef}>
             <div className="flex flex-row-reverse text-gray-500 p-3">
                 <div
-                    ref={modalRef}
                     onClick={toggleModal}
                     className="hover:brightness-150 cursor-pointer">
                     <svg
