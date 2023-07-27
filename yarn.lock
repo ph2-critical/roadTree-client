@@ -868,6 +868,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.196":
+  version: 4.14.196
+  resolution: "@types/lodash@npm:4.14.196"
+  checksum: 201d17c3e62ae02a93c99ec78e024b2be9bd75564dd8fd8c26f6ac51a985ab280d28ce2688c3bcdfe785b0991cd9814edff19ee000234c7b45d9a697f09feb6a
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 20.3.2
   resolution: "@types/node@npm:20.3.2"
@@ -3894,7 +3901,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.11":
+"lodash@npm:^4.17.11, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -5593,6 +5600,7 @@ __metadata:
     "@toast-ui/editor-plugin-uml": ^3.0.1
     "@toast-ui/react-editor": ^3.2.3
     "@types/d3": 3
+    "@types/lodash": ^4.14.196
     "@types/node": 20.3.1
     "@types/react": 18.2.12
     "@types/react-beautiful-dnd": ^13.1.4
@@ -5610,6 +5618,7 @@ __metadata:
     eslint-plugin-prettier: ^5.0.0
     eslint-plugin-react: ^7.33.0
     eslint-plugin-react-hooks: ^4.6.0
+    lodash: ^4.17.21
     next: 13.4.5
     postcss: 8.4.24
     postcss-cli: ^10.1.0
