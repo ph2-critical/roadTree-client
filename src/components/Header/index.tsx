@@ -61,7 +61,7 @@ export const Header = () => {
   return (
     <nav className=" fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <div className='max-w-7xl w-full mx-auto'>
-        <div className='flex sm:px-8 items-center'>
+        <div className='flex sm:pl-8 sm:pr-4 items-center'>
           <Link
             href={"/"}
             onClick={() => {

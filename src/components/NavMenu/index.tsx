@@ -9,21 +9,21 @@ export const NavMenu = (
 ) => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
     return (
-        <div className="h-14 relative sm:py-0.5" ref={modalRef}>
+        <div className="h-13 relative sm:py-0.5" ref={modalRef}>
             <div className="flex flex-row-reverse text-gray-500 p-3">
                 <div
                     onClick={toggleModal}
                     className="hover:brightness-150 cursor-pointer">
-                    <svg
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        className="w-8 h-8 flex md:hidden "
-                        viewBox="0 0 1792 1792"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
+                    {/* md 보다 작을 경우 햄버거 메뉴 아이콘*/}
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" className="w-8 h-8 flex md:hidden text-gray-500"
+                        version="1.1" viewBox="0 0 24 24" width="100%" fill="currentColor">
+                        <g id="Icon">
+                            <path d="M4,6.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
+                            <path d="M4,12.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
+                            <path d="M4,18.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
+                        </g>
                     </svg>
+                    {/* md 보다 클 경우 유저 아이콘*/}
                     <Image
                         src={"header/user.svg"}
                         alt={"user"}
