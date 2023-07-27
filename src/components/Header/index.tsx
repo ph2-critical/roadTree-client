@@ -60,85 +60,84 @@ export const Header = () => {
   return (
     <nav className=" fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-b dark:bg-gray-900 dark:border-gray-900">
       <div className='max-w-7xl w-full mx-auto'>
-        <div className='flex px-8'>
-      <Link
-        href={"/"}
-        onClick={() => {
-          track("click_go_home_header_logo", { from: pathName });
-        }}
-      >
-        <Logo className="text-lg text-white hover:cursor-pointer" />
-      </Link>
-      <div className="items-center justify-end h-12 flex ml-auto">
-            <div id='headerMenu' className='md:flex hidden'>
-              <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
-                onClick={() => {window.open('https://tally.so/r/mYRE70')}}>피드백</div>
-
-        {navMenu.map((menu, idx) => {
-          return (
-            <Link
-              href={`/roadmap/${idx}`}
-              onClick={() => {
-                ("[amplitude] click_go_roadpage_header_menu_btn");
-                track("click_go_roadpage_header_menu_btn", {
-                  roadmapCat: menu,
-                  from: pathName,
-                });
-              }}
-              className={`p-3  font-semibold text-base hover:text-gray-400 ${
-                whatStudy === idx ? "text-main" : "text-gray-500"
-              }`}
-            >
-              {menu}
-            </Link>
-          );
-        })}
-        </div>
-        <div className="w-3"></div>
-        {isLogin ? (
-          <div className="flex items-center">
-            <Alarm />
-            <Link href={"./profile"} className="p-3 md:flex hidden">
-              <Image
-                src={"header/user.svg"}
-                alt={"user"}
-                width={512}
-                height={512}
-                className="w-7 h-7 hover:brightness-150"
-              ></Image>
-            </Link>
-          </div>
-        ) : (
-          <button
-            className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+        <div className='flex px-8 items-center'>
+          <Link
+            href={"/"}
             onClick={() => {
-              toggleModal();
+              track("click_go_home_header_logo", { from: pathName });
             }}
           >
-            로그인
-          </button>
-        )}
-      </div>
-      <div className="flex flex-row-reverse text-gray-500 md:hidden p-3">
-        <button>
-          <svg
-            width="20"
-            height="20"
-            fill="currentColor"
-            className="w-8 h-8"
-            viewBox="0 0 1792 1792"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
-          </svg>
-        </button>
-      </div>
-      {!isLogin && isOpen && (
-        <ModalPortal>
-          <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
-        </ModalPortal>
-      )}
-      </div>
+            <Logo className="text-lg text-white hover:cursor-pointer" />
+          </Link>
+          <div className="items-center justify-end h-12 flex ml-auto">
+            <div id='headerMenu' className='md:flex hidden'>
+              <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
+                onClick={() => { window.open('https://tally.so/r/mYRE70') }}>피드백</div>
+
+              {navMenu.map((menu, idx) => {
+                return (
+                  <Link
+                    href={`/roadmap/${idx}`}
+                    onClick={() => {
+                      ("[amplitude] click_go_roadpage_header_menu_btn");
+                      track("click_go_roadpage_header_menu_btn", {
+                        roadmapCat: menu,
+                        from: pathName,
+                      });
+                    }}
+                    className={`p-3  font-semibold text-base hover:text-gray-400 ${whatStudy === idx ? "text-main" : "text-gray-500"
+                      }`}
+                  >
+                    {menu}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="w-3"></div>
+            {isLogin ? (
+              <div className="flex items-center">
+                <Alarm />
+                <Link href={"./profile"} className="p-3 md:flex hidden">
+                  <Image
+                    src={"header/user.svg"}
+                    alt={"user"}
+                    width={512}
+                    height={512}
+                    className="w-7 h-7 hover:brightness-150"
+                  ></Image>
+                </Link>
+              </div>
+            ) : (
+              <button
+                className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+                onClick={() => {
+                  toggleModal();
+                }}
+              >
+                로그인
+              </button>
+            )}
+          </div>
+          <div className="flex flex-row-reverse text-gray-500 md:hidden p-3">
+            <button>
+              <svg
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="w-8 h-8"
+                viewBox="0 0 1792 1792"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
+              </svg>
+            </button>
+          </div>
+          {!isLogin && isOpen && (
+            <ModalPortal>
+              <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
+            </ModalPortal>
+          )}
+        </div>
       </div>
     </nav>
   );
