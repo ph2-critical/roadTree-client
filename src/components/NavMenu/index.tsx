@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const NavMenu = (
-    { setLogout }: { setLogout: () => void }
+    props: { setLogout: () => void }
 ) => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
     return (
@@ -51,7 +51,7 @@ export const NavMenu = (
                                     <Link href={'/profile'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">내 프로필</Link>
                                 </li>
                                 <li>
-                                    <div onClick={setLogout} className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">로그아웃</div>
+                                    <div onClick={props.setLogout} className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">로그아웃</div>
                                 </li>
 
                             </ul>
