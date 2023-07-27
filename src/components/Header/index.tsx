@@ -15,6 +15,7 @@ import InApp from "../InApp";
 import Image from "next/image";
 import { Alarm } from "../Alarm";
 import { useLoginStore } from "@/src/status/store";
+import { NavMenu } from "../NavMenu";
 
 export const Header = () => {
   const { isOpen, modalRef, toggleModal } = useModal();
@@ -97,15 +98,7 @@ export const Header = () => {
             {isLogin ? (
               <div className="flex items-center">
                 <Alarm />
-                <Link href={"./profile"} className="p-3 md:flex hidden">
-                  <Image
-                    src={"header/user.svg"}
-                    alt={"user"}
-                    width={512}
-                    height={512}
-                    className="w-7 h-7 hover:brightness-150"
-                  ></Image>
-                </Link>
+                <NavMenu />
               </div>
             ) : (
               <button
@@ -117,20 +110,6 @@ export const Header = () => {
                 로그인
               </button>
             )}
-          </div>
-          <div className="flex flex-row-reverse text-gray-500 md:hidden p-3">
-            <button>
-              <svg
-                width="20"
-                height="20"
-                fill="currentColor"
-                className="w-8 h-8"
-                viewBox="0 0 1792 1792"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
-              </svg>
-            </button>
           </div>
           {!isLogin && isOpen && (
             <ModalPortal>
