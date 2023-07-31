@@ -38,10 +38,11 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const [stateStore] = useState<roadDataState>({});
   const [root, setRoot] = useState<RoadData>();
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
-  const [selectHistory, setSelectHistory] = useState<(null | RoadData)[]>([null, null, null, null])
-  const [selectHistoryBefore, setSelectHistoryBefore] = useState<(null | RoadData)[]>([null, null, null, null])
-  const [selectCurrent, setSelectCurrent] = useState<null | RoadData>(null); // 현재 선택된 내용
-  const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
+  const [selectHistory] = useState<(null | RoadData)[]>([null, null, null, null])
+  const [selectHistoryBefore] = useState<(null | RoadData)[]>([null, null, null, null])
+  const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
+  let lastClick: null | RoadData = null;
+  // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
   const userId: string = props.userId;
   const whatStudyTable: string[] = ['front', 'back', 'ai'];
@@ -92,18 +93,20 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           }
         }
       }
-      setSelectHistory((prev) => {
-        const newSelectHistory = [...prev];
-        newSelectHistory[d.depth! - 1] = d;
-        return newSelectHistory;
-      });
+      selectHistory[d.depth - 1] = d;
+      // setSelectHistory((prev) => {
+      //   const newSelectHistory = [...prev];
+      //   newSelectHistory[d.depth! - 1] = d;
+      //   return newSelectHistory;
+      // });
     }
 
-    if (selectCurrent !== null) selectCurrent.select = false; // 이전 선택 내용 색 지우기
+    if (selectCurrent[0] !== null) selectCurrent[0].select = false; // 이전 선택 내용 색 지우기
     d.select = true; // 선택된 내용 색 넣기
     setSelect(d);
-    setSelectCurrent(d); // 이전 선택 내용 업데이트
-    setLastClick(d)
+    selectCurrent[0] = d; // 이전 선택 내용 업데이트
+    // setLastClick(d);
+    lastClick = d
   }
 
   // 선택해제
@@ -114,31 +117,34 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         d._children = d.children;
         d.children = null;
         if (d.depth) {
-          setSelectHistoryBefore((prev) => {
-            const newSelectHistoryBefore = [...prev];
-            newSelectHistoryBefore[d.depth! - 1] = selectHistory[d.depth! - 1];
-            return newSelectHistoryBefore;
-          });
+          selectHistoryBefore[d.depth - 1] = selectHistory[d.depth - 1];
+          // setSelectHistoryBefore((prev) => {
+          //   const newSelectHistoryBefore = [...prev];
+          //   newSelectHistoryBefore[d.depth! - 1] = selectHistory[d.depth! - 1];
+          //   return newSelectHistoryBefore;
+          // });
 
-          setSelectHistory((prev) => {
-            const newSelectHistory = [...prev];
-            newSelectHistory[d.depth! - 1] = null;
-            return newSelectHistory;
-          });
+
+          selectHistory[d.depth - 1] = null;
+          // setSelectHistory((prev) => {
+          //   const newSelectHistory = [...prev];
+          //   newSelectHistory[d.depth! - 1] = null;
+          //   return newSelectHistory;
+          // });
         }
       }
 
-      if (selectCurrent !== null) selectCurrent.select = false;
+      if (selectCurrent[0] !== null) selectCurrent[0].select = false;
       d.select = false;
       setSelect(null);
-      setSelectCurrent(null);
+      selectCurrent[0] = null;
     }
   }
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
-    if (selectCurrent === null || selectCurrent.depth === undefined) return 0;
-    else return selectCurrent.depth;
+    if (selectCurrent[0] === null || selectCurrent[0].depth === undefined) return 0;
+    else return selectCurrent[0].depth;
   };
 
   async function setInitNodeState() {
@@ -325,8 +331,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             (d.depth === 0 ? ' hidden ' : '') +
             (d.select
               ? 'brightness-90 '
-              : selectCurrent !== null &&
-                selectCurrent.select === true &&
+              : selectCurrent[0] !== null &&
+                selectCurrent[0].select === true &&
                 d !== selectHistory[d.depth! - 1] &&
                 getLevel() >= (d.depth === undefined ? 0 : d.depth)
                 ? 'opacity-30 '
