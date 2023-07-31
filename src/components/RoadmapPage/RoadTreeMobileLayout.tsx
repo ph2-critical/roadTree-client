@@ -28,9 +28,16 @@ export default function RoadTreeMobileLayout(props: {
                                     alt='downArrow'
                                     width={50}
                                     height={50}
-                                    className={`rounded-full ml-auto transition-transform ${child.select ? 'rotate-180' : ''}`} />
+                                    className={`rounded-full ml-auto transition-transform ${child.select || child.children ? 'rotate-180' : ''}`} />
                             </div>
                             {renderChildren(child)}
+                            {(child.select) ?
+                                <div className={`border-2 border-main w-full rounded-lg h-20 mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
+                                text-lg font-bold text-gray-700 pl-8`}
+                                    onClick={() => { }}>
+                                    사이드바 열기
+                                </div> : null
+                            }
                         </div>
                     )
                 })
