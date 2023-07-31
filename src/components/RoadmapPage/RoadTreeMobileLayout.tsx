@@ -19,7 +19,7 @@ export default function RoadTreeMobileLayout(props: {
                         <div className="px-2 pb-2">
                             <div className={`border-2 border-black w-full rounded-lg h-20 mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
                                 ${child.select ? ' brightness-90 ' : ''} flex flex-row items-center
-                                text-lg font-bold text-gray-700 pl-8`}
+                                text-base font-bold text-gray-700 pl-8`}
                                 onClick={() => { toggleSelect(child); updateFunc(child) }}>
                                 {child.name}
 
@@ -31,13 +31,7 @@ export default function RoadTreeMobileLayout(props: {
                                     className={`rounded-full ml-auto transition-transform ${child.select || child.children ? 'rotate-180' : ''}`} />
                             </div>
                             {renderChildren(child)}
-                            {(child.select) ?
-                                <div className={`border-2 border-main w-full rounded-lg h-20 mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
-                                text-lg font-bold text-gray-700 pl-8`}
-                                    onClick={() => { }}>
-                                    사이드바 열기
-                                </div> : null
-                            }
+
                         </div>
                     )
                 })

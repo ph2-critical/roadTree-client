@@ -36,14 +36,16 @@ export interface RoadTreeLayOutProps {
 export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const [init, setInit] = useState<boolean>(false);
   const [stateStore] = useState<roadDataState>({});
-  const [root, setRoot] = useState<RoadData>();
+  const whatStudy: number = props.whatStudy;
+
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([null, null, null, null])
   const [selectHistoryBefore] = useState<(null | RoadData)[]>([null, null, null, null])
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
+  let root: RoadData = whatStudy == 0 ? roadmap_front_public : roadmap_back_public;
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
-  const whatStudy: number = props.whatStudy;
+
   const userId: string = props.userId;
   const whatStudyTable: string[] = ['front', 'back', 'ai'];
   const state2num: { [key: string]: number } = {
@@ -103,7 +105,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
     if (selectCurrent[0] !== null) selectCurrent[0].select = false; // 이전 선택 내용 색 지우기
     d.select = true; // 선택된 내용 색 넣기
-    setSelect(d);
+    setSelect(null); // 렌더링하기 위함 => 추후 최적화를 위해 제거할 것.
     selectCurrent[0] = d; // 이전 선택 내용 업데이트
     // setLastClick(d);
     lastClick = d
@@ -173,14 +175,13 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   useEffect(() => {
     if (userId && init === false) {
       setInitNodeState().then((res) => {
-        setRoot(whatStudy == 0 ? roadmap_front_public : roadmap_back_public);
         setInit(true);
       });
     }
   }, [userId]);
 
   useEffect(() => {
-    if (init && root !== undefined) {
+    if (init) {
       let m = [20, 120, 20, 20],
         w = 1280 - m[1] - m[3],
         h = 800 - m[0] - m[2],
@@ -278,6 +279,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             });
 
             toggle_select(d);
+            setSelect(d);
             update(d);
           });
         nodeEnter
@@ -443,6 +445,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   return (<div id="body" className="w-auto overflow-scroll scrollbar-hide" >
     {/* 모바일 버전 */}
-    {(init && root !== undefined) && <RoadTreeMobileLayout roadData={root} toggleSelect={toggle_select} />}
+    {(init) && <RoadTreeMobileLayout roadData={root} toggleSelect={toggle_select} />}
   </div>);
 }
