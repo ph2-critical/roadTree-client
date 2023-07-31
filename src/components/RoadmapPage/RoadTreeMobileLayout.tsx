@@ -16,7 +16,7 @@ export default function RoadTreeMobileLayout(props: {
                 data.children.map((child, idx) => {
                     return (
                         <div>
-                            <div className={`bg-${child.select ? 'blue' : 'red'}-${eachDepthColor[child.depth ?? 0]} w-full h-20 mt-4 p-4`}
+                            <div className={`border-2 border-black w-full rounded-lg h-20 mt-4 mx-1 p-4`}
                                 onClick={() => { toggleSelect(child); updateFunc(child) }}>{child.name}</div>
                             {renderChildren(child)}
                         </div>

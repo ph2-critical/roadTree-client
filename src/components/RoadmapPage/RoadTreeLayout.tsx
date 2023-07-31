@@ -369,7 +369,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .exit()
           .transition()
           .duration(function (d: RoadData) {
-            if ((d.depth ?? 1) - (lastClick!.depth ?? 1) >= 2) return 0;
+            if ((d.depth ?? 1) - (lastClick?.depth ?? 1) >= 2) return 0;
             else return duration;
           })
           .attr('transform', function (d: RoadData) {
@@ -416,7 +416,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .exit()
           .transition()
           .duration(function (d: { source: RoadData; target: RoadData }) {
-            if ((d.source.depth ?? 1) - (lastClick!.depth ?? 1) >= 1) return 0;
+            if ((d.source.depth ?? 1) - (lastClick?.depth ?? 1) >= 1) return 0;
             else return duration;
           })
           .attr('d', function (d: { source: any; target: any }) {
