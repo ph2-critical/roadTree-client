@@ -5,10 +5,12 @@ import Image from "next/image";
 export default function RoadTreeMobileLayout(props: {
     roadData: RoadData;
     toggleSelect: (node: RoadData) => void;
+    setIsShowRef: (prop: boolean) => void;
 }) {
     const roadData: RoadData = props.roadData;
     const eachDepthColor: number[] = [500, 400, 300, 200, 100];
     const toggleSelect = props.toggleSelect;
+    const setIsShowRef = props.setIsShowRef;
     const { updateFunc } = useRoadTreeStore(); // update하여 노드에 적용하기 위한 용도
 
     const renderChildren = (data: RoadData) => {
@@ -17,11 +19,26 @@ export default function RoadTreeMobileLayout(props: {
                 data.children.map((child, idx) => {
                     return (
                         <div className="px-2 pb-2">
-                            <div className={`border-2 border-black w-full rounded-lg h-20 mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
-                                ${child.select ? ' brightness-90 ' : ''} flex flex-row items-center
+                            <div className={`border-2 border-black w-full rounded-lg  mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
+                                ${child.select ? ' brightness-90 h-32 ' : 'h-20'} flex flex-row items-center
                                 text-base font-bold text-gray-700 pl-8`}
                                 onClick={() => { toggleSelect(child); updateFunc(child) }}>
-                                {child.name}
+                                <div className="">
+                                    {child.name}
+                                    {
+                                        child.select
+                                            ? <div className="border-2 border-main bg-green-200 rounded-lg my-2 p-2 hover:brightness-90"
+                                                onClick={
+                                                    (e: React.MouseEvent<Element, MouseEvent>) => {
+                                                        setIsShowRef(true);
+                                                        e.stopPropagation()
+                                                    }
+                                                }>레퍼런스 확인하기</div>
+                                            : <></>
+                                    }
+
+                                </div>
+
 
                                 <Image
                                     src='/roadTreeMobile/downArrow.svg'

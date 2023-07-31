@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 
-export default function SideBar(props: { whatStudy: number; userId: string }) {
+export default function SideBar(props: { whatStudy: number, userId: string, isShowRef: boolean }) {
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
@@ -22,6 +22,7 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   const stateTable = ["학습안함", "학습예정", "학습중", "학습완료"];
   const whatStudy: string = whatStudyTable[props.whatStudy];
   const userId: string = props.userId;
+  const isShowRef: boolean = props.isShowRef;
 
   const sidebarWeightEnd: () => void = () => {
     //  ('[amplitude] resize_sidebar');
@@ -93,12 +94,12 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
     }
   }, [select]);
 
-  if (select !== null) {
+  if (select !== null && isShowRef) {
     if (!isLoading) {
       return (
         <div
           id={select.nid.toString()}
-          className={` w-full fixed right-0 bg-white h-screenWithoutHeader z-40 md:w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${resizing ? "select-none" : ""
+          className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-40 md:w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${resizing ? "select-none" : ""
             }`}
         >
           <div

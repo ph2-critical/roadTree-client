@@ -31,12 +31,14 @@ export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
 export interface RoadTreeLayOutProps {
   whatStudy: number;
   userId: string;
+  setIsShowRef: (prop: boolean) => void;
 }
 
 export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const [init, setInit] = useState<boolean>(false);
   const [stateStore] = useState<roadDataState>({});
   const whatStudy: number = props.whatStudy;
+  const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([null, null, null, null])
@@ -105,7 +107,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
     if (selectCurrent[0] !== null) selectCurrent[0].select = false; // 이전 선택 내용 색 지우기
     d.select = true; // 선택된 내용 색 넣기
-    setSelect(null); // 렌더링하기 위함 => 추후 최적화를 위해 제거할 것.
+    setIsShowRef(false);
+    setSelect(d);
     selectCurrent[0] = d; // 이전 선택 내용 업데이트
     // setLastClick(d);
     lastClick = d
@@ -138,6 +141,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
       if (selectCurrent[0] !== null) selectCurrent[0].select = false;
       d.select = false;
+      setIsShowRef(false);
       setSelect(null);
       selectCurrent[0] = null;
     }
@@ -266,7 +270,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .attr('transform', function () {
             return 'translate(' + source.y0 + ',' + source.x0 + ')';
           })
-          .on('click', function (d) {
+          .on('click', function (d: RoadData) {
             //  (
             //   `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
             // );
@@ -279,7 +283,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             });
 
             toggle_select(d);
-            setSelect(d);
+            setIsShowRef(true);
             update(d);
           });
         nodeEnter
@@ -445,6 +449,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   return (<div id="body" className="w-auto overflow-scroll scrollbar-hide" >
     {/* 모바일 버전 */}
-    {(init) && <RoadTreeMobileLayout roadData={root} toggleSelect={toggle_select} />}
+    {(init) && <RoadTreeMobileLayout roadData={root} toggleSelect={toggle_select} setIsShowRef={setIsShowRef} />}
   </div>);
 }
