@@ -21,11 +21,11 @@ export const useWindowResize = () => {
 };
 
 export const useWindowTabletResize = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.matchMedia("(max-width: 1023px)").matches);
+      setIsTablet(window.matchMedia("(max-width: 1023px)").matches);
     };
 
     handleResize(); // 초기 렌더링 시 크기 확인
@@ -37,5 +37,5 @@ export const useWindowTabletResize = () => {
     };
   }, []);
 
-  return isMobile;
+  return isTablet;
 };
