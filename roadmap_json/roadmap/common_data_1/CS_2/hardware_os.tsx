@@ -7,6 +7,7 @@ export const hardware_os_data_private: RoadData = {
   nid: 10,
   depth: 2,
   name: '컴퓨터 구조',
+  parent: 1,
   description:
     '벼를 키우기위해선 논이라는 환경이 필요하고, 보리를 키우기위해선 밭이라는 환경이 필요한 것처럼, 웹이라는 서비스를 만들기위해서 알아야되는 환경은 컴퓨터구조(하드웨어와 운영체제)가 있습니다.',
   ref: [

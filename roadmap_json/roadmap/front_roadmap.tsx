@@ -10,6 +10,7 @@ import { cs_data_private } from "@/roadmap_json/roadmap/common_data_1/cs";
 export const roadmap_front_private: RoadData = {
     nid: 1,
     name: 'Front-end',
+    parent: -1,
     children: [
         front_html_private,
         front_css_private,

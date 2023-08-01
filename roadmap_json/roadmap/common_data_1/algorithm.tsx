@@ -3,6 +3,7 @@ import { RoadData } from '@/roadmap_json/roadmap_data';
 export const algorithm_data_private: RoadData = {
   nid: 3,
   name: 'Algorithm',
+  parent: 1,
   description:
     '알고리즘(자료구조)는 메모리를 효율적으로 사용하면서 데이터를 빠르고 안정적으로 처리하는 것이 궁금적인 목표입니다.알고리즘과 자료구조를 잘못 쓰게되면 느리고 불안정해질 수 있지만, 특정 상황에 맞게 유용하게 사용하게되면 효율적이고 빠른 성능을 낼 수 있습니다.',
   ref: [

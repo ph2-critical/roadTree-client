@@ -4,6 +4,7 @@ import { personal_html_data_private } from '@/roadmap_json/roadmap/frontend_data
 export const front_html_private: RoadData = {
   nid: 30,
   name: 'HTML',
+  parent: 1,
   description:
     'HTML은 웹 페이지의 구조와 컨텐츠를 정의하기 위해 사용하는 마크업 언어입니다. CSS와 Javascript를 통해 디자인과 상호 작용을 추가할 수 있습니다. 웹 개발을 위해 필수적으로 알아야하는 언어이므로 먼저 배워보는 것이 좋습니다.',
   ref: [

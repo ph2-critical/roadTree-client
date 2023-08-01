@@ -4,6 +4,7 @@ import { css_template_private } from '@/roadmap_json/roadmap/frontend_data_1/CSS
 export const front_css_private: RoadData = {
   nid: 31,
   name: 'CSS',
+  parent: 1,
   description:
     'CSS란 HTML로 작성된 웹 사이트의 시각적인 요소를 꾸며주는 언어입니다. HTML과 더불어 웹 개발을 하다보면 계속 마주치게 될 것이므로 기초적인 학습이 필요합니다.',
   ref: [

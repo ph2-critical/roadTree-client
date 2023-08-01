@@ -18,8 +18,10 @@ export interface RoadData {
   description?: string;
   select?: boolean;
   depth?: number;
+  parent: number;
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
+
 
   id?: number;
   ref?: reference[];
