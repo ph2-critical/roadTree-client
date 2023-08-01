@@ -5,6 +5,7 @@ import { personal_css_data_private } from '@/roadmap_json/roadmap/frontend_data_
 export const css_template_private: RoadData = {
   nid: 310,
   depth: 2,
+  parent: 31,
   name: 'CSS Framwork Source',
   description: '매번 CSS를 작업하다보면 버튼, 레이아웃, 입력창 등 처럼 자주 사용하는 것 있습니다. 이렇게 자주 사용하는 것들을 미리 만들어 놓고 빠르게 가져다 쓸 수 있는 CSS 프레임워크를 알면 일의 효율성을 높일 수 있습니다.',
   ref: [
