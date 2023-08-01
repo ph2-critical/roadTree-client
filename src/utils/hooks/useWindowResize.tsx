@@ -5,7 +5,7 @@ export const useWindowResize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.matchMedia("(max-width: 390px)").matches);
+      setIsMobile(window.matchMedia("(max-width: 428px)").matches);
     };
 
     handleResize(); // 초기 렌더링 시 크기 확인
