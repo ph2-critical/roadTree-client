@@ -449,6 +449,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   return (<div id="body" className="w-auto overflow-scroll scrollbar-hide" >
     {/* 모바일 버전 */}
-    {(init) && <RoadTreeMobileLayout roadData={root} toggleSelect={toggle_select} setIsShowRef={setIsShowRef} />}
+    {(init) && <RoadTreeMobileLayout
+      roadData={root}
+      toggleSelect={toggle_select}
+      setIsShowRef={setIsShowRef}
+      stateColor={{ statebgColor, stateBorderColor, stateTextColor }} />}
   </div>);
 }

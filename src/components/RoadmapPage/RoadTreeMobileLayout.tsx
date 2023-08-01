@@ -6,11 +6,13 @@ export default function RoadTreeMobileLayout(props: {
     roadData: RoadData;
     toggleSelect: (node: RoadData) => void;
     setIsShowRef: (prop: boolean) => void;
+    stateColor: { statebgColor: string[], stateBorderColor: string[], stateTextColor: string[] }
 }) {
     const roadData: RoadData = props.roadData;
     const eachDepthColor: number[] = [500, 400, 300, 200, 100];
     const toggleSelect = props.toggleSelect;
     const setIsShowRef = props.setIsShowRef;
+    const { statebgColor, stateBorderColor, stateTextColor } = props.stateColor;
     const { updateFunc } = useRoadTreeStore(); // update하여 노드에 적용하기 위한 용도
 
     const renderChildren = (data: RoadData) => {
@@ -21,7 +23,9 @@ export default function RoadTreeMobileLayout(props: {
                         <div className="px-2 pb-2">
                             <div className={`border-2 border-black w-full rounded-lg  mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
                                 ${child.select ? ' brightness-90 h-32 ' : 'h-20'} flex flex-row items-center
-                                text-base font-bold text-gray-700 pl-8`}
+                                text-base font-bold text-gray-700 pl-8
+                                bg-[${statebgColor[child.state ?? 0]}] ${stateBorderColor[child.state ?? 0]} text-[${stateTextColor[child.state ?? 0]}]}
+                                ${child.state === 3 ? ' line-through ' : ''}`}
                                 onClick={() => { toggleSelect(child); updateFunc(child) }}>
                                 <div className="">
                                     {child.name}
