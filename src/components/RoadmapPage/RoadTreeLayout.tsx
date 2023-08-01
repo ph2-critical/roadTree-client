@@ -13,6 +13,7 @@ import d3, { set } from 'd3';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';
 import RoadTreeMobileLayout from './RoadTreeMobileLayout';
+import { usemdResize } from '@/src/utils/hooks/useWindowResize';
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -47,6 +48,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   let lastClick: null | RoadData = null;
   let root: RoadData = whatStudy == 0 ? roadmap_front_public : roadmap_back_public;
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
+
+  let ismdSize: boolean = usemdResize();
 
   const userId: string = props.userId;
   const whatStudyTable: string[] = ['front', 'back', 'ai'];
@@ -449,7 +452,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   return (<div id="body" className="w-auto overflow-scroll scrollbar-hide" >
     {/* 모바일 버전 */}
-    {(init) && <RoadTreeMobileLayout
+    {(init && ismdSize) && <RoadTreeMobileLayout
       roadData={root}
       toggleSelect={toggle_select}
       setIsShowRef={setIsShowRef}

@@ -25,7 +25,7 @@ export const usemdResize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsmdSize(window.matchMedia("(max-width: 428px)").matches);
+      setIsmdSize(window.matchMedia("(max-width: 768px)").matches);
     };
 
     handleResize(); // 초기 렌더링 시 크기 확인
