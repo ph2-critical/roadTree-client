@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className={"h-screenWithoutHeader w-full dark:bg-gray-900"}>
         <div id="modal_root"></div>
         <Header />
-        {children}
+        <div className="mt-[72px]">{children}</div>
         <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>

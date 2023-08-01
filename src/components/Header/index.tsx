@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import initAmplitude from "@/lib/amplitude/amplitude";
 import { track } from "@amplitude/analytics-browser";
 import { hotjar } from "react-hotjar";
-import LoginModal from "../RoadmapPage/LoginModal";
+import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
