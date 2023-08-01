@@ -48,7 +48,7 @@ function page({ params }: { params: roadmapParams }) {
         <RoadTreeLayout whatStudy={whatStudy} userId={id} setIsShowRef={setIsShowRef} />
       </main>
 
-      <SideBar whatStudy={whatStudy} userId={id} isShowRef={isShowRef} />
+      <SideBar whatStudy={whatStudy} userId={id} showRef={{ isShowRef, setIsShowRef }} />
     </div>
   );
 }

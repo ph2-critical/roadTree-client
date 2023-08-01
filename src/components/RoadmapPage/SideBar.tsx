@@ -8,8 +8,16 @@ import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
 import { postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
+import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
-export default function SideBar(props: { whatStudy: number, userId: string, isShowRef: boolean }) {
+export default function SideBar(props: {
+  whatStudy: number,
+  userId: string,
+  showRef: {
+    isShowRef: boolean,
+    setIsShowRef: (isShowRef: boolean) => void
+  }
+}) {
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
@@ -22,7 +30,8 @@ export default function SideBar(props: { whatStudy: number, userId: string, isSh
   const stateTable = ["학습안함", "학습예정", "학습중", "학습완료"];
   const whatStudy: string = whatStudyTable[props.whatStudy];
   const userId: string = props.userId;
-  const isShowRef: boolean = props.isShowRef;
+  const { isShowRef, setIsShowRef } = props.showRef;
+  let useWindowResizeVar: boolean = useWindowResize();
 
   const sidebarWeightEnd: () => void = () => {
     //  ('[amplitude] resize_sidebar');
@@ -138,9 +147,17 @@ export default function SideBar(props: { whatStudy: number, userId: string, isSh
                       selectNodeName: select.name,
                     });
 
-                    select.select = false;
-                    setSelect(null);
-                    updateFunc(select);
+                    if (useWindowResizeVar) {
+                      console.log(1)
+                      setIsShowRef(false);
+                    } else {
+                      console.log(2)
+                      select.select = false;
+                      setSelect(null);
+                      updateFunc(select);
+                    }
+
+
                   }
                 }}
               >
