@@ -1,17 +1,17 @@
 /* eslint-disable prefer-const */
-'use client';
+"use client";
 
 import {
   RoadData,
   roadmap_back_public,
   roadmap_front_public,
   roadDataState,
-} from '@/roadmap_json/roadmap_data';
-import { getNodeDatas, getProps } from '@/src/api';
-import { track } from '@amplitude/analytics-browser';
-import d3 from 'd3';
-import { useEffect, useState } from 'react';
-import { create } from 'zustand';
+} from "@/roadmap_json/roadmap_data";
+import { getNodeDatas, getProps } from "@/src/api";
+import { track } from "@amplitude/analytics-browser";
+import d3 from "d3";
+import { useEffect, useState } from "react";
+import { create } from "zustand";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -42,7 +42,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
   const userId: string = props.userId;
-  const whatStudyTable: string[] = ['front', 'back', 'ai'];
+  const whatStudyTable: string[] = ["front", "back", "ai"];
   const state2num: { [key: string]: number } = {
     학습안함: 0,
     학습예정: 1,
@@ -50,14 +50,14 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     학습완료: 3,
   };
 
-  const statebgColor: string[] = ['#fff', '#e3f6ed', '#9adfbe', '#489d72'];
+  const statebgColor: string[] = ["#fff", "#e3f6ed", "#9adfbe", "#489d72"];
   const stateBorderColor: string[] = [
-    'stroke-black',
-    'stroke-black',
-    'stroke-black',
-    'stroke-black',
+    "stroke-black",
+    "stroke-black",
+    "stroke-black",
+    "stroke-black",
   ];
-  const stateTextColor: string[] = ['#000', '#000', '#000', '#000'];
+  const stateTextColor: string[] = ["#000", "#000", "#000", "#000"];
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -111,12 +111,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       });
 
       const vis = d3
-        .select('#body')
-        .append('svg:svg')
-        .attr('width', w + m[1] + m[3])
-        .attr('height', h + m[0] + m[2])
-        .append('svg:g')
-        .attr('transform', 'translate(' + m[3] + ',' + m[0] + ')');
+        .select("#body")
+        .append("svg:svg")
+        .attr("width", w + m[1] + m[3])
+        .attr("height", h + m[0] + m[2])
+        .append("svg:g")
+        .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
       root.x0 = h / 2;
       root.y0 = 0;
@@ -152,7 +152,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         });
 
         // Update the nodes…
-        let node = vis.selectAll('g.node').data(nodes, function (d: any) {
+        let node = vis.selectAll("g.node").data(nodes, function (d: any) {
           i++;
           return d.id || (d!.id = d.parent?.nid * 50 + d.nid);
         });
@@ -162,8 +162,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         // Enter any new nodes at the parent's previous position.
         let nodeEnter = node
           .enter()
-          .append('svg:g')
-          .attr('class', function (d) {
+          .append("svg:g")
+          .attr("class", function (d) {
             if (d.state === undefined) {
               d.state =
                 !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
@@ -178,12 +178,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
                       .state;
             }
 
-            return 'node' + (d.depth === 0 ? ' hidden ' : '');
+            return "node" + (d.depth === 0 ? " hidden " : "");
           })
-          .attr('transform', function () {
-            return 'translate(' + source.y0 + ',' + source.x0 + ')';
+          .attr("transform", function () {
+            return "translate(" + source.y0 + "," + source.x0 + ")";
           })
-          .on('click', function (d) {
+          .on("click", function (d) {
             //  (
             //   `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
             // );
@@ -192,7 +192,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
               node_name: d.name,
               node_depth: d.depth,
               isSelect: !d.select,
-
             });
 
             toggle_select(d);
@@ -200,86 +199,86 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             update(d);
           });
         nodeEnter
-          .append('svg:rect')
-          .attr('class', 'fill-white')
-          .style('fill', '#fff')
-          .style('width', '200')
-          .style('height', '40')
-          .style('x', '-100')
-          .style('y', '-20')
-          .style('rx', '10')
-          .style('ry', '10');
+          .append("svg:rect")
+          .attr("class", "fill-white")
+          .style("fill", "#fff")
+          .style("width", "200")
+          .style("height", "40")
+          .style("x", "-100")
+          .style("y", "-20")
+          .style("rx", "10")
+          .style("ry", "10");
         nodeEnter = nodeEnter
-          .append('svg:g')
-          .attr('class', function (d: RoadData) {
-            return 'cursor-pointer hover:brightness-95 hover:opacity-100 ';
+          .append("svg:g")
+          .attr("class", function (d: RoadData) {
+            return "cursor-pointer hover:brightness-95 hover:opacity-100 ";
           });
 
         nodeEnter
-          .append('svg:rect')
-          .attr('class', 'fill-white stroke-black stroke-2 cursor-pointer')
-          .style('fill', '#fff')
-          .style('width', '200')
-          .style('height', '40')
-          .style('x', '-100')
-          .style('y', '-20')
-          .style('rx', '10')
-          .style('ry', '10');
+          .append("svg:rect")
+          .attr("class", "fill-white stroke-black stroke-2 cursor-pointer")
+          .style("fill", "#fff")
+          .style("width", "200")
+          .style("height", "40")
+          .style("x", "-100")
+          .style("y", "-20")
+          .style("rx", "10")
+          .style("ry", "10");
 
         nodeEnter
-          .append('svg:text')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('text-anchor', 'middle')
+          .append("svg:text")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("text-anchor", "middle")
           .text(function (d: RoadData) {
             return d.name;
           })
-          .attr('alignment-baseline', 'middle')
-          .attr('font-weight', 'bold');
+          .attr("alignment-baseline", "middle")
+          .attr("font-weight", "bold");
 
         // Transition nodes to their new position.
         node
           .transition()
           .duration(duration)
-          .attr('transform', function (d: RoadData) {
-            return 'translate(' + d.y + ',' + d.x + ')';
+          .attr("transform", function (d: RoadData) {
+            return "translate(" + d.y + "," + d.x + ")";
           });
-        let nodeUpdate = node.select('g').attr('class', function (d: RoadData) {
+        let nodeUpdate = node.select("g").attr("class", function (d: RoadData) {
           return (
-            'cursor-pointer hover:brightness-95 hover:opacity-100 ' +
-            (d.depth === 0 ? ' hidden ' : '') +
+            "cursor-pointer hover:brightness-95 hover:opacity-100 " +
+            (d.depth === 0 ? " hidden " : "") +
             (d.select
-              ? 'brightness-90 '
+              ? "brightness-90 "
               : selectcurrent !== null &&
                 selectcurrent.select === true &&
                 d !== selecthistory[d.depth! - 1] &&
                 getLevel() >= (d.depth === undefined ? 0 : d.depth)
-              ? 'opacity-30 '
-              : '')
+              ? "opacity-30 "
+              : "")
           );
         });
 
         nodeUpdate
-          .select('rect')
-          .attr('class', function (d: RoadData) {
-            return 'stroke-2 ' + stateBorderColor[d.state ?? 0];
+          .select("rect")
+          .attr("class", function (d: RoadData) {
+            return "stroke-2 " + stateBorderColor[d.state ?? 0];
           })
-          .style('width', '200')
-          .style('height', '40')
-          .style('x', '-100')
-          .style('y', '-20')
-          .style('rx', '10')
-          .style('ry', '10')
-          .style('fill', function (d: RoadData) {
+          .style("width", "200")
+          .style("height", "40")
+          .style("x", "-100")
+          .style("y", "-20")
+          .style("rx", "10")
+          .style("ry", "10")
+          .style("fill", function (d: RoadData) {
             return statebgColor[d.state ?? 0];
           });
 
         nodeUpdate
-          .select('text')
-          .attr('class', function (d: RoadData) {
-            return d.state === 3 ? ' line-through ' : '';
+          .select("text")
+          .attr("class", function (d: RoadData) {
+            return d.state === 3 ? " line-through " : "";
           })
-          .style('fill', function (d: RoadData) {
+          .style("fill", function (d: RoadData) {
             return stateTextColor[d.state ?? 0];
           });
 
@@ -291,20 +290,20 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if ((d.depth ?? 1) - (lastclick!.depth ?? 1) >= 2) return 0;
             else return duration;
           })
-          .attr('transform', function (d: RoadData) {
+          .attr("transform", function (d: RoadData) {
             return (
-              'translate(' +
+              "translate(" +
               selecthistorybefore[(d!.depth ?? 2) - 2]!.y +
-              ',' +
+              "," +
               selecthistorybefore[(d!.depth ?? 2) - 2]!.x +
-              ')'
+              ")"
             );
           })
           .remove();
 
         // Update the links…
         let link = vis
-          .selectAll('path.link')
+          .selectAll("path.link")
           .data(tree.links(nodes), function (d: any) {
             return d.target.id;
           });
@@ -312,23 +311,23 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         // Enter any new links at the parent's previous position.
         link
           .enter()
-          .insert('svg:path', 'g')
-          .attr('class', function (d: { source: RoadData; target: RoadData }) {
+          .insert("svg:path", "g")
+          .attr("class", function (d: { source: RoadData; target: RoadData }) {
             return (
-              'link fill-none stroke-black stroke-1' +
-              (d.source.depth === 0 ? ' hidden' : '')
+              "link fill-none stroke-black stroke-1" +
+              (d.source.depth === 0 ? " hidden" : "")
             );
           })
-          .attr('d', function () {
+          .attr("d", function () {
             let o = { x: source.x0, y: source.y0 };
             return diagonal({ source: o, target: o });
           })
           .transition()
           .duration(duration)
-          .attr('d', diagonal);
+          .attr("d", diagonal);
 
         // Transition links to their new position.
-        link.transition().duration(duration).attr('d', diagonal);
+        link.transition().duration(duration).attr("d", diagonal);
 
         //   Transition exiting nodes to the parent's new position.
         link
@@ -338,7 +337,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if ((d.source.depth ?? 1) - (lastclick!.depth ?? 1) >= 1) return 0;
             else return duration;
           })
-          .attr('d', function (d: { source: any; target: any }) {
+          .attr("d", function (d: { source: any; target: any }) {
             let o = {
               x: selecthistorybefore[(d.source.depth ?? 1) - 1]!.x ?? 0,
               y: selecthistorybefore[(d.source.depth ?? 1) - 1]!.y ?? 0,
