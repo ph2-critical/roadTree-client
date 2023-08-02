@@ -26,8 +26,18 @@ export const Card = (props: CardProps) => {
           }
         >
           <div
-            className={`text-xl pl-4   flex items-center text-black2 w-[321px] h-16 border-slate-400 border-1 rounded-xl box-border 
-            ${
+            className={`text-xl pl-4 bg-white  flex items-center text-black2 w-[321px] h-16 border-slate-400 border-1 rounded-xl box-border 
+
+            `}
+          >
+            {/* ${
+              status === "todo"
+                ? "bg-white"
+                : status === "doing"
+                ? "bg-doingColor"
+                : "bg-doneColor"
+            } 
+                ${
               snapshot.isDragging
                 ? status === "doing"
                   ? "bg-doingColor"
@@ -37,15 +47,7 @@ export const Card = (props: CardProps) => {
                 : "bg-white"
             }
             
-            `}
-          >
-            {/* ${
-              status === "todo"
-                ? "bg-white"
-                : status === "doing"
-                ? "bg-doingColor"
-                : "bg-doneColor"
-            } */}
+            */}
             {content}
           </div>
         </div>

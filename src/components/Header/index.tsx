@@ -98,7 +98,7 @@ export const Header = () => {
         {isLogin ? (
           <div className="flex items-center">
             <Alarm />
-            <Link href={"./profile"} className="p-3">
+            <Link href={"/profile"} className="p-3">
               <Image
                 src={"header/user.svg"}
                 alt={"notification"}
@@ -115,7 +115,7 @@ export const Header = () => {
               toggleModal();
             }}
           >
-            로그인
+            로그인 / 회원가입
           </button>
         )}
       </div>
