@@ -20,7 +20,7 @@ export default function RoadTreeMobileLayout(props: {
             return (
                 data.children.map((child, idx) => {
                     return (
-                        <div className="px-2 pb-2">
+                        <div className="px-4 pb-2">
                             <div className={`border-2 border-black w-full rounded-lg  mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
                                 ${child.select ? ' brightness-90 h-32 ' : 'h-20'} flex flex-row items-center
                                 text-base font-bold text-gray-700 pl-8
