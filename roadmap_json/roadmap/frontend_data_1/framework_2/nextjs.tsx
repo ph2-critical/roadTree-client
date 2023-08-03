@@ -8,6 +8,15 @@ export const front_next_data_private: RoadData = {
   description : 'Next는 React 기반의 프론트엔드 프레임워크입니다.구글링 검색엔진의 노출을 위해 알고리즘이 서버 사이드 렌더링(SSR)에 최적화되면서 SSR과 정적 사이트 생성하는 것이 주요 기능인 Next.js가 뜨게 되었습니다.',
   ref: [
     {
+        uuid: '332005',
+        title : "Next.js 생활코딩",
+        url : "https://opentutorials.org/course/5098",
+        grade: 2,
+        amount : "총 1시간 23분",
+        price : 0,
+        category : "유튜브"
+    },
+    {
       uuid: '332000',
       title : "노마드코더 NextJS 시작하기",
       url : "https://nomadcoders.co/nextjs-fundamentals",
