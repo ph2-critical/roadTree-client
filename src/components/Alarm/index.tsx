@@ -12,7 +12,7 @@ export const Alarm = () => {
                 onClick={toggleModal}
                 className="p-3 hover:brightness-150">
                 <Image
-                    src={'header/notifications.svg'}
+                    src={'/header/notifications.svg'}
                     alt={'notification'}
                     width={512}
                     height={512}

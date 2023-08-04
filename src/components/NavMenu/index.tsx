@@ -25,7 +25,7 @@ export const NavMenu = (
                     </svg>
                     {/* md 보다 클 경우 유저 아이콘*/}
                     <Image
-                        src={"header/user.svg"}
+                        src={"/header/user.svg"}
                         alt={"user"}
                         width={512}
                         height={512}

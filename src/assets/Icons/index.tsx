@@ -10,16 +10,18 @@ export const Logo = (props: Props) => {
   return (
     <div className={props.className} onClick={props.onClick}>
       <Image
-        src={'logo.svg'}
+        src={'/logo.svg'}
         alt={'logo'}
         width={128}
         height={52}
+        priority
         className="hidden sm:flex" />
       <Image
-        src={'header/RoadTreeIcon.svg'}
+        src={'/header/RoadTreeIcon.svg'}
         alt={'logo'}
         width={64}
         height={64}
+        priority
         className="flex sm:hidden" />
     </div>
   );

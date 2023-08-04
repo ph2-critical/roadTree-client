@@ -12,7 +12,6 @@ import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
-import Image from "next/image";
 import { Alarm } from "../Alarm";
 import { useLoginStore } from "@/src/status/store";
 import { NavMenu } from "../NavMenu";
