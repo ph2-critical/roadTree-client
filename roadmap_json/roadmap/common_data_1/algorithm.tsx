@@ -1,4 +1,5 @@
 import { RoadData } from '@/roadmap_json/roadmap_data';
+import {personal_algorithm_blog_private} from "@/roadmap_json/roadmap/common_data_1/CS_2/algorithm_blog";
 
 export const algorithm_data_private: RoadData = {
   nid: 3,
@@ -44,5 +45,5 @@ export const algorithm_data_private: RoadData = {
       category: '유데미',
     },
   ],
-  children: [],
+  children: [personal_algorithm_blog_private],
 };
