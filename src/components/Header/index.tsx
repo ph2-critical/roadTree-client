@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Logo } from "@/src/assets/Icons";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import initAmplitude from "@/lib/amplitude/amplitude";
 import { track } from "@amplitude/analytics-browser";
 import { hotjar } from "react-hotjar";
@@ -23,14 +23,15 @@ export const Header = () => {
   const pathName = usePathname();
   const searchParams: string = pathName.split("/")[2];
   const whatStudy: number = parseInt(searchParams);
+  const router = useRouter();
 
-  //   const Logout = async () => {
-  //     //  ('[amplitude] click_logout_header_btn');
-  //     track("click_logout_header_btn", { from: pathName });
-  //     await supabase.auth.signOut();
-  //     setIsLogin(false);
-  //     router.push("/");
-  //   };
+  const Logout = async () => {
+    //  ('[amplitude] click_logout_header_btn');
+    track("click_logout_header_btn", { from: pathName });
+    await supabase.auth.signOut();
+    setLogout();
+    router.push("/");
+  };
 
   useEffect(() => {
     const checkUser = async () => {
@@ -96,8 +97,8 @@ export const Header = () => {
             <div className="w-3"></div>
             {isLogin ? (
               <div className="flex items-center">
-                <Alarm />
-                <NavMenu setLogout={setLogout} />
+                {/* <Alarm /> */}
+                <NavMenu Logout={Logout} />
               </div>
             ) : (
               <button
