@@ -63,7 +63,7 @@ export const NavMenu = (
                                 </li>
 
                             </ul>
-                            <ul className="xpy-1 md:hidden">
+                            <ul className="xpy-1 md:hidden" onClick={() => { closeModal() }}>
                                 <li>
                                     <div onClick={() => { window.open('https://tally.so/r/mYRE70') }} className="block px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">피드백</div>
                                 </li>
