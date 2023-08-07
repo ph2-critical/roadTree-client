@@ -110,4 +110,34 @@
     align-items: center;
   }
   /************************************************************************************************/
+
+
+  /********************************************Table**************************************************/
+  .ranking-datatable-rank{ 
+    color: #6b6a6a;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .ranking-datatable-nickname td {
+    color: #6b6a6a;
+    font-size: medium;
+  }
+
+  .ranking-datatable-count td {
+    color: #6b6a6a;
+    font-size: medium;
+  }
+
+  .ranking-datatable thead {
+    border-bottom: 3px solid rgb(195, 253, 195);
+    font-weight: 500;
+    text-align: right;
+    font-size: large;
+    font-family: 'Pretendard-Regular', 'Apple SD Gothic Neo';
+
+  }
+
+    /************************************************************************************************/
+
 }

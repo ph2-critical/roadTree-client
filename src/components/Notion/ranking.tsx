@@ -6,11 +6,13 @@ import Link from "next/link";
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
 
 
 interface RankingInfo {
     nickname: string;
-    rank: number;
+    rank: string;
     count: number;
 }
 
@@ -31,7 +33,7 @@ export const Ranking = (
             const mappedRankingInfo: RankingInfo[] = Object.entries(res).map(([nickname, count], rank) =>{
                 return {
                     nickname: nickname,
-                    rank: rank + 1, // rank는 0부터 시작하지만 1부터 시작하도록 조정
+                    rank: rank + 1 + '등', // rank는 0부터 시작하지만 1부터 시작하도록 조정
                     count: count
                 };
             });
@@ -51,10 +53,13 @@ export const Ranking = (
                 </ul>
             </div >
             <div className="card">
-                <DataTable value={rankingInfo} tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="rank" header="랭킹"></Column>
-                    <Column field="nickname" header="닉네임"></Column>
-                    <Column field="count" header="횟수"></Column>
+                <DataTable 
+                  style={{ width: '500px', color: 'green', textAlign: 'center', backgroundColor: 'green-300'}}
+                  className="ranking-datatable"
+                  value={rankingInfo}  tableStyle={{ minWidth: '1rem'}}>
+                    <Column className="ranking-datatable-rank" field="rank" header="랭킹"></Column>
+                    <Column className="ranking-datatable-nickname" field="nickname" header="닉네임"></Column>
+                    <Column className="ranking-datatable-count" field="count" header="횟수"></Column>
                 </DataTable>
             </div>
         </>
