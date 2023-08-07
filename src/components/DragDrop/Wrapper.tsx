@@ -2,7 +2,7 @@
 import * as _ from "lodash";
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Box, BoxProps } from "./Box";
+import { Box } from "./Box";
 import { CardProps } from "./Card";
 
 export type StatusType = "todo" | "doing" | "done";

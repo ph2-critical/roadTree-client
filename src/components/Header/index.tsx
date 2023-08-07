@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/src/assets/Icons";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase";
@@ -31,6 +31,7 @@ export const Header = () => {
   //     setIsLogin(false);
   //     router.push("/");
   //   };
+  const [type, setType] = useState("");
 
   useEffect(() => {
     const checkUser = async () => {
@@ -109,14 +110,26 @@ export const Header = () => {
             </Link>
           </div>
         ) : (
-          <button
-            className="inline-flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-            onClick={() => {
-              toggleModal();
-            }}
-          >
-            로그인 / 회원가입
-          </button>
+          <div className="flex gap-3">
+            <button
+              className="justify-center px-3 py-2 font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+              onClick={() => {
+                setType("login");
+                toggleModal();
+              }}
+            >
+              로그인
+            </button>
+            <button
+              className="inline-flex justify-center px-3 py-2 font-semibold bg-white border-2 border-main rounded-2xl text-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+              onClick={() => {
+                setType("signup");
+                toggleModal();
+              }}
+            >
+              회원가입
+            </button>
+          </div>
         )}
       </div>
       <div className="flex flex-row-reverse ml-4 mr-4 text-black md:hidden">
@@ -135,7 +148,11 @@ export const Header = () => {
       </div>
       {!isLogin && isOpen && (
         <ModalPortal>
-          <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
+          <LoginModal
+            toggleModal={toggleModal}
+            modalRef={modalRef}
+            type={type}
+          />
         </ModalPortal>
       )}
     </nav>
