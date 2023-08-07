@@ -6,7 +6,7 @@ import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
 import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
-import { postNodeData, postProps } from "@/src/api";
+import { migrationRefDataPost, migrationRefDataPostProps, postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
@@ -197,6 +197,22 @@ export default function SideBar(props: {
                 </div>
                 <div className="border border-gray-200 rounded shadow-md">
                   {select?.ref?.map((item, index) => {
+
+                    // migration reference
+
+                    const postdata : migrationRefDataPostProps = {
+                      title: item.title,
+                      url: item.url,
+                      grade:  item.grade,
+                      category: item.category,
+                      amount: item.amount,
+                      price: item.price,
+                    }
+                    
+                    migrationRefDataPost(postdata) 
+
+                    // migration end
+                    
                     return (
                       <div
                         key={"key" + index}

@@ -95,3 +95,46 @@ export const postRefDatas = async (props: postRefProps) => {
     .eq('ref_id', props.ref_id);
   return data;
 };
+
+
+
+// Migration from file to Supabase  
+// create table
+//   public.reference (
+//     rid uuid not null default gen_random_uuid (),
+//     title character varying not null,
+//     url character varying not null,
+//     grade integer null,
+//     category character varying not null,
+//     amount character varying null,
+//     price bigint null,
+//     created_at timestamp with time zone not null default now(),
+//     constraint reference_pkey primary key (rid),
+//     constraint reference_created_time_key unique (created_at),
+//     constraint reference_title_key unique (title)
+//   ) tablespace pg_default;
+export interface migrationRefDataPostProps {
+  title: string;
+  url: string;
+  grade: number;
+  category: string;
+  amount: string;
+  price: number;
+}
+
+export const migrationRefDataPost = async (props: migrationRefDataPostProps) => {
+  const data = await supabase
+    .from('reference')
+    .upsert([
+      {
+        title: props.title,
+        url: props.url,
+        grade: props.grade,
+        category: props.category,
+        amount: props.amount,
+        price: props.price,
+      },
+    ])
+    .eq('title', props.title)
+  return data;
+};
