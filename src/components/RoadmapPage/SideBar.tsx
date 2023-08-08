@@ -6,7 +6,7 @@ import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
 import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
-import { migrationRefDataPost, migrationRefDataPostProps, postNodeData, postProps } from "@/src/api";
+import { migrationNodeDataExceptParentPost, migrationNodeDataExceptParentPostProps, migrationRefDataPost, migrationRefDataPostProps, postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
@@ -101,6 +101,21 @@ export default function SideBar(props: {
       // 초기화 작업 진행
       setInit(select);
     }
+
+
+    // migration reference
+    if (select !== null) {
+
+      const postdata: migrationNodeDataExceptParentPostProps = {
+        name: select.name,
+        description: select.description ?? null,
+        depth: select.depth!,
+        type: whatStudy,
+      }
+
+      migrationNodeDataExceptParentPost(postdata)
+    }
+    // migration end
   }, [select]);
 
   if (select !== null && isShowRef) {
@@ -198,21 +213,21 @@ export default function SideBar(props: {
                 <div className="border border-gray-200 rounded shadow-md">
                   {select?.ref?.map((item, index) => {
 
-                    // migration reference
+                    // // migration reference
 
-                    const postdata : migrationRefDataPostProps = {
-                      title: item.title,
-                      url: item.url,
-                      grade:  item.grade,
-                      category: item.category,
-                      amount: item.amount,
-                      price: item.price,
-                    }
-                    
-                    migrationRefDataPost(postdata) 
+                    // const postdata : migrationRefDataPostProps = {
+                    //   title: item.title,
+                    //   url: item.url,
+                    //   grade:  item.grade,
+                    //   category: item.category,
+                    //   amount: item.amount,
+                    //   price: item.price,
+                    // }
 
-                    // migration end
-                    
+                    // migrationRefDataPost(postdata) 
+
+                    // // migration end
+
                     return (
                       <div
                         key={"key" + index}

@@ -138,3 +138,64 @@ export const migrationRefDataPost = async (props: migrationRefDataPostProps) => 
     .eq('title', props.title)
   return data;
 };
+
+export interface migrationRefDataPostProps {
+  title: string;
+  url: string;
+  grade: number;
+  category: string;
+  amount: string;
+  price: number;
+}
+
+export interface migrationNodeDataExceptParentPostProps {
+  name: string;
+  description: string | null;
+  depth: number;
+  type: string;
+}
+
+export const migrationNodeDataExceptParentPost = async (props: migrationNodeDataExceptParentPostProps) => {
+  const data = await supabase
+    .from('node')
+    .upsert([
+      {
+        name: props.name,
+        description: props.description,
+        depth: props.depth,
+        type: props.type,
+      },
+    ])
+    .eq('name', props.name)
+  return data;
+};
+
+export interface migrationNodeParentDataPostProps {
+  name: string;
+  description: string | null;
+  depth: number;
+  type: string;
+  parent_name: string;
+}
+
+export const migrationNodeParentDataPost = async (props: migrationNodeParentDataPostProps) => {
+  const data = await supabase
+    .from('node')
+    .select('nid')
+    .eq('name', props.parent_name)
+  console.log(data);
+  
+  // const data = await supabase
+  //   .from('node')
+  //   .upsert([
+  //     {
+  //       name: props.name,
+  //       description: props.description,
+  //       depth: props.depth,
+  //       type: props.type,
+  //       parent_name: props.parent_name,
+  //     },
+  //   ])
+  //   .eq('name', props.name)
+  // return data;
+}
