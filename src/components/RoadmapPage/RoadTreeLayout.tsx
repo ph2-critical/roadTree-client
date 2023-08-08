@@ -72,10 +72,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   // 선택
   function toggle_select(d: RoadData) {
-    console.log(d.select)
     if (d.select === true) {  // 이미 선택되었던 경우에는 선택 해제
       for (let i = 3; i >= (d.depth ?? 1) - 1; i--) {
-        console.log(i, selectHistory[i])
         if (selectHistory[i] !== null) {
           toggle_deleteselect(selectHistory[i]!);
         }

@@ -148,10 +148,8 @@ export default function SideBar(props: {
                     });
 
                     if (useWindowResizeVar) {
-                      console.log(1)
                       setIsShowRef(false);
                     } else {
-                      console.log(2)
                       select.select = false;
                       setSelect(null);
                       updateFunc(select);
