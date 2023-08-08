@@ -22,7 +22,7 @@ export interface deleteProps {
   user_id: string;
 }
 
-export const getNodeDatas = async (props: getProps) => {
+export const getNodeState = async (props: getProps) => {
   const data = await supabase
     .from(`${props.roadmap_type}_node_depth${props.depth}`)
     .select('node_id, state')
@@ -30,7 +30,7 @@ export const getNodeDatas = async (props: getProps) => {
   return data;
 };
 
-export const postNodeData = async (props: postProps) => {
+export const upsertNodeState = async (props: postProps) => {
   const { data } = await supabase
     .from(`${props.roadmap_type}_node_depth${props.depth}`)
     .upsert([
@@ -44,16 +44,6 @@ export const postNodeData = async (props: postProps) => {
     .eq('node_id', props.node_id);
 
   return data;
-};
-
-export const deleteNodeData = async (props: deleteProps) => {
-  const { error } = await supabase
-    .from(`${props.roadmap_type}_node_depth${props.depth}`)
-    .delete()
-    .eq('user_id', props.user_id)
-    .eq('node_id', props.node_id);
-
-  return error;
 };
 
 // reference
@@ -71,7 +61,7 @@ export interface postRefProps {
   state: string;
 }
 
-export const getRefDatas = async (props: getRefProps) => {
+export const getRefState = async (props: getRefProps) => {
   const data = await supabase
     .from(`${props.roadmap_type}_ref`)
     .select('state')
@@ -81,7 +71,7 @@ export const getRefDatas = async (props: getRefProps) => {
   return data;
 };
 
-export const postRefDatas = async (props: postRefProps) => {
+export const postRefState = async (props: postRefProps) => {
   const data = await supabase
     .from(`${props.roadmap_type}_ref`)
     .upsert([

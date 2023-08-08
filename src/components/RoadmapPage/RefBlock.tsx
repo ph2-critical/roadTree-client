@@ -5,10 +5,10 @@ import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
 import { useEffect, useState } from 'react';
 import {
-  getRefDatas,
   getRefProps,
-  postRefDatas,
+  getRefState,
   postRefProps,
+  postRefState,
 } from '@/src/api';
 import { track } from '@amplitude/analytics-browser';
 
@@ -76,7 +76,7 @@ export default function RefBlock(props: {
         ref_id: refdata.uuid,
       };
 
-      getRefDatas(getProp).then((data) => {
+      getRefState(getProp).then((data) => {
         if (data.data && data.data.length > 0) {
           setStateNum(state2num[data.data[0].state]);
         }
@@ -109,7 +109,7 @@ export default function RefBlock(props: {
       user_id: userId,
     };
 
-    postRefDatas(postData);
+    postRefState(postData);
   };
 
   if (refBlockInit) {

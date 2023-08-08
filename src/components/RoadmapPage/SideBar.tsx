@@ -6,7 +6,7 @@ import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
 import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
-import { postNodeData, postProps } from "@/src/api";
+import { postProps, upsertNodeState } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
@@ -82,11 +82,11 @@ export default function SideBar(props: {
         roadmap_type: whatStudy,
         depth: select.depth ?? 1,
         state: stateTable[num],
-        node_id: select.nid,
+        node_id: select.nid as number,
         user_id: userId,
       };
 
-      postNodeData(postProp);
+      upsertNodeState(postProp);
 
       updateFunc(select);
     }

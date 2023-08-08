@@ -7,7 +7,7 @@ import {
   roadmap_front_public,
   roadDataState,
 } from '@/roadmap_json/roadmap_data';
-import { getNodeDatas, getProps } from '@/src/api';
+import { getNodeState, getProps } from '@/src/api';
 import { track } from '@amplitude/analytics-browser';
 import d3, { set } from 'd3';
 import { useEffect, useState } from 'react';
@@ -164,7 +164,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           user_id: userId,
         };
 
-        return getNodeDatas(getProp).then((res) => {
+        return getNodeState(getProp).then((res) => {
           if (res.data === null) return;
           stateStore[whatStudyTable[whatStudy]][i] = {};
           res.data.map((data: any) => {
@@ -177,9 +177,18 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     );
   }
 
+  async function setInitNode() {
+    
+  }
+
   useEffect(() => {
+    async function initNode() {
+      await setInitNode();
+      await setInitNodeState();
+      return true;
+    }
     if (userId && init === false) {
-      setInitNodeState().then((res) => {
+      initNode().then((res) => {
         setInit(true);
       });
     }
