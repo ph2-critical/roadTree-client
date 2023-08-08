@@ -6,7 +6,7 @@ import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
 import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
-import { migrationNodeDataExceptParentPost, migrationNodeDataExceptParentPostProps, migrationRefDataPost, migrationRefDataPostProps, postNodeData, postProps } from "@/src/api";
+import { migrationNodeDataExceptParentPost, migrationNodeDataExceptParentPostProps, migrationNodeParentDataPost, migrationNodeRef, migrationNodeRefProps, migrationRefDataPost, migrationRefDataPostProps, postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
@@ -116,6 +116,18 @@ export default function SideBar(props: {
     //   migrationNodeDataExceptParentPost(postdata)
     // }
     // // migration end
+
+    // migration node_ref
+    if (select !== null && select.ref !== undefined) {
+      select.ref.map((ref) => {
+        const postdata: migrationNodeRefProps = {
+          node_name: select.name,
+          ref_title: ref.title,
+        }
+        migrationNodeRef(postdata);
+        })
+    }
+
   }, [select]);
 
   if (select !== null && isShowRef) {

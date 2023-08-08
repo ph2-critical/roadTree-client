@@ -195,3 +195,32 @@ export const migrationNodeParentDataPost = async (props: migrationNodeParentData
     .eq('name', props.name)
   return data2;
 }
+
+export interface migrationNodeRefProps {
+  node_name: string;
+  ref_title: string;
+}
+
+export const migrationNodeRef= async (props: migrationNodeRefProps) => {
+  const data = await supabase
+    .from('node')
+    .select('nid')
+    .eq('name', props.node_name)
+  const parent_nid = data!.data![0].nid;
+
+  const data2 = await supabase
+    .from('reference')
+    .select('rid')
+    .eq('title', props.ref_title)
+  const ref_rid = data2!.data![0].rid;
+
+  const data3 = await supabase
+    .from('node_reference')
+    .insert([
+      {
+        nid: parent_nid,
+        rid: ref_rid,
+      },
+    ])
+  return data3;
+}

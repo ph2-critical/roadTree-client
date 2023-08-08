@@ -255,21 +255,21 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .append('svg:g')
           .attr('class', function (d : RoadData) {
 
-            // migration parent
+            // // migration parent
 
-            d._children?.map((child) => {
-              const postdata: migrationNodeParentDataPostProps = {
-                name: child.name,
-                description: child.description ?? null,
-                depth: child.depth!,
-                type: whatStudyTable[whatStudy],
-                parent_name: d.name
-              }
+            // d._children?.map((child) => {
+            //   const postdata: migrationNodeParentDataPostProps = {
+            //     name: child.name,
+            //     description: child.description ?? null,
+            //     depth: child.depth!,
+            //     type: whatStudyTable[whatStudy],
+            //     parent_name: d.name
+            //   }
   
-              migrationNodeParentDataPost(postdata)
-            })
+            //   migrationNodeParentDataPost(postdata)
+            // })
             
-            // migration parent end
+            // // migration parent end
 
 
             if (d.state === undefined) {
