@@ -14,14 +14,13 @@ export const Logo = (props: Props) => {
         alt={'logo'}
         width={128}
         height={52}
-        priority
+        style={{width: 128, height: 52}}
         className="hidden sm:flex" />
       <Image
         src={'/header/RoadTreeIcon.svg'}
         alt={'logo'}
         width={64}
         height={64}
-        priority
         className="flex sm:hidden" />
     </div>
   );
