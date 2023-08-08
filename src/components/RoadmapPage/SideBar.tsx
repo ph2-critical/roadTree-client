@@ -1,6 +1,6 @@
 "use client";
 
-import { RoadData } from "@/roadmap_json/roadmap_data";
+import { RoadData, reference } from "@/roadmap_json/roadmap_data";
 import RefBlock from "./RefBlock";
 import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { postProps, upsertNodeState } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
+import { getReferenceUsingNid } from "@/src/api/initNode";
 
 export default function SideBar(props: {
   whatStudy: number,
@@ -32,6 +33,8 @@ export default function SideBar(props: {
   const userId: string = props.userId;
   const { isShowRef, setIsShowRef } = props.showRef;
   let useWindowResizeVar: boolean = useWindowResize();
+
+  const [references, setReferences] = useState<reference[]>([]);
 
   const sidebarWeightEnd: () => void = () => {
     //  ('[amplitude] resize_sidebar');
@@ -92,12 +95,19 @@ export default function SideBar(props: {
     }
   };
 
+  const setInitReferences: (selectNid: string) => void = (selectNid: string) => {
+    getReferenceUsingNid(selectNid).then((data) => {
+      setReferences(data);
+    });
+  }
+
   const isLoading: boolean = select !== init;
 
   useEffect(() => {
     if (select !== null && select !== init) {
       setNodeStateNum(select.state ?? 0);
       setRefBlockInit(false);
+      setInitReferences(select.nid as string);
       // 초기화 작업 진행
       setInit(select);
     }
@@ -194,7 +204,7 @@ export default function SideBar(props: {
                   학습 내용
                 </div>
                 <div className="border border-gray-200 rounded shadow-md">
-                  {select?.ref?.map((item, index) => {
+                  {references.map((item, index) => {
                     return (
                       <div
                         key={"key" + index}
