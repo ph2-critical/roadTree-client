@@ -183,19 +183,15 @@ export const migrationNodeParentDataPost = async (props: migrationNodeParentData
     .from('node')
     .select('nid')
     .eq('name', props.parent_name)
-  console.log(data);
+  const parent_nid = data!.data![0].nid;
   
-  // const data = await supabase
-  //   .from('node')
-  //   .upsert([
-  //     {
-  //       name: props.name,
-  //       description: props.description,
-  //       depth: props.depth,
-  //       type: props.type,
-  //       parent_name: props.parent_name,
-  //     },
-  //   ])
-  //   .eq('name', props.name)
-  // return data;
+  const data2 = await supabase
+    .from('node')
+    .update(
+      {
+        parent_node_nid: parent_nid,
+      },
+    )
+    .eq('name', props.name)
+  return data2;
 }

@@ -103,19 +103,19 @@ export default function SideBar(props: {
     }
 
 
-    // migration reference
-    if (select !== null) {
+    // // migration node
+    // if (select !== null) {
 
-      const postdata: migrationNodeDataExceptParentPostProps = {
-        name: select.name,
-        description: select.description ?? null,
-        depth: select.depth!,
-        type: whatStudy,
-      }
+    //   const postdata: migrationNodeDataExceptParentPostProps = {
+    //     name: select.name,
+    //     description: select.description ?? null,
+    //     depth: select.depth!,
+    //     type: whatStudy,
+    //   }
 
-      migrationNodeDataExceptParentPost(postdata)
-    }
-    // migration end
+    //   migrationNodeDataExceptParentPost(postdata)
+    // }
+    // // migration end
   }, [select]);
 
   if (select !== null && isShowRef) {

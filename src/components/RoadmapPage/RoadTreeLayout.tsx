@@ -7,7 +7,7 @@ import {
   roadmap_front_public,
   roadDataState,
 } from '@/roadmap_json/roadmap_data';
-import { getNodeDatas, getProps } from '@/src/api';
+import { getNodeDatas, getProps, migrationNodeParentDataPost, migrationNodeParentDataPostProps } from '@/src/api';
 import { track } from '@amplitude/analytics-browser';
 import d3, { set } from 'd3';
 import { useEffect, useState } from 'react';
@@ -253,7 +253,25 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         let nodeEnter = node
           .enter()
           .append('svg:g')
-          .attr('class', function (d) {
+          .attr('class', function (d : RoadData) {
+
+            // migration parent
+
+            d._children?.map((child) => {
+              const postdata: migrationNodeParentDataPostProps = {
+                name: child.name,
+                description: child.description ?? null,
+                depth: child.depth!,
+                type: whatStudyTable[whatStudy],
+                parent_name: d.name
+              }
+  
+              migrationNodeParentDataPost(postdata)
+            })
+            
+            // migration parent end
+
+
             if (d.state === undefined) {
               d.state =
                 !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
