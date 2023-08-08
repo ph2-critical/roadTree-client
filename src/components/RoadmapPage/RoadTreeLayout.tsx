@@ -100,11 +100,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         }
       }
       selectHistory[d.depth - 1] = d;
-      // setSelectHistory((prev) => {
-      //   const newSelectHistory = [...prev];
-      //   newSelectHistory[d.depth! - 1] = d;
-      //   return newSelectHistory;
-      // });
     }
 
     if (selectCurrent[0] !== null) selectCurrent[0].select = false; // 이전 선택 내용 색 지우기
@@ -125,19 +120,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         d.children = null;
         if (d.depth) {
           selectHistoryBefore[d.depth - 1] = selectHistory[d.depth - 1];
-          // setSelectHistoryBefore((prev) => {
-          //   const newSelectHistoryBefore = [...prev];
-          //   newSelectHistoryBefore[d.depth! - 1] = selectHistory[d.depth! - 1];
-          //   return newSelectHistoryBefore;
-          // });
-
 
           selectHistory[d.depth - 1] = null;
-          // setSelectHistory((prev) => {
-          //   const newSelectHistory = [...prev];
-          //   newSelectHistory[d.depth! - 1] = null;
-          //   return newSelectHistory;
-          // });
         }
       }
 
@@ -248,15 +232,22 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
       function update(source: RoadData) {
 
-        // 
-
         let duration = 500;
 
         // Compute the new tree layout.
         let nodes = tree.nodes(root).reverse();
 
         // Normalize for fixed-depth.
+        // 노드 각각에 대해 속성 설정 (좌표, Children)
         nodes.forEach(function (d: RoadData) {
+          // children이 없는 경우 서버에서 데이터를 받아옴
+
+          if (d._children === undefined && d.children === undefined) {
+            getNodeChildren(d.nid as string).then((res) => {
+              d._children = res ?? [];
+            });
+          }
+
           let level: number = getLevel();
           if (d.depth) {
             d.y = (d.depth - level / 3) * 300 + 100;
