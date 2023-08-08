@@ -13,7 +13,7 @@ export interface reference {
 }
 
 export interface RoadData {
-  nid: number;
+  nid: number | string;
   name: string;
   description?: string;
   select?: boolean;
@@ -21,7 +21,6 @@ export interface RoadData {
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
 
-  id?: number;
   ref?: reference[];
 
   state?: number;
