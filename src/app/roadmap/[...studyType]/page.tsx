@@ -27,17 +27,20 @@ function page({ params }: { params: roadmapParams }) {
       alert("AI 과정은 준비중입니다.");
       router.push("/");
     }
-    const getUser = async () => {
-      const user = await supabase.auth.getUser();
-      const userId: string | undefined = user.data.user?.id;
-      userId && setId(userId);
-    };
-    getUser();
+    else {
+      const getUser = async () => {
+        const user = await supabase.auth.getUser();
+        const userId: string | undefined = user.data.user?.id;
+        userId && setId(userId);
+      };
+      getUser();
 
-    track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+      track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    }
   }, []);
 
   return (
+    id !== "" && (
     <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
       <main
         className={
@@ -54,7 +57,7 @@ function page({ params }: { params: roadmapParams }) {
         showRef={{ isShowRef, setIsShowRef }}
         select={select}
       />
-    </div>
+    </div>)
   );
 }
 
