@@ -40,7 +40,7 @@ export const Header = () => {
       } = await supabase.auth.getUser();
       if (user) {
         initAmplitude(user.id);
-        setLogin();
+        setLogin(user.id);
       } else {
         initAmplitude("");
         setLogout();
