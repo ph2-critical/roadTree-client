@@ -24,29 +24,29 @@ export const NavMenu = (
                         </g>
                     </svg>
                     {/* md 보다 클 경우 유저 아이콘*/}
-                    {/* <Image
+                    <Image
                         src={"/header/user.svg"}
                         alt={"user"}
                         width={512}
                         height={512}
                         className="w-7 h-7 hidden md:flex"
-                    ></Image> */}
-                    <button
+                    ></Image>
+                    {/* <button
                         className="hidden md:flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
                         onClick={() => {
                             props.Logout();
                         }}
                     >
                         로그아웃
-                    </button>
+                    </button> */}
                 </div>
             </div>
 
             {isOpen && (
-                <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:absolute sm:w-auto md:hidden">
+                <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:absolute sm:w-auto">
                     <div className="text-black bg-white sm:w-40 top-auto shadow-deep-dark rounded-md w-full">
                         <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
-                            <div className="px-4 py-3 hidden" role="none">
+                            <div className="px-4 py-3" role="none">
                                 <p className="text-sm text-gray-900 dark:text-white" role="none">
                                     Neil Sims
                                 </p>
@@ -54,7 +54,7 @@ export const NavMenu = (
                                     neil.sims@flowbite.com
                                 </p>
                             </div>
-                            <ul className="xpy-1 hidden" role="none">
+                            <ul className="xpy-1" role="none">
                                 <li>
                                     <Link href={'/profile'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">내 프로필</Link>
                                 </li>
