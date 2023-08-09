@@ -2,7 +2,7 @@ import { roadmap_back_private } from '@/roadmap_json/roadmap/back_roadmap';
 import { roadmap_front_private } from '@/roadmap_json/roadmap/front_roadmap';
 
 export interface reference {
-  uuid: string;
+  rid: string;
   title: string;
   url: string;
   grade: number;
@@ -13,7 +13,7 @@ export interface reference {
 }
 
 export interface RoadData {
-  nid: number;
+  nid: number | string;
   name: string;
   description?: string;
   select?: boolean;
@@ -21,7 +21,6 @@ export interface RoadData {
   children?: RoadData[] | null;
   _children?: RoadData[] | null;
 
-  id?: number;
   ref?: reference[];
 
   state?: number;
@@ -35,7 +34,7 @@ export interface RoadData {
 export interface roadDataState {
   [roadmap_type: string]: {
     [depth: number]: {
-      [node_id: number]: {
+      [node_id: string]: {
         state: number;
       };
     };

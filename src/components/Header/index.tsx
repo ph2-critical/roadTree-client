@@ -91,6 +91,7 @@ export const Header = () => {
               {navMenu.map((menu, idx) => {
                 return (
                   <Link
+                  key={'header_menu_' + idx}
                     href={`/roadmap/${idx}`}
                     onClick={() => {
                       ("[amplitude] click_go_roadpage_header_menu_btn");

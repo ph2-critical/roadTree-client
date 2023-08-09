@@ -5,12 +5,10 @@ import Image from 'next/image';
 import StudyDropMenu from './StudyDropMenu';
 import { useEffect, useState } from 'react';
 import {
-  getRefDatas,
-  getRefProps,
-  postRefDatas,
-  postRefProps,
+
 } from '@/src/api';
 import { track } from '@amplitude/analytics-browser';
+import { getRefState, getRefStateProps, postRefState, postRefStateProps } from '@/src/api/stateApi';
 
 export default function RefBlock(props: {
   refdata: reference;
@@ -70,13 +68,12 @@ export default function RefBlock(props: {
 
   useEffect(() => {
     if (userId && refBlockInit === false) {
-      const getProp: getRefProps = {
-        roadmap_type: props.whatStudy,
+      const getProp: getRefStateProps = {
         user_id: userId,
-        ref_id: refdata.uuid,
+        ref_id: refdata.rid,
       };
 
-      getRefDatas(getProp).then((data) => {
+      getRefState(getProp).then((data) => {
         if (data.data && data.data.length > 0) {
           setStateNum(state2num[data.data[0].state]);
         }
@@ -88,7 +85,7 @@ export default function RefBlock(props: {
   const setRefStateNum: (num: number) => void = (num) => {
     track('click_ref_state', {
       roadmapCat: props.whatStudy,
-      refId: refdata.uuid,
+      refId: refdata.rid,
       refName: refdata.title,
       refCat: refdata.category,
       refGrade: refdata.grade,
@@ -102,14 +99,14 @@ export default function RefBlock(props: {
     });
 
     setStateNum(num);
-    const postData: postRefProps = {
+    const postData: postRefStateProps = {
       roadmap_type: props.whatStudy,
-      ref_id: refdata.uuid,
+      rid: refdata.rid,
       state: stateTable[num],
       user_id: userId,
     };
 
-    postRefDatas(postData);
+    postRefState(postData);
   };
 
   if (refBlockInit) {
@@ -122,7 +119,7 @@ export default function RefBlock(props: {
           ) {
             track('click_ref_link', {
               roadmapCat: props.whatStudy,
-              refId: refdata.uuid,
+              refId: refdata.rid,
               refName: refdata.title,
               refCat: refdata.category,
               refGrade: refdata.grade,

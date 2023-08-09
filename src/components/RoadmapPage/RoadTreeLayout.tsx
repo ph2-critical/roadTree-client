@@ -6,14 +6,16 @@ import {
   roadmap_back_public,
   roadmap_front_public,
   roadDataState,
-} from "@/roadmap_json/roadmap_data";
-import { getNodeDatas, getProps } from "@/src/api";
-import { track } from "@amplitude/analytics-browser";
-import d3, { set } from "d3";
-import { useEffect, useState } from "react";
-import { create } from "zustand";
-import RoadTreeMobileLayout from "./RoadTreeMobileLayout";
-import { usemdResize } from "@/src/utils/hooks/useWindowResize";
+} from '@/roadmap_json/roadmap_data';
+
+import { track } from '@amplitude/analytics-browser';
+import d3, { set } from 'd3';
+import { useEffect, useState } from 'react';
+import { create } from 'zustand';
+import RoadTreeMobileLayout from './RoadTreeMobileLayout';
+import { usemdResize } from '@/src/utils/hooks/useWindowResize';
+import { getNodeChildren, getNodeId } from '@/src/api/initNode';
+import { getNodeState, getNodeStateProps } from '@/src/api/stateApi';
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -56,14 +58,13 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   ]);
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
-  let root: RoadData =
-    whatStudy == 0 ? roadmap_front_public : roadmap_back_public;
+  const [root, setRoot] = useState<RoadData>(whatStudy == 0 ? roadmap_front_public : roadmap_back_public);
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
 
   let ismdSize: boolean = usemdResize();
 
   const userId: string = props.userId;
-  const whatStudyTable: roadmapType[] = ["front", "back", "ai"];
+  const whatStudyTable: string[] = ["front", "back", "ai"];
   const state2num: { [key: string]: number } = {
     학습안함: 0,
     학습예정: 1,
@@ -82,11 +83,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   // 선택
   function toggle_select(d: RoadData) {
-    console.log(d.select);
-    if (d.select === true) {
-      // 이미 선택되었던 경우에는 선택 해제
+    if (d.select === true) {  // 이미 선택되었던 경우에는 선택 해제
       for (let i = 3; i >= (d.depth ?? 1) - 1; i--) {
-        console.log(i, selectHistory[i]);
         if (selectHistory[i] !== null) {
           toggle_deleteselect(selectHistory[i]!);
         }
@@ -112,11 +110,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         }
       }
       selectHistory[d.depth - 1] = d;
-      // setSelectHistory((prev) => {
-      //   const newSelectHistory = [...prev];
-      //   newSelectHistory[d.depth! - 1] = d;
-      //   return newSelectHistory;
-      // });
     }
 
     if (selectCurrent[0] !== null) selectCurrent[0].select = false; // 이전 선택 내용 색 지우기
@@ -137,18 +130,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         d.children = null;
         if (d.depth) {
           selectHistoryBefore[d.depth - 1] = selectHistory[d.depth - 1];
-          // setSelectHistoryBefore((prev) => {
-          //   const newSelectHistoryBefore = [...prev];
-          //   newSelectHistoryBefore[d.depth! - 1] = selectHistory[d.depth! - 1];
-          //   return newSelectHistoryBefore;
-          // });
 
           selectHistory[d.depth - 1] = null;
-          // setSelectHistory((prev) => {
-          //   const newSelectHistory = [...prev];
-          //   newSelectHistory[d.depth! - 1] = null;
-          //   return newSelectHistory;
-          // });
         }
       }
 
@@ -171,17 +154,17 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     stateStore[whatStudyTable[whatStudy]] = {};
     return Promise.all(
       [1, 2, 3].map((i) => {
-        const getProp: getProps = {
+        const getProp: getNodeStateProps = {
           roadmap_type: whatStudyTable[whatStudy],
           depth: i,
           user_id: userId,
         };
 
-        return getNodeDatas(getProp).then((res) => {
+        return getNodeState(getProp).then((res) => {
           if (res.data === null) return;
           stateStore[whatStudyTable[whatStudy]][i] = {};
           res.data.map((data: any) => {
-            stateStore[whatStudyTable[whatStudy]][i][data.node_id] = {
+            stateStore[whatStudyTable[whatStudy]][i][data.nid] = {
               state: state2num[data.state],
             };
           });
@@ -190,9 +173,31 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     );
   }
 
+  async function setInitNode() {
+    const rootNodeId = await getNodeId(whatStudyTable[whatStudy])
+    setRoot({
+      nid: rootNodeId,
+      name: whatStudyTable[whatStudy],
+    })
+
+    const children: RoadData[] = await getNodeChildren(rootNodeId) ?? [];
+    const commonNodeId: string = await getNodeId('common');
+    const common_children: RoadData[] = await getNodeChildren(commonNodeId) ?? [];
+    setRoot((prev) => {
+      const newRoot = { ...prev };
+      newRoot.children = [...children, ...common_children];
+      return newRoot;
+    });
+  }
+
   useEffect(() => {
+    async function initNode() {
+      await setInitNode();
+      await setInitNodeState();
+      return true;
+    }
     if (userId && init === false) {
-      setInitNodeState().then(() => {
+      initNode().then((res) => {
         setInit(true);
       });
     }
@@ -236,14 +241,24 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
       update(root);
 
-      function update(source: any) {
+      function update(source: RoadData) {
+
         let duration = 500;
 
         // Compute the new tree layout.
         let nodes = tree.nodes(root).reverse();
 
         // Normalize for fixed-depth.
+        // 노드 각각에 대해 속성 설정 (좌표, Children)
         nodes.forEach(function (d: RoadData) {
+          // children이 없는 경우 서버에서 데이터를 받아옴
+
+          if (d._children === undefined && d.children === undefined) {
+            getNodeChildren(d.nid as string).then((res) => {
+              d._children = res ?? [];
+            });
+          }
+
           let level: number = getLevel();
           if (d.depth) {
             d.y = (d.depth - level / 3) * 300 + 100;
@@ -255,7 +270,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         // Update the nodes…
         let node = vis.selectAll("g.node").data(nodes, function (d: any) {
           i++;
-          return d.id || (d!.id = d.parent?.nid * 50 + d.nid);
+          return d.id || (d!.id = i);
         });
 
         //  (source);
@@ -419,8 +434,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
               (d.source.depth === 0 ? " hidden" : "")
             );
           })
-          .attr("d", function () {
-            let o = { x: source.x0, y: source.y0 };
+          .attr('d', function () {
+            let o = { x: source.x0 ?? 0, y: source.y0 ?? 0 };
             return diagonal({ source: o, target: o });
           })
           .transition()
