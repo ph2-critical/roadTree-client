@@ -7,7 +7,7 @@ import {
   roadmap_front_public,
   roadDataState,
 } from "@/roadmap_json/roadmap_data";
-import { getNodeDatas, getProps } from "@/src/api";
+import { getNodeDatas, getProps, roadmapType } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import d3 from "d3";
 import { useEffect, useState } from "react";
@@ -42,7 +42,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   let lastclick: null | RoadData = null; // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
   const whatStudy: number = props.whatStudy;
   const userId: string = props.userId;
-  const whatStudyTable: string[] = ["front", "back", "ai"];
+  const whatStudyTable: roadmapType[] = ["front", "back", "ai"];
   const state2num: { [key: string]: number } = {
     학습안함: 0,
     학습예정: 1,
@@ -90,7 +90,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   useEffect(() => {
     if (userId && init === false) {
-      setInitNodeState().then((res) => {
+      setInitNodeState().then(() => {
         setInit(true);
       });
     }

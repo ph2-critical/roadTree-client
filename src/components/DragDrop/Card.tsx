@@ -5,12 +5,13 @@ export interface CardProps {
   index: number;
   content: string;
   status: string;
+  part: string;
 }
 
 //draggableId , key 같아야함
 
 export const Card = (props: CardProps) => {
-  const { cardId, index, content, status } = props;
+  const { cardId, index, content } = props;
 
   return (
     <Draggable draggableId={cardId} key={cardId} index={index}>

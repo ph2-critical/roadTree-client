@@ -2,9 +2,7 @@
 
 import { supabase } from "@/lib/supabase/supabase";
 import { WithLogin } from "@/src/components/HOC/withLogin";
-import RoadTreeLayout, {
-  useRoadTreeStore,
-} from "@/src/components/RoadmapPage/RoadTreeLayout";
+import RoadTreeLayout from "@/src/components/RoadmapPage/RoadTreeLayout";
 import SideBar from "@/src/components/RoadmapPage/SideBar";
 import { track } from "@amplitude/analytics-browser";
 import { useRouter } from "next/navigation";
