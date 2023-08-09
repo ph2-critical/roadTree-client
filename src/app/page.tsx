@@ -22,10 +22,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col align-middle justify-centent dark:bg-gray-900 h-[100%]">
-      <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="max-w-2xl m-10 mx-auto lg:max-w-4xl lg:px-12">
-          <h1 className="text-4xl font-bold leading-relaxed tracking-tighter text-gray-900  font-display sm:leading-normal sm:text-5xl lg:text-5xl dark:text-white">
+    <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto my-3 lg:max-w-4xl lg:px-12">
+          <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-4xl lg:text-5xl dark:text-white">
             프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
           </h1>
           <div className="mt-8 space-y-6 text-2xl tracking-tight text-gray-500 font-display lg:text-3xl">

@@ -8,8 +8,16 @@ import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
 import { postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
+import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 
-export default function SideBar(props: { whatStudy: number; userId: string }) {
+export default function SideBar(props: {
+  whatStudy: number,
+  userId: string,
+  showRef: {
+    isShowRef: boolean,
+    setIsShowRef: (isShowRef: boolean) => void
+  }
+}) {
   const { select, setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
@@ -22,6 +30,8 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
   const stateTable = ["학습안함", "학습예정", "학습중", "학습완료"];
   const whatStudy: string = whatStudyTable[props.whatStudy];
   const userId: string = props.userId;
+  const { isShowRef, setIsShowRef } = props.showRef;
+  let useWindowResizeVar: boolean = useWindowResize();
 
   const sidebarWeightEnd: () => void = () => {
     //  ('[amplitude] resize_sidebar');
@@ -93,14 +103,13 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
     }
   }, [select]);
 
-  if (select !== null) {
+  if (select !== null && isShowRef) {
     if (!isLoading) {
       return (
         <div
           id={select.nid.toString()}
-          className={`fixed right-0 bg-white h-screenWithoutHeader z-40 w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${
-            resizing ? "select-none" : ""
-          }`}
+          className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-40 md:w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${resizing ? "select-none" : ""
+            }`}
         >
           <div
             id="changeSidebarWeight"
@@ -138,9 +147,17 @@ export default function SideBar(props: { whatStudy: number; userId: string }) {
                       selectNodeName: select.name,
                     });
 
-                    select.select = false;
-                    setSelect(null);
-                    updateFunc(select);
+                    if (useWindowResizeVar) {
+                      console.log(1)
+                      setIsShowRef(false);
+                    } else {
+                      console.log(2)
+                      select.select = false;
+                      setSelect(null);
+                      updateFunc(select);
+                    }
+
+
                   }
                 }}
               >

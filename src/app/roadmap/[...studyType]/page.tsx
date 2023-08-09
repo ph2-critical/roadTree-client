@@ -19,6 +19,7 @@ function page({ params }: { params: roadmapParams }) {
   const router = useRouter();
 
   const [id, setId] = useState<string>("");
+  const [isShowRef, setIsShowRef] = useState<boolean>(false);
 
   useEffect(() => {
     if (whatStudy == 2) {
@@ -42,10 +43,18 @@ function page({ params }: { params: roadmapParams }) {
           "mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10"
         }
       >
-        <RoadTreeLayout whatStudy={whatStudy} userId={id} />
+        <RoadTreeLayout
+          whatStudy={whatStudy}
+          userId={id}
+          setIsShowRef={setIsShowRef}
+        />
       </main>
 
-      <SideBar whatStudy={whatStudy} userId={id} />
+      <SideBar
+        whatStudy={whatStudy}
+        userId={id}
+        showRef={{ isShowRef, setIsShowRef }}
+      />
     </div>
   );
 }
