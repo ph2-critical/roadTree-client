@@ -34,7 +34,7 @@ export interface RoadData {
 export interface roadDataState {
   [roadmap_type: string]: {
     [depth: number]: {
-      [node_id: number]: {
+      [node_id: string]: {
         state: number;
       };
     };

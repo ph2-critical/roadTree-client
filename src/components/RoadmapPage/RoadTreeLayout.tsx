@@ -7,7 +7,7 @@ import {
   roadmap_front_public,
   roadDataState,
 } from '@/roadmap_json/roadmap_data';
-import { getNodeState, getProps } from '@/src/api';
+
 import { track } from '@amplitude/analytics-browser';
 import d3, { set } from 'd3';
 import { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import { create } from 'zustand';
 import RoadTreeMobileLayout from './RoadTreeMobileLayout';
 import { usemdResize } from '@/src/utils/hooks/useWindowResize';
 import { getNodeChildren, getNodeId } from '@/src/api/initNode';
+import { getNodeState, getNodeStateProps } from '@/src/api/stateApi';
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -143,7 +144,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     stateStore[whatStudyTable[whatStudy]] = {};
     return Promise.all(
       [1, 2, 3].map((i) => {
-        const getProp: getProps = {
+        const getProp: getNodeStateProps = {
           roadmap_type: whatStudyTable[whatStudy],
           depth: i,
           user_id: userId,
@@ -153,7 +154,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           if (res.data === null) return;
           stateStore[whatStudyTable[whatStudy]][i] = {};
           res.data.map((data: any) => {
-            stateStore[whatStudyTable[whatStudy]][i][data.node_id] = {
+            stateStore[whatStudyTable[whatStudy]][i][data.nid] = {
               state: state2num[data.state],
             };
           });
@@ -425,7 +426,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             );
           })
           .attr('d', function () {
-            let o = { x: source.x0, y: source.y0 };
+            let o = { x: source.x0 ?? 0, y: source.y0 ?? 0 };
             return diagonal({ source: o, target: o });
           })
           .transition()

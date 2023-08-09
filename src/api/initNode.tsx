@@ -24,7 +24,6 @@ export const getReferenceUsingNid = async (nid: string) => {
     .from('node_reference')
     .select('rid')
     .eq('nid', nid);
-  console.log(1, data.data);
 
   const promise = data.data?.map(async (item) => {
     const data2 = await supabase
