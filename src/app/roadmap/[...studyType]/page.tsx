@@ -43,7 +43,12 @@ function page({ params }: { params: roadmapParams }) {
           "mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10"
         }
       >
-        <RoadTreeLayout key={whatStudy} whatStudy={whatStudy} userId={id} setIsShowRef={setIsShowRef} />
+        <RoadTreeLayout
+          key={whatStudy}
+          whatStudy={whatStudy}
+          userId={id}
+          setIsShowRef={setIsShowRef}
+        />
       </main>
 
       <SideBar
