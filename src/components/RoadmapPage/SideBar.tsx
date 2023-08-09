@@ -18,8 +18,10 @@ export default function SideBar(props: {
     isShowRef: boolean,
     setIsShowRef: (isShowRef: boolean) => void
   }
+  select: RoadData | null
 }) {
-  const { select, setSelect, updateFunc } = useRoadTreeStore();
+  const select = props.select;
+  const { setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
   const [nodeState, setNodeStateNum] = useState<number>(0); // 0: 학습안함, 1: 학습예정, 2: 학습중, 3: 학습완료
@@ -112,7 +114,6 @@ export default function SideBar(props: {
   }, [select]);
 
   if (select !== null && isShowRef) {
-    if (!isLoading) {
       return (
         <div
           id={select.nid.toString()}
@@ -209,6 +210,7 @@ export default function SideBar(props: {
                         className="w-full h-20 bg-white border-b-1"
                       >
                         <RefBlock
+                          key={"refBlock" + index}
                           refdata={item}
                           whatStudy={whatStudy}
                           userId={userId}
@@ -228,7 +230,4 @@ export default function SideBar(props: {
     } else {
       return <></>; // 스켈레톤 화면
     }
-  } else {
-    return <></>; // 없는 화면
-  }
 }
