@@ -1,5 +1,6 @@
+import Providers from "../Provider";
 import { Header } from "../components/Header";
-import { SideBar } from "../components/SideBar";
+// import { SideBar } from "../components/SideBar";
 import "./globals.css";
 
 export const metadata = {
@@ -42,9 +43,11 @@ export default function RootLayout({
         <meta property="og:image" content="/logo.png" />
       </head>
       <body className={"h-screenWithoutHeader w-full dark:bg-gray-900"}>
-        <div id="modal_root"></div>
-        <Header />
-        <div className="mt-[72px] max-w-7xl mx-auto">{children}</div>
+        <Providers>
+          <div id="modal_root"></div>
+          <Header />
+          <div className="mt-[72px] max-w-7xl mx-auto">{children}</div>
+        </Providers>
         <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>

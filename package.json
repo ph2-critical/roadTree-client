@@ -21,6 +21,8 @@
     "@emotion/styled": "^11.11.0",
     "@supabase/auth-helpers-nextjs": "^0.7.2",
     "@tailwindcss/custom-forms": "^0.2.1",
+    "@tanstack/react-query": "^4.32.6",
+    "@tanstack/react-query-devtools": "^4.32.6",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-chart": "^3.0.1",
     "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
