@@ -6,6 +6,7 @@ import { Box } from "./Box";
 import { CardProps } from "./Card";
 import { myPageApi } from "@/src/api/profile";
 import { useLoginStore } from "@/src/status/store";
+import { useQuery } from "@tanstack/react-query";
 
 export type StatusType = "todo" | "doing" | "done";
 // type WrapperType = BoxProps[];
@@ -19,6 +20,13 @@ const lists: WrapperType = {
   doing: [],
   done: [],
 };
+
+export interface ProfileResponse {
+  rid: string;
+  state: string | null;
+  created_at: string | null;
+  reference: { title: string } | null;
+}
 
 // for (let j = 0; j < 3; j++) {
 //   const status = j === 0 ? "todo" : j === 1 ? "doing" : "done";
@@ -34,71 +42,49 @@ const lists: WrapperType = {
 
 export const Wrapper = () => {
   const { isLogin, userId } = useLoginStore();
-  useEffect(() => {
-    if (isLogin) {
-      myPageApi(userId).then((res) => {
-        res.frontData.data?.map((d, idx) => {
-          if (d.state === "학습예정") {
-            lists.todo.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "front",
-            });
-          } else if (d.state === "학습중") {
-            lists.doing.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "front",
-            });
-          } else if (d.state === "학습완료") {
-            lists.done.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "front",
-            });
-          }
-        });
-
-        res.backData.data?.map((d, idx) => {
-          if (d.state === "학습예정") {
-            lists.todo.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "back",
-            });
-          } else if (d.state === "학습중") {
-            lists.doing.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "back",
-            });
-          } else if (d.state === "학습완료") {
-            lists.done.push({
-              cardId: d.ref_id,
-              content: d.ref_id,
-              status: "todo",
-              index: idx,
-              part: "back",
-            });
-          }
-        });
-      });
-    }
-
-    console.log(lists);
-  }, []);
-
   const [list, setList] = useState<WrapperType>(lists);
+  const { data, isLoading } = useQuery<ProfileResponse[] | null>(
+    ["profile"],
+    async () => {
+      const profileData = await myPageApi(userId);
+      return profileData;
+    },
+    {
+      enabled: !!userId,
+    },
+  );
+
+  useEffect(() => {
+    if (!isLoading && data && isLogin) {
+      const tmp = { ...lists };
+      data?.map((d, idx) => {
+        if (d.state === "학습예정") {
+          tmp.todo.push({
+            cardId: d.rid,
+            content: d.reference?.title,
+            status: "todo",
+            index: idx,
+          });
+        } else if (d.state === "학습중") {
+          tmp.doing.push({
+            cardId: d.rid,
+            content: d.reference?.title,
+            status: "doing",
+            index: idx,
+          });
+        } else if (d.state === "학습완료") {
+          tmp.done.push({
+            cardId: d.rid,
+            content: d.reference?.title,
+            status: "done",
+            index: idx,
+          });
+        }
+      });
+      setList(tmp);
+    }
+  }, [data, isLoading]);
+
   const handleDrag = ({ source, destination }: DropResult) => {
     if (!destination) return;
     if (source.droppableId === destination.droppableId) return;
@@ -134,11 +120,13 @@ export const Wrapper = () => {
 
   return (
     <DragDropContext onDragEnd={handleDrag}>
-      <div className="flex gap-12">
-        {(Object.keys(list) as StatusType[]).map((key) => (
-          <Box statusKey={key} list={list[key]} key={key} />
-        ))}
-      </div>
+      {!isLoading && (
+        <div className="flex gap-12">
+          {(Object.keys(list) as StatusType[]).map((key) => (
+            <Box statusKey={key} list={list[key]} key={key} />
+          ))}
+        </div>
+      )}
     </DragDropContext>
   );
 };

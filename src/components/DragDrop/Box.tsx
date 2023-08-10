@@ -36,7 +36,7 @@ export const Box = (props: BoxProps) => {
                 snapshot.isDraggingOver ? "shadow-lg " : "shadow"
               }}`}
             >
-              {props.list.map((i, index) => (
+              {props.list.slice(0, 4).map((i, index) => (
                 <Card
                   key={i.cardId}
                   cardId={i.cardId}

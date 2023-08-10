@@ -54,7 +54,6 @@ export const getNodeState = async (props: getNodeStateProps) => {
     .from("node_state")
     .select("nid, state, node!inner(depth, type)")
     .eq("node.depth", props.depth)
-    .eq("node.type", props.roadmap_type)
     .eq("user_id", props.user_id);
 
   // .eq('node(depth)', props.depth);

@@ -13,7 +13,6 @@ export default function RoadTreeMobileLayout(props: {
   };
 }) {
   const roadData: RoadData = props.roadData;
-  const eachDepthColor: number[] = [500, 400, 300, 200, 100];
   const toggleSelect = props.toggleSelect;
   const setIsShowRef = props.setIsShowRef;
   const { statebgColor, stateBorderColor, stateTextColor } = props.stateColor;

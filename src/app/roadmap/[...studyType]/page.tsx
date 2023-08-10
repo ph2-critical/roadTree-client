@@ -2,7 +2,9 @@
 
 import { supabase } from "@/lib/supabase/supabase";
 import { WithLogin } from "@/src/components/HOC/withLogin";
-import RoadTreeLayout from "@/src/components/RoadmapPage/RoadTreeLayout";
+import RoadTreeLayout, {
+  useRoadTreeStore,
+} from "@/src/components/RoadmapPage/RoadTreeLayout";
 import SideBar from "@/src/components/RoadmapPage/SideBar";
 import { track } from "@amplitude/analytics-browser";
 import { useRouter } from "next/navigation";
@@ -20,6 +22,7 @@ function page({ params }: { params: roadmapParams }) {
 
   const [id, setId] = useState<string>("");
   const [isShowRef, setIsShowRef] = useState<boolean>(false);
+  const { select } = useRoadTreeStore();
 
   useEffect(() => {
     if (whatStudy == 2) {
@@ -52,9 +55,11 @@ function page({ params }: { params: roadmapParams }) {
       </main>
 
       <SideBar
+        key={select?.nid}
         whatStudy={whatStudy}
         userId={id}
         showRef={{ isShowRef, setIsShowRef }}
+        select={select}
       />
     </div>
   );
