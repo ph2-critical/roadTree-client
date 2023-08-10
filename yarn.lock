@@ -919,6 +919,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-calendar-heatmap@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@types/react-calendar-heatmap@npm:1.6.3"
+  dependencies:
+    "@types/react": "*"
+  checksum: 31f66307e960a1f03037b90a3c7eca6f707ba44e74788c9705d72c0ca5610c4cfb6756a5e69f288768110a37e3941e2af54b8f093107e37e3ae162e4709030c7
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:18.2.5":
   version: 18.2.5
   resolution: "@types/react-dom@npm:18.2.5"
@@ -3979,7 +3988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"memoize-one@npm:^5.1.1":
+"memoize-one@npm:^5.0.0, memoize-one@npm:^5.1.1":
   version: 5.2.1
   resolution: "memoize-one@npm:5.2.1"
   checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
@@ -5195,7 +5204,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -5332,6 +5341,18 @@ __metadata:
     react: ^16.8.5 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.5 || ^17.0.0 || ^18.0.0
   checksum: 5f90f7c0ab77a14dfcd496cbd94bbde457612f380c6fc815f3bba7b52effd75132948fcaa661a902a184bb1e6ae5896dcf5b0c77c4ddf809a2c65288f3eed5a7
+  languageName: node
+  linkType: hard
+
+"react-calendar-heatmap@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "react-calendar-heatmap@npm:1.9.0"
+  dependencies:
+    memoize-one: ^5.0.0
+    prop-types: ^15.6.2
+  peerDependencies:
+    react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 00ee57373f9827c383f5060520ab57cce99960ca8c6e35fa7a9bd885ab98642560473d617e3696dc2f4116e5ca47a42bf9f9f6df69860b87249c1ce2d3f7a0b3
   languageName: node
   linkType: hard
 
@@ -5604,6 +5625,7 @@ __metadata:
     "@types/node": 20.3.1
     "@types/react": 18.2.12
     "@types/react-beautiful-dnd": ^13.1.4
+    "@types/react-calendar-heatmap": ^1.6.3
     "@types/react-dom": 18.2.5
     "@typescript-eslint/eslint-plugin": ^6.2.0
     "@typescript-eslint/parser": ^6.2.0
@@ -5626,6 +5648,7 @@ __metadata:
     prettier: ^3.0.0
     react: 18.2.0
     react-beautiful-dnd: ^13.1.1
+    react-calendar-heatmap: ^1.9.0
     react-dom: 18.2.0
     react-hotjar: ^6.1.0
     tailwind-scrollbar-hide: ^1.1.7
