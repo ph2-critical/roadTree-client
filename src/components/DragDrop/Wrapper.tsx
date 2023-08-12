@@ -58,7 +58,7 @@ export const Wrapper = () => {
       enabled: !!userId,
     },
   );
-  const queryClient = useQueryClient();
+  const { mutate } = useMutation(myPageUpdateApi);
 
   useEffect(() => {
     if (!isLoading && data && isLogin) {
@@ -108,14 +108,14 @@ export const Wrapper = () => {
     const now = new Date();
     const nowTimeStamp = now.toISOString();
 
-    const postData = async () =>
-      await myPageUpdateApi({
-        rid: temp.cardId,
-        id: userId,
-        state: status[destinationKey],
-        created_at: nowTimeStamp,
-      });
-    postData();
+    const postData = {
+      rid: temp.cardId,
+      id: userId,
+      state: status[destinationKey],
+      created_at: nowTimeStamp,
+    };
+
+    mutate(postData);
     setList(itemList);
   };
 
