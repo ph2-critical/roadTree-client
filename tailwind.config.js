@@ -102,8 +102,9 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/custom-forms"),
-    require("tailwind-scrollbar-hide"),
+    require('@tailwindcss/custom-forms'),
+    require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/forms'),
   ],
 };
 

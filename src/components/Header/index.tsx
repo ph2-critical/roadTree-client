@@ -88,6 +88,16 @@ export const Header = () => {
                 피드백
               </div>
 
+              <Link href="/daily">
+                <div id='headerMenu' className='md:flex hidden'>
+                  <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
+                    onClick={() => {
+                      // ("[amplitude] click_go_roadpage_header_menu_btn");
+                      track("click_go_daily_header_btn", { from: pathName });
+                    }}> 데일리학습</div>
+                </div>
+              </Link>
+
               {navMenu.map((menu, idx) => {
                 return (
                   <Link
@@ -148,8 +158,8 @@ export const Header = () => {
             </ModalPortal>
           )}
         </div>
-      </div>
-    </nav>
+      </div >
+    </nav >
   );
 };
   
