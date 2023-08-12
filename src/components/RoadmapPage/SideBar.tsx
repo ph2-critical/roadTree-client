@@ -1,14 +1,15 @@
 "use client";
 
-import { RoadData } from "@/roadmap_json/roadmap_data";
+import { RoadData, reference } from "@/roadmap_json/roadmap_data";
 import RefBlock from "./RefBlock";
 import { useRoadTreeStore } from "./RoadTreeLayout";
 import StudyDropMenu from "./StudyDropMenu";
 import mouseDragHook from "@/src/utils/hooks/mouseDragHook";
 import { useEffect, useState } from "react";
-import { postNodeData, postProps } from "@/src/api";
 import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
+import { getReferenceUsingNid } from "@/src/api/initNode";
+import { postNodeStateProps, upsertNodeState } from "@/src/api/stateApi";
 
 export default function SideBar(props: {
   whatStudy: number,
@@ -17,8 +18,10 @@ export default function SideBar(props: {
     isShowRef: boolean,
     setIsShowRef: (isShowRef: boolean) => void
   }
+  select: RoadData | null
 }) {
-  const { select, setSelect, updateFunc } = useRoadTreeStore();
+  const select = props.select;
+  const { setSelect, updateFunc } = useRoadTreeStore();
   const [init, setInit] = useState<RoadData | null>(null);
   const [refBlockInit, setRefBlockInit] = useState<boolean>(false); // refBlock 초기화 여부
   const [nodeState, setNodeStateNum] = useState<number>(0); // 0: 학습안함, 1: 학습예정, 2: 학습중, 3: 학습완료
@@ -32,6 +35,8 @@ export default function SideBar(props: {
   const userId: string = props.userId;
   const { isShowRef, setIsShowRef } = props.showRef;
   let useWindowResizeVar: boolean = useWindowResize();
+
+  const [references, setReferences] = useState<reference[]>([]);
 
   const sidebarWeightEnd: () => void = () => {
     //  ('[amplitude] resize_sidebar');
@@ -78,19 +83,23 @@ export default function SideBar(props: {
       setNodeStateNum(num);
       select.state = num;
 
-      const postProp: postProps = {
-        roadmap_type: whatStudy,
-        depth: select.depth ?? 1,
+      const postProp: postNodeStateProps = {
         state: stateTable[num],
-        node_id: select.nid,
+        node_id: select.nid as number,
         user_id: userId,
       };
 
-      postNodeData(postProp);
+      upsertNodeState(postProp);
 
       updateFunc(select);
     }
   };
+
+  const setInitReferences: (selectNid: string) => void = (selectNid: string) => {
+    getReferenceUsingNid(selectNid).then((data) => {
+      setReferences(data);
+    });
+  }
 
   const isLoading: boolean = select !== init;
 
@@ -98,13 +107,13 @@ export default function SideBar(props: {
     if (select !== null && select !== init) {
       setNodeStateNum(select.state ?? 0);
       setRefBlockInit(false);
+      setInitReferences(select.nid as string);
       // 초기화 작업 진행
       setInit(select);
     }
   }, [select]);
 
   if (select !== null && isShowRef) {
-    if (!isLoading) {
       return (
         <div
           id={select.nid.toString()}
@@ -148,10 +157,8 @@ export default function SideBar(props: {
                     });
 
                     if (useWindowResizeVar) {
-                      console.log(1)
                       setIsShowRef(false);
                     } else {
-                      console.log(2)
                       select.select = false;
                       setSelect(null);
                       updateFunc(select);
@@ -196,13 +203,14 @@ export default function SideBar(props: {
                   학습 내용
                 </div>
                 <div className="border border-gray-200 rounded shadow-md">
-                  {select?.ref?.map((item, index) => {
+                  {references.map((item, index) => {
                     return (
                       <div
                         key={"key" + index}
                         className="w-full h-20 bg-white border-b-1"
                       >
                         <RefBlock
+                          key={"refBlock" + index}
                           refdata={item}
                           whatStudy={whatStudy}
                           userId={userId}
@@ -222,7 +230,4 @@ export default function SideBar(props: {
     } else {
       return <></>; // 스켈레톤 화면
     }
-  } else {
-    return <></>; // 없는 화면
-  }
 }

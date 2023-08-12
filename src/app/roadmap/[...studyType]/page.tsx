@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { supabase } from '@/lib/supabase/supabase';
 import { WithLogin } from '@/src/components/HOC/withLogin';
@@ -11,6 +11,7 @@ import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+
 interface roadmapParams {
   studyType: number;
 }
@@ -19,16 +20,17 @@ function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const { nickname, setNickname } = useNicknameStore()
   const whatStudy: number = studyType;
-  const whatStudyTable = ['frontend', 'backend', 'ai'];
+  const whatStudyTable = ["frontend", "backend", "ai"];
   const router = useRouter();
 
-  const [id, setId] = useState<string>('');
+  const [id, setId] = useState<string>("");
   const [isShowRef, setIsShowRef] = useState<boolean>(false);
+  const { select } = useRoadTreeStore();
 
   useEffect(() => {
     if (whatStudy == 2) {
-      alert('AI 과정은 준비중입니다.');
-      router.push('/');
+      alert("AI 과정은 준비중입니다.");
+      router.push("/");
     }
     const getUser = async () => {
       const user = await supabase.auth.getUser();
@@ -46,13 +48,19 @@ function page({ params }: { params: roadmapParams }) {
     <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
       <main
         className={
-          'mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10'
+          "mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10"
         }
       >
-        <RoadTreeLayout whatStudy={whatStudy} userId={id} setIsShowRef={setIsShowRef} />
+        <RoadTreeLayout key={whatStudy} whatStudy={whatStudy} userId={id} setIsShowRef={setIsShowRef} />
       </main>
 
-      <SideBar whatStudy={whatStudy} userId={id} showRef={{ isShowRef, setIsShowRef }} />
+      <SideBar
+        key={select?.nid}
+        whatStudy={whatStudy}
+        userId={id}
+        showRef={{ isShowRef, setIsShowRef }}
+        select={select}
+      />
     </div>
   );
 }

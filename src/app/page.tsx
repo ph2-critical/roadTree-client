@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="max-w-2xl m-10 mx-auto lg:max-w-4xl lg:px-12">
+        <div className="max-w-2xl mx-auto my-3 lg:max-w-4xl lg:px-12">
           <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-4xl lg:text-5xl dark:text-white">
             프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
           </h1>
@@ -50,16 +50,16 @@ export default function Home() {
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {title.map((title, index) => {
               return (
-                <div className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                <div key={'startBox_' + index} className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                   <h3 className="mb-4 text-2xl font-semibold">{title}</h3>
                   <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                     {content[index]}
                   </p>
                   <div className="my-6 " />
                   <ul role="list" className="mb-8 space-y-4 text-left">
-                    {detailcontent[index].map((detail) => {
+                    {detailcontent[index].map((detail, idx) => {
                       return (
-                        <li className="flex items-center space-x-3">
+                        <li key={'home_description_' + idx} className="flex items-center space-x-3">
                           <svg
                             className="flex-shrink-0 w-5 h-5 text-main dark:text-main"
                             fill="currentColor"

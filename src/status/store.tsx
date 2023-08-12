@@ -2,7 +2,8 @@ import { create } from "zustand";
 
 interface LoginInterface {
   isLogin: boolean;
-  setLogin: () => void;
+  userId: string;
+  setLogin: (id: string) => void;
   setLogout: () => void;
 }
 interface NicknameInterface {
@@ -12,8 +13,9 @@ interface NicknameInterface {
 
 export const useLoginStore = create<LoginInterface>((set) => ({
   isLogin: false,
-  setLogin: () => set(() => ({ isLogin: true })),
-  setLogout: () => set(() => ({ isLogin: false })),
+  userId: "",
+  setLogin: (id: string) => set(() => ({ isLogin: true, userId: id })),
+  setLogout: () => set(() => ({ isLogin: false, userId: "" })),
 }));
 
 export const useNicknameStore = create<NicknameInterface>((set) => ({
