@@ -6,7 +6,7 @@ import { Box } from "./Box";
 import { CardProps } from "./Card";
 import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
 import { useLoginStore } from "@/src/status/store";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export type StatusType = "todo" | "doing" | "done";
 // type WrapperType = BoxProps[];

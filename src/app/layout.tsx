@@ -48,6 +48,7 @@ export default function RootLayout({
           <Header />
           <div className="mt-[72px] max-w-7xl mx-auto">{children}</div>
         </Providers>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>
