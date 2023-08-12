@@ -141,7 +141,7 @@ export default function RefBlock(props: {
           alt={refdata.category}
           width={512}
           height={512}
-          className="mr-3 w-14 h-14"
+          className="mr-4 w-14 h-14"
         ></Image>
         <div className="flex-grow w-32 h-14">
           <div className="flex flex-col items-start">
