@@ -29,7 +29,7 @@ export const QuestionIcon = () => {
 
       popover.show();
     }
-  }, []);
+  });
   return (
     <>
       <button

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useDidMountEffect = (func: any, deps: any) => {
+export const useDidMountEffect = (func: any, deps?: any) => {
   const didMount = useRef(false);
 
   useEffect(() => {
