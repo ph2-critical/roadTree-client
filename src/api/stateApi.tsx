@@ -45,7 +45,7 @@ export interface getNodeStateProps {
 
 export interface postNodeStateProps {
   state: string;
-  node_id: number;
+  node_id: string;
   user_id: string;
 }
 

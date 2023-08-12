@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Box } from "./Box";
 import { CardProps } from "./Card";
-import { myPageApi } from "@/src/api/profile";
+import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
 import { useLoginStore } from "@/src/status/store";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type StatusType = "todo" | "doing" | "done";
 // type WrapperType = BoxProps[];
@@ -41,6 +41,11 @@ export interface ProfileResponse {
 // }
 
 export const Wrapper = () => {
+  const status = {
+    todo: "학습예정",
+    doing: "학습중",
+    done: "학습완료",
+  };
   const { isLogin, userId } = useLoginStore();
   const [list, setList] = useState<WrapperType>(lists);
   const { data, isLoading } = useQuery<ProfileResponse[] | null>(
@@ -53,6 +58,7 @@ export const Wrapper = () => {
       enabled: !!userId,
     },
   );
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (!isLoading && data && isLogin) {
@@ -88,7 +94,6 @@ export const Wrapper = () => {
   const handleDrag = ({ source, destination }: DropResult) => {
     if (!destination) return;
     if (source.droppableId === destination.droppableId) return;
-
     const sourceKey = source.droppableId as StatusType;
     const destinationKey = destination.droppableId as StatusType;
 
@@ -99,6 +104,18 @@ export const Wrapper = () => {
     } else {
       console.log(temp);
     }
+
+    const now = new Date();
+    const nowTimeStamp = now.toISOString();
+
+    const postData = async () =>
+      await myPageUpdateApi({
+        rid: temp.cardId,
+        id: userId,
+        state: status[destinationKey],
+        created_at: nowTimeStamp,
+      });
+    postData();
     setList(itemList);
   };
 
