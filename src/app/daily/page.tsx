@@ -2,11 +2,15 @@
 import { supabase } from '@/lib/supabase';
 import { postSubmissionData } from '@/src/api/submission/submission';
 import { useNicknameStore } from '@/src/status/store';
-import { set } from 'lodash';
+import { track } from '@amplitude/analytics-browser';
+// import { set } from 'lodash';
+// import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 
 export default function DailyLearnSubmitPage() {
+    // const router = useRouter();
+
     const { nickname, setNickname } = useNicknameStore()
 
     const [formData, setFormData] = useState({
@@ -65,12 +69,13 @@ export default function DailyLearnSubmitPage() {
 
         if (hasErrors) {
             alert("필수 항목을 입력해주세요.");
-            return; // Don't submit if there are errors
+            return; // 에러나면 제출되지 않음
         }
         try {
             await postSubmissionData(formData);
             console.log('Data submitted successfully');
-            // You can add any success messages or redirection logic here
+            track(`submit_daily_page`);
+            // to do : 성공시 redirect 로직 추가할 필요 있음
         } catch (error) {
             console.error('Error submitting data:', error);
         }
@@ -97,7 +102,7 @@ export default function DailyLearnSubmitPage() {
                             <input
                                 type="text"
                                 name="nickname" readOnly
-                                value={nickname}    
+                                value={nickname}
                                 onChange={handleInputChange}
                                 id="nickname"
                                 className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -128,7 +133,7 @@ export default function DailyLearnSubmitPage() {
                                         onChange={handleInputChange}
                                         id="frontend"
                                         name="job"
-                                        checked={formData.job === '프론트엔드 분야 학습'}
+                                        checked={formData.job === "frontend"}
                                         type="radio"
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                     />
@@ -213,9 +218,10 @@ export default function DailyLearnSubmitPage() {
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end sm:col-span-4">
-                        <button type="submit" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <button type="submit" className="bg-green-500 justify-center px-3 py-2 rounded-2xl font-semibold text-white  hover:brightness-90 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70">
                             Save
                         </button>
+                        
                     </div>
                 </div>
             </form>
