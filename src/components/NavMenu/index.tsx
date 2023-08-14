@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useModal } from "@/src/utils/hooks/useModal";
 import { useNicknameStore } from '@/src/status/store';
@@ -75,6 +75,9 @@ export const NavMenu = (
                             <ul onClick={toggleModal} className="xpy-1 md:hidden">
                                 <li>
                                     <div onClick={() => { window.open('https://tally.so/r/mYRE70') }} className="block px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">피드백</div>
+                                </li>
+                                <li>
+                                    <Link href={'/daily'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">데일리학습</Link>
                                 </li>
                                 <li>
                                     <Link href={'/roadmap/0'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">프론트엔드</Link>
