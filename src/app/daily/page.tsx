@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 
 export default function DailyLearnSubmitPage() {
-    const { nickname, setNickname } = useNicknameStore()
+    const { nickname } = useNicknameStore()
 
     const [formData, setFormData] = useState({
         nickname: nickname,
@@ -75,17 +75,6 @@ export default function DailyLearnSubmitPage() {
             console.error('Error submitting data:', error);
         }
     };
-
-    useEffect(() => {
-        const getUser = async () => {
-            const user = await supabase.auth.getUser();
-            console.log(user);
-            setNickname(user.data.user?.user_metadata.full_name)
-            console.log("닉네임 :", nickname);
-        };
-        getUser();
-    }, []);
-
 
     return (
         <div className="space-y-12 flex justify-center">

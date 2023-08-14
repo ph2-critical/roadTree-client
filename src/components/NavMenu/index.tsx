@@ -1,13 +1,19 @@
 'use client'
 
 import { useModal } from "@/src/utils/hooks/useModal";
+import { useNicknameStore } from '@/src/status/store';
 import Image from "next/image";
 import Link from "next/link";
 
 export const NavMenu = (
-    props: { Logout: () => void }
+    props: {
+        Logout: () => void,
+        userPicture: string 
+    }
 ) => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
+    const { nickname, email} = useNicknameStore()
+    
     return (
         <div className="h-13 relative sm:py-0.5" ref={modalRef}>
             <div className="flex flex-row-reverse text-gray-500 p-3">
@@ -25,7 +31,7 @@ export const NavMenu = (
                     </svg>
                     {/* md 보다 클 경우 유저 아이콘*/}
                     <Image
-                        src={"/header/user.svg"}
+                        src={props.userPicture ?? "/header/user.svg"}
                         alt={"user"}
                         width={512}
                         height={512}
@@ -48,10 +54,10 @@ export const NavMenu = (
                         <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
                             <div className="px-4 py-3" role="none">
                                 <p className="text-sm text-gray-900 dark:text-white" role="none">
-                                    Neil Sims
+                                    {nickname}
                                 </p>
                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
+                                    {email}
                                 </p>
                             </div>
                             <ul className="xpy-1" role="none">
