@@ -62,7 +62,12 @@ export const Wrapper = () => {
 
   useEffect(() => {
     if (!isLoading && data && isLogin) {
-      const tmp = { ...lists };
+      const tmp: WrapperType = {
+        todo: [],
+        doing: [],
+        done: [],
+      };
+
       data?.map((d, idx) => {
         if (d.state === "학습예정") {
           tmp.todo.push({
