@@ -117,7 +117,7 @@ export default function SideBar(props: {
       return (
         <div
           id={select.nid.toString()}
-          className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-40 md:w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${resizing ? "select-none" : ""
+          className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-1 md:w-[${sidebarWeight}px] border-l border-gray-200 shadow-deep-dark resize-x ${resizing ? "select-none" : ""
             }`}
         >
           <div

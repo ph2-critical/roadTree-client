@@ -4,6 +4,7 @@ import { useModal } from "@/src/utils/hooks/useModal";
 import { useNicknameStore } from '@/src/status/store';
 import Image from "next/image";
 import Link from "next/link";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
 
 export const NavMenu = (
     props: {
@@ -15,6 +16,7 @@ export const NavMenu = (
     const { nickname, email} = useNicknameStore()
     
     return (
+        
         <div className="h-13 relative sm:py-0.5" ref={modalRef}>
             <div className="flex flex-row-reverse text-gray-500 p-3">
                 <div
@@ -35,7 +37,7 @@ export const NavMenu = (
                         alt={"user"}
                         width={512}
                         height={512}
-                        className="w-7 h-7 hidden md:flex rounded-full"
+                        className="w-7 h-7 hidden md:flex rounded-full select-none"
                     ></Image>
                     {/* <button
                         className="hidden md:flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
@@ -49,7 +51,8 @@ export const NavMenu = (
             </div>
 
             {isOpen && (
-                <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:absolute sm:w-auto">
+                <ModalPortal>
+                <div className="fixed sm:right-5 right-0 z-10 p-2 pt-2 w-full sm:w-auto">
                     <div className="text-black bg-white sm:w-40 top-auto shadow-deep-dark rounded-md w-full">
                         <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
                             <div className="px-4 py-3" role="none">
@@ -89,8 +92,10 @@ export const NavMenu = (
                         </div>
                     </div>
                 </div>
+                </ModalPortal>
             )
             }
         </div >
+        
     )
 }
