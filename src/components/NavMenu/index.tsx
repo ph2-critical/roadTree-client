@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useModal } from "@/src/utils/hooks/useModal";
 import { useNicknameStore } from '@/src/status/store';
@@ -8,12 +8,12 @@ import Link from "next/link";
 export const NavMenu = (
     props: {
         Logout: () => void,
-        userPicture: string 
+        userPicture: string
     }
 ) => {
     const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
-    const { nickname, email} = useNicknameStore()
-    
+    const { nickname, email } = useNicknameStore()
+
     return (
         <div className="h-13 relative sm:py-0.5" ref={modalRef}>
             <div className="flex flex-row-reverse text-gray-500 p-3">
@@ -47,6 +47,100 @@ export const NavMenu = (
                     </button> */}
                 </div>
             </div>
+
+            {isOpen && (
+                <div className="fixed right-0 z-10 w-full p-2 pt-4 sm:absolute sm:w-auto">
+                    <div className="top-auto w-full text-black bg-white rounded-md sm:w-40 shadow-deep-dark">
+                        <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
+                            <div className="px-4 py-3" role="none">
+                                <p
+                                    className="text-sm text-gray-900 dark:text-white"
+                                    role="none"
+                                >
+                                    Neil Sims
+                                </p>
+                                <p
+                                    className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                                    role="none"
+                                >
+                                    neil.sims@flowbite.com
+                                </p>
+                            </div>
+                            <ul className="xpy-1" role="none">
+                                <li>
+                                    <Link
+                                        href={"/profile"}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        내 프로필
+                                    </Link>
+                                </li>
+                                <li>
+                                    <div
+                                        onClick={props.Logout}
+                                        className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        로그아웃
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul className="xpy-1 md:hidden">
+                                <li>
+                                    <div
+                                        onClick={() => {
+                                            window.open("https://tally.so/r/mYRE70");
+                                        }}
+                                        className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        피드백
+                                    </div>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={"/roadmap/0"}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        프론트엔드
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={"/roadmap/1"}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        백엔드
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={"/roadmap/2"}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem"
+                                    >
+                                        인공지능
+                                    </Link>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={() => {
+                                            props.Logout();
+                                        }}
+                                        className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white text-start"
+                                        role="menuitem"
+                                    >
+                                        로그아웃
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div >
+                </div >
+            )}
 
             {isOpen && (
                 <div className="fixed right-0 z-10 p-2 pt-4 w-full sm:absolute sm:w-auto">
@@ -92,8 +186,9 @@ export const NavMenu = (
                         </div>
                     </div>
                 </div>
-            )
-            }
+            )}
+
+
         </div >
     )
 }

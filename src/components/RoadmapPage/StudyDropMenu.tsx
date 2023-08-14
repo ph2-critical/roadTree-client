@@ -17,27 +17,27 @@ export default function StudyDropMenu(props: {
   ];
   const statebgColor: string[] = [
     "bg-gray-300",
-    "bg-yellow-400",
-    "bg-indigo-500",
-    "bg-green-700",
+    "bg-todoColor",
+    "bg-doingColor",
+    "bg-doneColor",
   ];
   const stateTextColor: string[] = [
     "text-gray-600",
-    "text-yellow-800",
-    "text-white",
+    "text-black",
+    "text-black",
     "text-white",
   ];
   const statePreviewbgColor: string[] = [
     "bg-gray-200",
-    "bg-yellow-200",
-    "bg-indigo-100",
-    "bg-green-100",
+    "bg-todoColor",
+    "bg-doingColor",
+    "bg-doneColor",
   ];
   const statePreviewTextColor: string[] = [
     "text-gray-600",
-    "text-yellow-600",
-    "text-indigo-600",
-    "text-green-600",
+    "text-black",
+    "text-black",
+    "text-gray-200",
   ];
 
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
@@ -47,7 +47,7 @@ export default function StudyDropMenu(props: {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className={`${stateTextColor[stateNum]} font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-sm flex items-center justify-center relative`}
+        className={`${stateTextColor[stateNum]} min-w-[95px] justify-between rounded-md font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-md flex items-center relative`}
         onClick={myPageHandler}
         ref={myPageRef}
       >
@@ -75,7 +75,7 @@ export default function StudyDropMenu(props: {
           myPageIsOpen ? "" : "hidden"
         } border border-gray-200 z-50 dropdown absolute ${
           rightOn ? "left-0" : "right-0"
-        } mt-2 bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700`}
+        } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow dark:bg-gray-700`}
         onClick={myPageHandler}
       >
         <ul
@@ -86,7 +86,7 @@ export default function StudyDropMenu(props: {
             if (index == stateNum) return;
             return (
               <li
-                key={'studyDropMenu_state_' + index}
+                key={"studyDropMenu_state_" + index}
                 className="block px-2 py-1 dropdown hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={() => {
                   setStateNum(index);
@@ -94,7 +94,7 @@ export default function StudyDropMenu(props: {
               >
                 <div
                   className={`${statePreviewbgColor[index]} 
-                  rounded-sm text-xs font-semibold dropdown px-1 w-fit ${statePreviewTextColor[index]} `}
+                  rounded-sm min-w-[55px] flex justify-center text-xs font-semibold dropdown px-1 w-fit ${statePreviewTextColor[index]} `}
                 >
                   {item}
                 </div>

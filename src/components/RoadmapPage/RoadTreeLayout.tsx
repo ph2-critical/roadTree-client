@@ -6,16 +6,16 @@ import {
   roadmap_back_public,
   roadmap_front_public,
   roadDataState,
-} from '@/roadmap_json/roadmap_data';
+} from "@/roadmap_json/roadmap_data";
 
-import { track } from '@amplitude/analytics-browser';
-import d3, { set } from 'd3';
-import { useEffect, useState } from 'react';
-import { create } from 'zustand';
-import RoadTreeMobileLayout from './RoadTreeMobileLayout';
-import { usemdResize } from '@/src/utils/hooks/useWindowResize';
-import { getNodeChildren, getNodeId } from '@/src/api/initNode';
-import { getNodeState, getNodeStateProps } from '@/src/api/stateApi';
+import { track } from "@amplitude/analytics-browser";
+import d3, { set } from "d3";
+import { useEffect, useState } from "react";
+import { create } from "zustand";
+import RoadTreeMobileLayout from "./RoadTreeMobileLayout";
+import { usemdResize } from "@/src/utils/hooks/useWindowResize";
+import { getNodeChildren, getNodeId } from "@/src/api/initNode";
+import { getNodeState, getNodeStateProps } from "@/src/api/stateApi";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -58,7 +58,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   ]);
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
-  const [root, setRoot] = useState<RoadData>(whatStudy == 0 ? roadmap_front_public : roadmap_back_public);
+  const [root, setRoot] = useState<RoadData>(
+    whatStudy == 0 ? roadmap_front_public : roadmap_back_public,
+  );
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
 
   let ismdSize: boolean = usemdResize();
@@ -83,7 +85,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   // 선택
   function toggle_select(d: RoadData) {
-    if (d.select === true) {  // 이미 선택되었던 경우에는 선택 해제
+    if (d.select === true) {
+      // 이미 선택되었던 경우에는 선택 해제
       for (let i = 3; i >= (d.depth ?? 1) - 1; i--) {
         if (selectHistory[i] !== null) {
           toggle_deleteselect(selectHistory[i]!);
@@ -174,15 +177,16 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   }
 
   async function setInitNode() {
-    const rootNodeId = await getNodeId(whatStudyTable[whatStudy])
+    const rootNodeId = await getNodeId(whatStudyTable[whatStudy]);
     setRoot({
       nid: rootNodeId,
       name: whatStudyTable[whatStudy],
-    })
+    });
 
-    const children: RoadData[] = await getNodeChildren(rootNodeId) ?? [];
-    const commonNodeId: string = await getNodeId('common');
-    const common_children: RoadData[] = await getNodeChildren(commonNodeId) ?? [];
+    const children: RoadData[] = (await getNodeChildren(rootNodeId)) ?? [];
+    const commonNodeId: string = await getNodeId("common");
+    const common_children: RoadData[] =
+      (await getNodeChildren(commonNodeId)) ?? [];
     setRoot((prev) => {
       const newRoot = { ...prev };
       newRoot.children = [...children, ...common_children];
@@ -242,7 +246,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       update(root);
 
       function update(source: RoadData) {
-
         let duration = 500;
 
         // Compute the new tree layout.
@@ -434,7 +437,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
               (d.source.depth === 0 ? " hidden" : "")
             );
           })
-          .attr('d', function () {
+          .attr("d", function () {
             let o = { x: source.x0 ?? 0, y: source.y0 ?? 0 };
             return diagonal({ source: o, target: o });
           })

@@ -28,7 +28,7 @@ export const Box = (props: BoxProps) => {
                 ? "학습중"
                 : "학습 완료"}
           </div>
-          <div className="h-[304px] overflow-auto">
+          <div className="h-[392px] overflow-auto">
             <div
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
@@ -47,9 +47,9 @@ export const Box = (props: BoxProps) => {
               {droppableProvided.placeholder}
             </div>
           </div>
-          <div className=" text-xl mt-auto mb-5 justify-center  flex items-center text-black2 w-[321px] h-16 border-slate-400 border-1 bg-white rounded-xl box-border cursor-pointer">
+          {/* <div className=" text-xl  mb-5 justify-center flex items-center mt-auto text-black2 w-[321px] h-16 border-slate-400 border-1 bg-white rounded-xl box-border cursor-pointer">
             + 더보기
-          </div>
+          </div> */}
         </div>
       )}
     </Droppable>
