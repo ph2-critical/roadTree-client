@@ -1,12 +1,16 @@
 "use client";
 
-import { supabase } from "@/lib/supabase/supabase";
-import { WithLogin } from "@/src/components/HOC/withLogin";
-import RoadTreeLayout, { useRoadTreeStore } from "@/src/components/RoadmapPage/RoadTreeLayout";
-import SideBar from "@/src/components/RoadmapPage/SideBar";
-import { track } from "@amplitude/analytics-browser";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { supabase } from '@/lib/supabase/supabase';
+import { WithLogin } from '@/src/components/HOC/withLogin';
+import RoadTreeLayout, {
+  useRoadTreeStore,
+} from '@/src/components/RoadmapPage/RoadTreeLayout';
+import SideBar from '@/src/components/RoadmapPage/SideBar';
+import { useNicknameStore } from '@/src/status/store';
+import { track } from '@amplitude/analytics-browser';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 
 interface roadmapParams {
   studyType: number;
@@ -14,6 +18,7 @@ interface roadmapParams {
 
 function page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
+  const { nickname, setNickname } = useNicknameStore()
   const whatStudy: number = studyType;
   const whatStudyTable = ["frontend", "backend", "ai"];
   const router = useRouter();
@@ -30,6 +35,8 @@ function page({ params }: { params: roadmapParams }) {
     else {
       const getUser = async () => {
         const user = await supabase.auth.getUser();
+        setNickname(user.data.user?.user_metadata.full_name) 
+        // console.log(nickname);
         const userId: string | undefined = user.data.user?.id;
         userId && setId(userId);
       };
@@ -37,6 +44,7 @@ function page({ params }: { params: roadmapParams }) {
 
       track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
     }
+
   }, []);
 
   return (
