@@ -26,6 +26,7 @@ export const Header = () => {
   const whatStudy: number = parseInt(searchParams);
   const router = useRouter();
   const [type, setType] = useState("");
+  const [init, setInit] = useState<boolean>(false);
   const [userPicture, setUserPicture] = useState("");
   const Logout = async () => {
     //  ('[amplitude] click_logout_header_btn');
@@ -51,6 +52,7 @@ export const Header = () => {
         initAmplitude("");
         setLogout();
       }
+      setInit(true);
     };
     checkUser();
 
@@ -118,7 +120,7 @@ export const Header = () => {
                 );
               })}
             </div>
-            {isLogin ? (
+            { init ? (isLogin ? (
               <div className="flex items-center">
                 {/* <Alarm /> */}
                 <NavMenu Logout={Logout} userPicture={userPicture} />
@@ -144,7 +146,7 @@ export const Header = () => {
                   회원가입
                 </button>
               </div>
-            )}
+            )) : <></>}
           </div>
           {!isLogin && isOpen && (
             <ModalPortal>
