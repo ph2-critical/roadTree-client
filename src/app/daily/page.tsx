@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { postSubmissionData } from '@/src/api/submission/submission';
 import { useNicknameStore } from '@/src/status/store';
 import { track } from '@amplitude/analytics-browser';
+import { useRouter } from 'next/navigation';
 // import { set } from 'lodash'
 // import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ export default function DailyLearnSubmitPage() {
     // const router = useRouter();
 
     const { nickname, setNickname } = useNicknameStore()
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         nickname: nickname,
@@ -89,6 +91,8 @@ export default function DailyLearnSubmitPage() {
             console.log('Data submitted successfully');
             track(`submit_daily_page`);
             // to do : 성공시 redirect 로직 추가할 필요 있음
+            //'/profile' 로 이동 시키기
+            router.push('/profile');
         } catch (error) {
             console.error('Error submitting data:', error);
         }
