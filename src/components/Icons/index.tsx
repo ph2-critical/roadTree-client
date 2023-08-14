@@ -1,35 +1,34 @@
 "use client";
 import { Popover } from "flowbite";
 import type { PopoverOptions, PopoverInterface } from "flowbite";
-import { useEffect } from "react";
+import dynamic from "next/dynamic";
 
 export const QuestionIcon = () => {
-  useEffect(() => {
-    const $targetEl: HTMLElement | null = document.getElementById(
-      "popover-description",
+  const $targetEl: HTMLElement | null = document.getElementById(
+    "popover-description",
+  );
+
+  // set the element that trigger the popover using hover or click
+  const $triggerEl: HTMLElement | null =
+    document.getElementById("popoverButton");
+
+  // options with default values
+  const options: PopoverOptions = {
+    placement: "right",
+    triggerType: "hover",
+    offset: 10,
+  };
+
+  if ($targetEl) {
+    const popover: PopoverInterface = new Popover(
+      $targetEl,
+      $triggerEl,
+      options,
     );
 
-    // set the element that trigger the popover using hover or click
-    const $triggerEl: HTMLElement | null =
-      document.getElementById("popoverButton");
+    popover.show();
+  }
 
-    // options with default values
-    const options: PopoverOptions = {
-      placement: "right",
-      triggerType: "hover",
-      offset: 10,
-    };
-
-    if ($targetEl) {
-      const popover: PopoverInterface = new Popover(
-        $targetEl,
-        $triggerEl,
-        options,
-      );
-
-      popover.show();
-    }
-  }, []);
   return (
     <>
       <button

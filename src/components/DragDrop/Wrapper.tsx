@@ -28,18 +28,6 @@ export interface ProfileResponse {
   reference: { title: string } | null;
 }
 
-// for (let j = 0; j < 3; j++) {
-//   const status = j === 0 ? "todo" : j === 1 ? "doing" : "done";
-//   const items: CardProps[] = [...Array(3)].map((_, i) => ({
-//     cardId: `${j}${i}${i}`,
-//     content: `스프링 입문-${j.toString() + i.toString()}`,
-//     status: status,
-//     index: i,
-//     part: "hi",
-//   }));
-//   lists[status].push(...items);
-// }
-
 export const Wrapper = () => {
   const status = {
     todo: "학습예정",
