@@ -1,7 +1,6 @@
 "use client";
 import { Popover } from "flowbite";
 import type { PopoverOptions, PopoverInterface } from "flowbite";
-import dynamic from "next/dynamic";
 
 export const QuestionIcon = () => {
   const $targetEl: HTMLElement | null = document.getElementById(
@@ -26,7 +25,7 @@ export const QuestionIcon = () => {
       options,
     );
 
-    popover.show();
+    popover.hide();
   }
 
   return (
