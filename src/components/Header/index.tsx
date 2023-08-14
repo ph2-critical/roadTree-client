@@ -12,12 +12,12 @@ import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
-import { useLoginStore } from "@/src/status/store";
+import { useLoginStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
-import { useNicknameStore } from '@/src/status/store';
+import { useNicknameStore } from "@/src/state/store";
 
 export const Header = () => {
-  const { setNickname, setEmail } = useNicknameStore()
+  const { setNickname, setEmail } = useNicknameStore();
   const { isOpen, modalRef, toggleModal } = useModal();
   const { isLogin, setLogin, setLogout } = useLoginStore();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
@@ -41,12 +41,12 @@ export const Header = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        console.log(user)
+        console.log(user);
         initAmplitude(user.id);
         setLogin(user.id);
-        setNickname(user?.user_metadata.full_name)
-        setEmail(user?.user_metadata.email)
-        setUserPicture(user?.user_metadata.avatar_url)
+        setNickname(user?.user_metadata.full_name);
+        setEmail(user?.user_metadata.email);
+        setUserPicture(user?.user_metadata.avatar_url);
       } else {
         initAmplitude("");
         setLogout();
@@ -65,7 +65,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <nav className=" fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 dark:bg-gray-900 dark:border-gray-900">
+    <nav className="z-10 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 dark:bg-gray-900 dark:border-gray-900">
       <div className="w-full mx-auto max-w-7xl">
         <div className="flex items-center sm:pl-8 sm:pr-4">
           <Link
@@ -88,12 +88,17 @@ export const Header = () => {
               </div>
 
               <Link href="/daily">
-                <div id='headerMenu' className='md:flex hidden'>
-                  <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
+                <div id="headerMenu" className="hidden md:flex">
+                  <div
+                    className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
                     onClick={() => {
                       // ("[amplitude] click_go_roadpage_header_menu_btn");
                       track("click_go_daily_header_btn", { from: pathName });
-                    }}> 데일리학습</div>
+                    }}
+                  >
+                    {" "}
+                    데일리학습
+                  </div>
                 </div>
               </Link>
 
@@ -118,7 +123,6 @@ export const Header = () => {
                 );
               })}
             </div>
-            <div className="w-3"></div>
             {isLogin ? (
               <div className="flex items-center">
                 {/* <Alarm /> */}
@@ -157,7 +161,7 @@ export const Header = () => {
             </ModalPortal>
           )}
         </div>
-      </div >
-    </nav >
+      </div>
+    </nav>
   );
 };

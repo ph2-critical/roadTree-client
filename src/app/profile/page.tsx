@@ -3,7 +3,7 @@ import { DailyHeatMap } from "@/src/components/DailyBoard/DailyHeatMap";
 import { Wrapper } from "@/src/components/DragDrop/Wrapper";
 import SubmissionList from "@/src/components/LearningList/LearningList";
 import { Ranking } from "@/src/components/Ranking/ranking";
-import { useNicknameStore } from "@/src/status/store";
+import { useNicknameStore } from "@/src/state/store";
 import dynamic from "next/dynamic";
 
 const DynamicQuestionIcon = dynamic(

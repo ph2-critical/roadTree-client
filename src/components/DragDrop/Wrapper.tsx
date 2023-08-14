@@ -5,7 +5,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Box } from "./Box";
 import { CardProps } from "./Card";
 import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
-import { useLoginStore } from "@/src/status/store";
+import { useLoginStore } from "@/src/state/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export type StatusType = "todo" | "doing" | "done";
