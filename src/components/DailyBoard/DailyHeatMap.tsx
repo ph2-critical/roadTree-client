@@ -1,5 +1,7 @@
 'use client'
 
+import { getSubmissionAllDatas, getSubmissionUserDatas } from "@/src/api/submission/submission";
+import { useNicknameStore } from "@/src/status/store";
 import { type } from "os";
 import { use, useEffect, useState } from "react";
 import "react-calendar-heatmap";
@@ -12,16 +14,33 @@ interface DateValue {
 }
 
 const dateValues: DateValue[] = [
-    { date: "2023-01-01", count: 12 },
-    { date: "2023-01-22", count: 122 },
-    { date: "2023-01-30", count: 38 }
+    // { date: "2023-01-01", count: 12 },
+    // { date: "2023-01-22", count: 122 },
+    // { date: "2023-01-30", count: 38 }
 ];
 
 export const DailyHeatMap: React.FC = () => {
 
-    const [hoveredValue, setHoveredValue] = useState<SVGRectElement | null>(null);
+    const { nickname} = useNicknameStore()
 
     useEffect(() => {
+        const getData = async () => {
+            const data = await getSubmissionUserDatas(nickname);
+
+            data.map((item) => {
+                const date = new Date(item.created_at);
+                const dateString = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                const existingEntry = dateValues.find(item => item.date === dateString);
+                if (existingEntry) {
+                    existingEntry.count++;
+                } else {
+                    dateValues.push({ date: dateString, count: 1 });
+                }   
+            })
+            console.log(dateValues)
+        }
+        getData();
+
         for (let month = 1; month <= 12; month++) {
             for (let day = 1; day <= 31; day++) {
                 const year = 2023;
@@ -43,26 +62,11 @@ export const DailyHeatMap: React.FC = () => {
         <div>
             <h1>Heatmaps</h1>
             <ReactCalendarHeatmap
-                onMouseOver={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
-                    // tooltip이 나타나도록 하기
-                    if (event.target instanceof SVGRectElement) {
-                        setHoveredValue(event.target);
-                    }
-                }}
-                onMouseLeave={() => {
-                    // tooltip이 사라지도록 하기
-                    setHoveredValue(null);
-                }}
                 startDate={new Date("2022-12-31")}
                 endDate={new Date("2023-12-31")}
                 values={dateValues}
                 weekdayLabels={["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]}
                 showWeekdayLabels
-                tooltipDataAttrs={(value: DateValue) => {
-                    return {
-                        "tool-tip": `${value?.count} tasks completed on ${value?.date}`
-                    };
-                }}
                 classForValue={(value: DateValue) => {
                     if (!value || value.count === 0) {
                         return "color-empty";
@@ -70,25 +74,12 @@ export const DailyHeatMap: React.FC = () => {
                     return `color-filled`;
                 }}
                 gutterSize={2}
-                onClick={(value) => {
-                    console.log(value);
-                }}
                 titleForValue={(value) => {
-                    return value?.count
+                    return value
                         ? `${value?.date}`
                         : `No work registered for this day`;
                 }}
             />
-            {hoveredValue && (
-                <div className="absolute p-2 bg-white border rounded shadow-md" style={{
-                    position: "absolute",
-                    top: `${hoveredValue.getBoundingClientRect().y - 50}px`,
-                    left: `${hoveredValue.getBoundingClientRect().x - 72}px`,
-
-                }}>
-                    <p>{hoveredValue.getAttribute("tool-tip")}</p>
-                </div>
-            )}
         </div>
     );
 };

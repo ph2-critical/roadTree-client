@@ -41,7 +41,6 @@ export const Header = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        console.log(user)
         initAmplitude(user.id);
         setLogin(user.id);
         setNickname(user?.user_metadata.full_name)
