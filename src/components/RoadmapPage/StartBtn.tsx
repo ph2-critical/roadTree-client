@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { track } from "@amplitude/analytics-browser";
 import { useModal } from "@/src/utils/hooks/useModal";
-import { useLoginStore } from "@/src/status/store";
+import { useLoginStore } from "@/src/state/store";
 import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 
@@ -41,7 +41,11 @@ export function StartBtn(props: btnProps) {
       )}
       {!isLogin && isOpen && (
         <ModalPortal>
-          <LoginModal toggleModal={toggleModal} modalRef={modalRef} />
+          <LoginModal
+            toggleModal={toggleModal}
+            modalRef={modalRef}
+            type="login"
+          />
         </ModalPortal>
       )}
     </>
