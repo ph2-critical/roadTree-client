@@ -14,36 +14,35 @@ export const Box = (props: BoxProps) => {
         <div
           className={`w-[366px] h-[521px] bg-gray-100  flex flex-col align-middle items-center rounded-xl ring-1 ring-gray-300 transition-shadow dark:bg-[#000000]`}
         >
-          <div className={`self-start py-6 ml-6 text-2xl font-semibold  bold `}>
-            {/* ${
-              props.statusKey === "todo"
-                ? "text-black"
-                : props.statusKey === "doing"
-                ? "text-doingColor"
-                : "text-doneColor"
-            } */}
+          <div className={`self-start py-6 ml-6 text-2xl font-semibold `}>
             {props.statusKey === "todo"
               ? "학습 예정"
               : props.statusKey === "doing"
-                ? "학습중"
-                : "학습 완료"}
+              ? "학습중"
+              : "학습 완료"}
           </div>
           <div className="h-[392px] overflow-auto">
             <div
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
-              className={`flex flex-col gap-y-4 ${snapshot.isDraggingOver ? "shadow-lg " : "shadow"
-                }}`}
+              className={`flex flex-col gap-y-4 ${
+                snapshot.isDraggingOver ? "shadow-lg " : "shadow"
+              }}`}
             >
-              {props.list.map((i, index) => (
-                <Card
-                  key={i.cardId}
-                  cardId={i.cardId}
-                  index={index}
-                  content={i.content}
-                  status={props.statusKey}
-                />
-              ))}
+              {props.list.length !== 0 ? (
+                props.list.map((i, index) => (
+                  <Card
+                    key={i.cardId}
+                    cardId={i.cardId}
+                    index={index}
+                    content={i.content}
+                    status={props.statusKey}
+                  />
+                ))
+              ) : (
+                <div className="w-5 h-5" />
+              )}
+
               {droppableProvided.placeholder}
             </div>
           </div>

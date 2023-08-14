@@ -35,14 +35,14 @@ export default function Profile() {
       <div className="flex justify-center">
         <Wrapper />
       </div>
-      <div>
+      {/* <div>
         <DailyHeatMap />
       </div>
       <div>
         <Ranking></Ranking>
         <div className="mt-8"></div>
         <SubmissionList nickname={nickname}></SubmissionList>
-      </div>
+      </div> */}
     </div>
   );
 }
