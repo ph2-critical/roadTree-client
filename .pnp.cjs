@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-beautiful-dnd", "npm:13.1.4"],\
+            ["@types/react-calendar-heatmap", "npm:1.6.3"],\
             ["@types/react-dom", "npm:18.2.5"],\
             ["@typescript-eslint/eslint-plugin", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
             ["@typescript-eslint/parser", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
@@ -1300,6 +1301,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-react-beautiful-dnd-npm-13.1.4-5fc92fb3be-76220f1031.zip/node_modules/@types/react-beautiful-dnd/",\
           "packageDependencies": [\
             ["@types/react-beautiful-dnd", "npm:13.1.4"],\
+            ["@types/react", "npm:18.2.12"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/react-calendar-heatmap", [\
+        ["npm:1.6.3", {\
+          "packageLocation": "./.yarn/cache/@types-react-calendar-heatmap-npm-1.6.3-b07a8fd170-31f66307e9.zip/node_modules/@types/react-calendar-heatmap/",\
+          "packageDependencies": [\
+            ["@types/react-calendar-heatmap", "npm:1.6.3"],\
             ["@types/react", "npm:18.2.12"]\
           ],\
           "linkType": "HARD"\
@@ -7286,6 +7297,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-beautiful-dnd", "npm:13.1.4"],\
+            ["@types/react-calendar-heatmap", "npm:1.6.3"],\
             ["@types/react-dom", "npm:18.2.5"],\
             ["@typescript-eslint/eslint-plugin", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
             ["@typescript-eslint/parser", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\

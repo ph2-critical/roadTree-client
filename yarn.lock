@@ -956,6 +956,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-calendar-heatmap@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@types/react-calendar-heatmap@npm:1.6.3"
+  dependencies:
+    "@types/react": "*"
+  checksum: 31f66307e960a1f03037b90a3c7eca6f707ba44e74788c9705d72c0ca5610c4cfb6756a5e69f288768110a37e3941e2af54b8f093107e37e3ae162e4709030c7
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:18.2.5":
   version: 18.2.5
   resolution: "@types/react-dom@npm:18.2.5"
@@ -5674,6 +5683,7 @@ __metadata:
     "@types/node": 20.3.1
     "@types/react": 18.2.12
     "@types/react-beautiful-dnd": ^13.1.4
+    "@types/react-calendar-heatmap": ^1.6.3
     "@types/react-dom": 18.2.5
     "@typescript-eslint/eslint-plugin": ^6.2.0
     "@typescript-eslint/parser": ^6.2.0

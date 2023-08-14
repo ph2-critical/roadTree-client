@@ -1,3 +1,4 @@
+import { DailyHeatMap } from "@/src/components/DailyBoard/DailyHeatMap";
 import { Wrapper } from "@/src/components/DragDrop/Wrapper";
 
 export default function Profile() {
@@ -14,6 +15,9 @@ export default function Profile() {
       </div>
       <div className="flex justify-center">
         <Wrapper />
+      </div>
+      <div>
+        <DailyHeatMap />
       </div>
     </div>
   );
