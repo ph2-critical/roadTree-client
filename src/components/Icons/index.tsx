@@ -1,10 +1,10 @@
 "use client";
-import { useDidMountEffect } from "@/src/utils/hooks/useDidMountEffect";
 import { Popover } from "flowbite";
 import type { PopoverOptions, PopoverInterface } from "flowbite";
+import { useEffect } from "react";
 
 export const QuestionIcon = () => {
-  useDidMountEffect(() => {
+  useEffect(() => {
     const $targetEl: HTMLElement | null = document.getElementById(
       "popover-description",
     );
@@ -29,7 +29,7 @@ export const QuestionIcon = () => {
 
       popover.show();
     }
-  });
+  }, []);
   return (
     <>
       <button
