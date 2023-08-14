@@ -3,9 +3,8 @@ import { Draggable } from "react-beautiful-dnd";
 export interface CardProps {
   cardId: string;
   index: number;
-  content: string;
+  content: string | undefined;
   status: string;
-  part: string;
 }
 
 //draggableId , key 같아야함
@@ -27,7 +26,7 @@ export const Card = (props: CardProps) => {
           }
         >
           <div
-            className={`text-xl pl-4 bg-white  flex items-center text-black2 w-[321px] h-16 border-slate-400 border-1 rounded-xl box-border 
+            className={`text-xl justify-center flex bg-white items-center text-black2 w-[321px] h-16 border-slate-400 border-1 rounded-xl box-border 
 
             `}
           >
@@ -49,7 +48,9 @@ export const Card = (props: CardProps) => {
             }
             
             */}
-            {content}
+            <div className="w-[291px] break-all whitespace-nowrap overflow-hidden text-ellipsis">
+              {content}
+            </div>
           </div>
         </div>
       )}

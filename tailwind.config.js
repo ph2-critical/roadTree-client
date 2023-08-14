@@ -4,6 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite/**/*.js",
   ],
   darkMode: "class",
 
@@ -102,9 +103,10 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/custom-forms'),
-    require('tailwind-scrollbar-hide'),
+    require("@tailwindcss/custom-forms"),
+    require("tailwind-scrollbar-hide"),
     require('@tailwindcss/forms'),
+    require("flowbite/plugin"),
   ],
 };
 
