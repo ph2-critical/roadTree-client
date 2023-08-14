@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react';
 
 
 export default function DailyLearnSubmitPage() {
-    // const router = useRouter();
 
-    const { nickname, setNickname } = useNicknameStore()
+    const { nickname } = useNicknameStore()
     const router = useRouter();
+
 
     const [formData, setFormData] = useState({
         nickname: nickname,
@@ -43,7 +43,7 @@ export default function DailyLearnSubmitPage() {
 
     const handleCategoryChange = (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
-        localStorage.setItem( name, value);
+        localStorage.setItem(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -98,21 +98,17 @@ export default function DailyLearnSubmitPage() {
         }
     };
 
-    useEffect(() => {
-        const getUser = async () => {
-            const user = await supabase.auth.getUser();
-            setNickname(user.data.user?.user_metadata.full_name)
-        };
-        getUser().then(() => {
-            const storedCategory = localStorage.getItem('category') 
-            setFormData((prevData) => ({
-                ...prevData,
-                nickname: nickname,
-                category: storedCategory || '', // 기존 카테고리 값 또는 빈 문자열로 설정
-            }));
-        });
 
-    }, [nickname]);
+    useEffect(() => {
+        const storedCategory = localStorage.getItem('category')
+        setFormData((prevData) => ({
+            ...prevData,
+            category: storedCategory || '', // 기존 카테고리 값 또는 빈 문자열로 설정
+        }));
+
+    }, []);
+
+
 
 
     return (
@@ -243,7 +239,7 @@ export default function DailyLearnSubmitPage() {
                         <button type="submit" className="bg-green-500 justify-center px-3 py-2 rounded-2xl font-semibold text-white  hover:brightness-90 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70">
                             Save
                         </button>
-                        
+
                     </div>
                 </div>
             </form>

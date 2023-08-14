@@ -14,8 +14,10 @@ import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
 import { useLoginStore } from "@/src/status/store";
 import { NavMenu } from "../NavMenu";
+import { useNicknameStore } from '@/src/status/store';
 
 export const Header = () => {
+  const { setNickname, setEmail } = useNicknameStore()
   const { isOpen, modalRef, toggleModal } = useModal();
   const { isLogin, setLogin, setLogout } = useLoginStore();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
@@ -23,15 +25,8 @@ export const Header = () => {
   const searchParams: string = pathName.split("/")[2];
   const whatStudy: number = parseInt(searchParams);
   const router = useRouter();
-
-  //   const Logout = async () => {
-  //     //  ('[amplitude] click_logout_header_btn');
-  //     track("click_logout_header_btn", { from: pathName });
-  //     await supabase.auth.signOut();
-  //     setIsLogin(false);
-  //     router.push("/");
-  //   };
   const [type, setType] = useState("");
+  const [userPicture, setUserPicture] = useState("");
   const Logout = async () => {
     //  ('[amplitude] click_logout_header_btn');
     track("click_logout_header_btn", { from: pathName });
@@ -46,8 +41,12 @@ export const Header = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
+        console.log(user)
         initAmplitude(user.id);
         setLogin(user.id);
+        setNickname(user?.user_metadata.full_name)
+        setEmail(user?.user_metadata.email)
+        setUserPicture(user?.user_metadata.avatar_url)
       } else {
         initAmplitude("");
         setLogout();
@@ -123,7 +122,7 @@ export const Header = () => {
             {isLogin ? (
               <div className="flex items-center">
                 {/* <Alarm /> */}
-                <NavMenu Logout={Logout} />
+                <NavMenu Logout={Logout} userPicture={userPicture} />
               </div>
             ) : (
               <div className="flex gap-3">
