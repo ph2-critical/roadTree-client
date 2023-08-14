@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { postSubmissionData } from '@/src/api/submission/submission';
 import { useNicknameStore } from '@/src/status/store';
 import { track } from '@amplitude/analytics-browser';
-// import { set } from 'lodash';
+// import { set } from 'lodash'
 // import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -18,17 +18,30 @@ export default function DailyLearnSubmitPage() {
         category: '',
         content: '',
         url: '',
-        job: ''
+        study: ''
     });
 
     const [formErrors, setFormErrors] = useState({
         category: false,
         content: false,
-        job: false
+        study: false
     });
 
     const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+        setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: false,
+        }));
+    };
+
+    const handleCategoryChange = (event: { target: { name: any; value: any; }; }) => {
+        const { name, value } = event.target;
+        localStorage.setItem( name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -47,7 +60,7 @@ export default function DailyLearnSubmitPage() {
         const newErrors = {
             category: false,
             content: false,
-            job: false
+            study: false
         };
 
         if (formData.category === '') {
@@ -60,8 +73,8 @@ export default function DailyLearnSubmitPage() {
             hasErrors = true;
         }
 
-        if (formData.job === '') {
-            newErrors.job = true;
+        if (formData.study === '') {
+            newErrors.study = true;
             hasErrors = true;
         }
 
@@ -84,18 +97,24 @@ export default function DailyLearnSubmitPage() {
     useEffect(() => {
         const getUser = async () => {
             const user = await supabase.auth.getUser();
-            console.log(user);
             setNickname(user.data.user?.user_metadata.full_name)
-            console.log("닉네임 :", nickname);
         };
-        getUser();
-    }, []);
+        getUser().then(() => {
+            const storedCategory = localStorage.getItem('category') 
+            setFormData((prevData) => ({
+                ...prevData,
+                nickname: nickname,
+                category: storedCategory || '', // 기존 카테고리 값 또는 빈 문자열로 설정
+            }));
+        });
+
+    }, [nickname]);
 
 
     return (
         <div className="space-y-12 flex justify-center">
             <form onSubmit={handleSubmit}>
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 p-3">
                     <div className="sm:col-span-4">
                         <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">닉네임</label>
                         <div className="mt-2">
@@ -103,7 +122,6 @@ export default function DailyLearnSubmitPage() {
                                 type="text"
                                 name="nickname" readOnly
                                 value={nickname}
-                                onChange={handleInputChange}
                                 id="nickname"
                                 className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -112,7 +130,7 @@ export default function DailyLearnSubmitPage() {
                     <div className="sm:col-span-4">
                         <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">현재상태 * </label>
                         <div className="mt-2">
-                            <select id="category" name="category" value={formData.category} onChange={handleInputChange} className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <select id="category" name="category" value={formData.category} onChange={handleCategoryChange} className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option value="">선택해주세요</option>
                                 <option value="노베이스">비전공자(노베이스)</option>
                                 <option value="부트캠프/학원">비전공자(부트캠프/학원)</option>
@@ -132,8 +150,8 @@ export default function DailyLearnSubmitPage() {
                                         value="frontend"
                                         onChange={handleInputChange}
                                         id="frontend"
-                                        name="job"
-                                        checked={formData.job === "frontend"}
+                                        name="study"
+                                        checked={formData.study === "frontend"}
                                         type="radio"
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                     />
@@ -145,8 +163,8 @@ export default function DailyLearnSubmitPage() {
                                         value="backend"
                                         onChange={handleInputChange}
                                         id="backend"
-                                        name="job"
-                                        checked={formData.job === "backend"}
+                                        name="study"
+                                        checked={formData.study === "backend"}
                                         type="radio"
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                     />
@@ -154,23 +172,23 @@ export default function DailyLearnSubmitPage() {
                                         백엔드 분야 학습
                                     </label>
                                     <input
-                                        value="collaboration"
+                                        value="common"
                                         onChange={handleInputChange}
-                                        id="collaboration"
-                                        name="job"
-                                        checked={formData.job === "collaboration"}
+                                        id="common"
+                                        name="study"
+                                        checked={formData.study === "common"}
                                         type="radio"
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                     />
-                                    <label htmlFor="collaboration" className="block text-sm font-medium leading-6 text-gray-900">
-                                        협업 도구 학습
+                                    <label htmlFor="common" className="block text-sm font-medium leading-6 text-gray-900">
+                                        공통 분야 학습(ex. Git, 코테 등)
                                     </label>
                                     <input
                                         value="etc"
                                         onChange={handleInputChange}
                                         id="etc"
-                                        name="job"
-                                        checked={formData.job === "etc"}
+                                        name="study"
+                                        checked={formData.study === "etc"}
                                         type="radio"
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                     />
