@@ -49,7 +49,7 @@ function page({ params }: { params: roadmapParams }) {
       <div className="flex flex-grow h-screenWithoutHeader mt-[73px]">
         <main
           className={
-            "mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10"
+            "mx-auto max-w-screen-xl flex flex-1 align-middle justify-centent flex-col grow transition-transform w-10 z-[0]"
           }
         >
           <RoadTreeLayout
