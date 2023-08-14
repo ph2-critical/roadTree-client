@@ -14,6 +14,7 @@ export default function Profile() {
   
     
   return (
+    nickname !== "" && (
     <div>
       <div className="flex items-end pt-12 pb-6 gap-x-6">
         <h1 className="text-4xl title-text">{nickname} 님</h1>
@@ -39,8 +40,6 @@ export default function Profile() {
         </div>
         <SubmissionList nickname={nickname}></SubmissionList>
       </div>
-
-
-    </div>
+    </div>)
   );
 }

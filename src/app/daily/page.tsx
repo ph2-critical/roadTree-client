@@ -1,6 +1,7 @@
 'use client';
 import { supabase } from '@/lib/supabase';
 import { postSubmissionData } from '@/src/api/submission/submission';
+import DailySkeletonPage from '@/src/components/Skeleton/DailySkeletonPage';
 import { useNicknameStore } from '@/src/status/store';
 import { track } from '@amplitude/analytics-browser';
 import { useRouter } from 'next/navigation';
@@ -13,6 +14,7 @@ export default function DailyLearnSubmitPage() {
 
     const { nickname } = useNicknameStore()
     const router = useRouter();
+    const [init, setInit] = useState<boolean>(false);
 
 
     const [formData, setFormData] = useState({
@@ -105,6 +107,7 @@ export default function DailyLearnSubmitPage() {
             ...prevData,
             category: storedCategory || '', // 기존 카테고리 값 또는 빈 문자열로 설정
         }));
+        setInit(true);
 
     }, []);
 
@@ -112,6 +115,7 @@ export default function DailyLearnSubmitPage() {
 
 
     return (
+        init ? 
         <div className="space-y-12 flex justify-center">
             <form onSubmit={handleSubmit}>
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 p-3">
@@ -244,7 +248,7 @@ export default function DailyLearnSubmitPage() {
                 </div>
             </form>
 
-        </div>
+        </div> : <DailySkeletonPage />
     );
 }
 
