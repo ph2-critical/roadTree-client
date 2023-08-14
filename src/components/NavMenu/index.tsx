@@ -35,7 +35,7 @@ export const NavMenu = (
                         alt={"user"}
                         width={512}
                         height={512}
-                        className="w-7 h-7 hidden md:flex"
+                        className="w-7 h-7 hidden md:flex rounded-full"
                     ></Image>
                     {/* <button
                         className="hidden md:flex justify-center p-3 text-base font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
@@ -60,7 +60,7 @@ export const NavMenu = (
                                     {email}
                                 </p>
                             </div>
-                            <ul className="xpy-1" role="none">
+                            <ul onClick={toggleModal} className="xpy-1" role="none">
                                 <li>
                                     <Link href={'/profile'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">내 프로필</Link>
                                 </li>
@@ -69,7 +69,7 @@ export const NavMenu = (
                                 </li>
 
                             </ul>
-                            <ul className="xpy-1 md:hidden">
+                            <ul onClick={toggleModal} className="xpy-1 md:hidden">
                                 <li>
                                     <div onClick={() => { window.open('https://tally.so/r/mYRE70') }} className="block px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">피드백</div>
                                 </li>

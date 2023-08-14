@@ -118,7 +118,6 @@ export const Header = () => {
                 );
               })}
             </div>
-            <div className="w-3"></div>
             {isLogin ? (
               <div className="flex items-center">
                 {/* <Alarm /> */}
