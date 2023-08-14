@@ -51,7 +51,6 @@ export const NavMenu = (
             </div>
 
             {isOpen && (
-                <ModalPortal>
                 <div className="fixed sm:right-5 right-0 z-10 p-2 pt-2 w-full sm:w-auto">
                     <div className="text-black bg-white sm:w-40 top-auto shadow-deep-dark rounded-md w-full">
                         <div className="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
@@ -95,7 +94,6 @@ export const NavMenu = (
                         </div>
                     </div>
                 </div>
-                </ModalPortal>
             )
             }
         </div >
