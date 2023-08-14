@@ -25,16 +25,15 @@ export const Box = (props: BoxProps) => {
             {props.statusKey === "todo"
               ? "학습 예정"
               : props.statusKey === "doing"
-              ? "학습중"
-              : "학습 완료"}
+                ? "학습중"
+                : "학습 완료"}
           </div>
           <div className="h-[392px] overflow-auto">
             <div
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
-              className={`flex flex-col gap-y-4 ${
-                snapshot.isDraggingOver ? "shadow-lg " : "shadow"
-              }}`}
+              className={`flex flex-col gap-y-4 ${snapshot.isDraggingOver ? "shadow-lg " : "shadow"
+                }}`}
             >
               {props.list.map((i, index) => (
                 <Card
