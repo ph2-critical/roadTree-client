@@ -82,3 +82,33 @@ export const QuestionIcon = () => {
     </>
   );
 };
+
+export const CloseIcon = (props: CloseIconProps) => {
+  return (
+    <div
+      className={`cursor-pointer ${props.className}`}
+      onClick={props.toggleModal}
+    >
+      <svg
+        width="21"
+        height="21"
+        viewBox="0 0 21 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 2L19 19M19 2L2 19"
+          stroke="#787E88"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
+};
+
+interface CloseIconProps {
+  toggleModal: () => void;
+  className?: string;
+}
