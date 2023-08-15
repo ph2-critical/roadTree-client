@@ -34,7 +34,6 @@ function page({ params }: { params: roadmapParams }) {
       const getUser = async () => {
         const user = await supabase.auth.getUser();
         setNickname(user.data.user?.user_metadata.full_name);
-        // console.log(nickname);
         const userId: string | undefined = user.data.user?.id;
         userId && setId(userId);
       };
