@@ -12,13 +12,13 @@ import { getReferenceUsingNid } from "@/src/api/initNode";
 import { postNodeStateProps, upsertNodeState } from "@/src/api/stateApi";
 
 export default function SideBar(props: {
-  whatStudy: number,
-  userId: string,
+  whatStudy: number;
+  userId: string;
   showRef: {
-    isShowRef: boolean,
-    setIsShowRef: (isShowRef: boolean) => void
-  }
-  select: RoadData | null
+    isShowRef: boolean;
+    setIsShowRef: (isShowRef: boolean) => void;
+  };
+  select: RoadData | null;
 }) {
   const select = props.select;
   const { setSelect, updateFunc } = useRoadTreeStore();
@@ -96,7 +96,7 @@ export default function SideBar(props: {
   };
 
   const setInitReferences: (selectNid: string) => void = (
-    selectNid: string
+    selectNid: string,
   ) => {
     getReferenceUsingNid(selectNid).then((data) => {
       setReferences(data);
@@ -114,35 +114,31 @@ export default function SideBar(props: {
   }, [select]);
 
   if (select !== null && isShowRef) {
-      return (
+    return (
+      <div
+        id={select.nid.toString()}
+        className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-1 md:w-[${sidebarWeight}px] border-x-2 border-gray6 resize-x ${
+          resizing ? "select-none" : ""
+        }`}
+      >
         <div
-          id={select.nid.toString()}
-          className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-1 md:w-[${sidebarWeight}px] border-x-2 border-gray6 resize-x ${
-            resizing ? "select-none" : ""
-            }`}
+          id="changeSidebarWeight"
+          className={
+            `h-full w-5 absolute left-[-10px]  cursor-w-resize flex hover:opacity-100 justify-center` +
+            (resizing ? " opacity-100" : " opacity-0")
+          }
+          {...mouseDragHook(sidebarWeightChange, sidebarWeightEnd, setResizing)}
         >
+          <div className="bg-blue-400 w-[2px] h-full"></div>
+        </div>
+        <div className="flex flex-col h-full p-3">
+          {/* side bar top height : 32 */}
           <div
-            id="changeSidebarWeight"
-            className={
-              `h-full w-5 absolute left-[-10px]  cursor-w-resize flex hover:opacity-100 justify-center` +
-              (resizing ? " opacity-100" : " opacity-0")
-            }
-            {...mouseDragHook(
-              sidebarWeightChange,
-              sidebarWeightEnd,
-              setResizing,
-            )}
+            id="roadmap_sidebar_top"
+            className="flex items-center justify-between py-1 mx-5"
           >
-            <div className="bg-blue-400 w-[2px] h-full"></div>
-          </div>
-          <div className="flex flex-col h-full p-3">
-            {/* side bar top height : 32 */}
-            <div
-              id="roadmap_sidebar_top"
-              className="flex items-center justify-between py-1 mx-5"
-            >
-              {/* side bar content height : 24  */}
-              <div className="flex gap-2">
+            {/* side bar content height : 24  */}
+            <div className="flex gap-2">
               <div className="p-1 text-2xl font-bold leading-relaxed font-display sm:leading-normal">
                 {select?.name}
               </div>
@@ -154,76 +150,78 @@ export default function SideBar(props: {
                 />
               </div>
             </div>
-              <div
-                className="p-1 rounded hover:bg-gray-100"
-                onClick={() => {
-                  if (select !== null) {
-                    //  ('[amplitude] click_close_roadmap_sidebar_btn');
-                    track("click_close_roadmap_sidebar_btn", {
-                      from: window.location.pathname,
-                      roadmapCat: whatStudy,
-                      selectNodeId: select.nid,
-                      selectNodeName: select.name,
-                    });
-
-                    if (useWindowResizeVar) {
-                      setIsShowRef(false);
-                    } else {
-                      select.select = false;
-                      setSelect(null);
-                      updateFunc(select);
-                    }
-                  }
-                }}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  role="presentation"
-                  className="w-6 h-6 text-gray-600 cursor-pointer "
-                >
-                  <path
-                    d="M12 10.586L6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 001.414 1.414L12 13.414l5.293 5.293a1 1 0 001.414-1.414L13.414 12l5.293-5.293a1 1 0 10-1.414-1.414L12 10.586z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-            </div>
             <div
-              id="roadmap_sidebar_body"
-              className="flex-grow px-5 overflow-y-scroll"
-            >
-              <div className="p-1 text-base">{select?.description}</div>
+              className="p-1 rounded hover:bg-gray-100"
+              onClick={() => {
+                if (select !== null) {
+                  //  ('[amplitude] click_close_roadmap_sidebar_btn');
+                  track("click_close_roadmap_sidebar_btn", {
+                    from: window.location.pathname,
+                    roadmapCat: whatStudy,
+                    selectNodeId: select.nid,
+                    selectNodeName: select.name,
+                  });
 
-              <div className="m-1 ">
-              {(references.length > 0) && <div className="py-2 font-semibold text-gray3">학습 내용</div>}
-                <div className="flex flex-col gap-y-2">
-                  {references.map((item, index) => {
-                    return (
-                      <div
-                        key={"key" + index}
-                        className="w-full h-20 border-2 rounded-lg border-gray6"
-                      >
-                        <RefBlock
-                          key={"refBlock" + index}
-                          refdata={item}
-                          whatStudy={whatStudy}
-                          userId={userId}
-                          refBlockInit={refBlockInit}
-                          setRefBlockInit={setRefBlockInit}
-                          select={select}
-                        ></RefBlock>
-                      </div>
-                    );
-                  })}
-                </div>
+                  if (useWindowResizeVar) {
+                    setIsShowRef(false);
+                  } else {
+                    select.select = false;
+                    setSelect(null);
+                    updateFunc(select);
+                  }
+                }
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                role="presentation"
+                className="w-6 h-6 text-gray-600 cursor-pointer "
+              >
+                <path
+                  d="M12 10.586L6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 001.414 1.414L12 13.414l5.293 5.293a1 1 0 001.414-1.414L13.414 12l5.293-5.293a1 1 0 10-1.414-1.414L12 10.586z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            id="roadmap_sidebar_body"
+            className="flex-grow px-5 overflow-y-scroll"
+          >
+            <div className="p-1 text-base">{select?.description}</div>
+
+            <div className="m-1 ">
+              {references.length > 0 && (
+                <div className="py-2 font-semibold text-gray3">학습 내용</div>
+              )}
+              <div className="flex flex-col gap-y-2">
+                {references.map((item, index) => {
+                  return (
+                    <div
+                      key={"key" + index}
+                      className="w-full h-20 border-2 rounded-lg border-gray6"
+                    >
+                      <RefBlock
+                        key={"refBlock" + index}
+                        refdata={item}
+                        whatStudy={whatStudy}
+                        userId={userId}
+                        refBlockInit={refBlockInit}
+                        setRefBlockInit={setRefBlockInit}
+                        select={select}
+                      ></RefBlock>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
-      );
-    } else {
-      return <></>; // 스켈레톤 화면
-    }
+      </div>
+    );
+  } else {
+    return <></>; // 스켈레톤 화면
+  }
 }

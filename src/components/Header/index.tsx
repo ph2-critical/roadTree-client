@@ -81,7 +81,10 @@ export const Header = () => {
                 className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
                 onClick={() => {
                   window.open("https://tally.so/r/mYRE70");
-                  track("click_go_feedback_page_header_btn", { from: pathName, isOpen: false });
+                  track("click_go_feedback_page_header_btn", {
+                    from: pathName,
+                    isOpen: false,
+                  });
                 }}
               >
                 피드백
@@ -93,7 +96,10 @@ export const Header = () => {
                     className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
                     onClick={() => {
                       // ("[amplitude] click_go_roadpage_header_menu_btn");
-                      track("click_go_daily_page_header_btn", { from: pathName, isOpen: false });
+                      track("click_go_daily_page_header_btn", {
+                        from: pathName,
+                        isOpen: false,
+                      });
                     }}
                   >
                     {" "}
@@ -124,35 +130,43 @@ export const Header = () => {
                 );
               })}
             </div>
-            { init ? (isLogin ? (
-              <div className="flex items-center">
-                {/* <Alarm /> */}
-                <NavMenu Logout={Logout} userPicture={userPicture} pathName={pathName} />
-              </div>
+            {init ? (
+              isLogin ? (
+                <div className="flex items-center">
+                  {/* <Alarm /> */}
+                  <NavMenu
+                    Logout={Logout}
+                    userPicture={userPicture}
+                    pathName={pathName}
+                  />
+                </div>
+              ) : (
+                <div className="flex gap-3">
+                  <button
+                    className="justify-center px-3 py-2 font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+                    onClick={() => {
+                      setType("login");
+                      toggleModal();
+                      track("click_login_header_btn", { from: pathName });
+                    }}
+                  >
+                    로그인
+                  </button>
+                  <button
+                    className="inline-flex justify-center px-3 py-2 font-semibold bg-white border-2 border-main rounded-2xl text-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
+                    onClick={() => {
+                      setType("signup");
+                      toggleModal();
+                      track("click_signup_header_btn", { from: pathName });
+                    }}
+                  >
+                    회원가입
+                  </button>
+                </div>
+              )
             ) : (
-              <div className="flex gap-3">
-                <button
-                  className="justify-center px-3 py-2 font-semibold text-white rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-                  onClick={() => {
-                    setType("login");
-                    toggleModal();
-                    track("click_login_header_btn", { from: pathName });
-                  }}
-                >
-                  로그인
-                </button>
-                <button
-                  className="inline-flex justify-center px-3 py-2 font-semibold bg-white border-2 border-main rounded-2xl text-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-                  onClick={() => {
-                    setType("signup");
-                    toggleModal();
-                    track("click_signup_header_btn", { from: pathName });
-                  }}
-                >
-                  회원가입
-                </button>
-              </div>
-            )) : <></>}
+              <></>
+            )}
           </div>
           {!isLogin && isOpen && (
             <ModalPortal>

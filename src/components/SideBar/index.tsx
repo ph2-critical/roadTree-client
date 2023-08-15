@@ -21,7 +21,7 @@ export const SideBar = () => {
                   : "text-gray2"
               }  `}
               onClick={() => {
-                track("click_go_daily_page_sidebar_btn")
+                track("click_go_daily_page_sidebar_btn");
               }}
               href="/daily"
             >
@@ -37,7 +37,7 @@ export const SideBar = () => {
               }  `}
               href="/daily/write"
               onClick={() => {
-                track("click_go_daily_write_page_sidebar_btn")
+                track("click_go_daily_write_page_sidebar_btn");
               }}
             >
               <BookIcon className="m-auto fill-current " />
@@ -52,7 +52,7 @@ export const SideBar = () => {
               }  `}
               href="/daily/ranking"
               onClick={() => {
-                track("click_go_daily_ranking_page_sidebar_btn")
+                track("click_go_daily_ranking_page_sidebar_btn");
               }}
             >
               <StarIcon className="m-auto fill-current " />

@@ -48,7 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
             ["@types/d3", "npm:3.5.47"],\
-            ["@types/lodash", "npm:4.14.196"],\
+            ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-beautiful-dnd", "npm:13.1.4"],\
@@ -1338,10 +1338,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/lodash", [\
-        ["npm:4.14.196", {\
-          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.196-06373ceef2-201d17c3e6.zip/node_modules/@types/lodash/",\
+        ["npm:4.14.197", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.197-8db1555bb5-53d7567d17.zip/node_modules/@types/lodash/",\
           "packageDependencies": [\
-            ["@types/lodash", "npm:4.14.196"]\
+            ["@types/lodash", "npm:4.14.197"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7553,7 +7553,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
             ["@types/d3", "npm:3.5.47"],\
-            ["@types/lodash", "npm:4.14.196"],\
+            ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-beautiful-dnd", "npm:13.1.4"],\

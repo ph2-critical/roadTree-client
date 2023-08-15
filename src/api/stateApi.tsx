@@ -23,7 +23,7 @@ export const getRefState = async (props: getRefStateProps) => {
 };
 
 export const postRefState = async (props: postRefStateProps) => {
-  const a = await supabase
+  await supabase
     .from("ref_state")
     .upsert([
       {
@@ -34,7 +34,6 @@ export const postRefState = async (props: postRefStateProps) => {
     ])
     .eq("user_id", props.user_id)
     .eq("rid", props.rid);
-  console.log(a);
 };
 
 export interface getNodeStateProps {
@@ -56,9 +55,6 @@ export const getNodeState = async (props: getNodeStateProps) => {
     .eq("node.depth", props.depth)
     .eq("user_id", props.user_id);
 
-  // .eq('node(depth)', props.depth);
-  // .eq('roadmap_type', props.roadmap_type)
-  // .eq('depth', props.depth);
   return data;
 };
 

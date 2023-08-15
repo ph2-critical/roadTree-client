@@ -1,6 +1,3 @@
-import { roadmap_back_private } from "@/roadmap_json/roadmap/back_roadmap";
-import { roadmap_front_private } from "@/roadmap_json/roadmap/front_roadmap";
-
 export interface reference {
   rid: string;
   title: string;
@@ -13,9 +10,9 @@ export interface reference {
 }
 
 export interface RoadData {
-  nid: number | string;
+  nid: string;
   name: string;
-  description?: string;
+  description: string | null;
   select?: boolean;
   depth?: number;
   children?: RoadData[] | null;
@@ -40,6 +37,3 @@ export interface roadDataState {
     };
   };
 }
-
-export const roadmap_front_public: RoadData = roadmap_front_private;
-export const roadmap_back_public: RoadData = roadmap_back_private;

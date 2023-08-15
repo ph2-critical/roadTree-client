@@ -45,7 +45,7 @@ export default function DailyLearnSubmitPage() {
       study: formData.study,
       whatInputType: name,
       whtInputValue: value,
-    })
+    });
   };
 
   const handleCategoryChange = (event: {
@@ -63,7 +63,7 @@ export default function DailyLearnSubmitPage() {
     }));
     track("select_current_state_category", {
       category: value,
-      })
+    });
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {

@@ -7,7 +7,11 @@ import Link from "next/link";
 import { ExitIcon, UserIcon } from "@/src/assets/Icons/HeaderIcons";
 import { track } from "@amplitude/analytics-browser";
 
-export const NavMenu = (props: { Logout: () => void; userPicture: string; pathName: string }) => {
+export const NavMenu = (props: {
+  Logout: () => void;
+  userPicture: string;
+  pathName: string;
+}) => {
   const { isOpen, modalRef, toggleModal } = useModal();
   const { nickname, email } = useNicknameStore();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
@@ -15,12 +19,13 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string; pathNa
   return (
     <div className="h-13 relative sm:py-0.5" ref={modalRef}>
       <div className="flex flex-row-reverse p-3 text-gray-500">
-        <div onClick={() => {
-          toggleModal();
-          track("click_user_icon",
-            { isOpening: isOpen }
-          )
-        }} className="cursor-pointer">
+        <div
+          onClick={() => {
+            toggleModal();
+            track("click_user_icon", { isOpening: isOpen });
+          }}
+          className="cursor-pointer"
+        >
           {/* md 보다 작을 경우 햄버거 메뉴 아이콘*/}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +106,7 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string; pathNa
                       window.open("https://tally.so/r/mYRE70");
                       track("click_go_feedback_page_header_btn", {
                         from: props.pathName,
-                        isOpen: true
+                        isOpen: true,
                       });
                     }}
                     className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -118,10 +123,9 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string; pathNa
                     onClick={() => {
                       track("click_go_daily_page_header_btn", {
                         from: props.pathName,
-                        isOpen: true
+                        isOpen: true,
                       });
-                    }
-                    }
+                    }}
                   >
                     데일리학습
                   </Link>
@@ -146,12 +150,13 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string; pathNa
                       </Link>
                     </li>
                   );
-                })
-                }
+                })}
                 <li>
                   <button
                     onClick={() => {
-                      track('click_logout_header_btn', {from: props.pathName})
+                      track("click_logout_header_btn", {
+                        from: props.pathName,
+                      });
                       props.Logout();
                     }}
                     className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white text-start"

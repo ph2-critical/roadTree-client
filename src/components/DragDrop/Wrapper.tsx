@@ -107,11 +107,11 @@ export const Wrapper = () => {
       sourceStatus: source.droppableId,
       destinationIndex: destination?.index,
       destinationStatus: destination?.droppableId,
-      
+
       rid: temp.cardId,
       uid: userId,
       content: temp.content,
-    })
+    });
 
     const postData = {
       rid: temp.cardId,

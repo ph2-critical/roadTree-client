@@ -424,8 +424,8 @@ export interface Database {
           created_at: string | null;
           id: number;
           nickname: string;
+          study: string;
           url: string | null;
-          user_id: string;
         };
         Insert: {
           category: string;
@@ -433,8 +433,8 @@ export interface Database {
           created_at?: string | null;
           id?: number;
           nickname: string;
+          study: string;
           url?: string | null;
-          user_id: string;
         };
         Update: {
           category?: string;
@@ -442,17 +442,10 @@ export interface Database {
           created_at?: string | null;
           id?: number;
           nickname?: string;
+          study?: string;
           url?: string | null;
-          user_id?: string;
         };
-        Relationships: [
-          {
-            foreignKeyName: "node_state_user_id_fkey";
-            columns: ["user_id"];
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
+        Relationships: [];
       };
     };
     Views: {

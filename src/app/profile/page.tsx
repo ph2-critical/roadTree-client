@@ -16,10 +16,9 @@ const DynamicQuestionIcon = dynamic(
 );
 
 export default function Profile() {
-
   useEffect(() => {
     track("enter_profile_page");
-  }, [])
+  }, []);
 
   const { nickname } = useNicknameStore();
   return (

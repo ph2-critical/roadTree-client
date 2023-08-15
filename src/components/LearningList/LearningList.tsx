@@ -133,7 +133,7 @@ export default function SubmissionList() {
                                   content: submission.content,
                                   study: submission.study,
                                   url: submission.url,
-                                })
+                                });
                               }}
                             >
                               학습 링크
