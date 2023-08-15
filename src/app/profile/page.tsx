@@ -33,5 +33,6 @@ export default function Profile() {
         <Wrapper />
       </div>
     </div>
+    )
   );
 }
