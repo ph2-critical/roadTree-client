@@ -10,21 +10,23 @@ export const Logo = (props: Props) => {
   return (
     <div className={props.className} onClick={props.onClick}>
       <Image
-        src={'/logo.svg'}
-        alt={'logo'}
+        src={"/logo.svg"}
+        alt={"logo"}
         width={128}
         height={52}
-        style={{width: 128, height: 52}}
+        style={{ width: 128, height: 52 }}
         priority
-        className="hidden sm:flex" />
+        className="hidden sm:flex"
+      />
       <Image
-        src={'/header/RoadTreeIcon.svg'}
-        alt={'logo'}
+        src={"/header/RoadTreeIcon.svg"}
+        alt={"logo"}
         width={64}
         height={64}
-        style={{width: 64, height: 64}}
+        style={{ width: 64, height: 64 }}
         priority
-        className="flex sm:hidden" />
+        className="flex sm:hidden"
+      />
     </div>
   );
 };
@@ -33,8 +35,8 @@ export const ListBulletIcon = (props: Props) => {
   return (
     <div className={props.className}>
       <svg
-        width="32"
-        height="32"
+        width="28"
+        height="28"
         viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -51,8 +53,8 @@ export const BookIcon = (props: Props) => {
   return (
     <div className={props.className}>
       <svg
-        width="32"
-        height="32"
+        width="28"
+        height="28"
         viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -130,6 +132,29 @@ export const CheckIcon = (props: Props) => {
         <path
           d="M3.77296 8.60246L3.77275 8.60225C3.66726 8.49676 3.52418 8.4375 3.375 8.4375C3.22582 8.4375 3.08274 8.49676 2.97725 8.60225C2.87176 8.70774 2.8125 8.85082 2.8125 9C2.8125 9.00901 2.81272 9.01802 2.81315 9.02702C2.81987 9.1667 2.87837 9.29887 2.97725 9.39775L2.97746 9.39796L6.91475 13.3352C7.13442 13.5549 7.49058 13.5549 7.71025 13.3352L15.5852 5.46025C15.6907 5.35476 15.75 5.21168 15.75 5.0625C15.75 4.91332 15.6907 4.77024 15.5852 4.66475C15.4798 4.55926 15.3367 4.5 15.1875 4.5C15.0383 4.5 14.8952 4.55926 14.7898 4.66475L7.3125 12.142L3.77296 8.60246Z"
           fill="inherit"
+        />
+      </svg>
+    </div>
+  );
+};
+
+export const StarIcon = (props: Props) => {
+  return (
+    <div className={props.className}>
+      <svg
+        width="28"
+        height="28"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 21 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="m11.479 1.712 2.367 4.8a.532.532 0 0 0 .4.292l5.294.769a.534.534 0 0 1 .3.91l-3.83 3.735a.534.534 0 0 0-.154.473l.9 5.272a.535.535 0 0 1-.775.563l-4.734-2.49a.536.536 0 0 0-.5 0l-4.73 2.487a.534.534 0 0 1-.775-.563l.9-5.272a.534.534 0 0 0-.154-.473L2.158 8.48a.534.534 0 0 1 .3-.911l5.294-.77a.532.532 0 0 0 .4-.292l2.367-4.8a.534.534 0 0 1 .96.004Z"
         />
       </svg>
     </div>

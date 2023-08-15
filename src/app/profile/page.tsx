@@ -1,8 +1,5 @@
 "use client";
-import { DailyHeatMap } from "@/src/components/DailyBoard/DailyHeatMap";
 import { Wrapper } from "@/src/components/DragDrop/Wrapper";
-import SubmissionList from "@/src/components/LearningList/LearningList";
-import { Ranking } from "@/src/components/Ranking/ranking";
 import { useNicknameStore } from "@/src/state/store";
 import dynamic from "next/dynamic";
 
@@ -18,7 +15,6 @@ const DynamicQuestionIcon = dynamic(
 
 export default function Profile() {
   const { nickname } = useNicknameStore();
-
   return (
     <div>
       <div className="flex items-end pt-12 pb-6 gap-x-6">
@@ -35,14 +31,6 @@ export default function Profile() {
       <div className="flex justify-center">
         <Wrapper />
       </div>
-      {/* <div>
-        <DailyHeatMap />
-      </div>
-      <div>
-        <Ranking></Ranking>
-        <div className="mt-8"></div>
-        <SubmissionList nickname={nickname}></SubmissionList>
-      </div> */}
     </div>
   );
 }
