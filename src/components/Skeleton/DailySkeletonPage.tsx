@@ -1,62 +1,58 @@
+import React from "react";
+
 export default function DailySkeletonPage() {
 
     return (
-        <div className="space-y-12 flex justify-center rounded-md animate-pulse">
-            <form>
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 p-3">
+
+        <div className="flex space-y-12 animate-pulse">
+            <form >
+                <div className="grid grid-cols-1 p-3 mt-10 gap-x-6 gap-y-8 sm:grid-cols-3">
                     <div className="sm:col-span-4">
-                        <label htmlFor="last-name" className="block text-sm font-medium leading-6 bg-gray-200 rounded-md h-5 w-20 text-gray-900"></label>
+                        <div className="block h-5 w-12 bg-gray-200 rounded-md" />
                         <div className="mt-2">
                             <div
-                                id="nickname"
-                                className="block rounded-md py-1.5 h-9 w-40 text-gray-900 bg-gray-200 "
+                                className="block rounded-md py-1.5 w-40 h-9 bg-gray-200"
                             />
                         </div>
                     </div>
                     <div className="sm:col-span-4">
-                        <label htmlFor="category" className="block text-sm font-medium bg-gray-200 h-5 leading-6 rounded-md w-28 text-gray-900"></label>
+                        <div
+                            className="block h-5 w-24 bg-gray-200 rounded-md" />
                         <div className="mt-2">
-                            <div id="category" className="block px-3 w-full h-9 bg-gray-200 rounded-md py-1.5 ">
-                                
-                            </div>
+                            <div
+                                id="category"
+                                className="block px-3 w-full rounded-md border-0 py-1.5 sm:max-w-xs h-9 bg-gray-200"
+                            />
                         </div>
                     </div>
                     <div className="sm:col-span-4">
                         <fieldset>
-                            <legend className="text-sm font-semibold leading-6 bg-gray-200 rounded-md w-16 h-5 text-gray-900"></legend>
-                            <p className="mt-1 text-sm leading-6 bg-gray-200 w-52 text-gray-600 rounded-md"></p>
-                            <div className="mt-6 space-y-6 bg-gray-200 w-128 rounded-md h-7">
-                                
+                            <div className="h-5 w-20 bg-gray-200 rounded-md" />
+                            <div className="mt-1 h-5 w-52 rounded-md bg-gray-200" />
+                            <div className="mt-6 space-y-6">
+                                <div className="h-7 w-128 rounded-md bg-gray-200" />
                             </div>
                         </fieldset>
-
                     </div>
                     <div className="sm:col-span-4">
-                        <label htmlFor="content" className="block h-5 w-32 bg-gray-200 text-sm rounded-md font-medium leading-6 text-gray-900">
-                        </label>
+                        <div
+                            className="h-5 w-36 rounded-md bg-gray-200" />
                         <div className="mt-2">
                             <div
                                 id="content"
-           
-        
-                                className="px-3 block h-20 w-128 rounded-md py-1.5 bg-gray-200"
+                                className="px-3 block w-full rounded-md border-0 py-1.5 h-20 bg-gray-200"
                             />
                         </div>
+                        {/* <p className="mt-3 text-sm leading-6 text-gray-600"></p> */}
                     </div>
                     <div className="sm:col-span-4">
-                        <div className=" bg-gray-200 h-5 w-32 rounded-md">
-                        </div>
+                        <div className="block bg-gray-200 rounded-md h-5 w-20" />
                         <div className="mt-2">
-                            <div className="flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <div                          
-                                    className="flex-1 py-1.5 pl-1 h-9 w-128 bg-gray-200"
-                                />
-                            </div>
+                            <div className="flex rounded-md bg-gray-200 sm:max-w-md h-9 w-full" />
                         </div>
                     </div>
                 </div>
             </form>
-
         </div>
     );
 }
