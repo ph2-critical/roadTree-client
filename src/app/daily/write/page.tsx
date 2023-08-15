@@ -105,6 +105,7 @@ export default function DailyLearnSubmitPage() {
   };
 
   useEffect(() => {
+    track(`enter_daily_submit_page`);
     const storedCategory = localStorage.getItem("category");
     setFormData((prevData) => ({
       ...prevData,

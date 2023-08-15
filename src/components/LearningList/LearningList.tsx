@@ -8,6 +8,7 @@ import { useModal } from "@/src/utils/hooks/useModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useEffect, useState } from "react";
 import { DetailModal } from "../Modal/detailModail";
+import { track } from "@amplitude/analytics-browser";
 
 function getStudyField(study: string) {
   if (study == "frontend") {
@@ -29,6 +30,7 @@ export default function SubmissionList() {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
+    track("enter_my_submission_list_page");
     const fetchSubmissions = async () => {
       try {
         if (nickname) {
