@@ -12,12 +12,12 @@ import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
-import { useLoginStore } from "@/src/status/store";
+import { useLoginStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
-import { useNicknameStore } from '@/src/status/store';
+import { useNicknameStore } from "@/src/state/store";
 
 export const Header = () => {
-  const { setNickname, setEmail } = useNicknameStore()
+  const { setNickname, setEmail } = useNicknameStore();
   const { isOpen, modalRef, toggleModal } = useModal();
   const { isLogin, setLogin, setLogout } = useLoginStore();
   const navMenu = ["프론트엔드", "백엔드", "인공지능"];
@@ -26,6 +26,7 @@ export const Header = () => {
   const whatStudy: number = parseInt(searchParams);
   const router = useRouter();
   const [type, setType] = useState("");
+  const [init, setInit] = useState<boolean>(false);
   const [userPicture, setUserPicture] = useState("");
   const Logout = async () => {
     //  ('[amplitude] click_logout_header_btn');
@@ -43,13 +44,14 @@ export const Header = () => {
       if (user) {
         initAmplitude(user.id);
         setLogin(user.id);
-        setNickname(user?.user_metadata.full_name)
-        setEmail(user?.user_metadata.email)
-        setUserPicture(user?.user_metadata.avatar_url)
+        setNickname(user?.user_metadata.full_name);
+        setEmail(user?.user_metadata.email);
+        setUserPicture(user?.user_metadata.avatar_url);
       } else {
         initAmplitude("");
         setLogout();
       }
+      setInit(true);
     };
     checkUser();
 
@@ -87,12 +89,17 @@ export const Header = () => {
               </div>
 
               <Link href="/daily">
-                <div id='headerMenu' className='md:flex hidden'>
-                  <div className='p-3 text-base font-semibold text-red-300 hover:text-red-400 cursor-pointer'
+                <div id="headerMenu" className="hidden md:flex">
+                  <div
+                    className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
                     onClick={() => {
                       // ("[amplitude] click_go_roadpage_header_menu_btn");
                       track("click_go_daily_header_btn", { from: pathName });
-                    }}> 데일리학습</div>
+                    }}
+                  >
+                    {" "}
+                    데일리학습
+                  </div>
                 </div>
               </Link>
 
@@ -117,7 +124,7 @@ export const Header = () => {
                 );
               })}
             </div>
-            {isLogin ? (
+            { init ? (isLogin ? (
               <div className="flex items-center">
                 {/* <Alarm /> */}
                 <NavMenu Logout={Logout} userPicture={userPicture} />
@@ -143,7 +150,7 @@ export const Header = () => {
                   회원가입
                 </button>
               </div>
-            )}
+            )) : <></>}
           </div>
           {!isLogin && isOpen && (
             <ModalPortal>
@@ -155,7 +162,7 @@ export const Header = () => {
             </ModalPortal>
           )}
         </div>
-      </div >
-    </nav >
+      </div>
+    </nav>
   );
 };

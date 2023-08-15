@@ -6,7 +6,7 @@ import RoadTreeLayout, {
   useRoadTreeStore,
 } from "@/src/components/RoadmapPage/RoadTreeLayout";
 import SideBar from "@/src/components/RoadmapPage/SideBar";
-import { useNicknameStore } from "@/src/status/store";
+import { useNicknameStore } from "@/src/state/store";
 import { track } from "@amplitude/analytics-browser";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

@@ -5,7 +5,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Box } from "./Box";
 import { CardProps } from "./Card";
 import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
-import { useLoginStore } from "@/src/status/store";
+import { useLoginStore } from "@/src/state/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export type StatusType = "todo" | "doing" | "done";
@@ -27,18 +27,6 @@ export interface ProfileResponse {
   created_at: string | null;
   reference: { title: string } | null;
 }
-
-// for (let j = 0; j < 3; j++) {
-//   const status = j === 0 ? "todo" : j === 1 ? "doing" : "done";
-//   const items: CardProps[] = [...Array(3)].map((_, i) => ({
-//     cardId: `${j}${i}${i}`,
-//     content: `스프링 입문-${j.toString() + i.toString()}`,
-//     status: status,
-//     index: i,
-//     part: "hi",
-//   }));
-//   lists[status].push(...items);
-// }
 
 export const Wrapper = () => {
   const status = {

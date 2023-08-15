@@ -197,7 +197,7 @@ export default function SideBar(props: {
               <div className="p-1 text-base">{select?.description}</div>
 
               <div className="m-1 ">
-              <div className="py-2 font-semibold text-gray3">학습 내용</div>
+              {(references.length > 0) && <div className="py-2 font-semibold text-gray3">학습 내용</div>}
                 <div className="flex flex-col gap-y-2">
                   {references.map((item, index) => {
                     return (
