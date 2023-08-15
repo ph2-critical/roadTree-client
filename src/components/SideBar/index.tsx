@@ -1,5 +1,6 @@
 "use client";
 import { BookIcon, ListBulletIcon, StarIcon } from "@/src/assets/Icons";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export const SideBar = () => {
@@ -12,7 +13,7 @@ export const SideBar = () => {
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className="w-60">
           <nav className="box-border mt-10">
-            <a
+            <Link
               className={`hover:text-doneColor  px-6 hover:bg-todoColor flex items-center py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
                 path === "/daily"
                   ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
@@ -23,8 +24,8 @@ export const SideBar = () => {
               <ListBulletIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">학습 현황</span>
               <span className="flex-grow text-right"></span>
-            </a>
-            <a
+            </Link>
+            <Link
               className={`hover:text-doneColor hover:bg-todoColor flex items-center px-6 py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
                 path === "/daily/write"
                   ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
@@ -35,8 +36,8 @@ export const SideBar = () => {
               <BookIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">학습 기록</span>
               <span className="flex-grow text-right"></span>
-            </a>
-            <a
+            </Link>
+            <Link
               className={`hover:text-doneColor hover:bg-todoColor flex items-center px-6 py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
                 path === "/daily/ranking"
                   ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
@@ -47,7 +48,7 @@ export const SideBar = () => {
               <StarIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">랭킹</span>
               <span className="flex-grow text-right"></span>
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 import { postSubmissionData } from "@/src/api/submission/submission";
+import DailySkeletonPage from "@/src/components/Skeleton/DailySkeletonPage";
 import { useNicknameStore } from "@/src/state/store";
 import { track } from "@amplitude/analytics-browser";
 import { useRouter } from "next/navigation";
@@ -103,7 +104,7 @@ export default function DailyLearnSubmitPage() {
     }));
   }, []);
 
-  return (
+  return nickname ? (
     <div className="flex space-y-12">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 p-3 mt-10 gap-x-6 gap-y-8 sm:grid-cols-3">
@@ -276,5 +277,7 @@ export default function DailyLearnSubmitPage() {
         </div>
       </form>
     </div>
+  ) : (
+    <DailySkeletonPage />
   );
 }
