@@ -19,11 +19,16 @@ export const DailyHeatMap: React.FC = () => {
   const [init, setInit] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log('nickname', nickname)
     if (nickname) {
-      if (dateValues.length > 0)
-        return;
+      console.log('1', dateValues)
+      if (dateValues.length > 0) {
+        setInit(true);
+        return
+      }
       const getData = async () => {
         const data = await getSubmissionUserDatas(nickname);
+        console.log('data', data);
 
         data.map((item) => {
           const date = new Date(item.created_at);
