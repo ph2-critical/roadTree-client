@@ -80,7 +80,6 @@ export const DailyHeatMap: React.FC = () => {
               ? `${value?.date}`
               : `No work registered for this day`;
           }}
-          onClick={() => console.log(dateValues)}
         />
       </div>
       : <></>
