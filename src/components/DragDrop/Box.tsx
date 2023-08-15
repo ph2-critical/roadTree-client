@@ -40,7 +40,7 @@ export const Box = (props: BoxProps) => {
                   />
                 ))
               ) : (
-                <div className="w-5 h-5" />
+                <div className="w-60 h-[392px]" />
               )}
 
               {droppableProvided.placeholder}
