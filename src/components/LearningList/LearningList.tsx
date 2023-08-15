@@ -106,13 +106,24 @@ export default function SubmissionList() {
                       </td>
                       {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{}</td> */}
                       <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
-                        <a
+                        {submission.url ? (
+                          <a
+                            href={submission.url}
+                            target="_blank"
+                            className="text-[#13D080] hover:text-green-900"
+                          >
+                            학습 링크
+                          </a>
+                        ) : (
+                          <span className="text-gray-400">링크 없음</span>
+                        )}
+                        {/* <a
                           href="#"
                           className="text-[#13D080] hover:text-green-900"
                         >
                           학습 링크
                           <span className="sr-only">, {submission.url}</span>
-                        </a>
+                        </a> */}
                       </td>
                     </tr>
                   ))}
