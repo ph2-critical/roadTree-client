@@ -19,7 +19,7 @@ export default function Profile() {
     nickname !== "" && (
       <div>
         <div className="flex items-end pt-12 pb-6 gap-x-6">
-          <h1 className="text-4xl title-text">{nickname} 님</h1>
+          <h1 className="ml-4 text-4xl title-text md:ml-0">{nickname} 님</h1>
 
           {/* <button
           type="button"

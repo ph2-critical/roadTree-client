@@ -131,7 +131,7 @@ export const Wrapper = () => {
   return (
     <DragDropContext onDragEnd={handleDrag}>
       {!isLoading && (
-        <div className="flex gap-12">
+        <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
           {(Object.keys(list) as StatusType[]).map((key) => (
             <Box statusKey={key} list={list[key]} key={key} />
           ))}
