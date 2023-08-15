@@ -28,15 +28,17 @@ export default function SubmissionList() {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const submissionData = await getSubmissionUserDatas(nickname);
-        submissionData.forEach((item: getSubmissionUserProps) => {
-          item.created_at = item.created_at.substring(0, 10);
-          item.study = getStudyField(item.study);
-          if (item.content.length > 15) {
-            item.content = item.content.substring(0, 15) + "...";
-          }
-        });
-        setSubmissions(submissionData);
+        if (nickname) {
+          const submissionData = await getSubmissionUserDatas(nickname);
+          submissionData.forEach((item: getSubmissionUserProps) => {
+            item.created_at = item.created_at.substring(0, 10);
+            item.study = getStudyField(item.study);
+            // if (item.content.length > 15) {
+            //   item.content = item.content.substring(0, 15) + "...";
+            // }
+          });
+          setSubmissions(submissionData);
+        }
       } catch (error) {
         console.error("Error fetching submissions:", error);
       }
@@ -86,9 +88,7 @@ export default function SubmissionList() {
                     >
                       참고링크
                     </th>
-                    {/* <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                      <span className="sr-only">Edit</span>
-                    </th> */}
+
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -100,19 +100,36 @@ export default function SubmissionList() {
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {submission.study}
                       </td>
-                      {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{submission.category}</td> */}
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {submission.content}
+                        <div className="relative">
+                          {submission.content.length > 15 ? (
+                            <div
+                              className="truncate w-40 overflow-hidden"
+                              title={submission.content}
+                            >
+                              {submission.content}
+                            </div>
+                          ) : (
+                            submission.content
+                          )}
+                        </div>
                       </td>
-                      {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{}</td> */}
+                      {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        {submission.content}
+
+                      </td> */}
                       <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
-                        <a
-                          href="#"
-                          className="text-[#13D080] hover:text-green-900"
-                        >
-                          학습 링크
-                          <span className="sr-only">, {submission.url}</span>
-                        </a>
+                        {submission.url ? (
+                          <a
+                            href={submission.url}
+                            target="_blank"
+                            className="text-[#13D080] hover:text-green-900"
+                          >
+                            학습 링크
+                          </a>
+                        ) : (
+                          <span className="text-gray-400">링크 없음</span>
+                        )}
                       </td>
                     </tr>
                   ))}
