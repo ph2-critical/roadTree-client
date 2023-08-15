@@ -46,6 +46,7 @@ export default function SubmissionList() {
   }, [nickname]);
 
   return (
+    submissions.length > 0 && (
     <div className="box-border">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
@@ -123,5 +124,6 @@ export default function SubmissionList() {
         </div>
       </div>
     </div>
+    )
   );
 }
