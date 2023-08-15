@@ -6,12 +6,14 @@ import {
   getSubmissionAllDatas,
   getSubmissionProps,
 } from "@/src/api/submission/submission";
+import { track } from "@amplitude/analytics-browser";
 
 export const Ranking = () => {
   const [, setMentionCounts] = useState<{ [key: string]: number }>({});
   const [rankingInfo, setRankingInfo] = useState<RankingInfo[]>([]);
 
   useEffect(() => {
+    track("enter_daily_ranking_page");
     async function fetchData() {
       const data = await getSubmissionAllDatas();
 
