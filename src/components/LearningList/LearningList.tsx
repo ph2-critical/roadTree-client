@@ -33,9 +33,9 @@ export default function SubmissionList() {
           submissionData.forEach((item: getSubmissionUserProps) => {
             item.created_at = item.created_at.substring(0, 10);
             item.study = getStudyField(item.study);
-            // if (item.content.length > 15) {
-            //   item.content = item.content.substring(0, 15) + "...";
-            // }
+            if(item.url && !item.url.startsWith("https:")){
+              item.url = "https://" + item.url;
+            }
           });
           setSubmissions(submissionData);
         }
@@ -48,7 +48,6 @@ export default function SubmissionList() {
   }, [nickname]);
 
   return (
-    submissions.length > 0 && (
     <div className="box-border">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
@@ -141,6 +140,5 @@ export default function SubmissionList() {
         </div>
       </div>
     </div>
-    )
   );
 }
