@@ -27,9 +27,10 @@ export const QuestionIcon = () => {
         options,
       );
 
-      popover.show();
+      popover.hide();
     }
-  }, []);
+  });
+
   return (
     <>
       <button

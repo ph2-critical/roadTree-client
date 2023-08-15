@@ -1,73 +1,51 @@
-'use client';
-import {
-  BookIcon,
-  ChatIcon,
-  ClipIcon,
-  ListBulletIcon,
-} from '@/src/assets/Icons';
-import { usePathname } from 'next/navigation';
+"use client";
+import { BookIcon, ListBulletIcon, StarIcon } from "@/src/assets/Icons";
+import { usePathname } from "next/navigation";
 
 export const SideBar = () => {
   const path = usePathname();
 
   return (
-    <div className={`fixed bg-white dark:bg-gray-800 h-[1008px] mt-[72px]`}>
+    <div
+      className={`fixed bg-white dark:bg-gray-800 h-full left-0 border-x border-gray6`}
+    >
       <div className="flex flex-col sm:flex-row sm:justify-around">
-        <div className="w-72">
-          <nav className="px-6 mt-10 ">
+        <div className="w-60">
+          <nav className="box-border mt-10">
             <a
-              className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
-                path === '/'
-                  ? 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-600 rounded'
-                  : 'text-gray2'
+              className={`hover:text-doneColor  px-6 hover:bg-todoColor flex items-center py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
+                path === "/daily"
+                  ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
+                  : "text-gray2"
               }  `}
-              href="#"
+              href="/daily"
             >
               <ListBulletIcon className="m-auto fill-current " />
-              <span className="mx-4 text-lg font-normal">전체글</span>
+              <span className="mx-4 text-lg font-normal">학습 현황</span>
               <span className="flex-grow text-right"></span>
             </a>
             <a
-              className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
-                path === '/1'
-                  ? 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-600 rounded'
-                  : 'text-gray2'
+              className={`hover:text-doneColor hover:bg-todoColor flex items-center px-6 py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
+                path === "/daily/write"
+                  ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
+                  : "text-gray2"
               }  `}
-              href="#"
+              href="/daily/write"
             >
               <BookIcon className="m-auto fill-current " />
-              <span className="mx-4 text-lg font-normal">정보 공유</span>
+              <span className="mx-4 text-lg font-normal">학습 기록</span>
               <span className="flex-grow text-right"></span>
             </a>
             <a
-              className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
-                path === '/2'
-                  ? 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-600 rounded'
-                  : 'text-gray2'
+              className={`hover:text-doneColor hover:bg-todoColor flex items-center px-6 py-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
+                path === "/daily/ranking"
+                  ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
+                  : "text-gray2"
               }  `}
-              href="#"
+              href="/daily/ranking"
             >
-              <ChatIcon className="m-auto fill-current" />
-              <span className="mx-4 text-lg font-normal">고민/잡담</span>
-              <span className="flex-grow text-right">
-                {/* <button
-                  type="button"
-                  className="w-6 h-6 text-xs text-white bg-red-500 rounded-full"
-                >
-                  <span className="p-1">7</span>
-                </button> */}
-              </span>
-            </a>
-            <a
-              className={`hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  ${
-                path === '/3'
-                  ? 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-600 rounded'
-                  : 'text-gray2'
-              }  `}
-              href="#"
-            >
-              <ClipIcon className="m-auto fill-current " />
-              <span className="mx-4 text-lg font-normal">질문</span>
+              <StarIcon className="m-auto fill-current " />
+              <span className="mx-4 text-lg font-normal">랭킹</span>
               <span className="flex-grow text-right"></span>
             </a>
           </nav>
