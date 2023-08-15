@@ -171,20 +171,16 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
   async function setInitNode() {
     const rootNodeId = await getNodeId(whatStudyTable[whatStudy]);
-    setRoot({
-      nid: rootNodeId,
-      name: whatStudyTable[whatStudy],
-      description: null,
-    });
 
     const children: RoadData[] = (await getNodeChildren(rootNodeId)) ?? [];
     const commonNodeId: string = await getNodeId("common");
     const common_children: RoadData[] =
       (await getNodeChildren(commonNodeId)) ?? [];
-    setRoot((prev) => {
-      const newRoot = { ...prev };
-      newRoot.children = [...children, ...common_children];
-      return newRoot;
+    setRoot({
+      nid: rootNodeId,
+      name: whatStudyTable[whatStudy],
+      description: null,
+      children: [...children, ...common_children],
     });
   }
 
@@ -321,11 +317,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .style("y", "-20")
           .style("rx", "10")
           .style("ry", "10");
-        nodeEnter = nodeEnter
-          .append("svg:g")
-          .attr("class", function (d: RoadData) {
-            return "cursor-pointer hover:brightness-95 hover:opacity-100 ";
-          });
+        nodeEnter = nodeEnter.append("svg:g").attr("class", function () {
+          return "cursor-pointer hover:brightness-95 hover:opacity-100 ";
+        });
 
         nodeEnter
           .append("svg:rect")
@@ -475,7 +469,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   return (
     <div id="body" className="w-auto overflow-scroll scrollbar-hide">
       {/* 모바일 버전 */}
-      {init && ismdSize && (
+      {init && root && ismdSize && (
         <RoadTreeMobileLayout
           roadData={root}
           toggleSelect={toggle_select}
