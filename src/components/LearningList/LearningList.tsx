@@ -36,6 +36,9 @@ export default function SubmissionList() {
           submissionData.forEach((item: getSubmissionUserProps) => {
             item.created_at = item.created_at.substring(0, 10);
             item.study = getStudyField(item.study);
+            if (item.url && !item.url.startsWith("https:")) {
+              item.url = "https://" + item.url;
+            }
           });
           setSubmissions(submissionData);
         }
