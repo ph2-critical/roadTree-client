@@ -18,18 +18,14 @@ export const DailyHeatMap: React.FC = () => {
   const { nickname } = useNicknameStore()
   const [init, setInit] = useState<boolean>(false);
 
+
   useEffect(() => {
-    console.log('nickname', nickname)
     if (nickname) {
-      console.log('1', dateValues)
-      if (dateValues.length > 0) {
-        setInit(true);
-        return
-      }
       const getData = async () => {
         const data = await getSubmissionUserDatas(nickname);
-        console.log('data', data);
-
+        if (dateValues.length > 0) {
+          dateValues.splice(0, dateValues.length);
+        }
         data.map((item) => {
           const date = new Date(item.created_at);
           const dateString = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
