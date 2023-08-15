@@ -16,6 +16,7 @@ const DynamicQuestionIcon = dynamic(
 export default function Profile() {
   const { nickname } = useNicknameStore();
   return (
+    nickname !== "" && (
     <div>
       <div className="flex items-end pt-12 pb-6 gap-x-6">
         <h1 className="text-4xl title-text">{nickname} 님</h1>
@@ -32,5 +33,6 @@ export default function Profile() {
         <Wrapper />
       </div>
     </div>
+    )
   );
 }
