@@ -42,7 +42,7 @@ export const DailyHeatMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center p-3 mt-5 border-2 rounded-lg">
+    <div className="flex items-center justify-center p-3 mt-5 mb-16 border-2 rounded-lg">
       <ReactCalendarHeatmap
         onMouseOver={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
           // tooltip이 나타나도록 하기

@@ -19,6 +19,7 @@ export default function DailyLearnSubmitPage() {
   });
 
   const [, setFormErrors] = useState({
+    nickname: false,
     category: false,
     content: false,
     study: false,
@@ -58,11 +59,16 @@ export default function DailyLearnSubmitPage() {
     // 폼 검증
     let hasErrors = false;
     const newErrors = {
+      nickname: false,
       category: false,
       content: false,
       study: false,
     };
-
+    if (formData.nickname === "") {
+      newErrors.nickname = true;
+      hasErrors = true;
+      alert("로그인이 필요합니다.");
+    }
     if (formData.category === "") {
       newErrors.category = true;
       hasErrors = true;
@@ -85,12 +91,14 @@ export default function DailyLearnSubmitPage() {
       return; // 에러나면 제출되지 않음
     }
     try {
-      await postSubmissionData(formData);
-      console.log("Data submitted successfully");
-      track(`submit_daily_page`);
-      // to do : 성공시 redirect 로직 추가할 필요 있음
-      //'/profile' 로 이동 시키기
-      router.push("/profile");
+      if (nickname) {
+        await postSubmissionData(formData);
+        console.log("Data submitted successfully");
+        track(`submit_daily_page`);
+        // to do : 성공시 redirect 로직 추가할 필요 있음
+        //'/profile' 로 이동 시키기
+        router.push("/daily");
+      }
     } catch (error) {
       console.error("Error submitting data:", error);
     }
@@ -100,9 +108,10 @@ export default function DailyLearnSubmitPage() {
     const storedCategory = localStorage.getItem("category");
     setFormData((prevData) => ({
       ...prevData,
+      nickname: nickname,
       category: storedCategory || "", // 기존 카테고리 값 또는 빈 문자열로 설정
     }));
-  }, []);
+  }, [nickname]);
 
   return nickname ? (
     <div className="flex space-y-12">
@@ -232,6 +241,9 @@ export default function DailyLearnSubmitPage() {
             >
               데일리 작성 내용 *
             </label>
+            <p className="mt-1 text-sm leading-6 text-gray-600">
+              간단하게 학습한 내용을 작성
+            </p>
             <div className="mt-2">
               <textarea
                 id="content"
@@ -240,7 +252,7 @@ export default function DailyLearnSubmitPage() {
                 value={formData.content}
                 onChange={handleInputChange}
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder={"학습한 내용을 작성해주세요."}
+                placeholder={"ex) 리액트 훅스를 학습"}
               />
             </div>
             {/* <p className="mt-3 text-sm leading-6 text-gray-600"></p> */}
@@ -250,7 +262,7 @@ export default function DailyLearnSubmitPage() {
               htmlFor="url"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              참고링크
+              참고링크(선택)
             </label>
             <div className="mt-2">
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
