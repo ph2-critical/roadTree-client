@@ -7,6 +7,7 @@ import { CardProps } from "./Card";
 import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
 import { useLoginStore } from "@/src/state/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { track } from "@amplitude/analytics-browser";
 
 export type StatusType = "todo" | "doing" | "done";
 // type WrapperType = BoxProps[];
@@ -100,6 +101,17 @@ export const Wrapper = () => {
 
     const now = new Date();
     const nowTimeStamp = now.toISOString();
+
+    track("drag_reference_card_on_profile", {
+      sourceIndex: source.index,
+      sourceStatus: source.droppableId,
+      destinationIndex: destination?.index,
+      destinationStatus: destination?.droppableId,
+
+      rid: temp.cardId,
+      uid: userId,
+      content: temp.content,
+    });
 
     const postData = {
       rid: temp.cardId,

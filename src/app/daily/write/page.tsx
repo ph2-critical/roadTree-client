@@ -37,6 +37,15 @@ export default function DailyLearnSubmitPage() {
       ...prevErrors,
       [name]: false,
     }));
+    track("input_daily_learn", {
+      nickname: formData.nickname,
+      category: formData.category,
+      content: formData.content,
+      url: formData.url,
+      study: formData.study,
+      whatInputType: name,
+      whtInputValue: value,
+    });
   };
 
   const handleCategoryChange = (event: {
@@ -52,10 +61,21 @@ export default function DailyLearnSubmitPage() {
       ...prevErrors,
       [name]: false,
     }));
+    track("select_current_state_category", {
+      category: value,
+    });
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+    track("submit_daily_learn", {
+      nickname: formData.nickname,
+      category: formData.category,
+      content: formData.content,
+      url: formData.url,
+      study: formData.study,
+    });
+
     // 폼 검증
     let hasErrors = false;
     const newErrors = {
@@ -93,8 +113,6 @@ export default function DailyLearnSubmitPage() {
     try {
       if (nickname) {
         await postSubmissionData(formData);
-        console.log("Data submitted successfully");
-        track(`submit_daily_page`);
         // to do : 성공시 redirect 로직 추가할 필요 있음
         //'/profile' 로 이동 시키기
         router.push("/daily");
@@ -105,6 +123,7 @@ export default function DailyLearnSubmitPage() {
   };
 
   useEffect(() => {
+    track(`enter_daily_submit_page`);
     const storedCategory = localStorage.getItem("category");
     setFormData((prevData) => ({
       ...prevData,

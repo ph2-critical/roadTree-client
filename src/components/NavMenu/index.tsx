@@ -5,15 +5,27 @@ import { useNicknameStore } from "@/src/state/store";
 import Image from "next/image";
 import Link from "next/link";
 import { ExitIcon, UserIcon } from "@/src/assets/Icons/HeaderIcons";
+import { track } from "@amplitude/analytics-browser";
 
-export const NavMenu = (props: { Logout: () => void; userPicture: string }) => {
+export const NavMenu = (props: {
+  Logout: () => void;
+  userPicture: string;
+  pathName: string;
+}) => {
   const { isOpen, modalRef, toggleModal } = useModal();
   const { nickname, email } = useNicknameStore();
+  const navMenu = ["프론트엔드", "백엔드", "인공지능"];
 
   return (
     <div className="h-13 relative sm:py-0.5" ref={modalRef}>
       <div className="flex flex-row-reverse p-3 text-gray-500">
-        <div onClick={toggleModal} className="cursor-pointer">
+        <div
+          onClick={() => {
+            toggleModal();
+            track("click_user_icon", { isOpening: isOpen });
+          }}
+          className="cursor-pointer"
+        >
           {/* md 보다 작을 경우 햄버거 메뉴 아이콘*/}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -92,6 +104,10 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string }) => {
                   <div
                     onClick={() => {
                       window.open("https://tally.so/r/mYRE70");
+                      track("click_go_feedback_page_header_btn", {
+                        from: props.pathName,
+                        isOpen: true,
+                      });
                     }}
                     className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
@@ -104,40 +120,43 @@ export const NavMenu = (props: { Logout: () => void; userPicture: string }) => {
                     href={"/daily"}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
+                    onClick={() => {
+                      track("click_go_daily_page_header_btn", {
+                        from: props.pathName,
+                        isOpen: true,
+                      });
+                    }}
                   >
                     데일리학습
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href={"/roadmap/0"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                    role="menuitem"
-                  >
-                    프론트엔드
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/roadmap/1"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                    role="menuitem"
-                  >
-                    백엔드
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/roadmap/2"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                    role="menuitem"
-                  >
-                    인공지능
-                  </Link>
-                </li>
+
+                {navMenu.map((menu, idx) => {
+                  return (
+                    <li key={"header_menu_" + idx}>
+                      <Link
+                        href={`/roadmap/${idx}`}
+                        onClick={() => {
+                          track("click_go_roadpage_header_menu_btn", {
+                            roadmapCat: menu,
+                            from: props.pathName,
+                            isOpen: true,
+                          });
+                        }}
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white`}
+                        role="menuitem"
+                      >
+                        {menu}
+                      </Link>
+                    </li>
+                  );
+                })}
                 <li>
                   <button
                     onClick={() => {
+                      track("click_logout_header_btn", {
+                        from: props.pathName,
+                      });
                       props.Logout();
                     }}
                     className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white text-start"

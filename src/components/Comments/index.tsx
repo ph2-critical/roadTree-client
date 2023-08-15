@@ -18,7 +18,6 @@ export const Comments = () => {
                 <time dateTime="2022-02-08" title="February 8th, 2022">
                   Feb. 8, 2022
                   {/* 현재 시간 기준으로 커스터마이징하기 */}
-                  
                 </time>
               </p>
             </div>

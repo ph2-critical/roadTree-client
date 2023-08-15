@@ -1,7 +1,9 @@
 "use client";
 import { Wrapper } from "@/src/components/DragDrop/Wrapper";
 import { useNicknameStore } from "@/src/state/store";
+import { track } from "@amplitude/analytics-browser";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
 const DynamicQuestionIcon = dynamic(
   () =>
@@ -14,6 +16,10 @@ const DynamicQuestionIcon = dynamic(
 );
 
 export default function Profile() {
+  useEffect(() => {
+    track("enter_profile_page");
+  }, []);
+
   const { nickname } = useNicknameStore();
   return (
     nickname !== "" && (

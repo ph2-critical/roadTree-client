@@ -11,7 +11,7 @@ interface LoginModalProps {
 
 export default function LoginModal(props: LoginModalProps) {
   const Login = async () => {
-    track("click_login_header_btn");
+    track("click_login_modal_btn");
     await supabase.auth
       .signInWithOAuth({
         provider: "google",

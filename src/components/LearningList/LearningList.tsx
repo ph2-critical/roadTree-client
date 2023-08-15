@@ -8,6 +8,7 @@ import { useModal } from "@/src/utils/hooks/useModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useEffect, useState } from "react";
 import { DetailModal } from "../Modal/detailModail";
+import { track } from "@amplitude/analytics-browser";
 
 function getStudyField(study: string) {
   if (study == "frontend") {
@@ -29,6 +30,7 @@ export default function SubmissionList() {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
+    track("enter_my_submission_list_page");
     const fetchSubmissions = async () => {
       try {
         if (nickname) {
@@ -95,7 +97,7 @@ export default function SubmissionList() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {submissions.map((submission) => (
+                    {submissions.map((submission, idx) => (
                       <tr key={submission.created_at}>
                         <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                           {submission.created_at.substring(0, 10)}
@@ -124,6 +126,15 @@ export default function SubmissionList() {
                               href={submission.url}
                               target="_blank"
                               className="text-[#13D080] hover:text-green-900"
+                              onClick={() => {
+                                track("click_my_submission_link", {
+                                  idx: idx,
+                                  date: submission.created_at.substring(0, 10),
+                                  content: submission.content,
+                                  study: submission.study,
+                                  url: submission.url,
+                                });
+                              }}
                             >
                               학습 링크
                             </a>

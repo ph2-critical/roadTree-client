@@ -10,9 +10,9 @@ export interface reference {
 }
 
 export interface RoadData {
-  nid: number | string;
+  nid: string;
   name: string;
-  description?: string;
+  description: string | null;
   select?: boolean;
   depth?: number;
   children?: RoadData[] | null;

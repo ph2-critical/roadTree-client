@@ -1,5 +1,6 @@
 "use client";
 import { BookIcon, ListBulletIcon, StarIcon } from "@/src/assets/Icons";
+import { track } from "@amplitude/analytics-browser";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,6 +20,9 @@ export const SideBar = () => {
                   ? "text-doneColor dark:text-gray-400 bg-todoColor dark:bg-gray-600 rounded"
                   : "text-gray2"
               }  `}
+              onClick={() => {
+                track("click_go_daily_page_sidebar_btn");
+              }}
               href="/daily"
             >
               <ListBulletIcon className="m-auto fill-current " />
@@ -32,6 +36,9 @@ export const SideBar = () => {
                   : "text-gray2"
               }  `}
               href="/daily/write"
+              onClick={() => {
+                track("click_go_daily_write_page_sidebar_btn");
+              }}
             >
               <BookIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">학습 기록</span>
@@ -44,6 +51,9 @@ export const SideBar = () => {
                   : "text-gray2"
               }  `}
               href="/daily/ranking"
+              onClick={() => {
+                track("click_go_daily_ranking_page_sidebar_btn");
+              }}
             >
               <StarIcon className="m-auto fill-current " />
               <span className="mx-4 text-lg font-normal">랭킹</span>

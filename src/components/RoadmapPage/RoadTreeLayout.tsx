@@ -1,15 +1,10 @@
 /* eslint-disable prefer-const */
 "use client";
 
-import {
-  RoadData,
-  roadmap_back_public,
-  roadmap_front_public,
-  roadDataState,
-} from "@/roadmap_json/roadmap_data";
+import { RoadData, roadDataState } from "@/roadmap_json/roadmap_data";
 
 import { track } from "@amplitude/analytics-browser";
-import d3, { set } from "d3";
+import d3 from "d3";
 import { useEffect, useState } from "react";
 import { create } from "zustand";
 import RoadTreeMobileLayout from "./RoadTreeMobileLayout";
@@ -58,9 +53,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   ]);
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
-  const [root, setRoot] = useState<RoadData>(
-    whatStudy == 0 ? roadmap_front_public : roadmap_back_public,
-  );
+  const [root, setRoot] = useState<RoadData>();
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
 
   let ismdSize: boolean = usemdResize();
@@ -181,6 +174,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     setRoot({
       nid: rootNodeId,
       name: whatStudyTable[whatStudy],
+      description: null,
     });
 
     const children: RoadData[] = (await getNodeChildren(rootNodeId)) ?? [];
@@ -201,14 +195,14 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       return true;
     }
     if (userId && init === false) {
-      initNode().then((res) => {
+      initNode().then(() => {
         setInit(true);
       });
     }
   }, [userId]);
 
   useEffect(() => {
-    if (init) {
+    if (init && root) {
       let m = [20, 120, 20, 20],
         w = 1280 - m[1] - m[3],
         h = 800 - m[0] - m[2],

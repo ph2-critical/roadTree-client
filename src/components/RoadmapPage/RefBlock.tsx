@@ -76,7 +76,7 @@ export default function RefBlock(props: {
 
       getRefState(getProp).then((data) => {
         if (data.data && data.data.length > 0) {
-          setStateNum(state2num[data.data[0].state]);
+          setStateNum(state2num[data.data[0].state ?? "학습안함"]);
         }
         setRefBlockInit(true);
       });
