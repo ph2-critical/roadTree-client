@@ -48,7 +48,6 @@ export const SubmissionList = () => {
         console.error("Error fetching submissions:", error);
       }
     };
-
     fetchSubmissions();
   }, [nickname]);
 
@@ -97,53 +96,65 @@ export const SubmissionList = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {submissions.map((submission, idx) => (
-                      <tr key={submission.created_at}>
-                        <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                          {submission.created_at.substring(0, 10)}
-                        </td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                          {submission.study}
-                        </td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                          <div
-                            className="w-40 overflow-hidden truncate cursor-pointer hover:underline"
-                            onClick={() => {
-                              setContent(submission.content);
-                              toggleModal();
-                            }}
-                          >
-                            {submission.content}
-                          </div>
-                        </td>
-                        {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    {submissions.length !== 0 ? (
+                      submissions.map((submission, idx) => (
+                        <tr key={submission.created_at}>
+                          <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
+                            {submission.created_at.substring(0, 10)}
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                            {submission.study}
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                            <div
+                              className="w-40 overflow-hidden truncate cursor-pointer hover:underline"
+                              onClick={() => {
+                                setContent(submission.content);
+                                toggleModal();
+                              }}
+                            >
+                              {submission.content}
+                            </div>
+                          </td>
+                          {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {submission.content}
 
                       </td> */}
-                        <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
-                          {submission.url ? (
-                            <a
-                              href={submission.url}
-                              target="_blank"
-                              className="text-[#13D080] hover:text-green-900"
-                              onClick={() => {
-                                track("click_my_submission_link", {
-                                  idx: idx,
-                                  date: submission.created_at.substring(0, 10),
-                                  content: submission.content,
-                                  study: submission.study,
-                                  url: submission.url,
-                                });
-                              }}
-                            >
-                              학습 링크
-                            </a>
-                          ) : (
-                            <span className="text-gray-400">링크 없음</span>
-                          )}
+                          <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
+                            {submission.url ? (
+                              <a
+                                href={submission.url}
+                                target="_blank"
+                                className="text-[#13D080] hover:text-green-900"
+                                onClick={() => {
+                                  track("click_my_submission_link", {
+                                    idx: idx,
+                                    date: submission.created_at.substring(
+                                      0,
+                                      10,
+                                    ),
+                                    content: submission.content,
+                                    study: submission.study,
+                                    url: submission.url,
+                                  });
+                                }}
+                              >
+                                학습 링크
+                              </a>
+                            ) : (
+                              <span className="text-gray-400">링크 없음</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr className="text-center">
+                        <td colSpan={4} className="p-4">
+                          {" "}
+                          아직 학습 기록 내역이 없습니다.
                         </td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>
