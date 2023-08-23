@@ -66,7 +66,7 @@ export const DailyHeatMap: React.FC = () => {
   }, [nickname]);
 
   return init ? (
-    <div className="flex items-center justify-center p-3 mt-5 mb-16 border-2 rounded-lg">
+    <div className="flex items-center justify-center p-3 mt-auto mb-10 border-2 rounded-lg ">
       <ReactCalendarHeatmap
         startDate={new Date("2022-12-31")}
         endDate={new Date("2023-12-31")}
