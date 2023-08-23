@@ -94,6 +94,12 @@ export default function SubmissionList() {
                       >
                         참고링크
                       </th>
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
+                        공유하기
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -105,9 +111,9 @@ export default function SubmissionList() {
                         <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                           {submission.study}
                         </td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <td className=" max-w px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                           <div
-                            className="w-40 overflow-hidden truncate cursor-pointer hover:underline"
+                            className="w-full overflow-hidden truncate cursor-pointer hover:underline"
                             onClick={() => {
                               setContent(submission.content);
                               toggleModal();
@@ -120,7 +126,7 @@ export default function SubmissionList() {
                         {submission.content}
 
                       </td> */}
-                        <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
+                        <td className="max-w-sm py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
                           {submission.url ? (
                             <a
                               href={submission.url}
