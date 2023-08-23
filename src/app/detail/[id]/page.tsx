@@ -1,8 +1,8 @@
-'use client';
-import { Button } from '@/src/components/Button';
-import { Comments } from '@/src/components/Comments';
-import { DeleteModal } from '@/src/components/Modal/deleteModal';
-import { useState } from 'react';
+"use client";
+import { Button } from "@/src/components/Button";
+import { Comments } from "@/src/components/Comments";
+import { DeleteModal } from "@/src/components/Modal/deleteModal";
+import { useState } from "react";
 
 export default function DetailPage() {
   const [isOpen, setIsOpen] = useState(false);
