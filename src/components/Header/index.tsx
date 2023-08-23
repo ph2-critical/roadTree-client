@@ -50,12 +50,12 @@ export const Header = () => {
         initAmplitude("");
         setLogout();
       }
+      initKakao();
       setInit(true);
     };
     checkUser();
 
     if (process.env.NODE_ENV !== "development") {
-      initKakao();
       hotjar.initialize(
         Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
         Number(process.env.NEXT_PUBLIC_HOTJAR_SV),

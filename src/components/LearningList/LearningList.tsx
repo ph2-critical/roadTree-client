@@ -106,7 +106,7 @@ export default function SubmissionList() {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {submissions.map((submission, idx) => (
-                      <tr key={submission.created_at}>
+                      <tr key={submission.created_at + '.' + idx}>
                         <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                           {submission.created_at.substring(0, 10)}
                         </td>
