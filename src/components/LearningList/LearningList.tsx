@@ -67,8 +67,8 @@ export const SubmissionList = () => {
         <div className="flow-root">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-300">
+              <div className="overflow-y-auto shadow ring-1 ring-black ring-opacity-5 max-h-96 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-300 ">
                   <thead className="bg-gray-50">
                     <tr>
                       <th
@@ -103,10 +103,10 @@ export const SubmissionList = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-gray-200 ">
                     {submissions.length !== 0 ? (
                       submissions.map((submission, idx) => (
-                        <tr key={submission.created_at + '.' + idx}>
+                        <tr key={submission.created_at + "." + idx}>
                           <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                             {submission.created_at.substring(0, 10)}
                           </td>
@@ -150,17 +150,18 @@ export const SubmissionList = () => {
                             )}
                           </td>
                           <td className="pl-6">
-                          <Image
-                            src="/daily/kakaoShare.svg"
-                            width={24}
-                            height={24}
-                            alt="카카오톡 공유 보내기 버튼"
-                            onClick={() => {sendKakao(submission)}}
-                            className="cursor-pointer" 
-                           />
-                        </td>
+                            <Image
+                              src="/daily/kakaoShare.svg"
+                              width={24}
+                              height={24}
+                              alt="카카오톡 공유 보내기 버튼"
+                              onClick={() => {
+                                sendKakao(submission);
+                              }}
+                              className="cursor-pointer"
+                            />
+                          </td>
                         </tr>
-                        
                       ))
                     ) : (
                       <tr className="text-center">
