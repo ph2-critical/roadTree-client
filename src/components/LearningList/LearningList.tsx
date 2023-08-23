@@ -9,6 +9,8 @@ import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useEffect, useState } from "react";
 import { DetailModal } from "../Modal/detailModail";
 import { track } from "@amplitude/analytics-browser";
+import Image from "next/image";
+import { sendKakao } from "@/lib/kakao/kakao";
 
 function getStudyField(study: string) {
   if (study == "frontend") {
@@ -147,6 +149,16 @@ export default function SubmissionList() {
                           ) : (
                             <span className="text-gray-400">링크 없음</span>
                           )}
+                        </td>
+                        <td className="pl-5">
+                          <Image
+                            src="/daily/kakaoShare.svg"
+                            width={30}
+                            height={30}
+                            alt="카카오톡 공유 보내기 버튼"
+                            onClick={sendKakao}
+                            className="cursor-pointer" 
+                           />
                         </td>
                       </tr>
                     ))}

@@ -9,7 +9,7 @@ export const UserIcon = () => {
     >
       <path
         stroke="currentColor"
-        stroke-linecap="round"
+        strokeLinecap="round"
         stroke-linejoin="round"
         stroke-width="2"
         d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"

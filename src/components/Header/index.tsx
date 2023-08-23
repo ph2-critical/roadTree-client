@@ -15,6 +15,7 @@ import InApp from "../InApp";
 import { useLoginStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
 import { useNicknameStore } from "@/src/state/store";
+import { initKakao } from "@/lib/kakao/kakao";
 
 export const Header = () => {
   const { setNickname, setEmail } = useNicknameStore();
@@ -54,6 +55,7 @@ export const Header = () => {
     checkUser();
 
     if (process.env.NODE_ENV !== "development") {
+      initKakao();
       hotjar.initialize(
         Number(process.env.NEXT_PUBLIC_HOTJAR_ID),
         Number(process.env.NEXT_PUBLIC_HOTJAR_SV),
