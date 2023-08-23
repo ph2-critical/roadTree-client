@@ -9,6 +9,8 @@ import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useEffect, useState } from "react";
 import { DetailModal } from "../Modal/detailModail";
 import { track } from "@amplitude/analytics-browser";
+import Image from "next/image";
+import { sendKakao } from "@/lib/kakao/kakao";
 
 function getStudyField(study: string) {
   if (study == "frontend") {
@@ -93,12 +95,18 @@ export const SubmissionList = () => {
                       >
                         참고링크
                       </th>
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
+                        공유하기
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {submissions.length !== 0 ? (
                       submissions.map((submission, idx) => (
-                        <tr key={submission.created_at}>
+                        <tr key={submission.created_at + '.' + idx}>
                           <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                             {submission.created_at.substring(0, 10)}
                           </td>
@@ -116,10 +124,6 @@ export const SubmissionList = () => {
                               {submission.content}
                             </div>
                           </td>
-                          {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {submission.content}
-
-                      </td> */}
                           <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
                             {submission.url ? (
                               <a
@@ -145,7 +149,18 @@ export const SubmissionList = () => {
                               <span className="text-gray-400">링크 없음</span>
                             )}
                           </td>
+                          <td className="pl-6">
+                          <Image
+                            src="/daily/kakaoShare.svg"
+                            width={24}
+                            height={24}
+                            alt="카카오톡 공유 보내기 버튼"
+                            onClick={() => {sendKakao(submission)}}
+                            className="cursor-pointer" 
+                           />
+                        </td>
                         </tr>
+                        
                       ))
                     ) : (
                       <tr className="text-center">

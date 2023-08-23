@@ -14,6 +14,7 @@ import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
 import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
+import { initKakao } from "@/lib/kakao/kakao";
 
 export const Header = () => {
   const { setNickname, setEmail } = useNicknameStore();
@@ -48,6 +49,7 @@ export const Header = () => {
         initAmplitude("");
         setLogout();
       }
+      initKakao();
       setInit(true);
     };
     checkUser();
