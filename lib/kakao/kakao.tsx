@@ -9,9 +9,7 @@ const initKakao = () => {
 
 const sendKakao = () => {
     // 메시지 공유 함수
-  Kakao.Share.createCustomButton({
-    container: '#kakaotalk-sharing-btn',
-    // requestUrl: 'http://localhost:3000/', // 페이지 url
+  Kakao.Share.sendCustom({
     templateId: 97619, // 메시지템플릿 번호
     templateArgs: {
         DESC: '십진우씨 블로그에 오신걸 환영합니다.'
