@@ -106,7 +106,7 @@ export const SubmissionList = () => {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {submissions.length !== 0 ? (
                       submissions.map((submission, idx) => (
-                        <tr key={submission.created_at}>
+                        <tr key={submission.created_at + '.' + idx}>
                           <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                             {submission.created_at.substring(0, 10)}
                           </td>
@@ -124,10 +124,6 @@ export const SubmissionList = () => {
                               {submission.content}
                             </div>
                           </td>
-                          {/* <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {submission.content}
-
-                      </td> */}
                           <td className="py-4 pl-3 pr-4 text-sm font-medium whitespace-nowrap sm:pr-6">
                             {submission.url ? (
                               <a
@@ -153,15 +149,7 @@ export const SubmissionList = () => {
                               <span className="text-gray-400">링크 없음</span>
                             )}
                           </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr className="text-center">
-                        <td colSpan={4} className="p-4">
-                          {" "}
-                          아직 학습 기록 내역이 없습니다.
-                        </td>
-                        <td className="pl-6">
+                          <td className="pl-6">
                           <Image
                             src="/daily/kakaoShare.svg"
                             width={24}
@@ -170,6 +158,15 @@ export const SubmissionList = () => {
                             onClick={() => {sendKakao(submission)}}
                             className="cursor-pointer" 
                            />
+                        </td>
+                        </tr>
+                        
+                      ))
+                    ) : (
+                      <tr className="text-center">
+                        <td colSpan={4} className="p-4">
+                          {" "}
+                          아직 학습 기록 내역이 없습니다.
                         </td>
                       </tr>
                     )}
