@@ -156,7 +156,7 @@ export default function SubmissionList() {
                             width={30}
                             height={30}
                             alt="카카오톡 공유 보내기 버튼"
-                            onClick={sendKakao}
+                            onClick={() => {sendKakao(submission)}}
                             className="cursor-pointer" 
                            />
                         </td>
