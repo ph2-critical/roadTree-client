@@ -165,7 +165,7 @@ export const SubmissionList = () => {
                       ))
                     ) : (
                       <tr className="text-center">
-                        <td colSpan={4} className="p-4">
+                        <td colSpan={5} className="p-4">
                           {" "}
                           아직 학습 기록 내역이 없습니다.
                         </td>
