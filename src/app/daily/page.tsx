@@ -1,7 +1,9 @@
+"use client";
 import { DailyHeatMap } from "@/src/components/DailyBoard/DailyHeatMap";
+import { WithLogin } from "@/src/components/HOC/withLogin";
 import SubmissionList from "@/src/components/LearningList/LearningList";
 
-export default function DailyPage() {
+function DailyPage() {
   return (
     <div>
       <SubmissionList />
@@ -9,3 +11,7 @@ export default function DailyPage() {
     </div>
   );
 }
+
+const DailyWithLogin = WithLogin(DailyPage);
+
+export default DailyWithLogin;

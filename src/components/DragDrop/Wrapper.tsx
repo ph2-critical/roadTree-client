@@ -87,7 +87,6 @@ export const Wrapper = () => {
 
   const handleDrag = ({ source, destination }: DropResult) => {
     if (!destination) return;
-    if (source.droppableId === destination.droppableId) return;
     const sourceKey = source.droppableId as StatusType;
     const destinationKey = destination.droppableId as StatusType;
 

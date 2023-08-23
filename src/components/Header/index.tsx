@@ -90,7 +90,16 @@ export const Header = () => {
                 피드백
               </div>
 
-              <Link href="/daily">
+              <Link
+                href="/daily"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  if (!isLogin) {
+                    e.preventDefault();
+                    setType("login");
+                    toggleModal();
+                  }
+                }}
+              >
                 <div id="headerMenu" className="hidden md:flex">
                   <div
                     className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
@@ -113,13 +122,18 @@ export const Header = () => {
                   <Link
                     key={"header_menu_" + idx}
                     href={`/roadmap/${idx}`}
-                    onClick={() => {
+                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                       ("[amplitude] click_go_roadpage_header_menu_btn");
                       track("click_go_roadpage_header_menu_btn", {
                         roadmapCat: menu,
                         from: pathName,
                         isOpen: false,
                       });
+                      if (!isLogin) {
+                        e.preventDefault();
+                        setType("login");
+                        toggleModal();
+                      }
                     }}
                     className={`p-3 font-semibold text-base hover:text-gray-400 ${
                       whatStudy === idx ? "text-main" : "text-gray-500"
