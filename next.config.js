@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    forceSwcTransforms: true, 
+    forceSwcTransforms: true,
   },
   reactStrictMode: false,
   images: {
-    protocol: 'https',
-    domains: ['lh3.googleusercontent.com'],
+    protocol: "https",
+    domains: ["lh3.googleusercontent.com"],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 

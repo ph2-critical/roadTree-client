@@ -1,11 +1,11 @@
 import { getSubmissionUserProps } from "@/src/api/submission/submission";
+const { Kakao } = window as any;
 
 const kakaoKey: string = process.env.NEXT_PUBLIC_KAKAO_KEY || "";
 
 const initKakao = () => {
   if (!Kakao.isInitialized()) {
     Kakao.init(kakaoKey);
-    console.log("kakao init");
   }
 };
 
