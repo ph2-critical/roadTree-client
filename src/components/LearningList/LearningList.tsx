@@ -150,11 +150,11 @@ export default function SubmissionList() {
                             <span className="text-gray-400">링크 없음</span>
                           )}
                         </td>
-                        <td className="pl-5">
+                        <td className="pl-6">
                           <Image
                             src="/daily/kakaoShare.svg"
-                            width={30}
-                            height={30}
+                            width={24}
+                            height={24}
                             alt="카카오톡 공유 보내기 버튼"
                             onClick={() => {sendKakao(submission)}}
                             className="cursor-pointer" 
