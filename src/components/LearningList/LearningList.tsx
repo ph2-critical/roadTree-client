@@ -23,7 +23,7 @@ function getStudyField(study: string) {
   return "기타 학습분야";
 }
 
-export default function SubmissionList() {
+export const SubmissionList = () => {
   const [submissions, setSubmissions] = useState<getSubmissionUserProps[]>([]);
   const { isOpen, toggleModal, modalRef } = useModal();
   const { nickname } = useNicknameStore();
@@ -163,4 +163,4 @@ export default function SubmissionList() {
       </ModalPortal>
     </>
   );
-}
+};

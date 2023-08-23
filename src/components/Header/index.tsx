@@ -12,9 +12,8 @@ import LoginModal from "../Modal/LoginModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useModal } from "@/src/utils/hooks/useModal";
 import InApp from "../InApp";
-import { useLoginStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
-import { useNicknameStore } from "@/src/state/store";
 
 export const Header = () => {
   const { setNickname, setEmail } = useNicknameStore();

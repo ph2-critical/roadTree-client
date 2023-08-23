@@ -1,11 +1,11 @@
 "use client";
 import { DailyHeatMap } from "@/src/components/DailyBoard/DailyHeatMap";
 import { WithLogin } from "@/src/components/HOC/withLogin";
-import SubmissionList from "@/src/components/LearningList/LearningList";
+import { SubmissionList } from "@/src/components/LearningList/LearningList";
 
 function DailyPage() {
   return (
-    <div>
+    <div className="flex flex-col h-[calc(100vh-72px)]">
       <SubmissionList />
       <DailyHeatMap />
     </div>
