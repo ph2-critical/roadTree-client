@@ -10,6 +10,7 @@ import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 import { getReferenceUsingNid } from "@/src/api/initNode";
 import { postNodeStateProps, upsertNodeState } from "@/src/api/stateApi";
+import Image from "next/image";
 
 export default function SideBar(props: {
   whatStudy: number;
@@ -117,9 +118,8 @@ export default function SideBar(props: {
     return (
       <div
         id={select.nid.toString()}
-        className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-1 md:w-[${sidebarWeight}px] border-x-2 border-gray6 resize-x ${
-          resizing ? "select-none" : ""
-        }`}
+        className={`w-full fixed right-0 bg-white h-screenWithoutHeader z-1 md:w-[${sidebarWeight}px] border-x-2 border-gray6 resize-x ${resizing ? "select-none" : ""
+          }`}
       >
         <div
           id="changeSidebarWeight"
@@ -198,16 +198,26 @@ export default function SideBar(props: {
               )}
               <div className="flex flex-col gap-y-2">
                 {references.map((item, index) => {
-                  // new 기한 체크
-                  var newDate:Date = new Date();
-                  newDate.setDate(newDate.getDate() - 15);
+
+                  const checkNew = (ref: reference) => {
+                    var newDate: Date = new Date();
+                    newDate.setDate(newDate.getDate() - 15);
+                    return ref.created_at.getTime() > newDate.getTime();
+                  }
 
                   return (
                     <div
                       key={"key" + index}
-                      className={"w-full h-20 border-2 rounded-lg " + 
-                      ((item.created_at.getTime() < newDate.getTime()) ? "border-gray6" : "border-main")}
+                      className={"w-full h-20 border-2 rounded-lg relative " +
+                        (checkNew(item) ? "border-main" : "border-gray6")}
                     >
+                      {checkNew(item) ? <Image
+                        src="/roadTree/newMark.svg"
+                        alt='newmark'
+                        width={512}
+                        height={512}
+                        className="w-12 h-12 left-[-20px] top-[-15px]  absolute"
+                      ></Image> : <></>}
                       <RefBlock
                         key={"refBlock" + index}
                         refdata={item}
