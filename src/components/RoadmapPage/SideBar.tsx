@@ -198,10 +198,15 @@ export default function SideBar(props: {
               )}
               <div className="flex flex-col gap-y-2">
                 {references.map((item, index) => {
+                  // new 기한 체크
+                  var newDate:Date = new Date();
+                  newDate.setDate(newDate.getDate() - 15);
+
                   return (
                     <div
                       key={"key" + index}
-                      className="w-full h-20 border-2 rounded-lg border-gray6"
+                      className={"w-full h-20 border-2 rounded-lg " + 
+                      ((item.created_at.getTime() < newDate.getTime()) ? "border-gray6" : "border-main")}
                     >
                       <RefBlock
                         key={"refBlock" + index}
