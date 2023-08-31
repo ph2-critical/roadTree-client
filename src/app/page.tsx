@@ -85,14 +85,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray5 dark:bg-gray-900">
+      <section className="bg-[#FBFFFB] dark:bg-gray-900">
         <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:px-6">
           {/* <!-- Row --> */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 입문자를 위한
-                <br />
+                <div className="mt-3" />
                 직관적인 로드맵
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -118,9 +118,8 @@ export default function Home() {
                 개인별 학습 상태 관리
               </h2>
               <p className="mb-8 font-light lg:text-xl">
-                Deliver great service experiences fast - without the complexity
-                of traditional ITSM solutions.Accelerate critical development
-                work, eliminate toil, and deploy changes with ease.
+                현재 나의 학습 상태를 설정해보세요. <br />
+                당신의 학습을 기록하고, 한 곳에서 모아볼 수 있습니다.
               </p>
             </div>
           </div>
@@ -129,12 +128,12 @@ export default function Home() {
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 학습 기록을 통한
-                <br />
+                <div className="mt-3" />
                 완벽한 성장
               </h2>
               <p className="mb-8 font-light lg:text-xl">
-                개발자가 되고 싶은 당신을 위한 로드맵을 제공합니다. <br />
-                난이도 별 학습을 통해 로드트리와 함께 당신의 목표를 달성하세요.
+                간단히 학습한 내용을 기록해보세요. <br />
+                하나하나가 모여 당신의 성장을 만들어갑니다.
               </p>
             </div>
             <img

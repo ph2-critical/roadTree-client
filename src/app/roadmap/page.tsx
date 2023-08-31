@@ -1,7 +1,6 @@
 "use client";
 
 import { StartBtn } from "@/components/RoadmapPage/StartBtn";
-import { Banner } from "@/src/components/Banner";
 
 export default function Home() {
   const title = ["프론트엔드 개발자", "백엔드 개발자", "인공지능 개발자"];
