@@ -18,8 +18,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col align-middle justify-centent dark:bg-gray-900 h-[calc(100vh-72px)] overflow-hidden">
-      <section className="mt-10 mb-auto bg-white dark:bg-gray-900">
-        <h1 className="title-text">로드맵</h1>
+      <section className="mt-auto mb-auto bg-white dark:bg-gray-900">
         <div className="max-w-screen-xl px-4 pt-4 mx-auto lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {title.map((title, index) => {
@@ -64,7 +63,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Banner title="준비 중" />
+      {/* <Banner title="준비 중" /> */}
     </main>
   );
 }

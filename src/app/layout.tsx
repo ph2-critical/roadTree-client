@@ -27,7 +27,7 @@ export default function RootLayout({
         <Providers>
           <div id="modal_root"></div>
           <Header />
-          <div className="mt-[72px] max-w-7xl mx-auto">{children}</div>
+          <div className="mt-[72px]">{children}</div>
         </Providers>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
