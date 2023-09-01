@@ -102,8 +102,8 @@ export default function Home() {
               </p>
             </div>
             <img
-              className="hidden w-2/3 mb-4 rounded-lg lg:mb-0 lg:flex"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-1.png"
+              className="hidden w-10/12 mb-4 rounded-lg lg:mb-0 lg:flex"
+              src="/landing/roadmap.svg"
               alt="office feature image"
             />
           </div>
@@ -140,8 +140,8 @@ export default function Home() {
               </p>
             </div>
             <img
-              className="hidden w-2/3 mb-4 rounded-lg lg:mb-0 lg:flex"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-1.png"
+              className="hidden w-11/12 mb-4 rounded-lg lg:mb-0 lg:flex"
+              src="/landing/report.svg"
               alt="office feature image"
             />
           </div>
