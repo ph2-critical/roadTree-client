@@ -59,6 +59,7 @@ export const Wrapper = () => {
       };
 
       data?.map((d, idx) => {
+        if (!d.reference) return;
         if (d.state === "학습예정") {
           tmp.todo.push({
             cardId: d.rid,

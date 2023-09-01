@@ -1,11 +1,12 @@
 import { reference } from "@/roadmap_json/roadmap_data";
 import { Draggable } from "react-beautiful-dnd";
 import Block from "./Block";
+import Link from "next/link";
 
 export interface CardProps {
   cardId: string;
   index: number;
-  content: reference | null;
+  content: reference;
   status: string;
 }
 
@@ -14,10 +15,20 @@ export interface CardProps {
 export const Card = (props: CardProps) => {
   const { cardId, index, content } = props;
 
+  const linkRoadTree = (rid: string) => {
+    console.log('rid : ', rid)
+    // rid를 토대로 관련 nid를 찾고
+    
+    // nid의 부모들을 리스트로 만들고
+    // 그 리스트를 토대로 roadmap으로 이동
+    
+  }
+
   return (
     <Draggable draggableId={cardId} key={cardId} index={index}>
       {(draggableProvided, snapshot) => (
         <div
+          onClick={() => {linkRoadTree(content.rid)}}
           ref={draggableProvided.innerRef}
           {...draggableProvided.draggableProps}
           {...draggableProvided.dragHandleProps}
