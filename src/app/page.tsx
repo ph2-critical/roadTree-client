@@ -4,6 +4,7 @@ import { track } from "@amplitude/analytics-browser";
 
 import { useEffect } from "react";
 import { Logo } from "../assets/Icons";
+import Image from "next/image";
 
 export default function Home() {
   useEffect(() => {
@@ -101,15 +102,17 @@ export default function Home() {
                 난이도 별 학습을 통해 로드트리와 함께 당신의 목표를 달성하세요.
               </p>
             </div>
-            <img
+            <Image
               className="hidden w-10/12 mb-4 rounded-lg lg:mb-0 lg:flex"
+              width={500}
+              height={300}
               src="/landing/roadmap.svg"
               alt="office feature image"
             />
           </div>
           {/* <!-- Row --> */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <img
+            <Image
               className="hidden w-11/12 mb-4 rounded-lg lg:mb-0 lg:flex"
               src="/landing/drag.svg"
               width={500}
@@ -139,8 +142,10 @@ export default function Home() {
                 하나하나가 모여 당신의 성장을 만들어갑니다.
               </p>
             </div>
-            <img
+            <Image
               className="hidden w-11/12 mb-4 rounded-lg lg:mb-0 lg:flex"
+              width={500}
+              height={300}
               src="/landing/report.svg"
               alt="office feature image"
             />
