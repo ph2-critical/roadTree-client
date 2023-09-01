@@ -10,6 +10,9 @@ import AOS from "aos";
 export default function Home() {
   useEffect(() => {
     track("enter_main_page");
+    AOS.init({
+      duration: 2000,
+    });
   }, []);
 
   return (
@@ -92,7 +95,7 @@ export default function Home() {
         <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-12 text-center lg:text-start lg:space-y-20 lg:px-6">
           {/* <!-- Row --> */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div className="text-gray-500 sm:text-lg dark:text-gray-400">
+            <div className="text-gray-500 sm:text-lg dark:text-gray-400 ">
               <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 입문자를 위한
                 <div className="mt-3" />
@@ -109,6 +112,7 @@ export default function Home() {
               height={300}
               src="/landing/roadmap.svg"
               alt="office feature image"
+              data-aos="fade-left"
             />
           </div>
           {/* <!-- Row --> */}
@@ -119,6 +123,7 @@ export default function Home() {
               width={500}
               height={300}
               alt="office feature image 2"
+              data-aos="fade-right"
             />
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -149,6 +154,7 @@ export default function Home() {
               height={300}
               src="/landing/report.svg"
               alt="office feature image"
+              data-aos="fade-left"
             />
           </div>
         </div>
