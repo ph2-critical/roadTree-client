@@ -9,7 +9,7 @@ export const SideBar = () => {
 
   return (
     <div
-      className={`fixed bg-white dark:bg-gray-800 h-full left-0 border-x border-gray6`}
+      className={`fixed bg-white dark:bg-gray-800 h-full left-0 border-x border-gray6 hidden md:block`}
     >
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className="w-60">
