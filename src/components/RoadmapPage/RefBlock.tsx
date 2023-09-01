@@ -147,10 +147,10 @@ export default function RefBlock(props: {
           <div className="flex flex-col items-start">
             <div
               className={`border px-2 rounded-md border-${
-                gradeColor[refdata.grade]
-              } text-xs text-${gradeColor[refdata.grade]}`}
+                gradeColor[refdata.grade ?? 0]
+              } text-xs text-${gradeColor[refdata.grade ?? 0]}`}
             >
-              {gradelist[refdata.grade]}
+              {gradelist[refdata.grade ?? 0]}
             </div>
             <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
               {refdata.title}

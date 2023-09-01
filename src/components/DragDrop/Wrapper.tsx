@@ -8,6 +8,7 @@ import { myPageApi, myPageUpdateApi } from "@/src/api/profile";
 import { useLoginStore } from "@/src/state/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { track } from "@amplitude/analytics-browser";
+import { reference } from "@/roadmap_json/roadmap_data";
 
 export type StatusType = "todo" | "doing" | "done";
 // type WrapperType = BoxProps[];
@@ -26,7 +27,7 @@ export interface ProfileResponse {
   rid: string;
   state: string | null;
   created_at: string | null;
-  reference: { title: string } | null;
+  reference: reference | null;
 }
 
 export const Wrapper = () => {
@@ -61,21 +62,21 @@ export const Wrapper = () => {
         if (d.state === "학습예정") {
           tmp.todo.push({
             cardId: d.rid,
-            content: d.reference?.title,
+            content: d.reference,
             status: "todo",
             index: idx,
           });
         } else if (d.state === "학습중") {
           tmp.doing.push({
             cardId: d.rid,
-            content: d.reference?.title,
+            content: d.reference,
             status: "doing",
             index: idx,
           });
         } else if (d.state === "학습완료") {
           tmp.done.push({
             cardId: d.rid,
-            content: d.reference?.title,
+            content: d.reference,
             status: "done",
             index: idx,
           });

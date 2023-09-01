@@ -1,9 +1,11 @@
+import { reference } from "@/roadmap_json/roadmap_data";
 import { Draggable } from "react-beautiful-dnd";
+import Block from "./Block";
 
 export interface CardProps {
   cardId: string;
   index: number;
-  content: string | undefined;
+  content: reference | null;
   status: string;
 }
 
@@ -26,12 +28,12 @@ export const Card = (props: CardProps) => {
           }
         >
           <div
-            className={`text-xl justify-center flex bg-white items-center text-black2 w-[321px] h-16 border-slate-400 border-1 rounded-xl box-border 
+            className={`text-xl justify-center flex bg-white items-center text-black2 w-[321px] h-20 border-slate-400 border-1 rounded-xl box-border 
 
             `}
           >
             <div className="w-[291px] break-all whitespace-nowrap overflow-hidden text-ellipsis">
-              {content}
+              { content && <Block refdata={content} />}
             </div>
           </div>
         </div>

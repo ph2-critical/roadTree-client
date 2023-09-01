@@ -13,7 +13,7 @@ export const myPageApi = async (
 ): Promise<ProfileResponse[] | null> => {
   const { data } = await supabase
     .from("ref_state")
-    .select("rid, state, created_at, reference!inner(title)")
+    .select("rid, state, created_at, reference!inner(rid, title, grade, category, amount, price, url)")
     .eq("user_id", id)
     .order("created_at", { ascending: false });
 
