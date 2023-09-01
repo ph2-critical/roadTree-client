@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <meta property="og:title" content="roadtree" />
         <meta property="og:url" content="https://nobase.site" />
         <meta
@@ -36,6 +37,8 @@ export default function RootLayout({
           integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"
           crossOrigin="anonymous"
         ></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js" />
+        <script>AOS.init();</script>
       </body>
     </html>
   );

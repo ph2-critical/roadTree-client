@@ -940,6 +940,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/aos@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@types/aos@npm:3.0.4"
+  checksum: 55c54865df6e0758a32c8ab9a617b63318e0d8a7f7f0b6d02747aa541aa2638e3fd57a8d6f3a4277fcf9a0bffabf9d4e8c95b1d7b54f88859a85fbbd7e10bf2a
+  languageName: node
+  linkType: hard
+
 "@types/d3@npm:3":
   version: 3.5.47
   resolution: "@types/d3@npm:3.5.47"
@@ -5899,6 +5906,7 @@ __metadata:
     "@toast-ui/editor-plugin-table-merged-cell": ^3.1.0
     "@toast-ui/editor-plugin-uml": ^3.0.1
     "@toast-ui/react-editor": ^3.2.3
+    "@types/aos": ^3.0.4
     "@types/d3": 3
     "@types/lodash": ^4.14.197
     "@types/node": 20.3.1

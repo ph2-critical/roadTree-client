@@ -47,6 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-table-merged-cell", "npm:3.1.0"],\
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
+            ["@types/aos", "npm:3.0.4"],\
             ["@types/d3", "npm:3.5.47"],\
             ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\
@@ -1296,6 +1297,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@trysound-sax-npm-0.2.0-9f763d0295-11226c39b5.zip/node_modules/@trysound/sax/",\
           "packageDependencies": [\
             ["@trysound/sax", "npm:0.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/aos", [\
+        ["npm:3.0.4", {\
+          "packageLocation": "./.yarn/cache/@types-aos-npm-3.0.4-fac8b2f462-55c54865df.zip/node_modules/@types/aos/",\
+          "packageDependencies": [\
+            ["@types/aos", "npm:3.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7592,6 +7602,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-table-merged-cell", "npm:3.1.0"],\
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
+            ["@types/aos", "npm:3.0.4"],\
             ["@types/d3", "npm:3.5.47"],\
             ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\

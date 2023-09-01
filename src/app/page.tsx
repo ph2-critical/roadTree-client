@@ -5,6 +5,7 @@ import { track } from "@amplitude/analytics-browser";
 import { useEffect } from "react";
 import { Logo } from "../assets/Icons";
 import Image from "next/image";
+import AOS from "aos";
 
 export default function Home() {
   useEffect(() => {
