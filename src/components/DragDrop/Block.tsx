@@ -39,7 +39,6 @@ export default function Block(props: {
     오픈소스: "/roadmapRef/opensourceLogo.png",
     드림코딩: "/roadmapRef/dreamcodingLogo.svg",
   };
-    console.log(refdata)
     return (
       <div
         onClick={(e: React.MouseEvent<Element, MouseEvent>) => {

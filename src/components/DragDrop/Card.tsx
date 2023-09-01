@@ -22,9 +22,9 @@ export const Card = (props: CardProps) => {
           {...draggableProvided.draggableProps}
           {...draggableProvided.dragHandleProps}
           className={
-            snapshot.isDragging
-              ? `bg-opacity-90 shadow-2xl rounded-xl shadow-gray-400 `
-              : "shadow rounded-xl"
+            (snapshot.isDragging
+              ? `bg-opacity-90 shadow-2xl rounded-xl shadow-gray-400 border-2 `
+              : "shadow rounded-xl ") + "border-slate-400 hover:border-2"
           }
         >
           <div
