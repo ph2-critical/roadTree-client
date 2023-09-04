@@ -171,12 +171,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
         nodeParamPath.reverse();   
         var currentNode:RoadData = root;
         for (nid of nodeParamPath) {
-          console.log('level', nid)
           // children에서 nid 찾기
           const targetChild:RoadData|undefined = currentNode.children?.find((child:RoadData) => child.nid === nid);
           if (targetChild !== undefined) {
-            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함
-              console.log('target', targetChild)   
+            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함  
               if (targetChild._children === undefined && targetChild.children === undefined) {
                 await getNodeChildren(targetChild.nid as string).then((res) => {
                   targetChild._children = res ?? [];
@@ -189,11 +187,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
               }
             
               currentNode = targetChild;
-              console.log('end')
           }
         }
     });
-    console.log('root', root)
   }
 }
 

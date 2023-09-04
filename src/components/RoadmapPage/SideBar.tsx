@@ -10,6 +10,7 @@ import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 import { getReferenceUsingNid } from "@/src/api/initNode";
 import { postNodeStateProps, upsertNodeState } from "@/src/api/stateApi";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 export default function SideBar(props: {
   whatStudy: number;
@@ -35,6 +36,7 @@ export default function SideBar(props: {
   const userId: string = props.userId;
   const { isShowRef, setIsShowRef } = props.showRef;
   const useWindowResizeVar: boolean = useWindowResize();
+  const searchParams:ReadonlyURLSearchParams = useSearchParams();
 
   const [references, setReferences] = useState<reference[]>([]);
 
@@ -201,7 +203,7 @@ export default function SideBar(props: {
                   return (
                     <div
                       key={"key" + index}
-                      className="w-full h-20 border-2 rounded-lg border-gray6"
+                      className={"w-full h-20 border-2 rounded-lg" + ((item.rid === searchParams.get("ref")) ? " border-main" : " border-gray6")}
                     >
                       <RefBlock
                         key={"refBlock" + index}

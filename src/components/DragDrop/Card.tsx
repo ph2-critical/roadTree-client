@@ -25,7 +25,7 @@ export const Card = (props: CardProps) => {
         return;
       }
       const typeValue = (res.type === "front") ? 0 : 1;
-      router.push('/roadmap/' + typeValue + '?node=' + res.name);
+      router.push('/roadmap/' + typeValue + '?node=' + res.name+"&ref="+rid);
   })}
 
   return (
