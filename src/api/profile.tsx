@@ -36,7 +36,15 @@ export const getNodeNameFromRid = async (rid: string) => {
     .from("node_reference")
     .select("node!inner(name, type)")
     .eq("rid", rid);
-  console.log(data)
 
   return data.data![0].node;
+}
+
+export const getParentNodeNameFromNid = async (nid: string) => {
+  const data = await supabase
+    .from("node")
+    .select("parent_node_nid")
+    .eq("nid", nid);
+
+  return data.data![0].parent_node_nid;
 }
