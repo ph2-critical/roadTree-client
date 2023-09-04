@@ -208,8 +208,7 @@ export default function SideBar(props: {
                   return (
                     <div
                       key={"key" + index}
-                      className={"w-full h-20 border-2 rounded-lg relative " +
-                        (checkNew(item) ? "border-main" : "border-gray6")}
+                      className="w-full h-20 border-2 rounded-lg relative border-gray6"
                     >
                       {checkNew(item) ? <Image
                         src="/roadTree/newMark.svg"
