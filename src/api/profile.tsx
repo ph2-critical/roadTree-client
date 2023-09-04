@@ -30,3 +30,13 @@ export const myPageUpdateApi = async (props: UpdateProps) => {
     .eq("user_id", props.id)
     .eq("rid", props.rid);
 };
+
+export const getNodeNameFromRid = async (rid: string) => {
+  const data = await supabase
+    .from("node_reference")
+    .select("node!inner(name, type)")
+    .eq("rid", rid);
+  console.log(data)
+
+  return data.data![0].node;
+}
