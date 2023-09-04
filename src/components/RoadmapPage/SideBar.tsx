@@ -200,10 +200,16 @@ export default function SideBar(props: {
               )}
               <div className="flex flex-col gap-y-2">
                 {references.map((item, index) => {
+                  const refParmas:string|null = searchParams.get("ref");
+                  if (item.rid === refParmas) {
+                    const element = document.getElementById("refblock-" + item.rid);
+                    element?.scrollIntoView({ behavior: "smooth" });
+                  }
                   return (
                     <div
-                      key={"key" + index}
-                      className={"w-full h-20 border-2 rounded-lg" + ((item.rid === searchParams.get("ref")) ? " border-main" : " border-gray6")}
+                      key={"refblock-" + item.rid}
+                      id={"refblock-" + item.rid}
+                      className={"w-full h-20 border-2 rounded-lg" + ((item.rid === refParmas) ? " border-main" : " border-gray6")}
                     >
                       <RefBlock
                         key={"refBlock" + index}
