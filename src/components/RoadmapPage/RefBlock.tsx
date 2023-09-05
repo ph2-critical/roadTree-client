@@ -8,10 +8,8 @@ import { track } from "@amplitude/analytics-browser";
 import {
   getRefState,
   getRefStateNum,
-  getRefStateNumProps,
   getRefStateProps,
   postRefState,
-  postRefStateProps,
 } from "@/src/api/stateApi";
 
 export default function RefBlock(props: {
@@ -68,7 +66,6 @@ export default function RefBlock(props: {
   };
 
   const [stateNum, setStateNum] = useState<number>(0);
-  const [refNum, setRefNum] = useState<number>(0);
 
   useEffect(() => {
     if (userId && refBlockInit === false) {

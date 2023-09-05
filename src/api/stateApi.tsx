@@ -15,7 +15,7 @@ export interface postRefStateProps {
   user_id: string;
   rid: string;
   state: string;
-  state_id: number | null;
+  state_id: number;
 }
 
 export const getRefState = async (props: getRefStateProps) => {

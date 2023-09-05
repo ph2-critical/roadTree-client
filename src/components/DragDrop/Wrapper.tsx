@@ -10,8 +10,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { track } from "@amplitude/analytics-browser";
 
 export type StatusType = "todo" | "doing" | "done";
-// type WrapperType = BoxProps[];
-// const test: WrapperType = [];
 export type WrapperType = {
   [key in StatusType]: CardProps[];
 };
@@ -31,11 +29,6 @@ export interface ProfileResponse {
 }
 
 export const Wrapper = () => {
-  const status = {
-    todo: "학습예정",
-    doing: "학습중",
-    done: "학습완료",
-  };
   const { isLogin, userId } = useLoginStore();
   const [list, setList] = useState<WrapperType>(lists);
   const { data, isLoading } = useQuery<ProfileResponse[] | null>(
@@ -58,30 +51,32 @@ export const Wrapper = () => {
         done: [],
       };
 
-      data?.map((d) => {
-        if (d.state === "학습예정") {
-          tmp.todo.push({
-            cardId: d.rid,
-            content: d.reference?.title,
-            status: "todo",
-            index: d.state_id,
-          });
-        } else if (d.state === "학습중") {
-          tmp.doing.push({
-            cardId: d.rid,
-            content: d.reference?.title,
-            status: "doing",
-            index: d.state_id,
-          });
-        } else if (d.state === "학습완료") {
-          tmp.done.push({
-            cardId: d.rid,
-            content: d.reference?.title,
-            status: "done",
-            index: d.state_id,
-          });
-        }
-      });
+      data
+        ?.sort((a, b) => a.state_id - b.state_id)
+        .map((d) => {
+          if (d.state === "학습예정") {
+            tmp.todo.push({
+              cardId: d.rid,
+              content: d.reference?.title,
+              status: "todo",
+              index: d.state_id,
+            });
+          } else if (d.state === "학습중") {
+            tmp.doing.push({
+              cardId: d.rid,
+              content: d.reference?.title,
+              status: "doing",
+              index: d.state_id,
+            });
+          } else if (d.state === "학습완료") {
+            tmp.done.push({
+              cardId: d.rid,
+              content: d.reference?.title,
+              status: "done",
+              index: d.state_id,
+            });
+          }
+        });
       setList(tmp);
     }
   }, [data, isLoading]);
@@ -96,24 +91,29 @@ export const Wrapper = () => {
       const [temp] = itemList[sourceKey].splice(source.index, 1);
       if (temp) {
         itemList[destinationKey].splice(destination.index, 0, temp);
+        if (sourceKey !== destinationKey) {
+          itemList[sourceKey].map((item, index) => (item.index = index));
+          itemList[destinationKey].map((item, index) => (item.index = index));
+        } else {
+          itemList[sourceKey].map((item, index) => (item.index = index));
+        }
+        track("drag_reference_card_on_profile", {
+          sourceIndex: source.index,
+          sourceStatus: source.droppableId,
+          destinationIndex: destination?.index,
+          destinationStatus: destination?.droppableId,
+
+          rid: temp.cardId,
+          uid: userId,
+          content: temp.content,
+        });
       }
 
-      track("drag_reference_card_on_profile", {
-        sourceIndex: source.index,
-        sourceStatus: source.droppableId,
-        destinationIndex: destination?.index,
-        destinationStatus: destination?.droppableId,
-
-        rid: temp.cardId,
-        uid: userId,
-        content: temp.content,
-      });
-
       const postData = {
-        rid: temp.cardId,
-        id: userId,
-        state: status[destinationKey],
-        state_id: destination.index,
+        todo: itemList.todo,
+        doing: itemList.doing,
+        done: itemList.done,
+        user_id: userId,
       };
 
       mutate(postData);
