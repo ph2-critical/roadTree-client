@@ -2,7 +2,7 @@ export interface reference {
   rid: string;
   title: string;
   url: string;
-  grade: number;
+  grade: number | null;
   category: string;
   amount: string | null;
   price: number | null;

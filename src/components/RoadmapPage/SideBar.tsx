@@ -10,6 +10,7 @@ import { track } from "@amplitude/analytics-browser";
 import { useWindowResize } from "@/src/utils/hooks/useWindowResize";
 import { getReferenceUsingNid } from "@/src/api/initNode";
 import { postNodeStateProps, upsertNodeState } from "@/src/api/stateApi";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 export default function SideBar(props: {
@@ -36,6 +37,7 @@ export default function SideBar(props: {
   const userId: string = props.userId;
   const { isShowRef, setIsShowRef } = props.showRef;
   const useWindowResizeVar: boolean = useWindowResize();
+  const searchParams:ReadonlyURLSearchParams = useSearchParams();
 
   const [references, setReferences] = useState<reference[]>([]);
 
@@ -198,17 +200,23 @@ export default function SideBar(props: {
               )}
               <div className="flex flex-col gap-y-2">
                 {references.map((item, index) => {
-
+                  
                   const checkNew = (ref: reference) => {
                     var newDate: Date = new Date();
                     newDate.setDate(newDate.getDate() - 15);
                     return ref.created_at.getTime() > newDate.getTime();
                   }
 
+                  const refParmas:string|null = searchParams.get("ref");
+                  if (item.rid === refParmas) {
+                    const element = document.getElementById("refblock-" + item.rid);
+                    element?.scrollIntoView({ behavior: "smooth" });
+                  }
                   return (
                     <div
-                      key={"key" + index}
-                      className="w-full h-20 border-2 rounded-lg relative border-gray6"
+                      key={"refblock-" + item.rid}
+                      id={"refblock-" + item.rid}
+                      className={"w-full h-20 border-2 rounded-lg" + ((item.rid === refParmas) ? " border-main" : " border-gray6")}
                     >
                       {checkNew(item) ? <Image
                         src="/roadTree/newMark.svg"
