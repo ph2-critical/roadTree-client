@@ -47,10 +47,11 @@ export default function Block(props: {
         className="flex items-center h-full p-2"
       >
         <Image
-          src={categoryImage[refdata.category]}
+          src={'/roadTree' + categoryImage[refdata.category]}
           alt={refdata.category}
           width={512}
           height={512}
+          priority
           className="mr-4 w-14 h-14"
         ></Image>
         <div className="flex-grow w-32 h-14">
