@@ -56,7 +56,7 @@ export default function RoadTreeMobileLayout(props: {
               </div>
 
               <Image
-                src="/roadTreeMobile/downArrow.svg"
+                src="/roadTree/roadTreeMobile/downArrow.svg"
                 alt="downArrow"
                 width={50}
                 height={50}

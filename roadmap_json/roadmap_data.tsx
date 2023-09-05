@@ -6,6 +6,7 @@ export interface reference {
   category: string;
   amount: string | null;
   price: number | null;
+  created_at: Date;
   state?: number;
 }
 
