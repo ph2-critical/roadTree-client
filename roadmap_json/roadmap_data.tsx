@@ -4,8 +4,9 @@ export interface reference {
   url: string;
   grade: number;
   category: string;
-  amount: string;
-  price: number;
+  amount: string | null;
+  price: number | null;
+  created_at: Date;
   state?: number;
 }
 

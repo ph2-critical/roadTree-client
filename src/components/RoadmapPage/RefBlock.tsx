@@ -134,10 +134,10 @@ export default function RefBlock(props: {
             window.open(refdata.url);
           }
         }}
-        className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
+        className="flex items-center h-full p-2 cursor-pointer rounded-md hover:bg-gray-200"
       >
         <Image
-          src={categoryImage[refdata.category]}
+          src={'/roadTree' + categoryImage[refdata.category]}
           alt={refdata.category}
           width={512}
           height={512}
