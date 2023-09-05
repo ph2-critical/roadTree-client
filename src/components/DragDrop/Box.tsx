@@ -1,5 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
-import { Card, CardProps } from "./Card";
+import { CardProps } from "./Card";
+import Card from "./Card";
 import { StatusType } from "./Wrapper";
 
 export interface BoxProps {
@@ -34,7 +35,7 @@ export const Box = (props: BoxProps) => {
                   <Card
                     key={i.cardId}
                     cardId={i.cardId}
-                    index={index}
+                    index={i.index}
                     content={i.content}
                     status={props.statusKey}
                   />

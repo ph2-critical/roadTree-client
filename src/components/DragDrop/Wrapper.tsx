@@ -1,6 +1,6 @@
 "use client";
 import * as _ from "lodash";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Box } from "./Box";
 import { CardProps } from "./Card";
@@ -25,6 +25,7 @@ const lists: WrapperType = {
 export interface ProfileResponse {
   rid: string;
   state: string | null;
+  state_id: number;
   created_at: string | null;
   reference: { title: string } | null;
 }
@@ -57,27 +58,27 @@ export const Wrapper = () => {
         done: [],
       };
 
-      data?.map((d, idx) => {
+      data?.map((d) => {
         if (d.state === "학습예정") {
           tmp.todo.push({
             cardId: d.rid,
             content: d.reference?.title,
             status: "todo",
-            index: idx,
+            index: d.state_id,
           });
         } else if (d.state === "학습중") {
           tmp.doing.push({
             cardId: d.rid,
             content: d.reference?.title,
             status: "doing",
-            index: idx,
+            index: d.state_id,
           });
         } else if (d.state === "학습완료") {
           tmp.done.push({
             cardId: d.rid,
             content: d.reference?.title,
             status: "done",
-            index: idx,
+            index: d.state_id,
           });
         }
       });
@@ -85,43 +86,41 @@ export const Wrapper = () => {
     }
   }, [data, isLoading]);
 
-  const handleDrag = ({ source, destination }: DropResult) => {
-    if (!destination) return;
-    const sourceKey = source.droppableId as StatusType;
-    const destinationKey = destination.droppableId as StatusType;
+  const handleDrag = useCallback(
+    ({ source, destination }: DropResult) => {
+      if (!destination) return;
+      const sourceKey = source.droppableId as StatusType;
+      const destinationKey = destination.droppableId as StatusType;
 
-    const itemList = _.cloneDeep(list) as typeof list; //깊은 복사 ㅋ
-    const [temp] = itemList[sourceKey].splice(source.index, 1);
-    if (temp) {
-      itemList[destinationKey].splice(0, 0, temp);
-    } else {
-      console.log(temp);
-    }
+      const itemList = _.cloneDeep(list) as typeof list; //깊은 복사 ㅋ
+      const [temp] = itemList[sourceKey].splice(source.index, 1);
+      if (temp) {
+        itemList[destinationKey].splice(destination.index, 0, temp);
+      }
 
-    const now = new Date();
-    const nowTimeStamp = now.toISOString();
+      track("drag_reference_card_on_profile", {
+        sourceIndex: source.index,
+        sourceStatus: source.droppableId,
+        destinationIndex: destination?.index,
+        destinationStatus: destination?.droppableId,
 
-    track("drag_reference_card_on_profile", {
-      sourceIndex: source.index,
-      sourceStatus: source.droppableId,
-      destinationIndex: destination?.index,
-      destinationStatus: destination?.droppableId,
+        rid: temp.cardId,
+        uid: userId,
+        content: temp.content,
+      });
 
-      rid: temp.cardId,
-      uid: userId,
-      content: temp.content,
-    });
+      const postData = {
+        rid: temp.cardId,
+        id: userId,
+        state: status[destinationKey],
+        state_id: destination.index,
+      };
 
-    const postData = {
-      rid: temp.cardId,
-      id: userId,
-      state: status[destinationKey],
-      created_at: nowTimeStamp,
-    };
-
-    mutate(postData);
-    setList(itemList);
-  };
+      mutate(postData);
+      setList(itemList);
+    },
+    [list],
+  );
 
   // --- requestAnimationFrame 초기화
   const [enabled, setEnabled] = useState(false);

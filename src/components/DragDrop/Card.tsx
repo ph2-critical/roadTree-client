@@ -1,3 +1,4 @@
+import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 export interface CardProps {
@@ -9,7 +10,7 @@ export interface CardProps {
 
 //draggableId , key 같아야함
 
-export const Card = (props: CardProps) => {
+const Card = (props: CardProps) => {
   const { cardId, index, content } = props;
 
   return (
@@ -39,3 +40,5 @@ export const Card = (props: CardProps) => {
     </Draggable>
   );
 };
+
+export default React.memo(Card);

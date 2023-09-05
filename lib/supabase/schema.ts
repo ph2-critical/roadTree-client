@@ -253,6 +253,7 @@ export interface Database {
           created_at: string | null;
           depth: number;
           description: string | null;
+          id: number;
           name: string;
           nid: string;
           parent_node_nid: string | null;
@@ -262,6 +263,7 @@ export interface Database {
           created_at?: string | null;
           depth: number;
           description?: string | null;
+          id?: number;
           name: string;
           nid?: string;
           parent_node_nid?: string | null;
@@ -271,6 +273,7 @@ export interface Database {
           created_at?: string | null;
           depth?: number;
           description?: string | null;
+          id?: number;
           name?: string;
           nid?: string;
           parent_node_nid?: string | null;
@@ -384,12 +387,50 @@ export interface Database {
           },
         ];
       };
+      ref_state_test: {
+        Row: {
+          created_at: string;
+          rid: string;
+          state: string | null;
+          state_id: number;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          rid: string;
+          state?: string | null;
+          state_id: number;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          rid?: string;
+          state?: string | null;
+          state_id?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ref_state_test_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "ref_state_test_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       reference: {
         Row: {
           amount: string | null;
           category: string;
           created_at: string;
-          grade: number | null;
+          grade: number;
+          id: number;
           price: number | null;
           rid: string;
           title: string;
@@ -399,7 +440,8 @@ export interface Database {
           amount?: string | null;
           category: string;
           created_at?: string;
-          grade?: number | null;
+          grade: number;
+          id?: number;
           price?: number | null;
           rid?: string;
           title: string;
@@ -409,7 +451,8 @@ export interface Database {
           amount?: string | null;
           category?: string;
           created_at?: string;
-          grade?: number | null;
+          grade?: number;
+          id?: number;
           price?: number | null;
           rid?: string;
           title?: string;

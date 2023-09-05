@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { track } from "@amplitude/analytics-browser";
 import {
   getRefState,
+  getRefStateNum,
+  getRefStateNumProps,
   getRefStateProps,
   postRefState,
   postRefStateProps,
@@ -66,6 +68,7 @@ export default function RefBlock(props: {
   };
 
   const [stateNum, setStateNum] = useState<number>(0);
+  const [refNum, setRefNum] = useState<number>(0);
 
   useEffect(() => {
     if (userId && refBlockInit === false) {
@@ -83,7 +86,7 @@ export default function RefBlock(props: {
     }
   }, [refBlockInit]);
 
-  const setRefStateNum: (num: number) => void = (num) => {
+  const setRefStateNum = async (num: number) => {
     track("click_ref_state", {
       roadmapCat: props.whatStudy,
       refId: refdata.rid,
@@ -100,14 +103,32 @@ export default function RefBlock(props: {
     });
 
     setStateNum(num);
-    const postData: postRefStateProps = {
-      roadmap_type: props.whatStudy,
-      rid: refdata.rid,
-      state: stateTable[num],
-      user_id: userId,
-    };
-
-    postRefState(postData);
+    try {
+      await getRefStateNum({
+        user_id: userId,
+        state: stateTable[num],
+      }).then((res) => {
+        if (res.data?.length === 0) {
+          postRefState({
+            roadmap_type: props.whatStudy,
+            rid: refdata.rid,
+            state: stateTable[num],
+            user_id: userId,
+            state_id: 0,
+          });
+        } else if (res.data && res.data[0].state_id !== (undefined || null)) {
+          postRefState({
+            roadmap_type: props.whatStudy,
+            rid: refdata.rid,
+            state: stateTable[num],
+            user_id: userId,
+            state_id: res.data[0].state_id + 1,
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   if (refBlockInit) {
