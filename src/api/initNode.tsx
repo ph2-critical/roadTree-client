@@ -36,7 +36,7 @@ export const getReferenceUsingNid = async (nid: string) => {
       category: data2.data![0].category,
       amount: data2.data![0].amount,
       price: data2.data![0].price,
-      created_at: new Date(data2.data![0].created_at),
+      created_at: data2.data![0].created_at,
     }
 
     return refData;
@@ -46,7 +46,7 @@ export const getReferenceUsingNid = async (nid: string) => {
   refData = promiseEnd as reference[];
 
   refData.sort((a, b) => {
-    return b.created_at.getTime() - a.created_at.getTime();
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   })
 
   return refData!;

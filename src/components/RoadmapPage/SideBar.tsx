@@ -204,7 +204,7 @@ export default function SideBar(props: {
                   const checkNew = (ref: reference) => {
                     var newDate: Date = new Date();
                     newDate.setDate(newDate.getDate() - 15);
-                    return ref.created_at.getTime() > newDate.getTime();
+                    return new Date(ref.created_at).getTime() > newDate.getTime();
                   }
 
                   const refParmas:string|null = searchParams.get("ref");
