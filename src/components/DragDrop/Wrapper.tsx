@@ -26,7 +26,7 @@ export interface ProfileResponse {
   state: string | null;
   state_id: number;
   created_at: string | null;
-  reference: reference;
+  reference: reference | null;
 }
 
 export const Wrapper = () => {

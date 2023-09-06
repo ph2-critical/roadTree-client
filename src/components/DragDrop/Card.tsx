@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export interface CardProps {
   cardId: string;
   index: number;
-  content: reference;
+  content: reference | null;
   status: string;
 }
 
@@ -36,7 +36,7 @@ const Card = (props: CardProps) => {
       {(draggableProvided, snapshot) => (
         <div
           onClick={() => {
-            linkRoadTree(content.rid);
+            if (content) linkRoadTree(content.rid);
           }}
           ref={draggableProvided.innerRef}
           {...draggableProvided.draggableProps}
