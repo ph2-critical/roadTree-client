@@ -1,20 +1,20 @@
+import React from "react";
 import { reference } from "@/roadmap_json/roadmap_data";
 import { Draggable } from "react-beautiful-dnd";
 import Block from "./Block";
-import Link from "next/link";
 import { getNodeNameFromRid } from "@/src/api/profile";
 import { useRouter } from "next/navigation";
 
 export interface CardProps {
   cardId: string;
   index: number;
-  content: reference;
+  content: reference | null;
   status: string;
 }
 
 //draggableId , key 같아야함
 
-export const Card = (props: CardProps) => {
+const Card = (props: CardProps) => {
   const { cardId, index, content } = props;
   const router = useRouter();
 
@@ -24,15 +24,20 @@ export const Card = (props: CardProps) => {
       if (res === null) {
         return;
       }
-      const typeValue = (res.type === "front") ? 0 : 1;
-      router.push('/roadmap/' + typeValue + '?node=' + res.name+"&ref="+rid);
-  })}
+      const typeValue = res.type === "front" ? 0 : 1;
+      router.push(
+        "/roadmap/" + typeValue + "?node=" + res.name + "&ref=" + rid,
+      );
+    });
+  };
 
   return (
     <Draggable draggableId={cardId} key={cardId} index={index}>
       {(draggableProvided, snapshot) => (
         <div
-          onClick={() => {linkRoadTree(content.rid)}}
+          onClick={() => {
+            if (content) linkRoadTree(content.rid);
+          }}
           ref={draggableProvided.innerRef}
           {...draggableProvided.draggableProps}
           {...draggableProvided.dragHandleProps}
@@ -48,7 +53,7 @@ export const Card = (props: CardProps) => {
             `}
           >
             <div className="w-[291px] break-all whitespace-nowrap overflow-hidden text-ellipsis">
-              { content && <Block refdata={content} />}
+              {content && <Block refdata={content} />}
             </div>
           </div>
         </div>
@@ -56,3 +61,5 @@ export const Card = (props: CardProps) => {
     </Draggable>
   );
 };
+
+export default React.memo(Card);

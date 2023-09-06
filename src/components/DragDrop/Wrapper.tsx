@@ -1,6 +1,6 @@
 "use client";
 import * as _ from "lodash";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Box } from "./Box";
 import { CardProps } from "./Card";
@@ -11,8 +11,6 @@ import { track } from "@amplitude/analytics-browser";
 import { reference } from "@/roadmap_json/roadmap_data";
 
 export type StatusType = "todo" | "doing" | "done";
-// type WrapperType = BoxProps[];
-// const test: WrapperType = [];
 export type WrapperType = {
   [key in StatusType]: CardProps[];
 };
@@ -26,16 +24,12 @@ const lists: WrapperType = {
 export interface ProfileResponse {
   rid: string;
   state: string | null;
+  state_id: number;
   created_at: string | null;
   reference: reference | null;
 }
 
 export const Wrapper = () => {
-  const status = {
-    todo: "학습예정",
-    doing: "학습중",
-    done: "학습완료",
-  };
   const { isLogin, userId } = useLoginStore();
   const [list, setList] = useState<WrapperType>(lists);
   const { data, isLoading } = useQuery<ProfileResponse[] | null>(
@@ -58,72 +52,76 @@ export const Wrapper = () => {
         done: [],
       };
 
-      data?.map((d, idx) => {
-        if (!d.reference) return;
-        if (d.state === "학습예정") {
-          tmp.todo.push({
-            cardId: d.rid,
-            content: d.reference,
-            status: "todo",
-            index: idx,
-          });
-        } else if (d.state === "학습중") {
-          tmp.doing.push({
-            cardId: d.rid,
-            content: d.reference,
-            status: "doing",
-            index: idx,
-          });
-        } else if (d.state === "학습완료") {
-          tmp.done.push({
-            cardId: d.rid,
-            content: d.reference,
-            status: "done",
-            index: idx,
-          });
-        }
-      });
+      data
+        ?.sort((a, b) => a.state_id - b.state_id)
+        .map((d) => {
+          if (d.state === "학습예정") {
+            tmp.todo.push({
+              cardId: d.rid,
+              content: d.reference,
+              status: "todo",
+              index: d.state_id,
+            });
+          } else if (d.state === "학습중") {
+            tmp.doing.push({
+              cardId: d.rid,
+              content: d.reference,
+              status: "doing",
+              index: d.state_id,
+            });
+          } else if (d.state === "학습완료") {
+            tmp.done.push({
+              cardId: d.rid,
+              content: d.reference,
+              status: "done",
+              index: d.state_id,
+            });
+          }
+        });
       setList(tmp);
     }
   }, [data, isLoading]);
 
-  const handleDrag = ({ source, destination }: DropResult) => {
-    if (!destination) return;
-    const sourceKey = source.droppableId as StatusType;
-    const destinationKey = destination.droppableId as StatusType;
+  const handleDrag = useCallback(
+    ({ source, destination }: DropResult) => {
+      if (!destination) return;
+      const sourceKey = source.droppableId as StatusType;
+      const destinationKey = destination.droppableId as StatusType;
 
-    const itemList = _.cloneDeep(list) as typeof list; //깊은 복사 ㅋ
-    const [temp] = itemList[sourceKey].splice(source.index, 1);
-    if (temp) {
-      itemList[destinationKey].splice(0, 0, temp);
-    } else {
-      console.log(temp);
-    }
+      const itemList = _.cloneDeep(list) as typeof list; //깊은 복사 ㅋ
+      const [temp] = itemList[sourceKey].splice(source.index, 1);
+      if (temp) {
+        itemList[destinationKey].splice(destination.index, 0, temp);
+        if (sourceKey !== destinationKey) {
+          itemList[sourceKey].map((item, index) => (item.index = index));
+          itemList[destinationKey].map((item, index) => (item.index = index));
+        } else {
+          itemList[sourceKey].map((item, index) => (item.index = index));
+        }
+        track("drag_reference_card_on_profile", {
+          sourceIndex: source.index,
+          sourceStatus: source.droppableId,
+          destinationIndex: destination?.index,
+          destinationStatus: destination?.droppableId,
 
-    const now = new Date();
-    const nowTimeStamp = now.toISOString();
+          rid: temp.cardId,
+          uid: userId,
+          content: temp.content,
+        });
+      }
 
-    track("drag_reference_card_on_profile", {
-      sourceIndex: source.index,
-      sourceStatus: source.droppableId,
-      destinationIndex: destination?.index,
-      destinationStatus: destination?.droppableId,
+      const postData = {
+        todo: itemList.todo,
+        doing: itemList.doing,
+        done: itemList.done,
+        user_id: userId,
+      };
 
-      rid: temp.cardId,
-      uid: userId,
-      content: temp.content,
-    });
-
-    const postData = {
-      rid: temp.cardId,
-      id: userId,
-      state: status[destinationKey],
-      created_at: nowTimeStamp,
-    };
-
-    mutate(postData);
-    setList(itemList);
-  };
+      mutate(postData);
+      setList(itemList);
+    },
+    [list],
+  );
 
   // --- requestAnimationFrame 초기화
   const [enabled, setEnabled] = useState(false);

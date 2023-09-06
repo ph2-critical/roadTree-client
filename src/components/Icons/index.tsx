@@ -70,11 +70,12 @@ export const QuestionIcon = () => {
             일일이 찾지 않고 마이페이지 내에서 학습 상태를 변경해보세요.
           </p>
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            주의 사항
+            권장 사용 방법
           </h3>
           <p>
-            최신순으로 정렬되기 때문에 같은 박스 안에서는 순서 변경이
-            불가능해요.
+            공부 순서를 지정해보세요.
+            <br />
+            우선 순위를 정해두면, 공부를 더욱 효율적으로 할 수 있어요.
           </p>
         </div>
         <div data-popper-arrow></div>
