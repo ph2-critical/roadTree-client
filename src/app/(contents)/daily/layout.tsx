@@ -8,7 +8,7 @@ export default function DailyLayout({
   return (
     <div className="flex justify-center">
       <SideBar />
-      <div className="w-full ml-60">{children}</div>
+      <div className="w-full md:ml-60">{children}</div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { getSubmissionUserProps } from "@/src/api/submission/submission";
+import { getSubmissionUserProps } from "@/api/submission/submission";
 
 const kakaoKey: string = process.env.NEXT_PUBLIC_KAKAO_KEY || "";
 

@@ -21,15 +21,14 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./*", "./src/*"],
       "@pages/*": ["pages/*"],
       "@server/*": ["server/*"],
       "@public/*": ["public/*"],
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"]
-      // "@/*": ["./src/*"]
+      "@hooks/*": ["hooks/*"],
     }
   },
   "include": [

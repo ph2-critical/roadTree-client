@@ -13,7 +13,9 @@ export const myPageApi = async (
 ): Promise<ProfileResponse[] | null> => {
   const { data } = await supabase
     .from("ref_state")
-    .select("rid, state, created_at, reference!inner(rid, title, grade, category, amount, price, url, created_at)")
+    .select(
+      "rid, state, created_at, reference!inner(rid, title, grade, category, amount, price, url, created_at)",
+    )
     .eq("user_id", id)
     .order("created_at", { ascending: false });
 
@@ -38,7 +40,7 @@ export const getNodeNameFromRid = async (rid: string) => {
     .eq("rid", rid);
 
   return data.data![0].node;
-}
+};
 
 export const getParentNodeNameFromNid = async (nid: string) => {
   const data = await supabase
@@ -47,4 +49,4 @@ export const getParentNodeNameFromNid = async (nid: string) => {
     .eq("nid", nid);
 
   return data.data![0].parent_node_nid;
-}
+};

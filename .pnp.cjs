@@ -47,6 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-table-merged-cell", "npm:3.1.0"],\
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
+            ["@types/aos", "npm:3.0.4"],\
             ["@types/d3", "npm:3.5.47"],\
             ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\
@@ -56,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.5"],\
             ["@typescript-eslint/eslint-plugin", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
             ["@typescript-eslint/parser", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
+            ["aos", "npm:3.0.0-beta.6"],\
             ["autoprefixer", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:10.4.14"],\
             ["axios", "npm:1.4.0"],\
             ["babel-plugin-macros", "npm:3.1.0"],\
@@ -1299,6 +1301,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/aos", [\
+        ["npm:3.0.4", {\
+          "packageLocation": "./.yarn/cache/@types-aos-npm-3.0.4-fac8b2f462-55c54865df.zip/node_modules/@types/aos/",\
+          "packageDependencies": [\
+            ["@types/aos", "npm:3.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/d3", [\
         ["npm:3.5.47", {\
           "packageLocation": "./.yarn/cache/@types-d3-npm-3.5.47-9d4cbdcc9b-f49657cb30.zip/node_modules/@types/d3/",\
@@ -1911,6 +1922,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["aos", [\
+        ["npm:3.0.0-beta.6", {\
+          "packageLocation": "./.yarn/cache/aos-npm-3.0.0-beta.6-236f89f979-7d271deed0.zip/node_modules/aos/",\
+          "packageDependencies": [\
+            ["aos", "npm:3.0.0-beta.6"],\
+            ["classlist-polyfill", "npm:1.2.0"],\
+            ["lodash.debounce", "npm:4.0.8"],\
+            ["lodash.throttle", "npm:4.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["aproba", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/aproba-npm-2.0.0-8716bcfde6-5615cadcfb.zip/node_modules/aproba/",\
@@ -2391,6 +2414,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/chownr-npm-2.0.0-638f1c9c61-c57cf9dd07.zip/node_modules/chownr/",\
           "packageDependencies": [\
             ["chownr", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["classlist-polyfill", [\
+        ["npm:1.2.0", {\
+          "packageLocation": "./.yarn/cache/classlist-polyfill-npm-1.2.0-e5d1976a47-43ff10af5e.zip/node_modules/classlist-polyfill/",\
+          "packageDependencies": [\
+            ["classlist-polyfill", "npm:1.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5137,6 +5169,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lodash.debounce", [\
+        ["npm:4.0.8", {\
+          "packageLocation": "./.yarn/cache/lodash.debounce-npm-4.0.8-f1d6e09799-a3f527d22c.zip/node_modules/lodash.debounce/",\
+          "packageDependencies": [\
+            ["lodash.debounce", "npm:4.0.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lodash.get", [\
         ["npm:4.4.2", {\
           "packageLocation": "./.yarn/cache/lodash.get-npm-4.4.2-7bda64ed87-e403047ddb.zip/node_modules/lodash.get/",\
@@ -5160,6 +5201,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.merge-npm-4.6.2-77cb4416bf-ad580b4bdb.zip/node_modules/lodash.merge/",\
           "packageDependencies": [\
             ["lodash.merge", "npm:4.6.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash.throttle", [\
+        ["npm:4.1.1", {\
+          "packageLocation": "./.yarn/cache/lodash.throttle-npm-4.1.1-856641af92-129c0a28ce.zip/node_modules/lodash.throttle/",\
+          "packageDependencies": [\
+            ["lodash.throttle", "npm:4.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7552,6 +7602,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@toast-ui/editor-plugin-table-merged-cell", "npm:3.1.0"],\
             ["@toast-ui/editor-plugin-uml", "npm:3.0.1"],\
             ["@toast-ui/react-editor", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.2.3"],\
+            ["@types/aos", "npm:3.0.4"],\
             ["@types/d3", "npm:3.5.47"],\
             ["@types/lodash", "npm:4.14.197"],\
             ["@types/node", "npm:20.3.1"],\
@@ -7561,6 +7612,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.5"],\
             ["@typescript-eslint/eslint-plugin", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
             ["@typescript-eslint/parser", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:6.2.0"],\
+            ["aos", "npm:3.0.0-beta.6"],\
             ["autoprefixer", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:10.4.14"],\
             ["axios", "npm:1.4.0"],\
             ["babel-plugin-macros", "npm:3.1.0"],\
