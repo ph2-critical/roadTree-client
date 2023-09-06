@@ -2,10 +2,11 @@ export interface reference {
   rid: string;
   title: string;
   url: string;
-  grade: number;
+  grade: number | null;
   category: string;
-  amount: string;
-  price: number;
+  amount: string | null;
+  price: number | null;
+  created_at: string;
   state?: number;
 }
 
