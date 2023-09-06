@@ -134,10 +134,10 @@ export default function RefBlock(props: {
             window.open(refdata.url);
           }
         }}
-        className="flex items-center h-full p-2 cursor-pointer hover:bg-gray-200"
+        className="flex items-center h-full p-2 cursor-pointer rounded-md hover:bg-gray-200"
       >
         <Image
-          src={categoryImage[refdata.category]}
+          src={'/roadTree' + categoryImage[refdata.category]}
           alt={refdata.category}
           width={512}
           height={512}
@@ -147,10 +147,10 @@ export default function RefBlock(props: {
           <div className="flex flex-col items-start">
             <div
               className={`border px-2 rounded-md border-${
-                gradeColor[refdata.grade]
-              } text-xs text-${gradeColor[refdata.grade]}`}
+                gradeColor[refdata.grade ?? 0]
+              } text-xs text-${gradeColor[refdata.grade ?? 0]}`}
             >
-              {gradelist[refdata.grade]}
+              {gradelist[refdata.grade ?? 0]}
             </div>
             <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
               {refdata.title}

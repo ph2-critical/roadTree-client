@@ -11,6 +11,8 @@ import RoadTreeMobileLayout from "./RoadTreeMobileLayout";
 import { usemdResize } from "@/src/utils/hooks/useWindowResize";
 import { getNodeChildren, getNodeId } from "@/src/api/initNode";
 import { getNodeState, getNodeStateProps } from "@/src/api/stateApi";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { getParentNodeNameFromNid } from "@/src/api/profile";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -75,6 +77,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     "stroke-black",
   ];
   const stateTextColor: string[] = ["#000", "#000", "#000", "#000"];
+  const searchParams:ReadonlyURLSearchParams = useSearchParams();
 
   // 선택
   function toggle_select(d: RoadData) {
@@ -113,7 +116,6 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     setIsShowRef(false);
     setSelect(d);
     selectCurrent[0] = d; // 이전 선택 내용 업데이트
-    // setLastClick(d);
     lastClick = d;
   }
 
@@ -138,6 +140,58 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       selectCurrent[0] = null;
     }
   }
+
+  // 초기 node toggle
+  const toggle_init_node = async (root: RoadData) => {
+    // 일단 전부 다 닫는 단계
+    setSelect(null);
+    if (root.children instanceof Array) {
+      root.children.map((child: RoadData) => {
+        if (child.children !== undefined && child.children !== null) {
+          child.children.map((child2) => {
+            toggle_deleteselect(child2);
+          });
+          toggle_deleteselect(child);
+        }
+        child.select = false;
+      });
+    }
+
+    // parameter로 node가 주어진 경우
+    const nodeParam:string|null = searchParams.get("node");
+
+    const nodeParamPath:string[] = [];    // 파라미터로 주어진 노드로 향하는 path를 기록함
+    if (nodeParam !== null) {
+      await getNodeId(nodeParam).then(async (nid:string|null) => {
+        while (nid !== null) {
+          nodeParamPath.push(nid);
+          nid = await getParentNodeNameFromNid(nid);
+        }
+        nodeParamPath.pop();        // root node는 제외
+        nodeParamPath.reverse();   
+        var currentNode:RoadData = root;
+        for (nid of nodeParamPath) {
+          // children에서 nid 찾기
+          const targetChild:RoadData|undefined = currentNode.children?.find((child:RoadData) => child.nid === nid);
+          if (targetChild !== undefined) {
+            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함  
+              if (targetChild._children === undefined && targetChild.children === undefined) {
+                await getNodeChildren(targetChild.nid as string).then((res) => {
+                  targetChild._children = res ?? [];
+                  toggle_select(targetChild);
+                  setIsShowRef(true);
+                });
+              } else {
+                toggle_select(targetChild);
+                setIsShowRef(true);
+              }
+            
+              currentNode = targetChild;
+          }
+        }
+    });
+  }
+}
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -220,20 +274,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
 
       root.x0 = h / 2;
       root.y0 = 0;
-      setSelect(null);
-      if (root.children instanceof Array) {
-        root.children.map((child: RoadData) => {
-          if (child.children !== undefined && child.children !== null) {
-            child.children.map((child2) => {
-              toggle_deleteselect(child2);
-            });
-            toggle_deleteselect(child);
-          }
-          child.select = false;
-        });
-      }
 
-      update(root);
+      toggle_init_node(root).then(() => {
+        update(root);
+      });
 
       function update(source: RoadData) {
         let duration = 500;
