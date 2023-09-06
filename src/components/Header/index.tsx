@@ -99,7 +99,7 @@ export const Header = () => {
               >
                 <div id="headerMenu" className="hidden md:flex">
                   <div
-                    className="p-3 text-base font-semibold text-red-300 cursor-pointer hover:text-red-400"
+                    className={`p-3 font-semibold text-base hover:text-gray-400 text-gray-500`}
                     onClick={() => {
                       // ("[amplitude] click_go_roadpage_header_menu_btn");
                       track("click_go_daily_page_header_btn", {
