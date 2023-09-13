@@ -26,7 +26,7 @@ export default function Home() {
                   key={"startBox_" + index}
                   className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
                 >
-                  <h3 className="mb-4 text-2xl font-semibold">{title}</h3>
+                  <h1 className="mb-4 text-2xl font-semibold">{title}</h1>
                   <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                     {content[index]}
                   </p>
