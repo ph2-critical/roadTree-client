@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { useNicknameStore } from "@/src/state/store";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
 
 interface PrivacyInterface {
   nickname: string;
@@ -15,18 +16,43 @@ interface PrivacyInterface {
 
 export default function Page() {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
-  const [privacy, setPrivacy] = useState<PrivacyInterface>({
-    nickname: nickname,
-    email: email,
-    age: 0,
-    gender: "",
-    status: "",
-    category: "",
-  });
+
+  const {
+    register,
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PrivacyInterface>();
+
+  useEffect(() => {
+    if (nickname) setValue("nickname", nickname);
+    if (email) setValue("email", email);
+  }, [nickname, email]);
+
+  const onSubmit = () => {
+    setNickname(watch("nickname"));
+  };
 
   return (
     <section className="flex h-[calc(100vh-72px)]">
-      <form className="container max-w-2xl m-auto shadow-md md:w-3/4">
+      <form
+        className="container max-w-2xl m-auto shadow-md md:w-3/4"
+        onSubmit={handleSubmit(
+          () => {
+            console.log("success");
+            onSubmit();
+          },
+          () => {
+            if (errors.age) {
+              alert(errors.age.message);
+            } else {
+              alert("모든 정보를 입력해주세요.");
+            }
+            console.log(watch());
+          },
+        )}
+      >
         <div className="border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
           <Image
             alt="profile"
@@ -44,10 +70,12 @@ export default function Page() {
                   id="user-info-email"
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-doneColor focus:border-transparent"
                   placeholder="닉네임"
-                  value={nickname}
-                  onChange={(e) => {
-                    setNickname(e.target.value);
-                  }}
+                  value={watch().nickname}
+                  {...register("nickname", {
+                    required: true,
+                    minLength: 1,
+                    maxLength: 10,
+                  })}
                 />
               </div>
             </div>
@@ -62,7 +90,7 @@ export default function Page() {
                 <input
                   type="text"
                   id="user-info-email"
-                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none cursor-not-allowed"
                   placeholder="Email"
                   value={email}
                   disabled
@@ -77,40 +105,54 @@ export default function Page() {
               <div>
                 <div className="relative ">
                   <input
-                    type="text"
+                    type="number"
                     id="user-info-age"
                     className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-doneColor focus:border-transparent"
                     placeholder="나이"
+                    {...register("age", {
+                      valueAsNumber: true,
+                      required: true,
+                      min: {
+                        value: 1,
+                        message: "나이를 다시 확인해주세요.",
+                      },
+                      max: {
+                        value: 100,
+                        message: "나이는 최대 100세 입니다.",
+                      },
+                    })}
                   />
                 </div>
               </div>
               <div className="flex w-full gap-4 pb-4 text-gray-500 ">
                 <button
                   className={`signup-btn ${
-                    !privacy.gender
+                    !watch("gender")
                       ? "bg-[#13D080]"
-                      : privacy.gender == "male"
+                      : watch("gender") == "male"
                       ? "bg-[#489d72]"
                       : "bg-[#e3f6ed]"
                   }`}
                   type="button"
+                  {...register("gender")}
                   onClick={() => {
-                    setPrivacy({ ...privacy, gender: "male" });
+                    setValue("gender", "male");
                   }}
                 >
                   남성
                 </button>
                 <button
                   className={`signup-btn ${
-                    !privacy.gender
+                    !watch("gender")
                       ? "bg-[#13D080]"
-                      : privacy.gender == "female"
+                      : watch("gender") == "female"
                       ? "bg-[#489d72]"
                       : "bg-[#e3f6ed]"
                   }`}
                   type="button"
+                  {...register("gender")}
                   onClick={() => {
-                    setPrivacy({ ...privacy, gender: "female" });
+                    setValue("gender", "female");
                   }}
                 >
                   여성
@@ -128,14 +170,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !privacy.status
+                      !watch("status")
                         ? "bg-[#13D080]"
-                        : privacy.status == "major"
+                        : watch("status") == "major"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
+                    {...register("status")}
                     onClick={() => {
-                      setPrivacy({ ...privacy, status: "major" });
+                      setValue("status", "major");
                     }}
                   >
                     전공자
@@ -143,14 +186,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !privacy.status
+                      !watch("status")
                         ? "bg-[#13D080]"
-                        : privacy.status == "nonMajor"
+                        : watch("status") == "nonMajor"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
+                    {...register("status")}
                     onClick={() => {
-                      setPrivacy({ ...privacy, status: "nonMajor" });
+                      setValue("status", "nonMajor");
                     }}
                   >
                     비전공자
@@ -158,14 +202,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !privacy.status
+                      !watch("status")
                         ? "bg-[#13D080]"
-                        : privacy.status == "working"
+                        : watch("status") == "working"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
+                    {...register("status")}
                     onClick={() => {
-                      setPrivacy({ ...privacy, status: "working" });
+                      setValue("status", "working");
                     }}
                   >
                     현업자
@@ -177,13 +222,16 @@ export default function Page() {
                   id="category"
                   name="category"
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-doneColor sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    setValue("category", e.target.value);
+                  }}
                 >
                   <option value="">학습 분야</option>
-                  <option value="1">프론트엔드</option>
-                  <option value="2">백엔드</option>
-                  <option value="3">앱 개발</option>
-                  <option value="4">AI</option>
-                  <option value="5">기타</option>
+                  <option value="frontend">프론트엔드</option>
+                  <option value="backend">백엔드</option>
+                  <option value="app">앱 개발</option>
+                  <option value="ai">AI</option>
+                  <option value="other">기타</option>
                 </select>
               </div>
             </div>
