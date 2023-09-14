@@ -27,17 +27,29 @@ export default function Page() {
   return (
     <section className="flex h-[calc(100vh-72px)]">
       <form className="container max-w-2xl m-auto shadow-md md:w-3/4">
-        <div className="p-4 border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
-          <div className="max-w-sm mx-auto md:w-full md:mx-0">
-            <div className="inline-flex items-center space-x-4">
-              <Image
-                alt="profile"
-                src={userPicture ?? "/header/user.svg"}
-                width={512}
-                height={512}
-                className="object-cover w-16 h-16 mx-auto rounded-full "
-              />
-              <h1 className="text-gray-600">{nickname}</h1>
+        <div className="border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
+          <Image
+            alt="profile"
+            src={userPicture ?? "/header/user.svg"}
+            width={512}
+            height={512}
+            className="object-cover w-16 h-16 mx-auto rounded-full "
+          />{" "}
+          <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
+            <h1 className="max-w-sm mx-auto md:w-1/3">닉네임</h1>
+            <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
+              <div>
+                <input
+                  type="text"
+                  id="user-info-email"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-doneColor focus:border-transparent"
+                  placeholder="닉네임"
+                  value={nickname}
+                  onChange={(e) => {
+                    setNickname(e.target.value);
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -50,7 +62,7 @@ export default function Page() {
                 <input
                   type="text"
                   id="user-info-email"
-                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none"
                   placeholder="Email"
                   value={email}
                   disabled
@@ -67,16 +79,40 @@ export default function Page() {
                   <input
                     type="text"
                     id="user-info-age"
-                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-doneColor focus:border-transparent"
                     placeholder="나이"
                   />
                 </div>
               </div>
               <div className="flex w-full gap-4 pb-4 text-gray-500 ">
-                <button className="signup-btn bg-[#13D080]" type="button">
+                <button
+                  className={`signup-btn ${
+                    !privacy.gender
+                      ? "bg-[#13D080]"
+                      : privacy.gender == "male"
+                      ? "bg-[#489d72]"
+                      : "bg-[#e3f6ed]"
+                  }`}
+                  type="button"
+                  onClick={() => {
+                    setPrivacy({ ...privacy, gender: "male" });
+                  }}
+                >
                   남성
                 </button>
-                <button className="signup-btn bg-[#13D080]" type="button">
+                <button
+                  className={`signup-btn ${
+                    !privacy.gender
+                      ? "bg-[#13D080]"
+                      : privacy.gender == "female"
+                      ? "bg-[#489d72]"
+                      : "bg-[#e3f6ed]"
+                  }`}
+                  type="button"
+                  onClick={() => {
+                    setPrivacy({ ...privacy, gender: "female" });
+                  }}
+                >
                   여성
                 </button>
               </div>
@@ -89,13 +125,49 @@ export default function Page() {
             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
               <div>
                 <div className="flex w-full gap-4 pb-4 text-gray-500 ">
-                  <button type="button" className="signup-btn bg-[#13D080]">
+                  <button
+                    type="button"
+                    className={`signup-btn ${
+                      !privacy.status
+                        ? "bg-[#13D080]"
+                        : privacy.status == "major"
+                        ? "bg-[#489d72]"
+                        : "bg-[#e3f6ed]"
+                    }`}
+                    onClick={() => {
+                      setPrivacy({ ...privacy, status: "major" });
+                    }}
+                  >
                     전공자
                   </button>
-                  <button type="button" className="signup-btn bg-[#13D080]">
+                  <button
+                    type="button"
+                    className={`signup-btn ${
+                      !privacy.status
+                        ? "bg-[#13D080]"
+                        : privacy.status == "nonMajor"
+                        ? "bg-[#489d72]"
+                        : "bg-[#e3f6ed]"
+                    }`}
+                    onClick={() => {
+                      setPrivacy({ ...privacy, status: "nonMajor" });
+                    }}
+                  >
                     비전공자
                   </button>
-                  <button type="button" className="signup-btn bg-[#13D080]">
+                  <button
+                    type="button"
+                    className={`signup-btn ${
+                      !privacy.status
+                        ? "bg-[#13D080]"
+                        : privacy.status == "working"
+                        ? "bg-[#489d72]"
+                        : "bg-[#e3f6ed]"
+                    }`}
+                    onClick={() => {
+                      setPrivacy({ ...privacy, status: "working" });
+                    }}
+                  >
                     현업자
                   </button>
                 </div>
@@ -104,7 +176,7 @@ export default function Page() {
                 <select
                   id="category"
                   name="category"
-                  className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-doneColor sm:text-sm sm:leading-6"
                 >
                   <option value="">학습 분야</option>
                   <option value="1">프론트엔드</option>
@@ -118,7 +190,7 @@ export default function Page() {
           </div>
           <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
             <button type="submit" className="signup-btn bg-[#13D080]">
-              Save
+              저장하기
             </button>
           </div>
         </div>

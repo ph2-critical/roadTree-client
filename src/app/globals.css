@@ -65,8 +65,8 @@
   }
   .signup-btn {
     @apply w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in rounded-lg shadow-md bg-main hover:bg-doneColor focus:ring-doingColor focus:ring-offset-todoColor focus:outline-none focus:ring-2 focus:ring-offset-2;
-
   }
+
   /* active => doneColor , 다른게 active => todoColor로 설정 */
   /************************************************************************************************/
 
