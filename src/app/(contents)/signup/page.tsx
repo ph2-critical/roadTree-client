@@ -1,21 +1,22 @@
 "use client";
 
 import { useEffect } from "react";
-import { useNicknameStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
-interface PrivacyInterface {
+export interface ExtraInfoInterface {
   nickname: string;
   email: string;
   age: number;
   gender: string;
-  status: string;
-  category: string;
+  career: string;
+  stack: string;
 }
 
 export default function Page() {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
+  const { userId } = useLoginStore();
 
   const {
     register,
@@ -23,7 +24,7 @@ export default function Page() {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<PrivacyInterface>();
+  } = useForm<ExtraInfoInterface>();
 
   useEffect(() => {
     if (nickname) setValue("nickname", nickname);
@@ -170,15 +171,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !watch("status")
+                      !watch("career")
                         ? "bg-[#13D080]"
-                        : watch("status") == "major"
+                        : watch("career") == "major"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
-                    {...register("status")}
+                    {...register("career")}
                     onClick={() => {
-                      setValue("status", "major");
+                      setValue("career", "major");
                     }}
                   >
                     전공자
@@ -186,15 +187,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !watch("status")
+                      !watch("career")
                         ? "bg-[#13D080]"
-                        : watch("status") == "nonMajor"
+                        : watch("career") == "nonMajor"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
-                    {...register("status")}
+                    {...register("career")}
                     onClick={() => {
-                      setValue("status", "nonMajor");
+                      setValue("career", "nonMajor");
                     }}
                   >
                     비전공자
@@ -202,15 +203,15 @@ export default function Page() {
                   <button
                     type="button"
                     className={`signup-btn ${
-                      !watch("status")
+                      !watch("career")
                         ? "bg-[#13D080]"
-                        : watch("status") == "working"
+                        : watch("career") == "working"
                         ? "bg-[#489d72]"
                         : "bg-[#e3f6ed]"
                     }`}
-                    {...register("status")}
+                    {...register("career")}
                     onClick={() => {
-                      setValue("status", "working");
+                      setValue("career", "working");
                     }}
                   >
                     현업자
@@ -219,11 +220,11 @@ export default function Page() {
               </div>
               <div className="relative ">
                 <select
-                  id="category"
-                  name="category"
+                  id="stack"
+                  name="stack"
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-doneColor sm:text-sm sm:leading-6"
                   onChange={(e) => {
-                    setValue("category", e.target.value);
+                    setValue("stack", e.target.value);
                   }}
                 >
                   <option value="">학습 분야</option>
