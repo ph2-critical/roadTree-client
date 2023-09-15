@@ -11,6 +11,7 @@ export const getNodeChildren = async (nid: string) => {
     .from("node")
     .select("nid, name, description, depth")
     .eq("parent_node_nid", nid);
+
   return data.data!;
 };
 
