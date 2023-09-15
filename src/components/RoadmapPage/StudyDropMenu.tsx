@@ -1,4 +1,4 @@
-import { useDetectClose } from "../../utils/hooks/detectDropDownClose";
+import { useModal } from "@/src/utils/hooks/useModal";
 
 export default function StudyDropMenu(props: {
   node?: boolean;
@@ -40,16 +40,15 @@ export default function StudyDropMenu(props: {
     "text-gray-200",
   ];
 
-  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
+  const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
 
   return (
-    <div className="relative">
-      <button
+    <div className="relative" ref={modalRef}>
+      <div
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
         className={`${stateTextColor[stateNum]} min-w-[95px] justify-between rounded-md font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-md flex items-center relative`}
-        onClick={myPageHandler}
-        ref={myPageRef}
+        onClick={toggleModal}
       >
         {stateName[stateNum]}
         <svg
@@ -67,16 +66,13 @@ export default function StudyDropMenu(props: {
             d="M19 9l-7 7-7-7"
           ></path>
         </svg>
-      </button>
+      </div>
       {/* <!-- Dropdown menu --> */}
       <div
         id="dropdown"
-        className={`${
-          myPageIsOpen ? "" : "hidden"
-        } border border-gray-200 z-50 dropdown absolute ${
-          rightOn ? "left-0" : "right-0"
-        } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow dark:bg-gray-700`}
-        onClick={myPageHandler}
+        className={`${isOpen ? "" : "hidden"
+          } border border-gray-200 z-50 dropdown absolute ${rightOn ? "left-0" : "right-0"
+          } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow dark:bg-gray-700`}
       >
         <ul
           className="py-2 text-sm text-gray-700 dropdown dark:text-gray-200"
@@ -87,9 +83,10 @@ export default function StudyDropMenu(props: {
             return (
               <li
                 key={"studyDropMenu_state_" + index}
-                className="block px-2 py-1 dropdown hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-2 py-1 dropdown hover:bg-gray-100 dark:hover:text-white"
                 onClick={() => {
                   setStateNum(index);
+                  closeModal();
                 }}
               >
                 <div
