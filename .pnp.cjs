@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/server", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@emotion/styled", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
-            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@supabase/supabase-js", "npm:2.33.1"],\
             ["@tailwindcss/custom-forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.2.1"],\
             ["@tailwindcss/forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.5.4"],\
             ["@tanstack/react-query", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:4.32.6"],\
@@ -941,7 +941,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
             ["@supabase/auth-helpers-shared", "virtual:9941f6d4a92749c1623e9310f937853f60fdc08ac4e6e8ba03b090bff51006fe3e46c0fc02a1131012f74de5164fff8bc93bfcdaaf4338e06aa875c34002c190#npm:0.4.1"],\
-            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@supabase/supabase-js", "npm:2.33.1"],\
             ["@types/supabase__supabase-js", null],\
             ["set-cookie-parser", "npm:2.6.0"]\
           ],\
@@ -964,7 +964,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-shared-virtual-a68df66df3/0/cache/@supabase-auth-helpers-shared-npm-0.4.1-0f0bef96a5-07e29f1212.zip/node_modules/@supabase/auth-helpers-shared/",\
           "packageDependencies": [\
             ["@supabase/auth-helpers-shared", "virtual:9941f6d4a92749c1623e9310f937853f60fdc08ac4e6e8ba03b090bff51006fe3e46c0fc02a1131012f74de5164fff8bc93bfcdaaf4338e06aa875c34002c190#npm:0.4.1"],\
-            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@supabase/supabase-js", "npm:2.33.1"],\
             ["@types/supabase__supabase-js", null],\
             ["jose", "npm:4.14.4"]\
           ],\
@@ -986,30 +986,40 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@supabase/gotrue-js", [\
-        ["npm:2.34.0", {\
-          "packageLocation": "./.yarn/cache/@supabase-gotrue-js-npm-2.34.0-3c6a507f25-c38b013e40.zip/node_modules/@supabase/gotrue-js/",\
+        ["npm:2.51.0", {\
+          "packageLocation": "./.yarn/cache/@supabase-gotrue-js-npm-2.51.0-d72da36a56-bcbd4bb537.zip/node_modules/@supabase/gotrue-js/",\
           "packageDependencies": [\
-            ["@supabase/gotrue-js", "npm:2.34.0"],\
-            ["cross-fetch", "npm:3.1.6"]\
+            ["@supabase/gotrue-js", "npm:2.51.0"],\
+            ["@supabase/node-fetch", "npm:2.6.14"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/node-fetch", [\
+        ["npm:2.6.14", {\
+          "packageLocation": "./.yarn/cache/@supabase-node-fetch-npm-2.6.14-43e2f7080e-5c022875b0.zip/node_modules/@supabase/node-fetch/",\
+          "packageDependencies": [\
+            ["@supabase/node-fetch", "npm:2.6.14"],\
+            ["whatwg-url", "npm:5.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@supabase/postgrest-js", [\
-        ["npm:1.7.1", {\
-          "packageLocation": "./.yarn/cache/@supabase-postgrest-js-npm-1.7.1-8ae24d7120-97f6e45a04.zip/node_modules/@supabase/postgrest-js/",\
+        ["npm:1.8.4", {\
+          "packageLocation": "./.yarn/cache/@supabase-postgrest-js-npm-1.8.4-f87d863dbb-e37f304636.zip/node_modules/@supabase/postgrest-js/",\
           "packageDependencies": [\
-            ["@supabase/postgrest-js", "npm:1.7.1"],\
-            ["cross-fetch", "npm:3.1.6"]\
+            ["@supabase/postgrest-js", "npm:1.8.4"],\
+            ["@supabase/node-fetch", "npm:2.6.14"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@supabase/realtime-js", [\
-        ["npm:2.7.3", {\
-          "packageLocation": "./.yarn/cache/@supabase-realtime-js-npm-2.7.3-614aac85a8-a6e789098e.zip/node_modules/@supabase/realtime-js/",\
+        ["npm:2.7.4", {\
+          "packageLocation": "./.yarn/cache/@supabase-realtime-js-npm-2.7.4-0ab3a0d33b-f718dd2a9f.zip/node_modules/@supabase/realtime-js/",\
           "packageDependencies": [\
-            ["@supabase/realtime-js", "npm:2.7.3"],\
+            ["@supabase/realtime-js", "npm:2.7.4"],\
             ["@types/phoenix", "npm:1.6.0"],\
             ["@types/websocket", "npm:1.0.5"],\
             ["websocket", "npm:1.0.34"]\
@@ -1028,14 +1038,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@supabase/supabase-js", [\
-        ["npm:2.26.0", {\
-          "packageLocation": "./.yarn/cache/@supabase-supabase-js-npm-2.26.0-66206ac78b-bf53886a23.zip/node_modules/@supabase/supabase-js/",\
+        ["npm:2.33.1", {\
+          "packageLocation": "./.yarn/cache/@supabase-supabase-js-npm-2.33.1-4526356831-dcfdcc344f.zip/node_modules/@supabase/supabase-js/",\
           "packageDependencies": [\
-            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@supabase/supabase-js", "npm:2.33.1"],\
             ["@supabase/functions-js", "npm:2.1.2"],\
-            ["@supabase/gotrue-js", "npm:2.34.0"],\
-            ["@supabase/postgrest-js", "npm:1.7.1"],\
-            ["@supabase/realtime-js", "npm:2.7.3"],\
+            ["@supabase/gotrue-js", "npm:2.51.0"],\
+            ["@supabase/postgrest-js", "npm:1.8.4"],\
+            ["@supabase/realtime-js", "npm:2.7.4"],\
             ["@supabase/storage-js", "npm:2.5.1"],\
             ["cross-fetch", "npm:3.1.6"]\
           ],\
@@ -7590,7 +7600,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/server", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@emotion/styled", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:11.11.0"],\
             ["@supabase/auth-helpers-nextjs", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.7.2"],\
-            ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@supabase/supabase-js", "npm:2.33.1"],\
             ["@tailwindcss/custom-forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.2.1"],\
             ["@tailwindcss/forms", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:0.5.4"],\
             ["@tanstack/react-query", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:4.32.6"],\
@@ -17690,7 +17700,6 @@ function reportRequiredFilesToWatchMode(files) {
 }
 
 function applyPatch(pnpapi, opts) {
-  const defaultCache = {};
   let enableNativeHooks = true;
   process.versions.pnp = String(pnpapi.VERSIONS.std);
   const moduleExports = require$$0__default.default;
@@ -17710,62 +17719,13 @@ function applyPatch(pnpapi, opts) {
   }
   const originalModuleLoad = require$$0.Module._load;
   require$$0.Module._load = function(request, parent, isMain) {
-    if (!enableNativeHooks)
-      return originalModuleLoad.call(require$$0.Module, request, parent, isMain);
-    if (isBuiltinModule(request)) {
-      try {
-        enableNativeHooks = false;
-        return originalModuleLoad.call(require$$0.Module, request, parent, isMain);
-      } finally {
-        enableNativeHooks = true;
+    if (request === `pnpapi`) {
+      const parentApiPath = opts.manager.getApiPathFromParent(parent);
+      if (parentApiPath) {
+        return opts.manager.getApiEntry(parentApiPath, true).instance;
       }
     }
-    const parentApiPath = opts.manager.getApiPathFromParent(parent);
-    const parentApi = parentApiPath !== null ? opts.manager.getApiEntry(parentApiPath, true).instance : null;
-    if (parentApi === null)
-      return originalModuleLoad(request, parent, isMain);
-    if (request === `pnpapi`)
-      return parentApi;
-    const modulePath = require$$0.Module._resolveFilename(request, parent, isMain);
-    const isOwnedByRuntime = parentApi !== null ? parentApi.findPackageLocator(modulePath) !== null : false;
-    const moduleApiPath = isOwnedByRuntime ? parentApiPath : opts.manager.findApiPathFor(npath.dirname(modulePath));
-    const entry = moduleApiPath !== null ? opts.manager.getApiEntry(moduleApiPath) : { instance: null, cache: defaultCache };
-    const cacheEntry = entry.cache[modulePath];
-    if (cacheEntry) {
-      if (cacheEntry.loaded === false && cacheEntry.isLoading !== true) {
-        try {
-          cacheEntry.isLoading = true;
-          if (isMain) {
-            process.mainModule = cacheEntry;
-            cacheEntry.id = `.`;
-          }
-          cacheEntry.load(modulePath);
-        } finally {
-          cacheEntry.isLoading = false;
-        }
-      }
-      return cacheEntry.exports;
-    }
-    const module = new require$$0.Module(modulePath, parent != null ? parent : void 0);
-    module.pnpApiPath = moduleApiPath;
-    reportRequiredFilesToWatchMode([modulePath]);
-    entry.cache[modulePath] = module;
-    if (isMain) {
-      process.mainModule = module;
-      module.id = `.`;
-    }
-    let hasThrown = true;
-    try {
-      module.isLoading = true;
-      module.load(modulePath);
-      hasThrown = false;
-    } finally {
-      module.isLoading = false;
-      if (hasThrown) {
-        delete require$$0.Module._cache[modulePath];
-      }
-    }
-    return module.exports;
+    return originalModuleLoad.call(require$$0.Module, request, parent, isMain);
   };
   function getIssuerSpecsFromPaths(paths) {
     return paths.map((path) => ({
@@ -17833,7 +17793,7 @@ function applyPatch(pnpapi, opts) {
       const parentDirectory = (parent == null ? void 0 : parent.filename) != null ? npath.dirname(parent.filename) : null;
       const absoluteRequest = npath.isAbsolute(request) ? request : parentDirectory !== null ? npath.resolve(parentDirectory, request) : null;
       if (absoluteRequest !== null) {
-        const apiPath = parentDirectory === npath.dirname(absoluteRequest) && (parent == null ? void 0 : parent.pnpApiPath) ? parent.pnpApiPath : opts.manager.findApiPathFor(absoluteRequest);
+        const apiPath = parent && parentDirectory === npath.dirname(absoluteRequest) ? opts.manager.getApiPathFromParent(parent) : opts.manager.findApiPathFor(absoluteRequest);
         if (apiPath !== null) {
           issuerSpecs.unshift({
             apiPath,
@@ -19554,7 +19514,6 @@ function makeManager(pnpapi, opts) {
   const initialApiStats = opts.fakeFs.statSync(npath.toPortablePath(initialApiPath));
   const apiMetadata = /* @__PURE__ */ new Map([
     [initialApiPath, {
-      cache: require$$0.Module._cache,
       instance: pnpapi,
       stats: initialApiStats,
       lastRefreshCheck: Date.now()
@@ -19586,7 +19545,6 @@ function makeManager(pnpapi, opts) {
       }
     } else {
       apiMetadata.set(pnpApiPath, apiEntry = {
-        cache: {},
         instance: loadApiInstance(pnpApiPath),
         stats: opts.fakeFs.statSync(pnpApiPath),
         lastRefreshCheck: Date.now()
@@ -19656,19 +19614,16 @@ ${controlSegment}
     } while (curr !== PortablePath.root);
     return addToCacheAndReturn(start, curr, null);
   }
+  const moduleToApiPathCache = /* @__PURE__ */ new WeakMap();
   function getApiPathFromParent(parent) {
     if (parent == null)
       return initialApiPath;
-    if (typeof parent.pnpApiPath === `undefined`) {
-      if (parent.filename !== null) {
-        return parent.pnpApiPath = findApiPathFor(parent.filename);
-      } else {
-        return initialApiPath;
-      }
-    }
-    if (parent.pnpApiPath !== null)
-      return parent.pnpApiPath;
-    return null;
+    let apiPath = moduleToApiPathCache.get(parent);
+    if (typeof apiPath !== `undefined`)
+      return apiPath;
+    apiPath = parent.filename ? findApiPathFor(parent.filename) : null;
+    moduleToApiPathCache.set(parent, apiPath);
+    return apiPath;
   }
   return {
     getApiPathFromParent,
