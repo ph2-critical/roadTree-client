@@ -41,7 +41,7 @@ export default function LoginModal(props: LoginModalProps) {
           queryParams: {
             // prompt: "login", // 무조건 로그인 페이지 뜨게 만듬
             serviceTerms	: 'true',
-            scope : 'gender, name,  birthyear'
+            scope : 'gender,age_range'
 
           },
         },
