@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useLoginStore, useNicknameStore } from "@/src/state/store";
+import { useNicknameStore } from "@/src/state/store";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { postUserInfo } from "@/src/api/signup";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -16,8 +18,7 @@ export interface ExtraInfoInterface {
 
 export default function Page() {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
-  const { userId } = useLoginStore();
-
+  const { mutate } = useMutation(postUserInfo);
   const {
     register,
     watch,
