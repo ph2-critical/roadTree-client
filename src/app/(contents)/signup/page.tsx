@@ -228,7 +228,9 @@ export default function Page() {
                     setValue("stack", e.target.value);
                   }}
                 >
-                  <option value="">학습 분야</option>
+                  <option value="" selected disabled hidden>
+                    학습 분야
+                  </option>
                   <option value="frontend">프론트엔드</option>
                   <option value="backend">백엔드</option>
                   <option value="app">앱 개발</option>
