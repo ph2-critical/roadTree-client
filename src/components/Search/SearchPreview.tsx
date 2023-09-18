@@ -1,42 +1,39 @@
 'use client'
 
 import { supabase } from "@/lib/supabase";
-import { searchNodeApi } from "@/src/api/search/search";
-import { useEffect, useState } from "react";
+import { SearchResult, searchAllApi } from "@/src/api/search/search";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { selectedType } from "./Search";
 
 export const SearchPreview = (props: {
     searchString: string;
+    selected: selectedType | null;
+    setSelected: (prop: selectedType | null) => void;
 }) => {
 
-    interface SearchResult {
-        node: {
-            name: string;
-            type: string;
-            description: string | null;
-        }[];
-        reference: {
-            rid: string;
-            title: string;
-            url: string;
-            grade: number;
-            category: string;
-            amount: number;
-            price: number;
-        }[];
-    }
-
+    const {searchString, selected, setSelected} = props;
     const [searchResult, setSearchResult] = useState<SearchResult>({ node: [], reference: [] });
     const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null);
+    const searchListRef = useRef<HTMLUListElement>(null);
+    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2 };
+
 
     useEffect(() => {
         searchTimeout && clearTimeout(searchTimeout);
-        searchNodeApi({ search: props.searchString }).then((data) => {
-            if (data.length === 0) {
+
+        searchAllApi({ search: props.searchString }).then((data) => {
+            if (data.node.length === 0 && data.reference.length === 0) {
                 setSearchTimeout(setTimeout(() => {
-                    setSearchResult(prev => ({ ...prev, node: data }));
+                    setSearchResult(data);
+                    setSelected(null)
                 }, 1000))
             } else {
-                setSearchResult(prev => ({ ...prev, node: data }));
+                setSearchResult(data);
+                data.node.length !== 0 
+                ? setSelected({ idx: 0, id: data.node[0].nid, type: 'node', category: data.node[0].type, nodeName: data.node[0].name }) 
+                : setSelected({ idx: 0, id: data.reference[0].rid, type: 'reference', category: data.reference[0].category, nodeName: data.reference[0].node[0].name}); 
+
             }
         })
     }, [props.searchString]);
@@ -46,11 +43,22 @@ export const SearchPreview = (props: {
         <div className="h-full w-full px-4 py-3">
             <div id='nodeSearchView'>
                 <div id='nodeSearchViewTitle' className='text-base'>Node</div>
-                <ul id='nodeSearchViewList' role="listbox" className='text-sm'>
-                    {searchResult.node.map((node) => {
-                        return (<li className='flex items-center bg-gray-100 py-1' role='option' aria-selected='true'>
-                            {node.name}
-                        </li>)
+                <ul id='nodeSearchViewList' role="listbox" className='text-sm' ref={searchListRef}>
+                    {searchResult.node.map((node, idx) => {
+                        console.log(selected?.idx, idx)
+                        return (
+                            <li
+                                className={`flex items-center my-2 rounded-lg ${selected?.idx === idx ? 'bg-doneColor text-white' : 'bg-gray-50'}`}
+                                key={'node' + idx}
+                                onMouseOver={() => {setSelected({idx: idx, id: node.nid, type: 'node', category: node.type, nodeName: node.name})}}
+                                role='option'
+                                aria-selected='true'>
+                                <Link
+                                    className="h-full w-full py-5 px-3"
+                                    href={`/roadmap/${categorytoNum[node.type]}?node=${node.name}`}>
+                                    {node.name}
+                                </Link>
+                            </li>)
                     })}
                 </ul>
             </div>
