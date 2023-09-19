@@ -18,7 +18,7 @@ export const Search = () => {
     const [searchString, setSearchString] = useState<string>('');
     const [selected, setSelected] = useState<selectedType | null>(null);
     const router = useRouter();
-    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2 };
+    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common':0 };
 
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
