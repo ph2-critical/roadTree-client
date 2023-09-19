@@ -28,7 +28,6 @@ export const Search = () => {
             if (selected) {
                 closeModal();
                 inputRef.current?.blur();
-                console.log(selected.category)
                 const url = `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');
                 selected && router.push(url);
             }
@@ -45,7 +44,6 @@ export const Search = () => {
             }
 
             if (searchResult.node.length === 0 && searchResult.reference.length === 0) return;
-            console.log(searchResult)
 
             if (currentIdx < searchResult.node.length) {
                 setSelected({ idx: currentIdx, id: searchResult.node[currentIdx].nid, type: 'node', 
@@ -61,9 +59,9 @@ export const Search = () => {
 
     return (
         <div
-            className={`relative mx-5 py-5 ease-out duration-200 ${isOpen ? 'grow' : ''}`}
+            className={`relative ml-14 mr-5 pt-2 ease-out duration-200 hidden md:block ${isOpen ? 'grow' : ''}`}
             ref={modalRef}>
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pt-2 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
