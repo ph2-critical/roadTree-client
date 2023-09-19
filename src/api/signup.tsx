@@ -7,7 +7,7 @@ interface PostUserProps extends ExtraInfoInterface {
 
 export const postUserInfo = async (props: PostUserProps) => {
   const { id, email, nickname, gender, age, career, stack } = props;
-  await supabase.from("user").update({
+  await supabase.from("user").upsert({
     id: id,
     email: email,
     nickname: nickname,

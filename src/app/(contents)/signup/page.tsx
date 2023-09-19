@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { useNicknameStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
+import { useRouter } from "next/navigation";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -18,13 +19,16 @@ export interface ExtraInfoInterface {
 
 export default function Page() {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
+  const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
+  const router = useRouter();
+
   const {
     register,
     watch,
     setValue,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<ExtraInfoInterface>();
 
   useEffect(() => {
@@ -34,6 +38,16 @@ export default function Page() {
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
+    mutate({
+      id: userId,
+      email: email,
+      nickname: watch("nickname"),
+      gender: watch("gender"),
+      age: watch("age", 0),
+      career: watch("career"),
+      stack: watch("stack"),
+    });
+    router.push("/profile");
   };
 
   return (
@@ -42,15 +56,14 @@ export default function Page() {
         className="container max-w-2xl m-auto shadow-md md:w-3/4"
         onSubmit={handleSubmit(
           () => {
-            console.log("success");
             onSubmit();
           },
           () => {
-            if (errors.age) {
-              alert(errors.age.message);
-            } else {
-              alert("모든 정보를 입력해주세요.");
-            }
+            // if (errors.age) {
+            //   alert(errors.age.message);
+            // } else {
+            //   alert("모든 정보를 입력해주세요.");
+            // }
             console.log(watch());
           },
         )}
@@ -113,7 +126,6 @@ export default function Page() {
                     placeholder="나이"
                     {...register("age", {
                       valueAsNumber: true,
-                      required: true,
                       min: {
                         value: 1,
                         message: "나이를 다시 확인해주세요.",
