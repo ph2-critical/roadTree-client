@@ -71,7 +71,7 @@ export default function Page() {
         <div className="border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
           <Image
             alt="profile"
-            src={userPicture ?? "/header/user.svg"}
+            src={userPicture || "/header/user.svg"}
             width={512}
             height={512}
             className="object-cover w-16 h-16 mx-auto rounded-full "
@@ -239,8 +239,9 @@ export default function Page() {
                   onChange={(e) => {
                     setValue("stack", e.target.value);
                   }}
+                  defaultValue={""}
                 >
-                  <option value="" selected disabled hidden>
+                  <option value="" disabled hidden>
                     학습 분야
                   </option>
                   <option value="frontend">프론트엔드</option>
