@@ -22,6 +22,7 @@ export const Search = () => {
     const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common': 0 };
     const inputRef = useRef<HTMLInputElement>(null);
     const [searchResult, setSearchResult] = useState<SearchResult>({ node: [], reference: [] });
+    const searchRef = useRef<(HTMLLIElement | null)[]>([]);
 
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
@@ -45,6 +46,8 @@ export const Search = () => {
 
             if (searchResult.node.length === 0 && searchResult.reference.length === 0) return;
 
+            searchRef.current[currentIdx]?.scrollIntoView({ block: 'nearest' });
+
             if (currentIdx < searchResult.node.length) {
                 setSelected({ idx: currentIdx, id: searchResult.node[currentIdx].nid, type: 'node', 
                     category: searchResult.node[currentIdx].type, nodeName: searchResult.node[currentIdx].name })
@@ -59,7 +62,7 @@ export const Search = () => {
 
     return (
         <div
-            className={`relative ml-14 mr-5 pt-2 ease-out duration-200 hidden md:block ${isOpen ? 'grow' : ''}`}
+            className={`relative ml-4 md:ml-14 mr-5 pt-2 ease-out duration-200 ${isOpen ? 'grow' : ''}`}
             ref={modalRef}>
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pt-2 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -70,7 +73,7 @@ export const Search = () => {
                 type="search"
                 id="default-search"
                 className={`w-full p-3 pl-10 text-sm border-none text-gray-900 rounded-lg bg-gray5 outline-none shadow-none
-                              ${isOpen ? 'focus:ring-2 focus:ring-doingColor focus:ring-inset focus:bg-white' : ''}`}
+                              ${isOpen ? 'ring-2 ring-doingColor ring-inset bg-white focus:ring-doingColor focus:ring-2 focus:ring-inset' : ''}`}
                 placeholder="로드트리 검색하기"
                 onChange={(e) => setSearchString(e.target.value)}
                 onFocus={openModal}
@@ -81,14 +84,15 @@ export const Search = () => {
 
             {isOpen && (
                 <div
-                    className={`min-h-[80px] w-full bg-white border-gray6 border absolute rounded-2xl`} >
+                    className={`min-h-[80px] w-full bg-white border-gray6 border absolute rounded-2xl flex items-center`} >
                     <SearchPreview
                         searchString={searchString}
                         selected={selected}
                         setSelected={setSelected}
                         closeModal={closeModal}
                         searchResult={searchResult}
-                        setSearchResult={setSearchResult} />
+                        setSearchResult={setSearchResult}
+                        searchRef={searchRef} />
                 </div>
             )}
 

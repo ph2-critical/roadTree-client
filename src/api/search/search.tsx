@@ -35,7 +35,7 @@ export const searchNodeApi = async (props: SearchProps) => {
         .neq("name", "front")
         .neq("name", "back")
         .neq("name", "common")
-        .limit(3);
+        .limit(50);
 
     if (data === null) {
         return [];
@@ -48,9 +48,9 @@ export const searchReferenceApi = async (props: SearchProps) => {
     const { data } = await supabase
         .from("reference")
         .select("rid, title, url, grade, category, amount, price, node(name, type)")
-        .ilike("title", `${props.search}%`)
+        .or(`title.ilike.${props.search}%, category.ilike.${props.search}%`)
         .order("created_at", { ascending: false })
-        .limit(3);
+        .limit(50);
 
     if (data === null) {
         return [];

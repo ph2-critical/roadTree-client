@@ -13,11 +13,12 @@ export const SearchPreview = (props: {
     closeModal: () => void;
     searchResult: SearchResult;
     setSearchResult: (prop: SearchResult) => void;
+    searchRef : React.MutableRefObject<(HTMLLIElement | null)[]>
 }) => {
 
 
 
-    const { searchString, selected, setSelected, closeModal, searchResult, setSearchResult } = props;
+    const { searchString, selected, setSelected, closeModal, searchResult, setSearchResult, searchRef } = props;
     const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common': 0 };
 
 
@@ -45,7 +46,7 @@ export const SearchPreview = (props: {
         <div className="h-full w-full px-4 py-5">
             {searchResult.node.length > 0 && <div id='nodeSearchView'>
                 <div id='nodeSearchViewTitleNode' className='text-base'>분야</div>
-                <ul id='nodeSearchViewListNode' role="listbox" className='text-sm' >
+                <ul id='nodeSearchViewListNode' role="listbox" className='text-sm max-h-56 overflow-scroll' >
                     {searchResult.node.map((node, idx) => {
                         return (
                             <li
@@ -53,7 +54,8 @@ export const SearchPreview = (props: {
                                 key={'node' + idx}
                                 onMouseOver={() => { setSelected({ idx: idx, id: node.nid, type: 'node', category: node.type, nodeName: node.name }) }}
                                 role='option'
-                                aria-selected='true'>
+                                ref={r => (searchRef.current[idx] = r)}
+                                >
                                 <Link
                                     className="h-full w-full py-5 px-3"
                                     href={`/roadmap/${categorytoNum[node.type]}?node=${node.name}`}
@@ -67,7 +69,7 @@ export const SearchPreview = (props: {
             {(searchResult.node.length !== 0 && searchResult.reference.length !== 0) && <hr className="my-3 mt-4" />}
             {searchResult.reference.length > 0 && <div id='referenceSearchView'>
                 <div id='nodeSearchViewTitleRef' className='text-base'>강의자료</div>
-                <ul id='nodeSearchViewListRef' role="listbox" className='text-sm' >
+                <ul id='nodeSearchViewListRef' role="listbox" className='text-sm max-h-56 overflow-scroll' >
                     {searchResult.reference.map((ref, idx) => {
                         idx = idx + searchResult.node.length;
                         return (
@@ -76,7 +78,7 @@ export const SearchPreview = (props: {
                                 key={'reference' + idx}
                                 onMouseOver={() => { setSelected({ idx: idx, id: ref.rid, type: 'reference', category: ref.node[0].type, nodeName: ref.node[0].name }) }}
                                 role='option'
-                                aria-selected='true'>
+                                ref={r => (searchRef.current[idx] = r)} >
                                 <Link
                                     className="h-full w-full py-5 px-3"
                                     href={`/roadmap/${categorytoNum[ref.node[0].type]}?node=${ref.node[0].name}&ref=${ref.rid}`}
@@ -87,6 +89,7 @@ export const SearchPreview = (props: {
                     })}
                 </ul>
             </div>}
+            {(searchResult.node.length === 0 && searchResult.reference.length === 0) && <div className='text-sm text-gray-400 mx-auto w-32'>검색 결과가 없습니다.</div>}
 
         </div>
     );
