@@ -1,8 +1,9 @@
 'use client'
 import { useModal } from "@/src/utils/hooks/useModal";
 import { SearchPreview } from "./SearchPreview";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SearchResult } from "@/src/api/search/search";
 
 export interface selectedType {
     idx: number
@@ -14,19 +15,40 @@ export interface selectedType {
 
 export const Search = () => {
 
-    const { isOpen, modalRef, openModal } = useModal();
+    const { isOpen, modalRef, openModal, closeModal } = useModal();
     const [searchString, setSearchString] = useState<string>('');
     const [selected, setSelected] = useState<selectedType | null>(null);
     const router = useRouter();
-    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common':0 };
+    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common': 0 };
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [searchResult, setSearchResult] = useState<SearchResult>({ node: [], reference: [] });
 
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             if (selected) {
-                const url = `/roadmap/${categorytoNum[selected.category]}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');
+                closeModal();
+                inputRef.current?.blur();
+                console.log(selected.category)
+                const url = `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');
                 selected && router.push(url);
             }
+        } else if (e.key === 'ArrowDown') {
+            const currentIdx = selected?.idx ?? -1;
+
+            if (searchResult.node.length === 0 && searchResult.reference.length === 0) return;
+            // const SearchChildren = Array.from(searchListRef.current?.children).filter((child) => {
+            //     return child.nodeName === 'LI';
+            // })
+
+            // const nextIdx = (currentIdx + 1) % SearchChildren.length;
+            // const nextChild = SearchChildren[nextIdx];
+
+            // console.log(nextChild)
+            // setSelected({ idx: nextIdx, id: nextChild.id, type: nextChild.getAttribute('data-type') ?? '', category: nextChild.getAttribute('data-category') ?? '', nodeName: nextChild.getAttribute('data-nodename') ?? '' });
+        } else if (e.key === 'ArrowUp') {
+            console.log(2)
         }
+
     }
 
     return (
@@ -35,24 +57,32 @@ export const Search = () => {
             ref={modalRef}>
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
             <input
                 type="search"
                 id="default-search"
-                className={`w-full p-3 pl-10 text-sm border-none text-gray-900 rounded-lg bg-gray5 
-                            ring-inset focus:ring-inset focus:ring-doingColor focus:ring-2 ${isOpen ? 'ring-2 ring-doingColor bg-white' : ''}`}
+                className={`w-full p-3 pl-10 text-sm border-none text-gray-900 rounded-lg bg-gray5 outline-none shadow-none
+                              ${isOpen ? 'focus:ring-2 focus:ring-doingColor focus:ring-inset focus:bg-white' : ''}`}
                 placeholder="로드트리 검색하기"
                 onChange={(e) => setSearchString(e.target.value)}
                 onFocus={openModal}
                 onKeyDown={handleOnKeyDown}
+                autoComplete="off"
+                ref={inputRef}
                 required />
 
             {isOpen && (
                 <div
                     className={`min-h-[80px] w-full bg-white border-gray6 border absolute rounded-2xl`} >
-                    <SearchPreview searchString={searchString} selected={selected} setSelected={setSelected} />
+                    <SearchPreview
+                        searchString={searchString}
+                        selected={selected}
+                        setSelected={setSelected}
+                        closeModal={closeModal}
+                        searchResult={searchResult}
+                        setSearchResult={setSearchResult} />
                 </div>
             )}
 
