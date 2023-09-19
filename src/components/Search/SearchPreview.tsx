@@ -64,8 +64,8 @@ export const SearchPreview = (props: {
                     })}
                 </ul>
             </div>}
+            {(searchResult.node.length !== 0 && searchResult.reference.length !== 0) && <hr className="my-3 mt-4" />}
             {searchResult.reference.length > 0 && <div id='referenceSearchView'>
-                <hr className="my-3 mt-4" />
                 <div id='nodeSearchViewTitleRef' className='text-base'>강의자료</div>
                 <ul id='nodeSearchViewListRef' role="listbox" className='text-sm' >
                     {searchResult.reference.map((ref, idx) => {

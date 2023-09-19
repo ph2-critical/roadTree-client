@@ -32,21 +32,29 @@ export const Search = () => {
                 const url = `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');
                 selected && router.push(url);
             }
-        } else if (e.key === 'ArrowDown') {
-            const currentIdx = selected?.idx ?? -1;
+        } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            let currentIdx = selected?.idx ?? -1;
+            if (e.key === 'ArrowDown') {
+                currentIdx += 1;
+                currentIdx %= searchResult.node.length + searchResult.reference.length;
+            } else if (e.key === 'ArrowUp') {
+                currentIdx -= 1;
+                if (currentIdx < 0) {
+                    currentIdx += searchResult.node.length + searchResult.reference.length;
+                }
+            }
 
             if (searchResult.node.length === 0 && searchResult.reference.length === 0) return;
-            // const SearchChildren = Array.from(searchListRef.current?.children).filter((child) => {
-            //     return child.nodeName === 'LI';
-            // })
+            console.log(searchResult)
 
-            // const nextIdx = (currentIdx + 1) % SearchChildren.length;
-            // const nextChild = SearchChildren[nextIdx];
-
-            // console.log(nextChild)
-            // setSelected({ idx: nextIdx, id: nextChild.id, type: nextChild.getAttribute('data-type') ?? '', category: nextChild.getAttribute('data-category') ?? '', nodeName: nextChild.getAttribute('data-nodename') ?? '' });
-        } else if (e.key === 'ArrowUp') {
-            console.log(2)
+            if (currentIdx < searchResult.node.length) {
+                setSelected({ idx: currentIdx, id: searchResult.node[currentIdx].nid, type: 'node', 
+                    category: searchResult.node[currentIdx].type, nodeName: searchResult.node[currentIdx].name })
+            } else {
+                const refIdx = currentIdx - searchResult.node.length;
+                setSelected({ idx: currentIdx, id: searchResult.reference[refIdx].rid, type: 'reference', 
+                    category: searchResult.reference[refIdx].node[0].type, nodeName: searchResult.reference[refIdx].node[0].name })
+            }
         }
 
     }
