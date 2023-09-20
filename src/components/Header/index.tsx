@@ -15,6 +15,7 @@ import InApp from "../InApp";
 import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
+import { RoadmapModal } from "./roadmapModal";
 
 export const Header = () => {
   const { setNickname, setEmail } = useNicknameStore();
@@ -113,12 +114,13 @@ export const Header = () => {
                   </div>
                 </div>
               </Link>{" "}
-              <Link
+              <RoadmapModal />
+              {/* <Link
                 href={`/roadmap`}
                 className={`p-3 font-semibold text-base hover:text-gray-400 text-gray-500`}
               >
                 로드맵
-              </Link>
+              </Link> */}
             </div>
             {init ? (
               isLogin ? (
