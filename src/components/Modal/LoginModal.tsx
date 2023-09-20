@@ -40,9 +40,9 @@ export default function LoginModal(props: LoginModalProps) {
         options: {
           queryParams: {
             // prompt: "login", // 무조건 로그인 페이지 뜨게 만듬
-            serviceTerms	: 'true',
+            serviceTerms: 'true',
 
-            scope : 'gender,age_range'
+            scope: 'gender,age_range'
 
           },
         },
@@ -61,9 +61,9 @@ export default function LoginModal(props: LoginModalProps) {
       className="fixed inset-0 top-0 left-0 right-0 z-50 flex items-center justify-center w-full overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-50 h-modal md:h-full"
     >
       <div ref={modalRef} className="relative w-full max-w-md p-4 md:h-auto">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               {props.type === "login" ? "Sign in" : "Sign up"}
             </h1>
 
@@ -76,7 +76,7 @@ export default function LoginModal(props: LoginModalProps) {
             {/* google Login */}
             <a
               href="#"
-              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 "
               onClick={() => {
                 googleLogin();
                 toggleModal();
@@ -125,7 +125,7 @@ export default function LoginModal(props: LoginModalProps) {
             {/* kakao Login */}
             <a
               href="#"
-              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 "
               onClick={() => {
                 kakaoLogin();
                 toggleModal();

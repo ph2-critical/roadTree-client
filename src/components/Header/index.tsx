@@ -62,7 +62,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <nav className="z-10 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 dark:bg-gray-900 dark:border-gray-900">
+    <nav className="z-10 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 ">
       <div className="w-full mx-auto max-w-7xl">
         <div className="flex items-center sm:pl-8 sm:pr-4">
           <Link

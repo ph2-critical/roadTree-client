@@ -16,18 +16,18 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex flex-col align-middle justify-centent dark:bg-gray-900 h-[calc(100vh-72px)] overflow-hidden">
-      <section className="mt-auto mb-auto bg-white dark:bg-gray-900">
+    <main className="flex flex-col align-middle justify-centent  h-[calc(100vh-72px)] overflow-hidden">
+      <section className="mt-auto mb-auto bg-white ">
         <div className="max-w-screen-xl px-4 pt-4 mx-auto lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {title.map((title, index) => {
               return (
                 <div
                   key={"startBox_" + index}
-                  className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
+                  className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow xl:p-8 "
                 >
                   <h3 className="mb-4 text-2xl font-semibold">{title}</h3>
-                  <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                  <p className="font-light text-gray-500 sm:text-lg ">
                     {content[index]}
                   </p>
                   <div className="my-6 " />
@@ -39,7 +39,7 @@ export default function Home() {
                           className="flex items-center space-x-3"
                         >
                           <svg
-                            className="flex-shrink-0 w-5 h-5 text-main dark:text-main"
+                            className="flex-shrink-0 w-5 h-5 text-main "
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"

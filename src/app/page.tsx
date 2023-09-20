@@ -16,33 +16,10 @@ export default function Home() {
   }, []);
 
   return (
-    // <main className="flex flex-col mt-5 align-middle sm:pt-4 justify-centent dark:bg-gray-900 h-[100%]">
-    //   <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    //     <div className="max-w-2xl mx-auto my-3 lg:max-w-4xl lg:px-12">
-    //       <h1 className="p-5 text-4xl font-bold leading-relaxed tracking-tighter text-gray-900 font-display sm:leading-normal sm:text-4xl lg:text-5xl dark:text-white">
-    //         프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
-    //       </h1>
-    // <div className="mt-8 space-y-6 text-2xl tracking-tight text-gray-500 font-display lg:text-3xl">
-    //   <div className="flex flex-col items-center justify-center">
-    //     <div>
-    //       당신의 <span className="font-bold text-main">공부 러닝</span>{" "}
-    //       메이트,
-    //     </div>
-    //   </div>
-    //   <div className="flex flex-col items-center justify-center">
-    //     <div>
-    //       이제 <span className="font-bold text-main">RoadTree</span> 와
-    //       함께
-    //     </div>
-    //   </div>
-    // </div>
-    //     </div>
-    //   </div>
-    // </main>
     <main>
-      <section className="bg-[#FEFFFE] dark:bg-gray-900">
+      <section className="bg-[#FEFFFE] ">
         <div className="max-w-screen-xl px-4 pt-8 mx-auto text-center lg:pt-16 lg:px-12">
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
             프로그래밍의 <br className="sm:hidden" /> A부터 Z까지
           </h1>
 
@@ -63,7 +40,7 @@ export default function Home() {
           <div className="flex flex-col mt-5 mb-8 space-y-4 lg:mb-16 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a
               href="/roadmap"
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor dark:focus:ring-green-900"
+              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor "
             >
               로드맵 시작하기
               <svg
@@ -81,7 +58,7 @@ export default function Home() {
             </a>
             <a
               href="https://open.kakao.com/o/gROlTdif"
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
             >
               {/* kakao yellow = FCE44C */}
               로드트리 오픈채팅방
@@ -91,12 +68,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#FBFFFB] dark:bg-gray-900">
+      <section className="bg-[#FBFFFB] ">
         <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-12 text-center lg:text-start lg:space-y-20 lg:px-6">
           {/* <!-- Row --> */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div className="text-gray-500 sm:text-lg dark:text-gray-400 ">
-              <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-500 sm:text-lg  ">
+              <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 ">
                 입문자를 위한
                 <div className="mt-3" />
                 직관적인 로드맵
@@ -125,8 +102,8 @@ export default function Home() {
               alt="office feature image 2"
               data-aos="fade-right"
             />
-            <div className="text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-500 sm:text-lg ">
+              <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 ">
                 개인별 학습 상태 관리
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -137,8 +114,8 @@ export default function Home() {
           </div>
           {/* <!-- Row --> */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div className="text-gray-500 sm:text-lg dark:text-gray-400">
-              <h3 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-500 sm:text-lg ">
+              <h3 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 e">
                 학습 기록을 통한
                 <div className="mt-3" />
                 완벽한 성장
@@ -160,18 +137,18 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+      <footer className="p-4 bg-white md:p-8 lg:p-10 ">
         <div className="max-w-screen-xl mx-auto text-center">
           <a
             href="/"
-            className="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white"
+            className="flex items-center justify-center text-2xl font-semibold text-gray-900 "
           >
             <Logo />
           </a>
           <div className="flex flex-col mt-5 mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a
               href="/roadmap"
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor dark:focus:ring-green-900"
+              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor"
             >
               로드트리 시작하기
               <svg
@@ -188,7 +165,7 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm text-gray-500 sm:text-center ">
             © 2023{" "}
             <a href="/" className="hover:underline">
               Nobase™
