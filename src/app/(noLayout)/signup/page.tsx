@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -18,8 +19,15 @@ export interface ExtraInfoInterface {
 }
 
 export default function Page() {
-  const { nickname, email, setNickname, userPicture } = useNicknameStore();
-  const { userId } = useLoginStore();
+  const {
+    nickname,
+    email,
+    setNickname,
+    userPicture,
+    setEmail,
+    setUserPicture,
+  } = useNicknameStore();
+  const { userId, setLogin } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
   const router = useRouter();
 
@@ -35,6 +43,21 @@ export default function Page() {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
   }, [nickname, email]);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setLogin(user.id);
+        setNickname(user?.user_metadata.full_name);
+        setEmail(user?.user_metadata.email);
+        setUserPicture(user?.user_metadata.avatar_url);
+      }
+    };
+    checkUser();
+  }, []);
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
