@@ -216,7 +216,7 @@ export default function SideBar(props: {
                     <div
                       key={"refblock-" + item.rid}
                       id={"refblock-" + item.rid}
-                      className={"w-full h-20 border-2 rounded-lg" + ((item.rid === refParmas) ? " border-main" : " border-gray6")}
+                      className={"w-full h-20 border-2 rounded-lg relative" + ((item.rid === refParmas) ? " border-main" : " border-gray6")}
                     >
                       {checkNew(item) ? <Image
                         src="/roadTree/newMark.svg"
