@@ -75,7 +75,7 @@ export const Header = () => {
           >
             <Logo className="text-lg text-white hover:cursor-pointer" />
           </Link>
-          <Search />
+          {isLogin && <Search />}
           <div className="flex items-center justify-end h-12 ml-auto">
             <div id="headerMenu" className="hidden md:flex">
               <div
