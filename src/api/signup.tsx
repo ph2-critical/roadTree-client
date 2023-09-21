@@ -1,4 +1,4 @@
-import { ExtraInfoInterface } from "@/src/app/(contents)/signup/page";
+import { ExtraInfoInterface } from "@/src/app/(noLayout)/signup/page";
 import { supabase } from "@/lib/supabase";
 
 interface PostUserProps extends ExtraInfoInterface {
@@ -19,3 +19,7 @@ export const postUserInfo = async (props: PostUserProps) => {
 };
 
 // get 해와서 없으면 이 창으로 넘어가게?
+export const getUserInfo = async (id: string) => {
+  const { data } = await supabase.from("user").select("*").eq("id", id);
+  return data;
+};

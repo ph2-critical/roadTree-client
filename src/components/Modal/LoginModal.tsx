@@ -25,7 +25,7 @@ export default function LoginModal(props: LoginModalProps) {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: redirect,
+          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
         },
       })
       .catch((error) => {

@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -19,15 +18,8 @@ export interface ExtraInfoInterface {
 }
 
 export default function Page() {
-  const {
-    nickname,
-    email,
-    setNickname,
-    userPicture,
-    setEmail,
-    setUserPicture,
-  } = useNicknameStore();
-  const { userId, setLogin } = useLoginStore();
+  const { nickname, email, setNickname, userPicture } = useNicknameStore();
+  const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
   const router = useRouter();
 
@@ -43,21 +35,6 @@ export default function Page() {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
   }, [nickname, email]);
-
-  useEffect(() => {
-    const checkUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
-        setLogin(user.id);
-        setNickname(user?.user_metadata.full_name);
-        setEmail(user?.user_metadata.email);
-        setUserPicture(user?.user_metadata.avatar_url);
-      }
-    };
-    checkUser();
-  }, []);
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
@@ -97,7 +74,7 @@ export default function Page() {
             src={userPicture || "/header/user.svg"}
             width={512}
             height={512}
-            className="object-cover w-16 h-16 mx-auto rounded-full "
+            className="object-cover w-12 h-12 mx-auto mt-4 rounded-full "
           />{" "}
           <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
             <h1 className="max-w-sm mx-auto md:w-1/3">닉네임</h1>

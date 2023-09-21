@@ -1,10 +1,44 @@
+"use client";
+
+import { supabase } from "@/lib/supabase";
+import { getUserInfo } from "@/src/api/signup";
+import { useEffect } from "react";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
+  const { setLogin, userId } = useLoginStore();
+  const { setNickname, setEmail, setUserPicture } = useNicknameStore();
+  const router = useRouter();
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setLogin(user.id);
+        setNickname(user?.user_metadata.full_name);
+        setEmail(user?.user_metadata.email);
+        setUserPicture(user?.user_metadata.avatar_url);
+      }
+    };
+    checkUser();
+  }, []);
+
+  getUserInfo(userId).then((res) => {
+    if (res?.length != 0) {
+      router.push("/");
+    } else {
+      router.push("/signup");
+    }
+  });
+
   return (
     <div className="flex items-center justify-center w-full h-[100vh] border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <div role="status" className="m-auto">
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-doingColor"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
