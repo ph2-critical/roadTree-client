@@ -17,14 +17,15 @@ import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
 
 export const Header = () => {
-  const { setNickname, setEmail } = useNicknameStore();
+  const { setNickname, setEmail, setUserPicture, userPicture } =
+    useNicknameStore();
   const { isOpen, modalRef, toggleModal } = useModal();
   const { isLogin, setLogin, setLogout } = useLoginStore();
   const pathName = usePathname();
   const router = useRouter();
   const [type, setType] = useState("");
   const [init, setInit] = useState<boolean>(false);
-  const [userPicture, setUserPicture] = useState("");
+
   const Logout = async () => {
     await supabase.auth.signOut();
     setLogout();
@@ -62,7 +63,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <nav className="z-10 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 dark:bg-gray-900 dark:border-gray-900">
+    <nav className="z-10 fixed top-0 flex flex-row items-center justify-start w-full h-[72px] p-2 bg-white shadow-xs box-border border-gray6 border-b-2 ">
       <div className="w-full mx-auto max-w-7xl">
         <div className="flex items-center sm:pl-8 sm:pr-4">
           <Link

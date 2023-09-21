@@ -1,11 +1,11 @@
-'use client';
-import React, { useState } from 'react';
-import { Editor } from '@toast-ui/react-editor';
+"use client";
+import React, { useState } from "react";
+import { Editor } from "@toast-ui/react-editor";
 
-import '@toast-ui/editor/dist/toastui-editor.css';
+import "@toast-ui/editor/dist/toastui-editor.css";
 
 export default function Inputs(): JSX.Element {
-  const [now, setNow] = useState('');
+  const [now, setNow] = useState("");
   return (
     <div className="flex flex-col gap-y-5">
       <div className="mt-7">
@@ -29,33 +29,33 @@ export default function Inputs(): JSX.Element {
         <div className="flex gap-[20px]">
           <button
             className={`m-0 category-btn ${
-              now === 'info' ? 'bg-main text-white font-bold border-none' : ''
+              now === "info" ? "bg-main text-white font-bold border-none" : ""
             }`}
             id="info"
             onClick={() => {
-              setNow('info');
+              setNow("info");
             }}
           >
             정보 공유
           </button>
           <button
             className={`m-0 category-btn ${
-              now === 'talk' ? 'bg-main text-white font-bold border-none' : ''
+              now === "talk" ? "bg-main text-white font-bold border-none" : ""
             }`}
             id="talk"
             onClick={() => {
-              setNow('talk');
+              setNow("talk");
             }}
           >
             고민/잡담
           </button>
           <button
             className={`m-0 category-btn ${
-              now === 'ask' ? 'bg-main text-white font-bold border-none' : ''
+              now === "ask" ? "bg-main text-white font-bold border-none" : ""
             }`}
             id="ask"
             onClick={() => {
-              setNow('ask');
+              setNow("ask");
             }}
           >
             질문
@@ -77,7 +77,7 @@ export default function Inputs(): JSX.Element {
           initialEditType="markdown"
           previewStyle="tab"
           height="25rem"
-          theme={'dark'}
+          theme={"dark"}
         />
       </div>
       <button className="w-40 h-10 mr-0 text-lg write-btn">작성완료</button>
