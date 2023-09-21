@@ -17,14 +17,15 @@ import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
 
 export const Header = () => {
-  const { setNickname, setEmail } = useNicknameStore();
+  const { setNickname, setEmail, setUserPicture, userPicture } =
+    useNicknameStore();
   const { isOpen, modalRef, toggleModal } = useModal();
   const { isLogin, setLogin, setLogout } = useLoginStore();
   const pathName = usePathname();
   const router = useRouter();
   const [type, setType] = useState("");
   const [init, setInit] = useState<boolean>(false);
-  const [userPicture, setUserPicture] = useState("");
+
   const Logout = async () => {
     await supabase.auth.signOut();
     setLogout();

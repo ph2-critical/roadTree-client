@@ -11,6 +11,8 @@ interface NicknameInterface {
   setNickname: (nickname: string) => void;
   email: string;
   setEmail: (email: string) => void;
+  userPicture: string;
+  setUserPicture: (userPicture: string) => void;
 }
 
 export const useLoginStore = create<LoginInterface>((set) => ({
@@ -25,4 +27,6 @@ export const useNicknameStore = create<NicknameInterface>((set) => ({
   setNickname: (str: string) => set(() => ({ nickname: str })),
   email: "",
   setEmail: (str: string) => set(() => ({ email: str })),
+  userPicture: "",
+  setUserPicture: (str: string) => set(() => ({ userPicture: str })),
 }));
