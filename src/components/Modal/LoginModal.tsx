@@ -10,11 +10,6 @@ interface LoginModalProps {
 }
 
 export default function LoginModal(props: LoginModalProps) {
-  const isSignUp = props.type !== "login";
-  const redirect = isSignUp
-    ? `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/signup`
-    : "/";
-  console.log(redirect);
   const Login = async () => {
     track("click_login_modal_btn");
     await supabase.auth
