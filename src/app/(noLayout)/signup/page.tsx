@@ -51,7 +51,7 @@ export default function Page() {
   };
 
   return (
-    <section className="flex h-[calc(100vh-72px)]">
+    <section className="flex h-[100vh]">
       <form
         className="container max-w-2xl m-auto shadow-md md:w-3/4"
         onSubmit={handleSubmit(

@@ -25,6 +25,7 @@ export const Header = () => {
   const router = useRouter();
   const [type, setType] = useState("");
   const [init, setInit] = useState<boolean>(false);
+
   const Logout = async () => {
     await supabase.auth.signOut();
     setLogout();

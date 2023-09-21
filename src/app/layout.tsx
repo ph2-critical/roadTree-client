@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <meta property="og:title" content="roadtree" />
@@ -27,8 +27,7 @@ export default function RootLayout({
       <body className={"h-screenWithoutHeader w-full dark:bg-gray-900"}>
         <Providers>
           <div id="modal_root"></div>
-          <Header />
-          <div className="mt-[72px]">{children}</div>
+          {children}
         </Providers>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>

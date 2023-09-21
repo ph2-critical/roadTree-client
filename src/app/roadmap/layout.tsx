@@ -8,7 +8,7 @@ export default function ContentsLayout({
   return (
     <>
       <Header />
-      <div className="mx-auto max-w-7xl mt-[72px]">{children}</div>
+      <div className="mt-[72px]">{children}</div>
     </>
   );
 }

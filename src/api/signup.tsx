@@ -17,3 +17,5 @@ export const postUserInfo = async (props: PostUserProps) => {
     stack: stack,
   });
 };
+
+// get 해와서 없으면 이 창으로 넘어가게?
