@@ -5,6 +5,7 @@ import { SearchResult, searchAllApi } from "@/src/api/search/search";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { selectedType } from "./Search";
+import ReferenceBlock from "../ReferenceBlock/ReferenceBlock";
 
 export const SearchPreview = (props: {
     searchString: string;
@@ -13,7 +14,7 @@ export const SearchPreview = (props: {
     closeModal: () => void;
     searchResult: SearchResult;
     setSearchResult: (prop: SearchResult) => void;
-    searchRef : React.MutableRefObject<(HTMLLIElement | null)[]>
+    searchRef: React.MutableRefObject<(HTMLLIElement | null)[]>
 }) => {
 
 
@@ -26,11 +27,11 @@ export const SearchPreview = (props: {
         const searchTimeout: NodeJS.Timeout | null = setTimeout(() => {
             if (searchString === '') return;
             searchAllApi({ search: props.searchString }).then((data) => {
-                    setSearchResult(data);
-                    setSelected(null)
-                    data.node.length !== 0
-                        ? setSelected({ idx: 0, id: data.node[0].nid, type: 'node', category: data.node[0].type, nodeName: data.node[0].name })
-                        : (data.reference.length !== 0 ?
+                setSearchResult(data);
+                setSelected(null)
+                data.node.length !== 0
+                    ? setSelected({ idx: 0, id: data.node[0].nid, type: 'node', category: data.node[0].type, nodeName: data.node[0].name })
+                    : (data.reference.length !== 0 ?
                         setSelected({ idx: 0, id: data.reference[0].rid, type: 'reference', category: data.reference[0].category, nodeName: data.reference[0].node[0].name })
                         : null);
             })
@@ -51,17 +52,27 @@ export const SearchPreview = (props: {
                     {searchResult.node.map((node, idx) => {
                         return (
                             <li
-                                className={`flex items-center my-2 rounded-lg ${selected?.idx === idx ? 'bg-doneColor text-white' : 'bg-gray-50'}`}
+                                className={`flex items-center my-2 rounded-lg ${selected?.idx === idx ? 'bg-gray-50' : 'bg-white'}`}
                                 key={'node' + idx}
                                 onMouseOver={() => { setSelected({ idx: idx, id: node.nid, type: 'node', category: node.type, nodeName: node.name }) }}
                                 role='option'
                                 ref={r => (searchRef.current[idx] = r)}
-                                >
+                            >
                                 <Link
                                     className="h-full w-full py-5 px-3"
                                     href={`/roadmap/${categorytoNum[node.type]}?node=${node.name}`}
                                     onClick={closeModal}>
-                                    {node.name}
+                                    <div className="flex flex-col items-start">
+                                        <div
+                                            className={`border px-2 mr-2 rounded-md border-black
+                                                text-xs text-black`}
+                                        >
+                                            front
+                                        </div>
+                                        <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
+                                            {node.name}
+                                        </div>
+                                    </div>
                                 </Link>
                             </li>)
                     })}
@@ -75,16 +86,16 @@ export const SearchPreview = (props: {
                         idx = idx + searchResult.node.length;
                         return (
                             <li
-                                className={`flex items-center my-2 rounded-lg ${selected?.idx === idx ? 'bg-doneColor text-white' : 'bg-gray-50'}`}
+                                className={`flex items-center my-2 rounded-lg ${selected?.idx === idx ? 'bg-gray-50' : 'bg-white'}`}
                                 key={'reference' + idx}
                                 onMouseOver={() => { setSelected({ idx: idx, id: ref.rid, type: 'reference', category: ref.node[0].type, nodeName: ref.node[0].name }) }}
                                 role='option'
                                 ref={r => (searchRef.current[idx] = r)} >
                                 <Link
-                                    className="h-full w-full py-5 px-3"
+                                    className="h-full w-full"
                                     href={`/roadmap/${categorytoNum[ref.node[0].type]}?node=${ref.node[0].name}&ref=${ref.rid}`}
                                     onClick={closeModal}>
-                                    {ref.title}
+                                    <ReferenceBlock refdata={ref} moreOption={ref.node.map((node) => { return node.name })} isSimple />
                                 </Link>
                             </li>)
                     })}

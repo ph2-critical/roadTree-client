@@ -19,6 +19,7 @@ export interface SearchResult {
         category: string;
         amount: string | null;
         price: number | null;
+        created_at: string;
         node: {
             name: string;
             type: string;
@@ -47,7 +48,7 @@ export const searchNodeApi = async (props: SearchProps) => {
 export const searchReferenceApi = async (props: SearchProps) => {
     const { data } = await supabase
         .from("reference")
-        .select("rid, title, url, grade, category, amount, price, node(name, type)")
+        .select("rid, title, url, grade, category, amount, price, node(name, type), created_at")
         .or(`title.ilike.${props.search}%, category.ilike.${props.search}%`)
         .order("created_at", { ascending: false })
         .limit(50);
