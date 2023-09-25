@@ -48,7 +48,7 @@ export const SearchPreview = (props: {
         <div className="h-full w-full px-4 py-5">
             {searchResult.node.length > 0 && <div id='nodeSearchView'>
                 <div id='nodeSearchViewTitleNode' className='text-base'>분야</div>
-                <ul id='nodeSearchViewListNode' role="listbox" className='text-sm max-h-56 overflow-scroll' >
+                <ul id='nodeSearchViewListNode' role="listbox" className='text-sm max-h-36 overflow-scroll' >
                     {searchResult.node.map((node, idx) => {
                         return (
                             <li
@@ -81,7 +81,7 @@ export const SearchPreview = (props: {
             {(searchResult.node.length !== 0 && searchResult.reference.length !== 0) && <hr className="my-3 mt-4" />}
             {searchResult.reference.length > 0 && <div id='referenceSearchView'>
                 <div id='nodeSearchViewTitleRef' className='text-base'>강의자료</div>
-                <ul id='nodeSearchViewListRef' role="listbox" className='text-sm max-h-56 overflow-scroll' >
+                <ul id='nodeSearchViewListRef' role="listbox" className='text-sm max-h-64 overflow-scroll' >
                     {searchResult.reference.map((ref, idx) => {
                         idx = idx + searchResult.node.length;
                         return (

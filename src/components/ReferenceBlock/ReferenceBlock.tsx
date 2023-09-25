@@ -43,9 +43,10 @@ export default function ReferenceBlock(props: ReferenceBlockProps) {
             <div className={`flex-grow w-32 ${(props.isSimple === true) ? "h-8" : "h-12"}`}>
                 <div className="flex flex-col items-start">
                     <div className="flex">
-                        {props.moreOption?.map((option) => {
+                        {props.moreOption?.map((option, idx) => {
                             return (
                                 <div
+                                    key={idx}
                                     className={`border px-2 mr-2 rounded-md border-black
                                          text-xs text-black`}
                                 >
