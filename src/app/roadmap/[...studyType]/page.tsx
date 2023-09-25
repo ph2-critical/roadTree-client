@@ -29,7 +29,7 @@ function page({ params }: { params: roadmapParams }) {
   useEffect(() => {
     if (whatStudy == 2) {
       alert("AI 과정은 준비중입니다.");
-      router.push("/");
+      router.push("/roadmap");
     } else {
       const getUser = async () => {
         const user = await supabase.auth.getUser();

@@ -9,7 +9,6 @@ interface DetailModalProps {
 }
 
 export const DetailModal = (props: DetailModalProps) => {
-  console.log(props.content?.split("\\n"));
   return (
     <div className="z-50 bg-modal">
       <div

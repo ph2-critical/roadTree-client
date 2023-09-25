@@ -80,6 +80,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-beautiful-dnd", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:13.1.1"],\
             ["react-calendar-heatmap", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:1.9.0"],\
             ["react-dom", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:18.2.0"],\
+            ["react-hook-form", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:7.46.1"],\
             ["react-hotjar", "npm:6.1.0"],\
             ["react-query", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.39.3"],\
             ["react-tooltip", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:5.20.0"],\
@@ -7285,6 +7286,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-hook-form", [\
+        ["npm:7.46.1", {\
+          "packageLocation": "./.yarn/cache/react-hook-form-npm-7.46.1-8aebde624e-9c11ba454c.zip/node_modules/react-hook-form/",\
+          "packageDependencies": [\
+            ["react-hook-form", "npm:7.46.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:7.46.1", {\
+          "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-b3b1f4b603/0/cache/react-hook-form-npm-7.46.1-8aebde624e-9c11ba454c.zip/node_modules/react-hook-form/",\
+          "packageDependencies": [\
+            ["react-hook-form", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:7.46.1"],\
+            ["@types/react", "npm:18.2.12"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-hotjar", [\
         ["npm:6.1.0", {\
           "packageLocation": "./.yarn/cache/react-hotjar-npm-6.1.0-6e4f496fde-555600eb27.zip/node_modules/react-hotjar/",\
@@ -7645,6 +7668,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-beautiful-dnd", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:13.1.1"],\
             ["react-calendar-heatmap", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:1.9.0"],\
             ["react-dom", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:18.2.0"],\
+            ["react-hook-form", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:7.46.1"],\
             ["react-hotjar", "npm:6.1.0"],\
             ["react-query", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:3.39.3"],\
             ["react-tooltip", "virtual:66f50218c872b7a800525eace1c81fb2070a1133da721eb7f413e05131602d85e9d0b0f0a0255042a1e69d9104e3fe3688504ad131635b674ce083cc78d597db#npm:5.20.0"],\

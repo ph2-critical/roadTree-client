@@ -5615,6 +5615,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.46.1":
+  version: 7.46.1
+  resolution: "react-hook-form@npm:7.46.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 9c11ba454ce5b2a16e7499f2ca710e0c0cff227f39689b8e7985902f27f99bfc7a2c49f145ef228528764cf8286bf6101fc8a0f5094ce652eb31cab1684518d1
+  languageName: node
+  linkType: hard
+
 "react-hotjar@npm:^6.1.0":
   version: 6.1.0
   resolution: "react-hotjar@npm:6.1.0"
@@ -5947,7 +5956,8 @@ __metadata:
     react: ^18.2.0
     react-beautiful-dnd: ^13.1.1
     react-calendar-heatmap: ^1.9.0
-    react-dom: ^18.2.0
+    react-dom: 18.2.0
+    react-hook-form: ^7.46.1
     react-hotjar: ^6.1.0
     react-query: ^3.39.3
     react-tooltip: ^5.20.0

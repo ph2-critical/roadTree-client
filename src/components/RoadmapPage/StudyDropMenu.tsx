@@ -72,10 +72,11 @@ export default function StudyDropMenu(props: {
         id="dropdown"
         className={`${isOpen ? "" : "hidden"
           } border border-gray-200 z-50 dropdown absolute ${rightOn ? "left-0" : "right-0"
-          } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow dark:bg-gray-700`}
+          } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow `}
+        onClick={toggleModal}
       >
         <ul
-          className="py-2 text-sm text-gray-700 dropdown dark:text-gray-200"
+          className="py-2 text-sm text-gray-700 dropdown "
           aria-labelledby="dropdownDefaultButton"
         >
           {stateName.map((item, index) => {
@@ -83,7 +84,7 @@ export default function StudyDropMenu(props: {
             return (
               <li
                 key={"studyDropMenu_state_" + index}
-                className="block px-2 py-1 dropdown hover:bg-gray-100 dark:hover:text-white"
+                className="block px-2 py-1 dropdown hover:bg-gray-100 "
                 onClick={() => {
                   setStateNum(index);
                   closeModal();
