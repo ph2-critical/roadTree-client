@@ -24,6 +24,7 @@ export const SearchPreview = (props: {
 
     useEffect(() => {
         const searchTimeout: NodeJS.Timeout | null = setTimeout(() => {
+            if (searchString === '') return;
             searchAllApi({ search: props.searchString }).then((data) => {
                     setSearchResult(data);
                     setSelected(null)
