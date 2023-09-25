@@ -1,7 +1,7 @@
 "use client";
 
 import { getSubmissionUserDatas } from "@/src/api/submission/submission";
-import { useNicknameStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { useEffect, useState } from "react";
 import "react-calendar-heatmap";
 import ReactCalendarHeatmap from "react-calendar-heatmap";
@@ -16,12 +16,13 @@ const dateValues: DateValue[] = [];
 
 export const DailyHeatMap: React.FC = () => {
   const { nickname } = useNicknameStore();
+  const { userId } = useLoginStore();
   const [init, setInit] = useState<boolean>(false);
 
   useEffect(() => {
     if (nickname) {
       const getData = async () => {
-        const data = await getSubmissionUserDatas(nickname);
+        const data = await getSubmissionUserDatas(userId);
         if (dateValues.length > 0) {
           dateValues.splice(0, dateValues.length);
         }

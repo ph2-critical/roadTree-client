@@ -3,7 +3,7 @@ import {
   getSubmissionUserDatas,
   getSubmissionUserProps,
 } from "@/src/api/submission/submission";
-import { useNicknameStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { useModal } from "@/src/utils/hooks/useModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import { useEffect, useState } from "react";
@@ -29,14 +29,16 @@ export const SubmissionList = () => {
   const [submissions, setSubmissions] = useState<getSubmissionUserProps[]>([]);
   const { isOpen, toggleModal, modalRef } = useModal();
   const { nickname } = useNicknameStore();
+  const { userId } = useLoginStore();
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
     track("enter_my_submission_list_page");
     const fetchSubmissions = async () => {
+     
       try {
         if (nickname) {
-          const submissionData = await getSubmissionUserDatas(nickname);
+          const submissionData = await getSubmissionUserDatas(userId);
           submissionData.forEach((item: getSubmissionUserProps) => {
             item.created_at = item.created_at.substring(0, 10);
             item.study = getStudyField(item.study);

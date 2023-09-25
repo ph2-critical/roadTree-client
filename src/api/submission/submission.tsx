@@ -44,11 +44,11 @@ export const getSubmissionAllDatas = async () => {
   return data as getSubmissionProps[];
 };
 
-export const getSubmissionUserDatas = async (user_nickname: string) => {
+export const getSubmissionUserDatas = async (uid: string) => {
   const { data, error } = await supabase
     .from("submissions")
     .select("created_at, category, study, content, url")
-    .eq("nickname", user_nickname)
+    .eq("uid", uid)
     .order("created_at", { ascending: false });
 
   if (error) {
