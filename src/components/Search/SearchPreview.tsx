@@ -59,7 +59,7 @@ export const SearchPreview = (props: {
                                 ref={r => (searchRef.current[idx] = r)}
                             >
                                 <Link
-                                    className="h-full w-full py-5 px-3"
+                                    className="h-full w-full py-3 px-3"
                                     href={`/roadmap/${categorytoNum[node.type]}?node=${node.name}`}
                                     onClick={closeModal}>
                                     <div className="flex flex-col items-start">

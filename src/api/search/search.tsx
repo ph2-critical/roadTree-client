@@ -49,7 +49,7 @@ export const searchReferenceApi = async (props: SearchProps) => {
     const { data } = await supabase
         .from("reference")
         .select("rid, title, url, grade, category, amount, price, node(name, type), created_at")
-        .or(`title.ilike.${props.search}%, category.ilike.${props.search}%`)
+        .or(`title.ilike.%${props.search}%, category.ilike.%${props.search}%`)
         .order("created_at", { ascending: false })
         .limit(50);
 
