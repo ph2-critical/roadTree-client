@@ -64,10 +64,10 @@ export const NavMenu = (props: {
       {isOpen && (
         <div className="fixed right-0 z-10 w-full p-2 pt-4 sm:absolute sm:w-auto">
           <div className="top-auto w-full text-black bg-white border rounded-xl sm:w-40 border-gray6">
-            <div className="z-50 text-base list-none bg-white divide-gray-10 rounded-xl dark:bg-gray-700 dark:divide-gray-600">
+            <div className="z-50 text-base list-none bg-white divide-gray-10 rounded-xl ">
               <div className="px-4 py-2" role="none">
                 <p
-                  className="text-sm text-gray-900 truncate dark:text-white"
+                  className="text-sm text-gray-900 truncate "
                   role="none"
                 >
                   {nickname} ({email})
@@ -77,7 +77,7 @@ export const NavMenu = (props: {
                 <li>
                   <Link
                     href={"/profile"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                     role="menuitem"
                   >
                     <div className="flex items-center text-center align-middle gap-x-2">
@@ -89,7 +89,7 @@ export const NavMenu = (props: {
                 <li>
                   <div
                     onClick={props.Logout}
-                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 "
                     role="menuitem"
                   >
                     <div className="flex items-center text-center align-middle gap-x-2">
@@ -109,7 +109,7 @@ export const NavMenu = (props: {
                         isOpen: true,
                       });
                     }}
-                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 "
                     role="menuitem"
                   >
                     피드백
@@ -118,7 +118,7 @@ export const NavMenu = (props: {
                 <li>
                   <Link
                     href={"/daily"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                     role="menuitem"
                     onClick={() => {
                       track("click_go_daily_page_header_btn", {
@@ -143,7 +143,7 @@ export const NavMenu = (props: {
                             isOpen: true,
                           });
                         }}
-                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white`}
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 `}
                         role="menuitem"
                       >
                         {menu}
@@ -159,7 +159,7 @@ export const NavMenu = (props: {
                       });
                       props.Logout();
                     }}
-                    className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white text-start"
+                    className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100  text-start"
                     role="menuitem"
                   >
                     로그아웃
