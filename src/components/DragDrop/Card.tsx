@@ -60,7 +60,7 @@ const Card = (props: CardProps) => {
             `}
           >
             <div className="w-[291px] break-all whitespace-nowrap overflow-hidden text-ellipsis">
-              {content && <ReferenceBlock refdata={content} onClick={() => {}} isDropMenu={false}  />}
+              {content && <ReferenceBlock refdata={content} isDropMenu={false}  />}
             </div>
           </div>
         </div>

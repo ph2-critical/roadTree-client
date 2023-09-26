@@ -27,7 +27,7 @@ interface RoadTreeStore {
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
-  updateFunc: () => { },
+  updateFunc: () => {},
   setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
@@ -242,7 +242,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   useEffect(() => {
     async function initNode() {
       await setInitNode();
-      await setInitNodeState();
+      if (userId !== undefined && userId !== "") {
+        await setInitNodeState();
+      }
       return true;
     }
     if (init === false) {
@@ -321,15 +323,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if (d.state === undefined) {
               d.state =
                 !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
-                  !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
-                    d.depth ?? 0,
-                  ) ||
-                  !stateStore[whatStudyTable[whatStudy]][
-                    d.depth ?? 0
-                  ].hasOwnProperty(d.nid)
+                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
+                  d.depth ?? 0,
+                ) ||
+                !stateStore[whatStudyTable[whatStudy]][
+                  d.depth ?? 0
+                ].hasOwnProperty(d.nid)
                   ? 0
                   : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
-                    .state;
+                      .state;
             }
 
             return "node" + (d.depth === 0 ? " hidden " : "");
@@ -338,12 +340,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on("click", function (d: RoadData) {
-            if (userId === undefined && d.depth === 2) {
-              setType("signup");
+            if ((userId === "" || userId === undefined) && d.depth === 2) {
+              setType("moreInfo");
               toggleModal();
-            }
-            else {
-
+            } else {
               track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
                 node_id: d.nid,
                 node_name: d.name,
@@ -409,8 +409,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
                 selectCurrent[0].select === true &&
                 d !== selectHistory[d.depth! - 1] &&
                 getLevel() >= (d.depth === undefined ? 0 : d.depth)
-                ? "opacity-30 "
-                : "")
+              ? "opacity-30 "
+              : "")
           );
         });
 
@@ -515,11 +515,11 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     }
   }, [init]);
 
-  useEffect (() => {
+  useEffect(() => {
     if (init && root) {
       toggle_init_node(root).then(() => {
         updateFunc(root);
-      } );
+      });
     }
   }, [searchParams]);
 
@@ -534,15 +534,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           stateColor={{ statebgColor, stateBorderColor, stateTextColor }}
         />
       )}
-      {userId === undefined && isOpen && (
-            <ModalPortal>
-              <LoginModal
-                toggleModal={toggleModal}
-                modalRef={modalRef}
-                type={type}
-              />
-            </ModalPortal>
-          )}
+      {(userId === undefined || userId === "") && isOpen && (
+        <ModalPortal>
+          <LoginModal
+            toggleModal={toggleModal}
+            modalRef={modalRef}
+            type={type}
+          />
+        </ModalPortal>
+      )}
     </div>
   );
 }
