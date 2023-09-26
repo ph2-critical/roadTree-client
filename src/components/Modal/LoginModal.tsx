@@ -32,7 +32,7 @@ export default function LoginModal(props: LoginModalProps) {
   // kakao Login
   const kakaoLogin = async () => {
     track("click_kakaologin_modal_btn");
-
+    console.log("카카오 확인");
     await supabase.auth
       .signInWithOAuth({
         provider: "kakao",

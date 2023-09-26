@@ -41,18 +41,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
-  const [selectHistory] = useState<(null | RoadData)[]>([
-    null,
-    null,
-    null,
-    null,
-  ]);
-  const [selectHistoryBefore] = useState<(null | RoadData)[]>([
-    null,
-    null,
-    null,
-    null,
-  ]);
+  const [selectHistory] = useState<(null | RoadData)[]>([]);
+  const [selectHistoryBefore] = useState<(null | RoadData)[]>([]);
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
   const [root, setRoot] = useState<RoadData>();
@@ -77,7 +67,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     "stroke-black",
   ];
   const stateTextColor: string[] = ["#000", "#000", "#000", "#000"];
-  const searchParams:ReadonlyURLSearchParams = useSearchParams();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   // 선택
   function toggle_select(d: RoadData) {
@@ -158,40 +148,45 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     }
 
     // parameter로 node가 주어진 경우
-    const nodeParam:string|null = searchParams.get("node");
+    const nodeParam: string | null = searchParams.get("node");
 
-    const nodeParamPath:string[] = [];    // 파라미터로 주어진 노드로 향하는 path를 기록함
+    const nodeParamPath: string[] = []; // 파라미터로 주어진 노드로 향하는 path를 기록함
     if (nodeParam !== null) {
-      await getNodeId(nodeParam).then(async (nid:string|null) => {
+      await getNodeId(nodeParam).then(async (nid: string | null) => {
         while (nid !== null) {
           nodeParamPath.push(nid);
           nid = await getParentNodeNameFromNid(nid);
         }
-        nodeParamPath.pop();        // root node는 제외
-        nodeParamPath.reverse();   
-        var currentNode:RoadData = root;
+        nodeParamPath.pop(); // root node는 제외
+        nodeParamPath.reverse();
+        let currentNode: RoadData = root;
         for (nid of nodeParamPath) {
           // children에서 nid 찾기
-          const targetChild:RoadData|undefined = currentNode.children?.find((child:RoadData) => child.nid === nid);
+          const targetChild: RoadData | undefined = currentNode.children?.find(
+            (child: RoadData) => child.nid === nid,
+          );
           if (targetChild !== undefined) {
-            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함  
-              if (targetChild._children === undefined && targetChild.children === undefined) {
-                await getNodeChildren(targetChild.nid as string).then((res) => {
-                  targetChild._children = res ?? [];
-                  toggle_select(targetChild);
-                  setIsShowRef(true);
-                });
-              } else {
+            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함
+            if (
+              targetChild._children === undefined &&
+              targetChild.children === undefined
+            ) {
+              await getNodeChildren(targetChild.nid as string).then((res) => {
+                targetChild._children = res ?? [];
                 toggle_select(targetChild);
                 setIsShowRef(true);
-              }
-            
-              currentNode = targetChild;
+              });
+            } else {
+              toggle_select(targetChild);
+              setIsShowRef(true);
+            }
+
+            currentNode = targetChild;
           }
         }
-    });
-  }
-}
+      });
+    }
+  };
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -252,7 +247,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   }, [userId]);
 
   useEffect(() => {
-    if (init && root) {
+    if (root && init) {
       let m = [20, 120, 20, 20],
         w = 1280 - m[1] - m[3],
         h = 800 - m[0] - m[2],

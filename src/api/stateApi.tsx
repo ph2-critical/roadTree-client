@@ -59,7 +59,7 @@ export const postRefState = async (props: postRefStateProps) => {
 export interface getNodeStateProps {
   roadmap_type: string; // front, back, ai
   depth: number;
-  user_id: string;
+  user_id?: string;
 }
 
 export interface postNodeStateProps {
@@ -73,7 +73,7 @@ export const getNodeState = async (props: getNodeStateProps) => {
     .from("node_state")
     .select("nid, state, node!inner(depth, type)")
     .eq("node.depth", props.depth)
-    .eq("user_id", props.user_id);
+    .eq("user_id", props.user_id || "0");
 
   return data;
 };
