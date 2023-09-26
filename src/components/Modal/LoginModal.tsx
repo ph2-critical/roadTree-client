@@ -85,7 +85,7 @@ export default function LoginModal(props: LoginModalProps) {
                 fill="none"
                 xmlns="htp://www.w3.org/t2000/svg"
               >
-                <g clip-path="url(#clip0_13183_10121)">
+                <g clipPath="url(#clip0_13183_10121)">
                   <path
                     d="M20.3081 10.2303C20.3081 9.55056 20.253 8.86711 20.1354 8.19836H10.7031V12.0492H16.1046C15.8804 13.2911 15.1602 14.3898 14.1057 15.0879V17.5866H17.3282C19.2205 15.8449 20.3081 13.2728 20.3081 10.2303Z"
                     fill="#3F83F8"

@@ -13,6 +13,9 @@ import { getNodeChildren, getNodeId } from "@/src/api/initNode";
 import { getNodeState, getNodeStateProps } from "@/src/api/stateApi";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { getParentNodeNameFromNid } from "@/src/api/profile";
+import { useModal } from "@/src/utils/hooks/useModal";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
+import LoginModal from "../Modal/LoginModal";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -24,7 +27,7 @@ interface RoadTreeStore {
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
-  updateFunc: () => {},
+  updateFunc: () => { },
   setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
@@ -46,6 +49,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
   const [root, setRoot] = useState<RoadData>();
+  const { isOpen, modalRef, toggleModal } = useModal();
+  const [type, setType] = useState("");
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
 
   let ismdSize: boolean = usemdResize();
@@ -239,7 +244,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       await setInitNodeState();
       return true;
     }
-    if (userId && init === false) {
+    if (init === false) {
       initNode().then(() => {
         setInit(true);
       });
@@ -315,15 +320,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if (d.state === undefined) {
               d.state =
                 !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
-                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
-                  d.depth ?? 0,
-                ) ||
-                !stateStore[whatStudyTable[whatStudy]][
-                  d.depth ?? 0
-                ].hasOwnProperty(d.nid)
+                  !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
+                    d.depth ?? 0,
+                  ) ||
+                  !stateStore[whatStudyTable[whatStudy]][
+                    d.depth ?? 0
+                  ].hasOwnProperty(d.nid)
                   ? 0
                   : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
-                      .state;
+                    .state;
             }
 
             return "node" + (d.depth === 0 ? " hidden " : "");
@@ -332,19 +337,23 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on("click", function (d: RoadData) {
-            //  (
-            //   `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
-            // );
-            track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
-              node_id: d.nid,
-              node_name: d.name,
-              node_depth: d.depth,
-              isSelect: !d.select,
-            });
+            if (userId !== 'undefined' && d.depth === 2) {
+              setType("signup");
+              toggleModal();
+            }
+            else {
 
-            toggle_select(d);
-            setIsShowRef(true);
-            update(d);
+              track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
+                node_id: d.nid,
+                node_name: d.name,
+                node_depth: d.depth,
+                isSelect: !d.select,
+              });
+
+              toggle_select(d);
+              setIsShowRef(true);
+              update(d);
+            }
           });
         nodeEnter
           .append("svg:rect")
@@ -399,8 +408,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
                 selectCurrent[0].select === true &&
                 d !== selectHistory[d.depth! - 1] &&
                 getLevel() >= (d.depth === undefined ? 0 : d.depth)
-              ? "opacity-30 "
-              : "")
+                ? "opacity-30 "
+                : "")
           );
         });
 
@@ -516,6 +525,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           stateColor={{ statebgColor, stateBorderColor, stateTextColor }}
         />
       )}
+      {userId === undefined && isOpen && (
+            <ModalPortal>
+              <LoginModal
+                toggleModal={toggleModal}
+                modalRef={modalRef}
+                type={type}
+              />
+            </ModalPortal>
+          )}
     </div>
   );
 }
