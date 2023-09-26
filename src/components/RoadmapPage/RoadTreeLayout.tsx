@@ -13,6 +13,9 @@ import { getNodeChildren, getNodeId } from "@/src/api/initNode";
 import { getNodeState, getNodeStateProps } from "@/src/api/stateApi";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { getParentNodeNameFromNid } from "@/src/api/profile";
+import { useModal } from "@/src/utils/hooks/useModal";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
+import LoginModal from "../Modal/LoginModal";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -40,22 +43,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const whatStudy: number = props.whatStudy;
   const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
-  const { setSelect, updateFunc , setUpdateFunc } = useRoadTreeStore();
-  const [selectHistory] = useState<(null | RoadData)[]>([
-    null,
-    null,
-    null,
-    null,
-  ]);
-  const [selectHistoryBefore] = useState<(null | RoadData)[]>([
-    null,
-    null,
-    null,
-    null,
-  ]);
+  const { setSelect, setUpdateFunc, updateFunc } = useRoadTreeStore();
+  const [selectHistory] = useState<(null | RoadData)[]>([]);
+  const [selectHistoryBefore] = useState<(null | RoadData)[]>([]);
+
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
   const [root, setRoot] = useState<RoadData>();
+  const { isOpen, modalRef, toggleModal } = useModal();
+  const [type, setType] = useState("");
   // const [lastClick, setLastClick] = useState<null | RoadData>(null); // 노드를 delete할 때 클릭한 내용을 알 수가 없슴 -> 이를 토대로 depth가 2 이상 차이나는 노드는 애니메이션 없이 바로 사라짐
 
   let ismdSize: boolean = usemdResize();
@@ -77,7 +73,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     "stroke-black",
   ];
   const stateTextColor: string[] = ["#000", "#000", "#000", "#000"];
-  const searchParams:ReadonlyURLSearchParams = useSearchParams();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   // 선택
   function toggle_select(d: RoadData) {
@@ -158,40 +154,45 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     }
 
     // parameter로 node가 주어진 경우
-    const nodeParam:string|null = searchParams.get("node");
+    const nodeParam: string | null = searchParams.get("node");
 
-    const nodeParamPath:string[] = [];    // 파라미터로 주어진 노드로 향하는 path를 기록함
+    const nodeParamPath: string[] = []; // 파라미터로 주어진 노드로 향하는 path를 기록함
     if (nodeParam !== null) {
-      await getNodeId(nodeParam).then(async (nid:string|null) => {
+      await getNodeId(nodeParam).then(async (nid: string | null) => {
         while (nid !== null) {
           nodeParamPath.push(nid);
           nid = await getParentNodeNameFromNid(nid);
         }
-        nodeParamPath.pop();        // root node는 제외
-        nodeParamPath.reverse();   
-        var currentNode:RoadData = root;
+        nodeParamPath.pop(); // root node는 제외
+        nodeParamPath.reverse();
+        let currentNode: RoadData = root;
         for (nid of nodeParamPath) {
           // children에서 nid 찾기
-          const targetChild:RoadData|undefined = currentNode.children?.find((child:RoadData) => child.nid === nid);
+          const targetChild: RoadData | undefined = currentNode.children?.find(
+            (child: RoadData) => child.nid === nid,
+          );
           if (targetChild !== undefined) {
-            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함  
-              if (targetChild._children === undefined && targetChild.children === undefined) {
-                await getNodeChildren(targetChild.nid as string).then((res) => {
-                  targetChild._children = res ?? [];
-                  toggle_select(targetChild);
-                  setIsShowRef(true);
-                });
-              } else {
+            // toggle 작업 - 아직 데이터를 받아오기 전이므로 먼저 children 데이터부터 받아와야 함
+            if (
+              targetChild._children === undefined &&
+              targetChild.children === undefined
+            ) {
+              await getNodeChildren(targetChild.nid as string).then((res) => {
+                targetChild._children = res ?? [];
                 toggle_select(targetChild);
                 setIsShowRef(true);
-              }
-            
-              currentNode = targetChild;
+              });
+            } else {
+              toggle_select(targetChild);
+              setIsShowRef(true);
+            }
+
+            currentNode = targetChild;
           }
         }
-    });
-  }
-}
+      });
+    }
+  };
 
   // getLevel: 현재 선택된 노드의 레벨을 반환
   const getLevel: () => number = () => {
@@ -241,10 +242,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   useEffect(() => {
     async function initNode() {
       await setInitNode();
-      await setInitNodeState();
+      if (userId !== undefined && userId !== "") {
+        await setInitNodeState();
+      }
       return true;
     }
-    if (userId && init === false) {
+    if (init === false) {
       initNode().then(() => {
         setInit(true);
       });
@@ -252,7 +255,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   }, [userId]);
 
   useEffect(() => {
-    if (init && root) {
+    if (root && init) {
       let m = [20, 120, 20, 20],
         w = 1280 - m[1] - m[3],
         h = 800 - m[0] - m[2],
@@ -337,19 +340,21 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on("click", function (d: RoadData) {
-            //  (
-            //   `[amplitude] click_${whatStudyTable[whatStudy]}_roadmap_node`,
-            // );
-            track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
-              node_id: d.nid,
-              node_name: d.name,
-              node_depth: d.depth,
-              isSelect: !d.select,
-            });
+            if ((userId === "" || userId === undefined) && d.depth === 2) {
+              setType("moreInfo");
+              toggleModal();
+            } else {
+              track(`click_${whatStudyTable[whatStudy]}_roadmap_node`, {
+                node_id: d.nid,
+                node_name: d.name,
+                node_depth: d.depth,
+                isSelect: !d.select,
+              });
 
-            toggle_select(d);
-            setIsShowRef(true);
-            update(d);
+              toggle_select(d);
+              setIsShowRef(true);
+              update(d);
+            }
           });
         nodeEnter
           .append("svg:rect")
@@ -510,11 +515,11 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
     }
   }, [init]);
 
-  useEffect (() => {
+  useEffect(() => {
     if (init && root) {
       toggle_init_node(root).then(() => {
         updateFunc(root);
-      } );
+      });
     }
   }, [searchParams]);
 
@@ -528,6 +533,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           setIsShowRef={setIsShowRef}
           stateColor={{ statebgColor, stateBorderColor, stateTextColor }}
         />
+      )}
+      {(userId === undefined || userId === "") && isOpen && (
+        <ModalPortal>
+          <LoginModal
+            toggleModal={toggleModal}
+            modalRef={modalRef}
+            type={type}
+          />
+        </ModalPortal>
       )}
     </div>
   );

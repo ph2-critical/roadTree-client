@@ -82,6 +82,8 @@ export default function RefBlock(props: {
         }
         setRefBlockInit(true);
       });
+    } else if (refBlockInit === false) {
+      setRefBlockInit(true);
     }
   }, [refBlockInit]);
 

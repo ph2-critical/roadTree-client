@@ -21,7 +21,7 @@ export default function LoginModal(props: LoginModalProps) {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
@@ -32,17 +32,18 @@ export default function LoginModal(props: LoginModalProps) {
   // kakao Login
   const kakaoLogin = async () => {
     track("click_kakaologin_modal_btn");
-
+    console.log("카카오 확인");
     await supabase.auth
       .signInWithOAuth({
         provider: "kakao",
         options: {
           queryParams: {
             // prompt: "login", // 무조건 로그인 페이지 뜨게 만듬
-            serviceTerms	: 'true',
-            scope : 'gender,age_range, profile_nickname,profile_image,account_email'
+            serviceTerms: "true",
+            scope:
+              "gender,age_range, profile_nickname,profile_image,account_email",
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
@@ -58,15 +59,21 @@ export default function LoginModal(props: LoginModalProps) {
       className="fixed inset-0 top-0 left-0 right-0 z-50 flex items-center justify-center w-full overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-50 h-modal md:h-full"
     >
       <div ref={modalRef} className="relative w-full max-w-md p-4 md:h-auto">
-        <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-              {props.type === "login" ? "Sign in" : "Sign up"}
+              {props.type === "login"
+                ? "Sign in"
+                : props.type === "moreInfo"
+                ? "More"
+                : "Sign up"}
             </h1>
 
             <p>
               {props.type === "login"
                 ? "소셜 로그인으로 5초 만에 로그인하세요."
+                : props.type === "moreInfo"
+                ? "로그인해서 더 많은 기능을 이용해보세요."
                 : "소셜 계정으로 5초만에 회원가입해보세요."}
             </p>
 
@@ -85,7 +92,7 @@ export default function LoginModal(props: LoginModalProps) {
                 fill="none"
                 xmlns="htp://www.w3.org/t2000/svg"
               >
-                <g clip-path="url(#clip0_13183_10121)">
+                <g clipPath="url(#clip0_13183_10121)">
                   <path
                     d="M20.3081 10.2303C20.3081 9.55056 20.253 8.86711 20.1354 8.19836H10.7031V12.0492H16.1046C15.8804 13.2911 15.1602 14.3898 14.1057 15.0879V17.5866H17.3282C19.2205 15.8449 20.3081 13.2728 20.3081 10.2303Z"
                     fill="#3F83F8"
@@ -122,7 +129,7 @@ export default function LoginModal(props: LoginModalProps) {
             {/* kakao Login */}
             <a
               href="#"
-              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 "
+              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-[#FEE500] rounded-lg hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => {
                 kakaoLogin();
                 toggleModal();
@@ -152,6 +159,6 @@ export default function LoginModal(props: LoginModalProps) {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }

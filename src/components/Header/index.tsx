@@ -15,8 +15,6 @@ import InApp from "../InApp";
 import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
-import Image from "next/image";
-import { Search } from "../Search/Search";
 
 export const Header = () => {
   const { setNickname, setEmail, setUserPicture, userPicture } =
@@ -52,7 +50,12 @@ export const Header = () => {
       initKakao();
       setInit(true);
     };
-    checkUser();
+    try {
+      checkUser();
+    } catch (error) {
+      console.log(123)
+    }
+    
 
     if (process.env.NODE_ENV !== "development") {
       hotjar.initialize(
@@ -76,7 +79,6 @@ export const Header = () => {
           >
             <Logo className="text-lg text-white hover:cursor-pointer" />
           </Link>
-          {isLogin && <Search />}
           <div className="flex items-center justify-end h-12 ml-auto">
             <div id="headerMenu" className="hidden md:flex">
               <div
