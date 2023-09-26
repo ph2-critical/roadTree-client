@@ -46,6 +46,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const { setSelect, setUpdateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([]);
   const [selectHistoryBefore] = useState<(null | RoadData)[]>([]);
+
   const [selectCurrent] = useState<(null | RoadData)[]>([null]); // 현재 선택된 내용
   let lastClick: null | RoadData = null;
   const [root, setRoot] = useState<RoadData>();
@@ -513,6 +514,14 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       });
     }
   }, [init]);
+
+  useEffect (() => {
+    if (init && root) {
+      toggle_init_node(root).then(() => {
+        updateFunc(root);
+      } );
+    }
+  }, [searchParams]);
 
   return (
     <div id="body" className="w-auto overflow-scroll scrollbar-hide">
