@@ -24,7 +24,7 @@ export default function RootLayout({
         />
         <meta property="og:image" content="/logo.png" />
       </head>
-      <body className={"h-screenWithoutHeader w-full dark:bg-gray-900"}>
+      <body className={"h-screenWithoutHeader w-full "}>
         <Providers>
           <div id="modal_root"></div>
           {children}

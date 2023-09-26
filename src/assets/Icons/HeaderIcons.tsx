@@ -1,7 +1,7 @@
 export const UserIcon = () => {
   return (
     <svg
-      className="w-4 h-3 text-gray-800 dark:text-white"
+      className="w-4 h-3 text-gray-800 "
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -21,7 +21,7 @@ export const UserIcon = () => {
 export const ExitIcon = () => {
   return (
     <svg
-      className="w-4 h-3 text-gray-800 dark:text-white"
+      className="w-4 h-3 text-gray-800 "
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
