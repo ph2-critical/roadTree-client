@@ -24,7 +24,10 @@ export default function RootLayout({
         />
         <meta property="og:image" content="/logo.png" />
       </head>
-      <body className={"h-screenWithoutHeader w-full "}>
+      <body
+        className={"h-screenWithoutHeader w-full "}
+        suppressHydrationWarning={true}
+      >
         <Providers>
           <div id="modal_root"></div>
           {children}
