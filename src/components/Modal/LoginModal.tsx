@@ -21,7 +21,7 @@ export default function LoginModal(props: LoginModalProps) {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
@@ -39,10 +39,10 @@ export default function LoginModal(props: LoginModalProps) {
         options: {
           queryParams: {
             // prompt: "login", // 무조건 로그인 페이지 뜨게 만듬
-            serviceTerms: "true",
-            scope: "gender,age_range",
+            serviceTerms	: 'true',
+            scope : 'gender,age_range, profile_nickname,profile_image,account_email'
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
