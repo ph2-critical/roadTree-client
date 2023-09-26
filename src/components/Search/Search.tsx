@@ -4,6 +4,7 @@ import { SearchPreview } from "./SearchPreview";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SearchResult } from "@/src/api/search/search";
+import { track } from "@amplitude/analytics-browser";
 
 export interface selectedType {
     idx: number
@@ -27,6 +28,12 @@ export const Search = () => {
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             if (selected) {
+                track('search_result_click', {
+                    'search_string': searchString,
+                    'search_result': selected.nodeName,
+                    'search_result_type': selected.type,
+                    'search_result_id': selected.id,
+                    });
                 closeModal();
                 inputRef.current?.blur();
                 const url = `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');

@@ -21,8 +21,8 @@ export const NavMenu = (props: {
       <div className="flex flex-row-reverse p-3 text-gray-500">
         <div
           onClick={() => {
+            track("click_user_icon", { isOpening: isOpen, from: props.pathName });
             toggleModal();
-            track("click_user_icon", { isOpening: isOpen });
           }}
           className="cursor-pointer"
         >
@@ -50,14 +50,6 @@ export const NavMenu = (props: {
             height={512}
             className="hidden rounded-full select-none w-7 h-7 md:flex"
           ></Image>
-          {/* <button
-                        className="justify-center hidden p-3 text-base font-semibold text-white md:flex rounded-2xl bg-main hover:brightness-95 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70"
-                        onClick={() => {
-                            props.Logout();
-                        }}
-                    >
-                        로그아웃
-                    </button> */}
         </div>
       </div>
 
@@ -79,6 +71,7 @@ export const NavMenu = (props: {
                     href={"/profile"}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                     role="menuitem"
+                    onClick={() => {track("click_go_profile_page_header_btn", { from: props.pathName });}}
                   >
                     <div className="flex items-center text-center align-middle gap-x-2">
                       <UserIcon />
@@ -151,20 +144,6 @@ export const NavMenu = (props: {
                     </li>
                   );
                 })}
-                <li>
-                  <button
-                    onClick={() => {
-                      track("click_logout_header_btn", {
-                        from: props.pathName,
-                      });
-                      props.Logout();
-                    }}
-                    className="block w-full px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100  text-start"
-                    role="menuitem"
-                  >
-                    로그아웃
-                  </button>
-                </li>
               </ul>
             </div>
           </div>
