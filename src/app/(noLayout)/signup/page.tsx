@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
 import { useRouter } from "next/navigation";
+import { track } from "@amplitude/analytics-browser";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -254,7 +255,8 @@ export default function Page() {
             </div>
           </div>
           <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
-            <button type="submit" className="signup-btn bg-[#13D080]">
+            <button type="submit" className="signup-btn bg-[#13D080]" 
+              onClick={() => {track('click_save_userinfo_btn')}}>
               저장하기
             </button>
           </div>

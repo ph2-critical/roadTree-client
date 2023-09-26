@@ -1,6 +1,8 @@
 "use client";
 
 import { StartBtn } from "@/components/RoadmapPage/StartBtn";
+import { track } from "@amplitude/analytics-browser";
+import { useEffect } from "react";
 
 export default function Home() {
   const title = ["프론트엔드 개발자", "백엔드 개발자", "인공지능 개발자"];
@@ -14,6 +16,10 @@ export default function Home() {
     ["API 개발 업무", "DB 관리 업무", "핵심 비즈니스 관리"],
     ["데이터 전처리", "모델 훈련 및 개발", "시스템 구현"],
   ];
+
+  useEffect(() => {
+    track("enter_roadmap_select_page");
+  }, []);
 
   return (
     <main className="flex flex-col align-middle justify-centent  h-[calc(100vh-72px)] overflow-hidden">

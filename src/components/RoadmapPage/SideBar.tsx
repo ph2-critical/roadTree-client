@@ -218,13 +218,6 @@ export default function SideBar(props: {
                       id={"refblock-" + item.rid}
                       className={"w-full h-20 border-2 rounded-lg relative" + ((item.rid === refParmas) ? " border-main" : " border-gray6")}
                     >
-                      {checkNew(item) ? <Image
-                        src="/roadTree/newMark.svg"
-                        alt='newmark'
-                        width={512}
-                        height={512}
-                        className="w-12 h-12 left-[-20px] top-[-15px]  absolute"
-                      ></Image> : <></>}
                       <RefBlock
                         key={"refBlock" + index}
                         refdata={item}
@@ -233,6 +226,7 @@ export default function SideBar(props: {
                         refBlockInit={refBlockInit}
                         setRefBlockInit={setRefBlockInit}
                         select={select}
+                        newRef={checkNew(item)}
                       ></RefBlock>
                     </div>
                   );

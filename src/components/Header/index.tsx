@@ -29,6 +29,7 @@ export const Header = () => {
   const [init, setInit] = useState<boolean>(false);
 
   const Logout = async () => {
+    track("logout_function", { from: pathName });
     await supabase.auth.signOut();
     setLogout();
     router.push("/");
@@ -120,6 +121,7 @@ export const Header = () => {
               <Link
                 href={`/roadmap`}
                 className={`p-3 font-semibold text-base hover:text-gray-400 text-gray-500`}
+                onClick={() => {track("click_go_roadpage_select_header_btn", { from: pathName });}}
               >
                 로드맵
               </Link>

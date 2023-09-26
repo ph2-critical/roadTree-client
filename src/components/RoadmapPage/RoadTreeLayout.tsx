@@ -43,7 +43,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const whatStudy: number = props.whatStudy;
   const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
-  const { setSelect, setUpdateFunc } = useRoadTreeStore();
+  const { setSelect, setUpdateFunc, updateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([]);
   const [selectHistoryBefore] = useState<(null | RoadData)[]>([]);
 
@@ -338,7 +338,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on("click", function (d: RoadData) {
-            if (userId !== 'undefined' && d.depth === 2) {
+            if (userId === undefined && d.depth === 2) {
               setType("signup");
               toggleModal();
             }

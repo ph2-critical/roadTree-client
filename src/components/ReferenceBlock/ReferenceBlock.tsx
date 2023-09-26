@@ -47,8 +47,8 @@ export default function ReferenceBlock(props: ReferenceBlockProps) {
                             return (
                                 <div
                                     key={idx}
-                                    className={`border px-2 mr-2 rounded-md border-black
-                                         text-xs text-black`}
+                                    className={`border px-2 mr-1.5 rounded-md border-${option === 'new' ? 'yellow-600' : 'black'}
+                                         text-xs text-${option === 'new' ? 'yellow-600' : 'black'}`}
                                 >
                                     {option}
                                 </div>

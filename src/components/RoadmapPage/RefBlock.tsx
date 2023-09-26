@@ -21,6 +21,7 @@ export default function RefBlock(props: {
   refBlockInit: boolean;
   setRefBlockInit: (prop: boolean) => void;
   select: RoadData | null;
+  newRef: boolean;
 }) {
   const refBlockInit: boolean = props.refBlockInit;
   const setRefBlockInit: (prop: boolean) => void = props.setRefBlockInit;
@@ -88,7 +89,7 @@ export default function RefBlock(props: {
   }, [refBlockInit]);
 
   const setRefStateNum = async (num: number) => {
-    track("click_ref_state", {
+    track("change_ref_state", {
       roadmapCat: props.whatStudy,
       refId: refdata.rid,
       refName: refdata.title,
@@ -139,6 +140,7 @@ export default function RefBlock(props: {
       isDropMenu: refdata.title !== "준비중",
       stateNum: stateNum,
       setStateNum: setRefStateNum,
+      moreOption: props.newRef ? ['new'] : []
     });
   } else {
     return <div></div>;

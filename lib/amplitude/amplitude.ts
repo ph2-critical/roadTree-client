@@ -14,7 +14,11 @@ const KEY: string =
 
 const initAmplitude = (userId: string) => {
   if (userId === '' || !userId) init(KEY);
-  else init(KEY, `roadtree-${userId}`);
+  else init(KEY, `roadtree-${userId}`, {
+    defaultTracking: {
+      pageViews: false,
+    }
+  });
 };
 
 export default initAmplitude;
