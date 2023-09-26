@@ -19,9 +19,17 @@ export function StartBtn(props: btnProps) {
           });
         }}
       >
-        <button className="text-white w-full bg-main hover:brightness-95 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-          로드맵 확인하기
-        </button>
+        {(props.index == 0 || props.index == 1) ? (
+          <button className="text-white w-full bg-main  font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:brightness-95 focus:ring-4 focus:ring-primary-200">
+            로드맵 확인하기
+          </button>
+        ) :
+          (
+            <button disabled className="text-white w-full bg-main  font-medium rounded-lg text-sm px-5 py-2.5 text-center brightness-75 cursor-not-allowed">
+              로드맵 확인하기
+            </button>
+          )
+        }
       </Link>
     </>
   );

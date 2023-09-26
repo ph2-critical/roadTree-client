@@ -14,7 +14,7 @@ export const NavMenu = (props: {
 }) => {
   const { isOpen, modalRef, toggleModal } = useModal();
   const { nickname, email } = useNicknameStore();
-  const navMenu = ["프론트엔드", "백엔드", "인공지능"];
+  const navMenu = ["프론트엔드", "백엔드"];
 
   return (
     <div className="h-13 relative sm:py-0.5" ref={modalRef}>

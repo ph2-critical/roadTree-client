@@ -5,7 +5,7 @@ import RoadTreeLayout, {
   useRoadTreeStore,
 } from "@/src/components/RoadmapPage/RoadTreeLayout";
 import SideBar from "@/src/components/RoadmapPage/SideBar";
-import { useNicknameStore } from "@/src/state/store";
+import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { track } from "@amplitude/analytics-browser";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,15 +24,11 @@ function Page({ params }: { params: roadmapParams }) {
   const [id, setId] = useState<string>("");
   const [isShowRef, setIsShowRef] = useState<boolean>(false);
   const { select } = useRoadTreeStore();
-  const { userId } = useNicknameStore();
+  const { userId } = useLoginStore();
 
   useEffect(() => {
-    if (whatStudy == 2) {
-      alert("AI 과정은 준비중입니다.");
-      router.push("/roadmap");
-    } else {
+
       track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
-    }
   }, []);
 
   return (
@@ -44,7 +40,7 @@ function Page({ params }: { params: roadmapParams }) {
       >
         <RoadTreeLayout
           key={whatStudy}
-          whatStudy={whatStudy}
+          whatStudy={(whatStudy === 1 || whatStudy === 0) ? whatStudy : 0}
           userId={userId}
           setIsShowRef={setIsShowRef}
         />
@@ -52,7 +48,7 @@ function Page({ params }: { params: roadmapParams }) {
 
       <SideBar
         key={select?.nid}
-        whatStudy={whatStudy}
+        whatStudy={(whatStudy === 1 || whatStudy === 0) ? whatStudy : 0}
         userId={userId}
         showRef={{ isShowRef, setIsShowRef }}
         select={select}
