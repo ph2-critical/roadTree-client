@@ -21,7 +21,7 @@ export default function LoginModal(props: LoginModalProps) {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
@@ -42,7 +42,7 @@ export default function LoginModal(props: LoginModalProps) {
             serviceTerms	: 'true',
             scope : 'gender,age_range, profile_nickname,profile_image,account_email'
           },
-          redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/checking`,
+          redirectTo: `${process.env.NEXT_PUBLIC_TEST_BASE_URL}/checking`,
         },
       })
       .catch((error) => {
@@ -67,7 +67,8 @@ export default function LoginModal(props: LoginModalProps) {
             <p>
               {props.type === "login"
                 ? "소셜 로그인으로 5초 만에 로그인하세요."
-                : "소셜 계정으로 5초만에 회원가입해보세요."}
+                : (props.type === "moreInfo" ? "로그인해서 더 많은 기능을 이용해보세요."
+                : ("소셜 계정으로 5초만에 회원가입해보세요."))}
             </p>
 
             {/* google Login */}

@@ -29,7 +29,6 @@ export default function RootLayout({
           <div id="modal_root"></div>
           {children}
         </Providers>
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script
           src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"

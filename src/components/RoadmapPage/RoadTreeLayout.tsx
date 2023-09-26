@@ -43,7 +43,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const whatStudy: number = props.whatStudy;
   const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
-  const { setSelect, setUpdateFunc } = useRoadTreeStore();
+  const { setSelect, setUpdateFunc, updateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([]);
   const [selectHistoryBefore] = useState<(null | RoadData)[]>([]);
 
@@ -242,7 +242,9 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   useEffect(() => {
     async function initNode() {
       await setInitNode();
-      await setInitNodeState();
+      if (userId !== undefined && userId !== "") {
+        await setInitNodeState();
+      }
       return true;
     }
     if (init === false) {
@@ -338,8 +340,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on("click", function (d: RoadData) {
-            if (userId !== 'undefined' && d.depth === 2) {
-              setType("signup");
+            if ((userId === '' || userId === undefined) && d.depth === 2) {
+              setType("moreInfo");
               toggleModal();
             }
             else {
@@ -534,7 +536,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           stateColor={{ statebgColor, stateBorderColor, stateTextColor }}
         />
       )}
-      {userId === undefined && isOpen && (
+      {(userId === undefined || userId === '') && isOpen && (
             <ModalPortal>
               <LoginModal
                 toggleModal={toggleModal}
