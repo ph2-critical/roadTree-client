@@ -152,6 +152,6 @@ export default function LoginModal(props: LoginModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

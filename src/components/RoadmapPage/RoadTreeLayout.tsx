@@ -40,7 +40,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
   const whatStudy: number = props.whatStudy;
   const setIsShowRef: (prop: boolean) => void = props.setIsShowRef;
 
-  const { setSelect, setUpdateFunc } = useRoadTreeStore();
+  const { setSelect, updateFunc , setUpdateFunc } = useRoadTreeStore();
   const [selectHistory] = useState<(null | RoadData)[]>([
     null,
     null,
@@ -509,6 +509,14 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       });
     }
   }, [init]);
+
+  useEffect (() => {
+    if (init && root) {
+      toggle_init_node(root).then(() => {
+        updateFunc(root);
+      } );
+    }
+  }, [searchParams]);
 
   return (
     <div id="body" className="w-auto overflow-scroll scrollbar-hide">
