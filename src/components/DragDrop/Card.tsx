@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd";
 import Block from "./Block";
 import { getNodeNameFromRid } from "@/src/api/profile";
 import { useRouter } from "next/navigation";
+import ReferenceBlock from "../ReferenceBlock/ReferenceBlock";
 
 export interface CardProps {
   cardId: string;
@@ -53,7 +54,7 @@ const Card = (props: CardProps) => {
             `}
           >
             <div className="w-[291px] break-all whitespace-nowrap overflow-hidden text-ellipsis">
-              {content && <Block refdata={content} />}
+              {content && <ReferenceBlock refdata={content} onClick={() => {}} isDropMenu={false}  />}
             </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ import {
   postRefState,
 } from "@/src/api/stateApi";
 import { CategoryImage } from "@/src/assets/IconImage";
+import ReferenceBlock from "../ReferenceBlock/ReferenceBlock";
 
 export default function RefBlock(props: {
   refdata: reference;
@@ -44,6 +45,29 @@ export default function RefBlock(props: {
   const categoryImage = CategoryImage;
 
   const [stateNum, setStateNum] = useState<number>(0);
+
+  const blockOnClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+    if (
+      e.target instanceof Element &&
+      !e.target.classList.contains("dropdown")
+    ) {
+      track("click_ref_link", {
+        roadmapCat: props.whatStudy,
+        refId: refdata.rid,
+        refName: refdata.title,
+        refCat: refdata.category,
+        refGrade: refdata.grade,
+        refAmount: refdata.amount,
+        refPrice: refdata.price,
+        refUrl: refdata.url,
+        refState: stateTable[stateNum],
+        selectNodeId: props.select?.nid,
+        selectNodeName: props.select?.name,
+      });
+      window.open(refdata.url);
+    }
+  }
+
 
   useEffect(() => {
     if (userId && refBlockInit === false) {
@@ -109,68 +133,13 @@ export default function RefBlock(props: {
   };
 
   if (refBlockInit) {
-    return (
-      <div
-        onClick={(e: React.MouseEvent<Element, MouseEvent>) => {
-          if (
-            e.target instanceof Element &&
-            !e.target.classList.contains("dropdown")
-          ) {
-            track("click_ref_link", {
-              roadmapCat: props.whatStudy,
-              refId: refdata.rid,
-              refName: refdata.title,
-              refCat: refdata.category,
-              refGrade: refdata.grade,
-              refAmount: refdata.amount,
-              refPrice: refdata.price,
-              refUrl: refdata.url,
-              refState: stateTable[stateNum],
-              selectNodeId: props.select?.nid,
-              selectNodeName: props.select?.name,
-            });
-            window.open(refdata.url);
-          }
-        }}
-        className="flex items-center h-full p-2 rounded-md cursor-pointer hover:bg-gray-200"
-      >
-        <Image
-          src={"/roadTree" + categoryImage[refdata.category]}
-          alt={refdata.category}
-          width={512}
-          height={512}
-          className="mr-4 w-14 h-14"
-        ></Image>
-        <div className="flex-grow w-32 h-14">
-          <div className="flex flex-col items-start">
-            <div
-              className={`border px-2 rounded-md border-${
-                gradeColor[refdata.grade ?? 0]
-              } text-xs text-${gradeColor[refdata.grade ?? 0]}`}
-            >
-              {gradelist[refdata.grade ?? 0]}
-            </div>
-            <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
-              {refdata.title}
-            </div>
-            <div className="text-xs text-gray1 max-w-full truncate ...">
-              {refdata.amount !== "0" && refdata.amount
-                ? refdata.amount + " | "
-                : ""}
-              {refdata.price ? refdata.price.toLocaleString() + "원 | " : ""}
-              {refdata.category}
-            </div>
-          </div>
-        </div>
-        <div className="p-1 mt-auto">
-          {refdata.title !== "준비중" ? (
-            <StudyDropMenu stateNum={stateNum} setStateNum={setRefStateNum} />
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
-    );
+    return ReferenceBlock({
+      refdata: refdata,
+      onClick: blockOnClick,
+      isDropMenu: refdata.title !== "준비중",
+      stateNum: stateNum,
+      setStateNum: setRefStateNum,
+    });
   } else {
     return <div></div>;
   }
