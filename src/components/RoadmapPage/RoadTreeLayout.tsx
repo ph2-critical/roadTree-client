@@ -357,10 +357,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .style("fill", "#fff")
           .style("width", "200")
           .style("height", "40")
-          .style("x", "-100")
-          .style("y", "-20")
-          .style("rx", "10")
-          .style("ry", "10");
+          .attr("x", "-100")
+          .attr("y", "-20")
+          .attr("rx", "10")
+          .attr("ry", "10");
         nodeEnter = nodeEnter.append("svg:g").attr("class", function () {
           return "cursor-pointer hover:brightness-95 hover:opacity-100 ";
         });
@@ -371,10 +371,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           .style("fill", "#fff")
           .style("width", "200")
           .style("height", "40")
-          .style("x", "-100")
-          .style("y", "-20")
-          .style("rx", "10")
-          .style("ry", "10");
+          .attr("x", "-100")
+          .attr("y", "-20")
+          .attr("rx", "10")
+          .attr("ry", "10");
 
         nodeEnter
           .append("svg:text")
@@ -416,10 +416,10 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
           })
           .style("width", "200")
           .style("height", "40")
-          .style("x", "-100")
-          .style("y", "-20")
-          .style("rx", "10")
-          .style("ry", "10")
+          .attr("x", "-100")
+          .attr("y", "-20")
+          .attr("rx", "10")
+          .attr("ry", "10")
           .style("fill", function (d: RoadData) {
             return statebgColor[d.state ?? 0];
           });
