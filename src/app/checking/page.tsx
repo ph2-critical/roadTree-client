@@ -26,7 +26,7 @@ export default function Page() {
   }, []);
 
   getUserInfo(userId).then((res) => {
-    if (res?.length != 0) {
+    if (res && res?.length != 0) {
       router.push("/");
     } else {
       router.push("/signup");
