@@ -26,10 +26,12 @@ export default function Page() {
   }, []);
 
   getUserInfo(userId).then((res) => {
-    if (res?.length != 0) {
-      router.push("/");
-    } else {
-      router.push("/signup");
+    if (res) {
+      if (res?.length != 0) {
+        router.push("/");
+      } else {
+        router.push("/signup");
+      }
     }
   });
 
