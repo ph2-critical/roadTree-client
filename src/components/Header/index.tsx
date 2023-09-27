@@ -55,9 +55,12 @@ export const Header = () => {
     try {
       checkUser();
     } catch (error) {
-      console.log(123)
+      console.log(123);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5d00df401cf6c5a4dbbc9ff8ca13749d99f24ca0
 
     if (process.env.NODE_ENV !== "development") {
       hotjar.initialize(
