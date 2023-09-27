@@ -37,15 +37,6 @@ export default function DailyLearnSubmitPage() {
       ...prevErrors,
       [name]: false,
     }));
-    track("input_daily_learn", {
-      nickname: formData.nickname,
-      category: formData.category,
-      content: formData.content,
-      url: formData.url,
-      study: formData.study,
-      whatInputType: name,
-      whtInputValue: value,
-    });
   };
 
   const handleCategoryChange = (event: {

@@ -32,7 +32,7 @@ export const SubmissionList = () => {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    track("enter_my_submission_list_page");
+    track("enter_daily_list_page");
     const fetchSubmissions = async () => {
       try {
         if (nickname) {
@@ -117,6 +117,13 @@ export const SubmissionList = () => {
                             <div
                               className="w-40 overflow-hidden truncate cursor-pointer hover:underline"
                               onClick={() => {
+                                track("click_daily_content_btn", {
+                                  idx: idx,
+                                  content: submission.content,
+                                  study: submission.study,
+                                  url: submission.url,
+
+                                });
                                 setContent(submission.content);
                                 toggleModal();
                               }}
@@ -131,12 +138,8 @@ export const SubmissionList = () => {
                                 target="_blank"
                                 className="text-[#13D080] hover:text-green-900"
                                 onClick={() => {
-                                  track("click_my_submission_link", {
+                                  track("click_daily_link", {
                                     idx: idx,
-                                    date: submission.created_at.substring(
-                                      0,
-                                      10,
-                                    ),
                                     content: submission.content,
                                     study: submission.study,
                                     url: submission.url,
@@ -156,6 +159,12 @@ export const SubmissionList = () => {
                               height={24}
                               alt="카카오톡 공유 보내기 버튼"
                               onClick={() => {
+                                track("click_daily_share_btn", {
+                                  idx: idx,
+                                  content: submission.content,
+                                  study: submission.study,
+                                  url: submission.url,
+                                });
                                 sendKakao(submission);
                               }}
                               className="cursor-pointer"

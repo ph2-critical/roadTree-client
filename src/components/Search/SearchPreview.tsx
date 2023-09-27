@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { selectedType } from "./Search";
 import ReferenceBlock from "../ReferenceBlock/ReferenceBlock";
+import { track } from "@amplitude/analytics-browser";
 
 export const SearchPreview = (props: {
     searchString: string;
@@ -61,7 +62,15 @@ export const SearchPreview = (props: {
                                 <Link
                                     className="h-full w-full py-3 px-3"
                                     href={`/roadmap/${categorytoNum[node.type]}?node=${node.name}`}
-                                    onClick={closeModal}>
+                                    onClick={() => {
+                                        closeModal()
+                                        track('search_result_click', {
+                                            'search_string': searchString,
+                                            'search_result': node.name,
+                                            'search_result_type': 'node',
+                                            'search_result_id': node.nid,
+                                        });
+                                    }}>
                                     <div className="flex flex-col items-start">
                                         <div
                                             className={`border px-2 mr-2 rounded-md border-black
@@ -94,7 +103,15 @@ export const SearchPreview = (props: {
                                 <Link
                                     className="h-full w-full"
                                     href={`/roadmap/${categorytoNum[ref.node[0].type]}?node=${ref.node[0].name}&ref=${ref.rid}`}
-                                    onClick={closeModal}>
+                                    onClick={() => {
+                                        closeModal()
+                                        track('search_result_click', {
+                                            'search_string': searchString,
+                                            'search_result': ref.node[0].name,
+                                            'search_result_type': 'reference',
+                                            'search_result_id': ref.rid,
+                                        });
+                                    }}>
                                     <ReferenceBlock refdata={ref} moreOption={ref.node.map((node) => { return node.name })} isSimple />
                                 </Link>
                             </li>)

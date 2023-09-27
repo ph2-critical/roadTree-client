@@ -87,7 +87,6 @@ export default function StudyDropMenu(props: {
                 className="block px-2 py-1 dropdown hover:bg-gray-100 "
                 onClick={() => {
                   setStateNum(index);
-                  closeModal();
                 }}
               >
                 <div

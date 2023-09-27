@@ -44,6 +44,7 @@ export default function Home() {
               <a
                 href="/roadmap"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor dark:focus:ring-green-900"
+                onClick={() => {track("click_go_roadpage_select_btn_on_home")}}
               >
                 로드맵 시작하기
                 <svg
@@ -62,6 +63,7 @@ export default function Home() {
               <a
                 href="https://open.kakao.com/o/gROlTdif"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                onClick={() => {track("click_open_kakao_chatting_btn_on_home")}}
               >
                 {/* kakao yellow = FCE44C */}
                 로드트리 오픈채팅방
@@ -153,6 +155,7 @@ export default function Home() {
               <a
                 href="/roadmap"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor dark:focus:ring-green-900"
+                onClick={() => {track("click_go_roadpage_select_btn_on_footer")}}
               >
                 로드트리 시작하기
                 <svg

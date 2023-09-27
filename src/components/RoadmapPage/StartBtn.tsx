@@ -8,15 +8,13 @@ interface btnProps {
 }
 
 export function StartBtn(props: btnProps) {
-  const whatStudyTable: string[] = ["frontend", "backend", "ai"];
+  const whatStudyTable: string[] = ["front", "back", "ai"];
   return (
     <>
       <Link
         href={`roadmap/${props.index}`}
         onClick={() => {
-          track("click_start_roadpage_btn_on_home", {
-            roadmapCat: whatStudyTable[props.index],
-          });
+          track(`click_start_${whatStudyTable[props.index] ?? "error"}_roadpage_btn`);
         }}
       >
         {(props.index == 0 || props.index == 1) ? (
