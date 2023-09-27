@@ -28,9 +28,8 @@ export default function Inputs(): JSX.Element {
         <p className="block mb-4 font-semibold">카테고리</p>
         <div className="flex gap-[20px]">
           <button
-            className={`m-0 category-btn ${
-              now === "info" ? "bg-main text-white font-bold border-none" : ""
-            }`}
+            className={`m-0 category-btn ${now === "info" ? "bg-main text-white font-bold border-none" : ""
+              }`}
             id="info"
             onClick={() => {
               setNow("info");
@@ -39,9 +38,8 @@ export default function Inputs(): JSX.Element {
             정보 공유
           </button>
           <button
-            className={`m-0 category-btn ${
-              now === "talk" ? "bg-main text-white font-bold border-none" : ""
-            }`}
+            className={`m-0 category-btn ${now === "talk" ? "bg-main text-white font-bold border-none" : ""
+              }`}
             id="talk"
             onClick={() => {
               setNow("talk");
@@ -50,9 +48,8 @@ export default function Inputs(): JSX.Element {
             고민/잡담
           </button>
           <button
-            className={`m-0 category-btn ${
-              now === "ask" ? "bg-main text-white font-bold border-none" : ""
-            }`}
+            className={`m-0 category-btn ${now === "ask" ? "bg-main text-white font-bold border-none" : ""
+              }`}
             id="ask"
             onClick={() => {
               setNow("ask");
