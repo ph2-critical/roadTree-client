@@ -65,16 +65,16 @@ export default function LoginModal(props: LoginModalProps) {
               {props.type === "login"
                 ? "Sign in"
                 : props.type === "moreInfo"
-                ? "More"
-                : "Sign up"}
+                  ? "More"
+                  : "Sign up"}
             </h1>
 
             <p>
               {props.type === "login"
                 ? "소셜 로그인으로 5초 만에 로그인하세요."
                 : props.type === "moreInfo"
-                ? "로그인해서 더 많은 기능을 이용해보세요."
-                : "소셜 계정으로 5초만에 회원가입해보세요."}
+                  ? "로그인해서 더 많은 기능을 이용해보세요."
+                  : "소셜 계정으로 5초만에 회원가입해보세요."}
             </p>
 
             {/* google Login */}
@@ -129,7 +129,7 @@ export default function LoginModal(props: LoginModalProps) {
             {/* kakao Login */}
             <a
               href="#"
-              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-[#FEE500] rounded-lg hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="w-full inline-flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-[#FEE500] rounded-lg hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 "
               onClick={() => {
                 kakaoLogin();
                 toggleModal();
