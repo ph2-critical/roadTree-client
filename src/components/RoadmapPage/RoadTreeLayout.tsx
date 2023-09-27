@@ -16,6 +16,7 @@ import { getParentNodeNameFromNid } from "@/src/api/profile";
 import { useModal } from "@/src/utils/hooks/useModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import LoginModal from "../Modal/LoginModal";
+import { update } from "lodash";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -247,9 +248,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       }
       return true;
     }
+
     if (init === false) {
       initNode().then(() => {
-        setInit(true);
+        setTimeout(() => {
+          setInit(true);
+        }, 250);
       });
     }
   }, [userId]);
