@@ -16,6 +16,7 @@ import { getParentNodeNameFromNid } from "@/src/api/profile";
 import { useModal } from "@/src/utils/hooks/useModal";
 import { ModalPortal } from "@/src/utils/hooks/usePortal";
 import LoginModal from "../Modal/LoginModal";
+import { update } from "lodash";
 
 interface RoadTreeStore {
   select: RoadData | null;
@@ -27,7 +28,7 @@ interface RoadTreeStore {
 export const useRoadTreeStore = create<RoadTreeStore>((set) => ({
   select: null,
   setSelect: (prop) => set(() => ({ select: prop })),
-  updateFunc: () => {},
+  updateFunc: () => { },
   setUpdateFunc: (prop) => set(() => ({ updateFunc: prop })),
 }));
 
@@ -247,9 +248,12 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       }
       return true;
     }
+
     if (init === false) {
       initNode().then(() => {
-        setInit(true);
+        setTimeout(() => {
+          setInit(true);
+        }, 250);
       });
     }
   }, [userId]);
@@ -323,15 +327,15 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
             if (d.state === undefined) {
               d.state =
                 !stateStore.hasOwnProperty(whatStudyTable[whatStudy]) ||
-                !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
-                  d.depth ?? 0,
-                ) ||
-                !stateStore[whatStudyTable[whatStudy]][
-                  d.depth ?? 0
-                ].hasOwnProperty(d.nid)
+                  !stateStore[whatStudyTable[whatStudy]].hasOwnProperty(
+                    d.depth ?? 0,
+                  ) ||
+                  !stateStore[whatStudyTable[whatStudy]][
+                    d.depth ?? 0
+                  ].hasOwnProperty(d.nid)
                   ? 0
                   : stateStore[whatStudyTable[whatStudy]][d.depth ?? 0][d.nid]
-                      .state;
+                    .state;
             }
 
             return "node" + (d.depth === 0 ? " hidden " : "");
@@ -409,8 +413,8 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
                 selectCurrent[0].select === true &&
                 d !== selectHistory[d.depth! - 1] &&
                 getLevel() >= (d.depth === undefined ? 0 : d.depth)
-              ? "opacity-30 "
-              : "")
+                ? "opacity-30 "
+                : "")
           );
         });
 

@@ -29,7 +29,7 @@ export const getReferenceUsingNid = async (nid: string) => {
       .select("rid, title, url, grade, category, amount, price, created_at")
       .eq("rid", item.rid);
 
-    const refData:reference = {
+    const refData: reference = {
       rid: data2.data![0].rid,
       title: data2.data![0].title,
       url: data2.data![0].url,
@@ -38,7 +38,7 @@ export const getReferenceUsingNid = async (nid: string) => {
       amount: data2.data![0].amount,
       price: data2.data![0].price,
       created_at: data2.data![0].created_at,
-    }
+    };
 
     return refData;
   });
@@ -48,7 +48,7 @@ export const getReferenceUsingNid = async (nid: string) => {
 
   refData.sort((a, b) => {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-  })
+  });
 
   return refData!;
 };

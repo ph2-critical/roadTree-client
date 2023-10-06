@@ -27,8 +27,7 @@ function Page({ params }: { params: roadmapParams }) {
   const { userId } = useLoginStore();
 
   useEffect(() => {
-
-      track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
+    track(`enter_${whatStudyTable[whatStudy]}_roadmap_page`);
   }, []);
 
   return (
@@ -40,7 +39,7 @@ function Page({ params }: { params: roadmapParams }) {
       >
         <RoadTreeLayout
           key={whatStudy}
-          whatStudy={(whatStudy === 1 || whatStudy === 0) ? whatStudy : 0}
+          whatStudy={(whatStudy == 1 || whatStudy == 0) ? whatStudy : 0}
           userId={userId}
           setIsShowRef={setIsShowRef}
         />
@@ -48,7 +47,7 @@ function Page({ params }: { params: roadmapParams }) {
 
       <SideBar
         key={select?.nid}
-        whatStudy={(whatStudy === 1 || whatStudy === 0) ? whatStudy : 0}
+        whatStudy={(whatStudy == 1 || whatStudy == 0) ? whatStudy : 0}
         userId={userId}
         showRef={{ isShowRef, setIsShowRef }}
         select={select}
