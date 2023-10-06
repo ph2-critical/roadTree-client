@@ -76,7 +76,7 @@ export const SearchPreview = (props: {
                                             className={`border px-2 mr-2 rounded-md border-black
                                                 text-xs text-black`}
                                         >
-                                            front
+                                            {node.type}
                                         </div>
                                         <div className="text-sm max-w-full font-semibold text-gray-600 truncate ...">
                                             {node.name}
