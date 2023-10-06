@@ -17,7 +17,7 @@ interface roadmapParams {
 function Page({ params }: { params: roadmapParams }) {
   const { studyType } = params;
   const { setNickname } = useNicknameStore();
-  const whatStudy: number = studyType;
+  const whatStudy: number = Number(studyType);
   const whatStudyTable = ["frontend", "backend", "ai"];
   const router = useRouter();
 
