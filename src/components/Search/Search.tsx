@@ -15,44 +15,55 @@ export interface selectedType {
 }
 
 export const Search = () => {
+  const { isOpen, modalRef, openModal, closeModal } = useModal();
+  const [searchString, setSearchString] = useState<string>("");
+  const [selected, setSelected] = useState<selectedType | null>(null);
+  const router = useRouter();
+  const categorytoNum: { [key: string]: number } = {
+    front: 0,
+    back: 1,
+    ai: 2,
+    common: 0,
+  };
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [searchResult, setSearchResult] = useState<SearchResult>({
+    node: [],
+    reference: [],
+  });
+  const searchRef = useRef<(HTMLLIElement | null)[]>([]);
 
-    const { isOpen, modalRef, openModal, closeModal } = useModal();
-    const [searchString, setSearchString] = useState<string>('');
-    const [selected, setSelected] = useState<selectedType | null>(null);
-    const router = useRouter();
-    const categorytoNum: { [key: string]: number } = { 'front': 0, 'back': 1, 'ai': 2, 'common': 0 };
-    const inputRef = useRef<HTMLInputElement>(null);
-    const [searchResult, setSearchResult] = useState<SearchResult>({ node: [], reference: [] });
-    const searchRef = useRef<(HTMLLIElement | null)[]>([]);
+  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (selected) {
+        track("search_result_click", {
+          search_string: searchString,
+          search_result: selected.nodeName,
+          search_result_type: selected.type,
+          search_result_id: selected.id,
+        });
+        closeModal();
+        inputRef.current?.blur();
+        const url =
+          `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${
+            selected.nodeName
+          }` + (selected.type === "reference" ? `&ref=${selected.id}` : "");
+        selected && router.push(url);
+      }
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      let currentIdx = selected?.idx ?? -1;
+      if (e.key === "ArrowDown") {
+        currentIdx += 1;
+        currentIdx %= searchResult.node.length + searchResult.reference.length;
+      } else if (e.key === "ArrowUp") {
+        currentIdx -= 1;
+        if (currentIdx < 0) {
+          currentIdx +=
+            searchResult.node.length + searchResult.reference.length;
+        }
+      }
 
-    const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            if (selected) {
-                track('search_result_click', {
-                    'search_string': searchString,
-                    'search_result': selected.nodeName,
-                    'search_result_type': selected.type,
-                    'search_result_id': selected.id,
-                    });
-                closeModal();
-                inputRef.current?.blur();
-                const url = `/roadmap/${categorytoNum[selected.category] ?? 0}?node=${selected.nodeName}` + (selected.type === 'reference' ? `&ref=${selected.id}` : '');
-                selected && router.push(url);
-            }
-        } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-            let currentIdx = selected?.idx ?? -1;
-            if (e.key === 'ArrowDown') {
-                currentIdx += 1;
-                currentIdx %= searchResult.node.length + searchResult.reference.length;
-            } else if (e.key === 'ArrowUp') {
-                currentIdx -= 1;
-                if (currentIdx < 0) {
-                    currentIdx += searchResult.node.length + searchResult.reference.length;
-                }
-            }
-
-            if (searchResult.node.length === 0 && searchResult.reference.length === 0) return;
-
+      if (searchResult.node.length === 0 && searchResult.reference.length === 0)
+        return;
 
       if (searchResult.node.length === 0 && searchResult.reference.length === 0)
         return;
