@@ -23,7 +23,7 @@ export default function Profile() {
   const { nickname } = useNicknameStore();
   return (
     nickname !== "" && (
-      <div>
+      <div className="px-6">
         <div className="flex items-end pt-12 pb-6 gap-x-6">
           <h1 className="ml-4 text-4xl title-text md:ml-0">{nickname} 님</h1>
 
