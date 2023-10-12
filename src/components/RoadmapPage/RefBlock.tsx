@@ -70,7 +70,6 @@ export default function RefBlock(props: {
         selectNodeName: props.select?.name,
       });
       // window.open(refdata.url);
-      console.log('[debug] open Ref Detail Modal')
       toggleModal();
     }
   }
@@ -153,7 +152,7 @@ export default function RefBlock(props: {
 
         {isOpen && (
           <ModalPortal>
-            <DetailRefModal modalRef={modalRef} toggleModal={toggleModal} refData={refdata} />
+            <DetailRefModal modalRef={modalRef} toggleModal={toggleModal} refData={refdata} userId={userId} />
           </ModalPortal>
         )}
       </>

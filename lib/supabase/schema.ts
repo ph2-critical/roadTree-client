@@ -434,6 +434,7 @@ export interface Database {
           price: number | null;
           rid: string;
           title: string;
+          detail_content: string | null;
           url: string;
         };
         Insert: {
@@ -490,6 +491,78 @@ export interface Database {
         };
         Relationships: [];
       };
+      reference_like: {
+        Row: {
+
+          created_at: string | null;
+          rid: string;
+          uid: string;
+        };
+        Insert: {
+
+          created_at?: string | null;
+          rid: string;
+          uid: string;
+        };
+        Update: {
+
+          created_at?: string | null;
+          rid?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "reference_like_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_like_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      reference_star: {
+        Row : {
+
+          created_at: string | null;
+          rid: string;
+          uid: string;
+          star: number;
+        };
+        Insert: {
+
+          created_at?: string | null;
+          rid: string;
+          uid: string;
+          star: number;
+        };
+        Update: {
+
+          created_at?: string | null;
+          rid?: string;
+          uid?: string;
+          star?: number;
+        };
+        
+        Relationships: [
+          {
+            foreignKeyName: "reference_star_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_star_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+        }
     };
     Views: {
       [_ in never]: never;

@@ -40,8 +40,8 @@ export const Comments = () => {
         </div>
 
         {
-          [1, 2, 3].map((e) => {
-            return (<>
+          [1, 2, 3].map((e, idx) => {
+            return (<div key={idx}>
               <div className="my-3 text-base bg-white rounded-lg flex items-center gap-3">
                 <Image
                   src={userPicture ?? "/header/user.svg"}
@@ -87,7 +87,7 @@ export const Comments = () => {
                 </div>
               </div>
               <hr />
-            </>
+            </div>
             )
           })
         }
