@@ -4,6 +4,7 @@ import { reference } from "@/roadmap_json/roadmap_data";
 import { CategoryImage } from "@/src/assets/IconImage";
 import Image from "next/image";
 import StudyDropMenu from "../RoadmapPage/StudyDropMenu";
+import RefInfoView from "./RefInfoView";
 
 interface ReferenceBlockProps {
     refdata: reference;
@@ -66,13 +67,8 @@ export default function ReferenceBlock(props: ReferenceBlockProps) {
                         {refdata.title}
                     </div>
                     {props.isSimple === true ? <div></div> :
-                        <div className="text-xs text-gray1 max-w-full truncate ...">
-                            {refdata.amount !== "0" && refdata.amount
-                                ? refdata.amount + " | "
-                                : ""}
-                            {refdata.price ? refdata.price.toLocaleString() + "원 | " : ""}
-                            {refdata.category}
-                        </div>}
+                        <RefInfoView refdata={refdata} className="text-xs text-gray1 truncate ..." />
+                    }
                 </div>
             </div>
             <div className="p-1 mt-auto">

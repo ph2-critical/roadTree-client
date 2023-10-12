@@ -141,7 +141,7 @@ export default function RefBlock(props: {
 
   if (refBlockInit) {
     return (
-      <div>
+      <>
         {ReferenceBlock({
           refdata: refdata,
           onClick: blockOnClick,
@@ -153,10 +153,10 @@ export default function RefBlock(props: {
 
         {isOpen && (
           <ModalPortal>
-            <DetailRefModal modalRef={modalRef} toggleModal={toggleModal} />
+            <DetailRefModal modalRef={modalRef} toggleModal={toggleModal} refData={refdata} />
           </ModalPortal>
         )}
-      </div>
+      </>
     );
   } else {
     return <div></div>;
