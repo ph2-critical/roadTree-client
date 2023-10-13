@@ -58,19 +58,9 @@ export default function Page() {
     <section className="flex h-[100vh]">
       <form
         className="container max-w-2xl m-auto shadow-md md:w-3/4"
-        onSubmit={handleSubmit(
-          () => {
-            onSubmit();
-          },
-          () => {
-            // if (errors.age) {
-            //   alert(errors.age.message);
-            // } else {
-            //   alert("모든 정보를 입력해주세요.");
-            // }
-            console.log(watch());
-          },
-        )}
+        onSubmit={handleSubmit(() => {
+          onSubmit();
+        })}
       >
         <div className="border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
           <Image
