@@ -87,7 +87,6 @@ function _reactionBut(props: { rid: string, userId: string }) {
     const toggleLike = async () => {
         if (userActionInfo?.like.iLike) {
             // 좋아요 취소
-            console.log('좋아요 취소')
             deleteLike({ rid: rid, uid: userId });
             setUserActionInfo((prev) => {
                 if (prev === undefined) return prev;
@@ -103,7 +102,6 @@ function _reactionBut(props: { rid: string, userId: string }) {
 
         } else {
             // 좋아요
-            console.log('좋아요');
             insertLike({ rid: rid, uid: userId });
             setUserActionInfo((prev) => {
                 if (prev === undefined) return prev;
@@ -132,7 +130,7 @@ function _reactionBut(props: { rid: string, userId: string }) {
                 },
                 star: {
                     count: starUserList.length,
-                    value: starUserList.reduce((acc, cur) => acc + cur.star, 0) / starUserList.length,
+                    value: starUserList.length !== 0 ? starUserList.reduce((acc, cur) => acc + cur.star, 0) / starUserList.length : 0,
                     iStar: starUserList.map((user) => user.uid).includes(userId ?? ''),
                 },
                 comment: [],
@@ -186,10 +184,10 @@ function _reactionBut(props: { rid: string, userId: string }) {
                         width={30}
                         height={30}
                     />
-                    <div className="text-xl ml-1">9.98</div>
+                    <div className="text-xl ml-1">{userActionInfo?.star.value.toFixed(2)}</div>
                 </div>
-                <div className="font-bold">별점주기</div>
-                <div className="font-normal text-gray-500">19,919</div>
+                <div className="font-bold">강의평점</div>
+                <div className="font-normal text-gray-500">{userActionInfo?.star.count}명 참여</div>
             </div>
         </div>
     )
