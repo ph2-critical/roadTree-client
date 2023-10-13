@@ -1,6 +1,5 @@
 import { RefObject } from "react";
 import { CloseIcon } from "../Icons";
-import { useRouter } from "next/navigation";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -10,7 +9,6 @@ interface SignupModalProps {
 }
 
 export const SignUpModal = (props: SignupModalProps) => {
-  const router = useRouter();
   return (
     <div className="z-50 bg-modal">
       <div
