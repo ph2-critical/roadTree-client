@@ -25,7 +25,7 @@ export default function Page() {
   const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
   const router = useRouter();
-  const { isOpen, toggleModal, modalRef } = useModal();
+  const { isOpen, toggleModal, openModal, modalRef } = useModal();
   const {
     register,
     watch,
@@ -37,6 +37,7 @@ export default function Page() {
   useEffect(() => {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
+    openModal();
   }, [nickname, email]);
 
   const onSubmit = () => {
@@ -269,11 +270,14 @@ export default function Page() {
           </div>
         </div>
       </form>
-      <SignUpModal
-        isOpen={isOpen}
-        toggleModal={toggleModal}
-        modalRef={modalRef}
-      />
+      {isOpen ? (
+        <SignUpModal
+          isOpen={isOpen}
+          toggleModal={toggleModal}
+          modalRef={modalRef}
+          onSubmit={onSubmit}
+        />
+      ) : null}
     </section>
   );
 }

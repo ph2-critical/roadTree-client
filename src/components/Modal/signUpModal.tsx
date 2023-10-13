@@ -1,13 +1,16 @@
 import { RefObject } from "react";
 import { CloseIcon } from "../Icons";
+import { useRouter } from "next/navigation";
 
 interface SignupModalProps {
   isOpen: boolean;
   toggleModal: () => void;
   modalRef: RefObject<HTMLDivElement>;
+  onSubmit: () => void;
 }
 
 export const SignUpModal = (props: SignupModalProps) => {
+  const router = useRouter();
   return (
     <div className="z-50 bg-modal">
       <div
@@ -25,10 +28,16 @@ export const SignUpModal = (props: SignupModalProps) => {
             만일 원치 않는다면, 이 정보는 입력하지 않으셔도 됩니다.
           </p>
           <div className="flex gap-4">
-            <button className="w-1/2 modal-btn text-gray1">
+            <button
+              className="w-1/2 modal-btn text-gray1"
+              onClick={props.onSubmit}
+            >
               바로 이용하기
             </button>
-            <button className="w-1/2 font-semibold text-white border-0 modal-btn bg-main">
+            <button
+              className="w-1/2 font-semibold text-white border-0 modal-btn bg-main"
+              onClick={props.toggleModal}
+            >
               정보 입력하기
             </button>
           </div>
