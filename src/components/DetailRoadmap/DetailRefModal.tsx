@@ -7,8 +7,9 @@ import { Comments } from "../Comments";
 import Image from "next/image";
 import { reference } from "@/roadmap_json/roadmap_data";
 import RefInfoView from "../ReferenceBlock/RefInfoView";
-import { deleteLike, getLikeList, getStarList, insertLike } from "@/src/api/detailRefPage/getDetailRefInfo";
-import { debounce } from "lodash";
+import { deleteLike, getLikeList, getStarList, insertLike, insertStar } from "@/src/api/detailRefPage/getDetailRefInfo";
+import { debounce, set } from "lodash";
+import { useModal } from "@/src/utils/hooks/useModal";
 
 interface UserActionType {
     like: {
@@ -20,7 +21,6 @@ interface UserActionType {
         value: number;
         iStar: boolean;
     }
-    comment: string[];
 }
 
 interface DetailRefModalProps {
@@ -81,6 +81,8 @@ function _reactionBut(props: { rid: string, userId: string }) {
 
     const [userActionInfo, setUserActionInfo] = useState<UserActionType>()
     const [init, setInit] = useState<boolean>(false);
+    const { isOpen, modalRef, openModal, closeModal } = useModal();
+    const [myLike, setMyLike] = useState<number>(10);
 
 
 
@@ -133,7 +135,6 @@ function _reactionBut(props: { rid: string, userId: string }) {
                     value: starUserList.length !== 0 ? starUserList.reduce((acc, cur) => acc + cur.star, 0) / starUserList.length : 0,
                     iStar: starUserList.map((user) => user.uid).includes(userId ?? ''),
                 },
-                comment: [],
             });
         } catch (error) {
 
@@ -147,7 +148,6 @@ function _reactionBut(props: { rid: string, userId: string }) {
                     value: 0,
                     iStar: false,
                 },
-                comment: [],
             });
 
             return false;
@@ -163,8 +163,8 @@ function _reactionBut(props: { rid: string, userId: string }) {
 
     return (
         init &&
-        <div className="w-80 h-28 border flex cursor-pointer select-none">
-            <div className="w-40 h-28  border flex flex-col justify-center items-center"
+        <div className="w-80 h-28 border flex  select-none">
+            <div className="w-40 h-28  border flex flex-col justify-center items-center cursor-pointer"
                 onClick={toggleLike}>
                 <Image
                     src={userActionInfo?.like.iLike ? "/detailRef/heart.svg" : "/detailRef/heart_outlined.svg"}
@@ -176,38 +176,70 @@ function _reactionBut(props: { rid: string, userId: string }) {
                 <div className="font-bold">좋아요</div>
                 <div className="font-normal text-gray-500">{userActionInfo?.like.count}</div>
             </div>
-            <div className="w-40 h-28  border flex flex-col justify-center items-center">
-                <div className="flex text-red-500 items-center">
-                    <Image
-                        src="/detailRef/star_outlined.svg"
-                        alt="좋아요"
-                        width={30}
-                        height={30}
-                    />
-                    <div className="text-xl ml-1">{userActionInfo?.star.value.toFixed(2)}</div>
-                </div>
-                <div className="font-bold">강의평점</div>
-                <div className="font-normal text-gray-500">{userActionInfo?.star.count}명 참여</div>
+            <div className={`w-40 h-28 border ${userActionInfo?.star.iStar ? "" : "cursor-pointer"}`} ref={modalRef}>
+                {!isOpen ?
+                    (<div className="h-full w-full flex flex-col items-center justify-center" onClick={() => {
+                        if (userActionInfo?.star.iStar === false)
+                            openModal();
+                    }}>
+                        <div className="flex text-red-500 items-center">
+                            <Image
+                                src={userActionInfo?.star.iStar ? "/detailRef/star_one.svg" : "/detailRef/star_one_outlined.svg"}
+                                alt="강의평점"
+                                width={30}
+                                height={30}
+                            />
+                            <div className="text-xl ml-1">{userActionInfo?.star.value.toFixed(2)}</div>
+                        </div>
+                        <div className="font-bold">강의평점</div>
+                        <div className="font-normal text-gray-500">{userActionInfo?.star.count}명 참여</div>
+                    </div>)
+                    : (<div className="h-full w-full shadow-2xl flex flex-col items-center justify-evenly">
+                        <div className="flex text-red-500 items-center">
+                            {
+                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((star) => {
+                                    return (
+                                        <Image
+                                            key={star}
+                                            src={myLike >= star ? "/detailRef/star_half.svg" : "/detailRef/star_half_outlined.svg"}
+                                            alt="강의평점"
+                                            width={15}
+                                            height={30}
+                                            className={`overflow-hidden ${star % 2 ? "" : "scale-x-[-1]"} cursor-pointer`}
+                                            onClick={() => {
+                                                setMyLike(star);
+                                            }}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <button
+                            onClick={
+                                () => {
+                                    setUserActionInfo((prev) => {
+                                        if (prev === undefined) return prev;
+                                        return {
+                                            ...prev,
+                                            star: {
+                                                count: prev.star.count + 1,
+                                                value: (prev.star.value * prev.star.count + myLike) / (prev.star.count + 1),
+                                                iStar: true,
+                                            }
+                                        }
+                                    })
+                                    insertStar({ rid: rid, uid: userId, value: myLike });
+                                    closeModal();
+
+                                }
+                            }
+                            className="flex justify-center  w-28 py-2.5 px-4 text-sm font-bold text-center text-white bg-main rounded-lg focus:ring-4 focus:ring-primary-200 "
+                        >
+                            {myLike}점 주기
+                        </button>
+                    </div>)}
             </div>
         </div>
     )
 }
-
-
-{/* <div class="flex items-center space-x-3">
-    <svg class="w-8 h-8 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-    </svg>
-    <svg class="w-8 h-8 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-    </svg>
-    <svg class="w-8 h-8 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-    </svg>
-    <svg class="w-8 h-8 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-    </svg>
-    <svg class="w-8 h-8 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-    </svg>
-</div> */}

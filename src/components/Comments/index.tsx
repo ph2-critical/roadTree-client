@@ -28,7 +28,6 @@ export const Comments = (props: CommentFuncProps) => {
   const initCommentList = async () => {
     const data: CommentListProps[] = await getCommentList({ rid: rid }) ?? [];
     setCommentList(data);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -52,7 +51,6 @@ export const Comments = (props: CommentFuncProps) => {
             <textarea
               onChange={(e) => {
                 setInputComment(e.target.value);
-                console.log(inputComment)
               }}
               value={inputComment}
               id="comment"
@@ -122,7 +120,7 @@ export const Comments = (props: CommentFuncProps) => {
                     </button>
 
                   </div>
-                  <p className="text-gray-500 text-sm">{e.comment}</p>
+                  <p className="text-gray-500 text-sm break-all mr-10">{e.comment}</p>
 
                 </div>
               </div>
