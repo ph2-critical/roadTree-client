@@ -1,4 +1,4 @@
-import { deleteComment, getCommentList, insertComment } from "@/src/api/detailRefPage/comment";
+import { deleteComment, getCommentList, insertBadComment, insertComment } from "@/src/api/detailRefPage/comment";
 import { useNicknameStore } from "@/src/state/store";
 import { useModal } from "@/src/utils/hooks/useModal";
 import { track } from "@amplitude/analytics-browser";
@@ -125,7 +125,7 @@ export const Comments = (props: CommentFuncProps) => {
                         </time>
                       </p>
                     </div>
-                    <_OptionButton id={e.id} isMyComment={e.user?.id === uid} initCommentList={initCommentList} />
+                    <_OptionButton id={e.id} isMyComment={e.user?.id === uid} initCommentList={initCommentList} userid={uid} />
 
                   </div>
                   <p className="text-gray-500 text-sm break-all mr-10">{e.comment}</p>
@@ -148,10 +148,11 @@ interface OptionButtonProps {
   id: string;
   isMyComment: boolean;
   initCommentList: () => void;
+  userid: string;
 }
 
 function _OptionButton(props: OptionButtonProps) {
-  const { id, isMyComment, initCommentList } = props;
+  const { id, isMyComment, initCommentList, userid } = props;
   const { isOpen, toggleModal, modalRef } = useModal();
   return (
     <div ref={modalRef}>
@@ -184,6 +185,7 @@ function _OptionButton(props: OptionButtonProps) {
                 alert("삭제되었습니다");
               } else {
                 track("click_report_comment_btn", { id: id });
+                await insertBadComment({ id: id, uid: userid });
                 alert("신고되었습니다");
               }
             }}>

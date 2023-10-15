@@ -30,4 +30,8 @@ export const getCommentList = async (props: { rid: string }) => {
 
 export const deleteComment = async (props: { id: string }) => {
     await supabase.from("reference_comment").delete().match({ id: props.id });
-}  
+}
+
+export const insertBadComment = async (props: { id: string; uid: string }) => {
+    await supabase.from("bad_comment_signal").insert([{ id: props.id, whosay: props.uid }]);
+}
