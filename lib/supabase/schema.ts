@@ -562,7 +562,76 @@ export interface Database {
             referencedColumns: ["id"];
           },
         ];
-        }
+      };
+      reference_comment: {
+        Row: {
+          created_at: string;
+          rid: string;
+          uid: string;
+          comment: string;
+        };
+        Insert: {
+          created_at?: string;
+          rid: string;
+          uid: string;
+          comment: string;
+        };
+        Update: {
+          created_at?: string;
+          rid?: string;
+          uid?: string;
+          comment?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "reference_comment_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_comment_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "user";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user: {
+        Row: {
+          created_at: string;
+          email: string;
+          id: string;
+          nickname: string;
+          gender: string | null;
+          age: number | null;
+          career: string | null;
+          stack: string | null;
+          profile_image: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          email: string;
+          id: string;
+          nickname: string;
+          gender?: string | null;
+          age?: number | null;
+          career?: string | null;
+          stack?: string | null;
+          profile_image?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          id?: string;
+          nickname?: string;
+          gender?: string | null;
+          age?: number | null;
+          career?: string | null;
+          stack?: string | null;
+          profile_image?: string | null;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
