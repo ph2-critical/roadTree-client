@@ -22,7 +22,8 @@ export const getCommentList = async (props: { rid: string }) => {
     const { data, error } = await supabase
         .from("reference_comment")
         .select("id, user!inner(id, nickname, profile_image), comment, created_at")
-        .eq("rid", props.rid);
+        .eq("rid", props.rid)
+        .order('created_at', { ascending: false });
 
     return data;
 }
