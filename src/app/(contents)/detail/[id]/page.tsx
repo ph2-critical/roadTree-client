@@ -56,7 +56,7 @@ export default function DetailPage() {
         <Button emoji="&#129300;" />
         {/* 제일 count 높은 거 color main으로 */}
       </div>
-      <Comments />
+      {/* <Comments /> */}
     </main>
   );
 }

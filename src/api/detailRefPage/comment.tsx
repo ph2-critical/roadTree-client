@@ -21,8 +21,12 @@ export const insertComment = async (props: CommentAPIProps) => {
 export const getCommentList = async (props: { rid: string }) => {
     const { data, error } = await supabase
         .from("reference_comment")
-        .select("user!inner(nickname, profile_image), comment, created_at")
+        .select("id, user!inner(id, nickname, profile_image), comment, created_at")
         .eq("rid", props.rid);
 
     return data;
 }
+
+export const deleteComment = async (props: { id: string }) => {
+    await supabase.from("reference_comment").delete().match({ id: props.id });
+}  

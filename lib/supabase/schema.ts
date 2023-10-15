@@ -565,18 +565,21 @@ export interface Database {
       };
       reference_comment: {
         Row: {
+          id: string;
           created_at: string;
           rid: string;
           uid: string;
           comment: string;
         };
         Insert: {
+          id?: string;
           created_at?: string;
           rid: string;
           uid: string;
           comment: string;
         };
         Update: {
+          id?: string;
           created_at?: string;
           rid?: string;
           uid?: string;
