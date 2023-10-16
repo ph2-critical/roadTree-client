@@ -7,12 +7,8 @@ import { Comments } from "../Comments";
 import Image from "next/image";
 import { reference } from "@/roadmap_json/roadmap_data";
 import RefInfoView from "../ReferenceBlock/RefInfoView";
-import { deleteLike, getLikeList, getStarList, insertLike, insertStar } from "@/src/api/detailRefPage/getDetailRefInfo";
-import { debounce, set } from "lodash";
-import { useModal } from "@/src/utils/hooks/useModal";
-
-import og from "open-graph";
 import { ReactionBut } from "./ReactButton";
+import { UrlCard } from "./UrlCard";
 
 interface DetailRefModalProps {
     toggleModal: () => void;
@@ -25,10 +21,6 @@ interface DetailRefModalProps {
 
 export default function DetailRefModal(props: DetailRefModalProps) {
     const { toggleModal, modalRef, refData, userId } = props;
-
-    useEffect(() => {
-        fetch('/api/getOg').then((res) => res.json()).then((data) => console.log(data));
-    }, []);
 
     return (
         <div
@@ -61,8 +53,9 @@ export default function DetailRefModal(props: DetailRefModalProps) {
                     {/* 제목 */}
                 </p>
                 <RefInfoView refdata={refData} className="text-sm font-light text-gray4" />
-                <div className="text-base font-normal text-contentGray my-11 h-36">
-                    {refData.detail_content !== '' ? refData.detail_content : '임시 텍스트'}
+                <div className="text-base font-normal text-contentGray my-11 flex items-center justify-center">
+                    {/* {refData.detail_content !== '' ? refData.detail_content : '임시 텍스트'} */}
+                    <UrlCard rid={refData.rid} url={refData.url} />
                 </div>
                 <div className="flex m-auto">
                     <ReactionBut rid={refData.rid} userId={userId} />
