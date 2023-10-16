@@ -23,7 +23,7 @@ export function UrlCard(props: { rid: string, url: string }) {
 
     useEffect(() => {
         try {
-            fetch("/api/getog/" + props.rid).then((res) => res.json()).then((data) => { setOgInfo(data); console.log(data) });
+            fetch("/api/getog/" + props.rid).then((res) => res.json()).then((data) => { setOgInfo(data); });
         } catch (error) {
 
         }

@@ -8,7 +8,6 @@ import { OgObject } from "open-graph-scraper/dist/lib/types";
 const getOg = (props: { url: string }): Promise<OgObject> => new Promise((resolve, reject) => {
     const url = props.url ?? '';
     ogs({ url: url }).then((data) => {
-        console.log(data)
         const { error, result, response, html } = data;
         if (error) {
             reject(error);
@@ -19,7 +18,7 @@ const getOg = (props: { url: string }): Promise<OgObject> => new Promise((resolv
 
 });
 
-export async function GET(req: NextApiRequest, { params }: { params: { rid: string } }) {
+export async function GET(req: Request, { params }: { params: { rid: string } }) {
     const { rid } = params;
 
     const { data } = await supabase.from("reference").select("url").eq("rid", rid);
@@ -27,9 +26,6 @@ export async function GET(req: NextApiRequest, { params }: { params: { rid: stri
         return NextResponse.error();
     }
     const ogData: OgObject = await getOg({ url: data[0].url ?? "" });
-
-    console.log(ogData)
-    console.log("ogData!!")
 
 
     return NextResponse.json({
