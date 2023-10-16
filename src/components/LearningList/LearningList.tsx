@@ -122,7 +122,6 @@ export const SubmissionList = () => {
                                   content: submission.content,
                                   study: submission.study,
                                   url: submission.url,
-
                                 });
                                 setContent(submission.content);
                                 toggleModal();

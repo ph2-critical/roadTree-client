@@ -8,6 +8,8 @@ import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
 import { useRouter } from "next/navigation";
 import { track } from "@amplitude/analytics-browser";
+import { SignUpModal } from "@/src/components/Modal/signUpModal";
+import { useModal } from "@/src/utils/hooks/useModal";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -23,7 +25,7 @@ export default function Page() {
   const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
   const router = useRouter();
-
+  const { isOpen, toggleModal, openModal, modalRef } = useModal();
   const {
     register,
     watch,
@@ -35,6 +37,7 @@ export default function Page() {
   useEffect(() => {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
+    openModal();
   }, [nickname, email]);
 
   const onSubmit = () => {
@@ -55,19 +58,9 @@ export default function Page() {
     <section className="flex h-[100vh]">
       <form
         className="container max-w-2xl m-auto shadow-md md:w-3/4"
-        onSubmit={handleSubmit(
-          () => {
-            onSubmit();
-          },
-          () => {
-            // if (errors.age) {
-            //   alert(errors.age.message);
-            // } else {
-            //   alert("모든 정보를 입력해주세요.");
-            // }
-            console.log(watch());
-          },
-        )}
+        onSubmit={handleSubmit(() => {
+          onSubmit();
+        })}
       >
         <div className="border-t-2 rounded-lg border-doneColor bg-gray-100/5 ">
           <Image
@@ -255,13 +248,26 @@ export default function Page() {
             </div>
           </div>
           <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
-            <button type="submit" className="signup-btn bg-[#13D080]" 
-              onClick={() => {track('click_save_userinfo_btn')}}>
+            <button
+              type="submit"
+              className="signup-btn bg-[#13D080]"
+              onClick={() => {
+                track("click_save_userinfo_btn");
+              }}
+            >
               저장하기
             </button>
           </div>
         </div>
       </form>
+      {isOpen ? (
+        <SignUpModal
+          isOpen={isOpen}
+          toggleModal={toggleModal}
+          modalRef={modalRef}
+          onSubmit={onSubmit}
+        />
+      ) : null}
     </section>
   );
 }

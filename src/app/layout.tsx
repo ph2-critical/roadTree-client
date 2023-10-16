@@ -1,3 +1,4 @@
+import MyDocument from "@/lib/pixel/meta";
 import Providers from "../Provider";
 import { Header } from "../components/Header";
 import "./globals.css";
@@ -23,7 +24,9 @@ export default function RootLayout({
           content="당신의 공부 러닝 메이트, 이제 RoadTree 와 함께"
         />
         <meta property="og:image" content="/logo.png" />
+       
       </head>
+      
       <body
         className={"h-screenWithoutHeader w-full "}
         suppressHydrationWarning={true}
