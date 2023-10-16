@@ -1,7 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabase/supabase";
 import { track } from "@amplitude/analytics-browser";
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, use, useEffect, useState } from "react";
 import { Button } from "../Button";
 import { Comments } from "../Comments";
 import Image from "next/image";
@@ -21,31 +21,14 @@ interface DetailRefModalProps {
     userId: string;
 }
 
-const getOg = () => new Promise((resolve, reject) => {
-    const url = 'https://bbs.ruliweb.com/hobby/board/300117/read/30653554';
-    og(url, function (err: Error | null, meta: og.Data | undefined) {
-        if (err) {
-            reject(err);
-            return;
-        }
-        resolve(meta);
-    });
 
-});
-
-export async function getServerSideProps() {
-    console.log('이게 과연 나올까?')
-    const result = await fetch("API 호출 URL");
-
-    return {
-        props: {
-            result,
-        },
-    };
-}
 
 export default function DetailRefModal(props: DetailRefModalProps) {
     const { toggleModal, modalRef, refData, userId } = props;
+
+    useEffect(() => {
+        fetch('/api/getOg').then((res) => res.json()).then((data) => console.log(data));
+    }, []);
 
     return (
         <div
