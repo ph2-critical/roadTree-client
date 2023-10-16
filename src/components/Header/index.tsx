@@ -57,7 +57,7 @@ export const Header = () => {
     try {
       checkUser();
     } catch (error) {
-      console.log(123);
+
     }
 
     if (process.env.NODE_ENV !== "development") {
