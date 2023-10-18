@@ -8,6 +8,8 @@ import { useMutation } from "@tanstack/react-query";
 import { postUserInfo } from "@/src/api/signup";
 import { useRouter } from "next/navigation";
 import { track } from "@amplitude/analytics-browser";
+import { SignUpModal } from "@/src/components/Modal/signUpModal";
+import { useModal } from "@/src/utils/hooks/useModal";
 
 export interface ExtraInfoInterface {
   nickname: string;
@@ -21,6 +23,7 @@ export interface ExtraInfoInterface {
 interface ProfileProps {
   id: string;
   email: string;
+  path: string;
   nickname?: string;
   gender?: string;
   age?: number;
@@ -32,6 +35,7 @@ export default function EditProfile(props: ProfileProps) {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
   const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
+  const { isOpen, toggleModal, openModal, modalRef } = useModal();
   const router = useRouter();
   const {
     register,
@@ -45,6 +49,10 @@ export default function EditProfile(props: ProfileProps) {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
   }, [nickname, email]);
+
+  useEffect(() => {
+    if (props.path === "/signup") openModal();
+  });
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
@@ -266,6 +274,14 @@ export default function EditProfile(props: ProfileProps) {
           </div>
         </div>
       </form>
+      {isOpen ? (
+        <SignUpModal
+          isOpen={isOpen}
+          toggleModal={toggleModal}
+          modalRef={modalRef}
+          onSubmit={onSubmit}
+        />
+      ) : null}
     </section>
   );
 }
