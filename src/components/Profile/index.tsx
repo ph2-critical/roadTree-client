@@ -20,7 +20,7 @@ export interface ExtraInfoInterface {
   stack: string;
 }
 
-interface ProfileProps {
+export interface ProfileProps {
   id: string;
   email?: string;
   path: string;
@@ -36,6 +36,7 @@ export default function EditProfile(props: ProfileProps) {
   const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);
   const { isOpen, toggleModal, openModal, modalRef } = useModal();
+  const { gender, age, career, stack } = props;
   const router = useRouter();
   const {
     register,
@@ -48,7 +49,11 @@ export default function EditProfile(props: ProfileProps) {
   useEffect(() => {
     if (nickname) setValue("nickname", nickname);
     if (email) setValue("email", email);
-  }, [nickname, email]);
+    if (gender) setValue("gender", gender);
+    if (age) setValue("age", age);
+    if (career) setValue("career", career);
+    if (stack) setValue("stack", stack);
+  }, [nickname, email, gender, age, career, stack]);
 
   useEffect(() => {
     if (props.path === "/signup") openModal();
@@ -247,7 +252,8 @@ export default function EditProfile(props: ProfileProps) {
                   onChange={(e) => {
                     setValue("stack", e.target.value);
                   }}
-                  defaultValue={""}
+                  key={stack || ""}
+                  defaultValue={stack || ""}
                 >
                   <option value="" disabled hidden>
                     학습 분야
