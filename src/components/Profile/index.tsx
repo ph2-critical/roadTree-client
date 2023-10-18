@@ -22,7 +22,7 @@ export interface ExtraInfoInterface {
 
 interface ProfileProps {
   id: string;
-  email: string;
+  email?: string;
   path: string;
   nickname?: string;
   gender?: string;
@@ -52,7 +52,7 @@ export default function EditProfile(props: ProfileProps) {
 
   useEffect(() => {
     if (props.path === "/signup") openModal();
-  });
+  }, []);
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
