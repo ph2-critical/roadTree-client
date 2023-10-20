@@ -15,7 +15,9 @@ export default function Page() {
   const path = usePathname();
   useEffect(() => {
     getUserInfo(userId).then((res) => {
-      setData(res && res[0]);
+      if (res !== null) {
+        setData(res && res[0]);
+      }
     });
   }, []);
 
