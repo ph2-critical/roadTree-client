@@ -61,17 +61,13 @@ export const QuestionIcon = () => {
         className="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 "
       >
         <div className="p-3 space-y-2">
-          <h3 className="font-semibold text-gray-900 ">
-            사용 방법
-          </h3>
+          <h3 className="font-semibold text-gray-900 ">사용 방법</h3>
           <p>
             내가 학습하고 있는 것들을 모아볼 수 있어요.
             <br />
             일일이 찾지 않고 마이페이지 내에서 학습 상태를 변경해보세요.
           </p>
-          <h3 className="font-semibold text-gray-900 ">
-            권장 사용 방법
-          </h3>
+          <h3 className="font-semibold text-gray-900 ">권장 사용 방법</h3>
           <p>
             공부 순서를 지정해보세요.
             <br />

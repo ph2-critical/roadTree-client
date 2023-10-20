@@ -143,7 +143,7 @@ export const SubmissionList = () => {
                                     study: submission.study,
                                     url: submission.url,
                                   });
-                                }}
+                                }}ㅋ
                               >
                                 학습 링크
                               </a>
