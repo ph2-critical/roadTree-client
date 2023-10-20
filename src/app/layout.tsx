@@ -1,4 +1,3 @@
-import MyDocument from "@/lib/pixel/meta";
 import Providers from "../Provider";
 import { Header } from "../components/Header";
 import "./globals.css";
