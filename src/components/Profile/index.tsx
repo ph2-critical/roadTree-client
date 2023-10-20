@@ -21,14 +21,16 @@ export interface ExtraInfoInterface {
 }
 
 export interface ProfileProps {
-  id: string;
+  created_at?: string;
   email?: string;
-  path: string;
+  id?: string;
   nickname?: string;
-  gender?: string;
-  age?: number;
-  career?: string;
-  stack?: string;
+  gender?: string | null;
+  age?: number | null;
+  career?: string | null;
+  stack?: string | null;
+  profile_image?: string | null;
+  path?: string;
 }
 
 export default function EditProfile(props: ProfileProps) {
