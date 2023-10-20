@@ -434,6 +434,7 @@ export interface Database {
           price: number | null;
           rid: string;
           title: string;
+          detail_content: string | null;
           url: string;
         };
         Insert: {
@@ -489,6 +490,150 @@ export interface Database {
           url?: string | null;
         };
         Relationships: [];
+      };
+      reference_like: {
+        Row: {
+
+          created_at: string | null;
+          rid: string;
+          uid: string;
+        };
+        Insert: {
+
+          created_at?: string | null;
+          rid: string;
+          uid: string;
+        };
+        Update: {
+
+          created_at?: string | null;
+          rid?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "reference_like_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_like_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      reference_star: {
+        Row : {
+
+          created_at: string | null;
+          rid: string;
+          uid: string;
+          star: number;
+        };
+        Insert: {
+
+          created_at?: string | null;
+          rid: string;
+          uid: string;
+          star: number;
+        };
+        Update: {
+
+          created_at?: string | null;
+          rid?: string;
+          uid?: string;
+          star?: number;
+        };
+        
+        Relationships: [
+          {
+            foreignKeyName: "reference_star_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_star_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      reference_comment: {
+        Row: {
+          id: string;
+          created_at: string;
+          rid: string;
+          uid: string;
+          comment: string;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          rid: string;
+          uid: string;
+          comment: string;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          rid?: string;
+          uid?: string;
+          comment?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "reference_comment_rid_fkey";
+            columns: ["rid"];
+            referencedRelation: "reference";
+            referencedColumns: ["rid"];
+          },
+          {
+            foreignKeyName: "reference_comment_user_id_fkey";
+            columns: ["uid"];
+            referencedRelation: "user";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user: {
+        Row: {
+          created_at: string;
+          email: string;
+          id: string;
+          nickname: string;
+          gender: string | null;
+          age: number | null;
+          career: string | null;
+          stack: string | null;
+          profile_image: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          email: string;
+          id: string;
+          nickname: string;
+          gender?: string | null;
+          age?: number | null;
+          career?: string | null;
+          stack?: string | null;
+          profile_image?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          id?: string;
+          nickname?: string;
+          gender?: string | null;
+          age?: number | null;
+          career?: string | null;
+          stack?: string | null;
+          profile_image?: string | null;
+        };
       };
     };
     Views: {

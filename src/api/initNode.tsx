@@ -26,12 +26,13 @@ export const getReferenceUsingNid = async (nid: string) => {
   const promise = data.data?.map(async (item) => {
     const data2 = await supabase
       .from("reference")
-      .select("rid, title, url, grade, category, amount, price, created_at")
+      .select("rid, title, detail_content, url, grade, category, amount, price, created_at")
       .eq("rid", item.rid);
 
     const refData: reference = {
       rid: data2.data![0].rid,
       title: data2.data![0].title,
+      detail_content: data2.data![0].detail_content ?? "",
       url: data2.data![0].url,
       grade: data2.data![0].grade ?? 0,
       category: data2.data![0].category,

@@ -13,6 +13,9 @@ import {
 } from "@/src/api/stateApi";
 import { CategoryImage } from "@/src/assets/IconImage";
 import ReferenceBlock from "../ReferenceBlock/ReferenceBlock";
+import { useModal } from "@/src/utils/hooks/useModal";
+import DetailRefModal from "../DetailRoadmap/DetailRefModal";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
 
 export default function RefBlock(props: {
   refdata: reference;
@@ -46,6 +49,7 @@ export default function RefBlock(props: {
   const categoryImage = CategoryImage;
 
   const [stateNum, setStateNum] = useState<number>(0);
+  const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
 
   const blockOnClick = (e: React.MouseEvent<Element, MouseEvent>) => {
     if (
@@ -65,7 +69,8 @@ export default function RefBlock(props: {
         selectNodeId: props.select?.nid,
         selectNodeName: props.select?.name,
       });
-      window.open(refdata.url);
+      // window.open(refdata.url);
+      toggleModal();
     }
   }
 
@@ -134,14 +139,24 @@ export default function RefBlock(props: {
   };
 
   if (refBlockInit) {
-    return ReferenceBlock({
-      refdata: refdata,
-      onClick: blockOnClick,
-      isDropMenu: refdata.title !== "준비중",
-      stateNum: stateNum,
-      setStateNum: setRefStateNum,
-      moreOption: props.newRef ? ['new'] : []
-    });
+    return (
+      <>
+        {ReferenceBlock({
+          refdata: refdata,
+          onClick: blockOnClick,
+          isDropMenu: refdata.title !== "준비중",
+          stateNum: stateNum,
+          setStateNum: setRefStateNum,
+          moreOption: props.newRef ? ['new'] : []
+        })}
+
+        {isOpen && (
+          <ModalPortal>
+            <DetailRefModal modalRef={modalRef} toggleModal={toggleModal} refData={refdata} userId={userId} />
+          </ModalPortal>
+        )}
+      </>
+    );
   } else {
     return <div></div>;
   }

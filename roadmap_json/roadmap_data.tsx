@@ -8,6 +8,7 @@ export interface reference {
   price: number | null;
   created_at: string;
   state?: number;
+  detail_content?: string;
 }
 
 export interface RoadData {
