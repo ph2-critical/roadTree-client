@@ -44,7 +44,9 @@ export default function Home() {
               <a
                 href="/roadmap"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor"
-                onClick={() => { track("click_go_roadpage_select_btn_on_home") }}
+                onClick={() => {
+                  track("click_go_roadpage_select_btn_on_home");
+                }}
               >
                 로드맵 시작하기
                 <svg
@@ -63,7 +65,9 @@ export default function Home() {
               <a
                 href="https://open.kakao.com/o/gROlTdif"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100"
-                onClick={() => { track("click_open_kakao_chatting_btn_on_home") }}
+                onClick={() => {
+                  track("click_open_kakao_chatting_btn_on_home");
+                }}
               >
                 {/* kakao yellow = FCE44C */}
                 로드트리 오픈채팅방
@@ -77,7 +81,7 @@ export default function Home() {
           <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-12 text-center lg:text-start lg:space-y-20 lg:px-6">
             {/* <!-- Row --> */}
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-              <div className="text-gray-500 sm:text-lg  ">
+              <div className="text-gray-500 sm:text-lg ">
                 <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 ">
                   입문자를 위한
                   <div className="mt-3" />
@@ -155,7 +159,9 @@ export default function Home() {
               <a
                 href="/roadmap"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-main hover:bg-green-800 focus:ring-4 focus:ring-todoColor "
-                onClick={() => { track("click_go_roadpage_select_btn_on_footer") }}
+                onClick={() => {
+                  track("click_go_roadpage_select_btn_on_footer");
+                }}
               >
                 로드트리 시작하기
                 <svg
