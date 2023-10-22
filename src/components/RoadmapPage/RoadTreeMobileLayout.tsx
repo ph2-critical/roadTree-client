@@ -22,7 +22,7 @@ export default function RoadTreeMobileLayout(props: {
     if (data.children) {
       return data.children.map((child, idx) => {
         return (
-          <div key={"roadTreeMobileLayout_" + idx} className="px-8 pb-2">
+          <div key={"roadTreeMobileLayout_" + idx} className="px-2 pb-2 ">
             <div
               className={`border-2 border-black w-full rounded-lg  mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
                                 ${

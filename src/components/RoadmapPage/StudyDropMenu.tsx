@@ -40,7 +40,7 @@ export default function StudyDropMenu(props: {
     "text-gray-200",
   ];
 
-  const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
+  const { isOpen, modalRef, toggleModal } = useModal();
 
   return (
     <div className="relative" ref={modalRef}>
