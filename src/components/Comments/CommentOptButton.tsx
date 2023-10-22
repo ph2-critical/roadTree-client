@@ -19,7 +19,11 @@ export function OptionButton(props: OptionButtonProps) {
                 data-dropdown-toggle="dropdownComment1"
                 className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg "
                 type="button"
-                onClick={toggleModal}
+                onClick={
+                    () => {
+                        toggleModal()
+                        track("click_comment_setting_btn", { id: id });
+                    }}
             >
                 <svg
                     className="w-5 h-5"
@@ -38,6 +42,7 @@ export function OptionButton(props: OptionButtonProps) {
                         className="w-20 h-10 flex items-center justify-center text-sm"
                         onClick={async () => {
                             if (isMyComment) {
+                                track("click_delete_comment_btn", { id: id });
                                 await deleteComment({ id: id });
                                 initCommentList();
                                 alert("삭제되었습니다");

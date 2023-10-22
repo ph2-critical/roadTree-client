@@ -21,9 +21,11 @@ export const insertComment = async (props: CommentAPIProps) => {
 export const getCommentList = async (props: { rid: string }) => {
     const { data, error } = await supabase
         .from("reference_comment")
-        .select("id, user!inner(id, nickname, profile_image), comment, created_at")
+        .select("id, user!reference_comment_uid_fkey(id, nickname, profile_image), comment, created_at")
         .eq("rid", props.rid)
         .order('created_at', { ascending: false });
+
+    console.log(data)
 
     return data;
 }
@@ -33,5 +35,5 @@ export const deleteComment = async (props: { id: string }) => {
 }
 
 export const insertBadComment = async (props: { id: string; uid: string }) => {
-    await supabase.from("bad_comment_signal").insert([{ id: props.id, whosay: props.uid }]);
+    await supabase.from("bad_comment_signal").insert([{ comment_id: props.id, whosay: props.uid }]);
 }

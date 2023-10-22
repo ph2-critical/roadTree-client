@@ -1,5 +1,6 @@
 import { deleteLike, getLikeList, getStarList, insertLike, insertStar } from "@/src/api/detailRefPage/getDetailRefInfo";
 import { useModal } from "@/src/utils/hooks/useModal";
+import { track } from "@amplitude/analytics-browser";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -27,6 +28,7 @@ export function ReactionBut(props: { rid: string, userId: string }) {
 
 
     const toggleLike = async () => {
+        track("click_like_btn", { rid: rid, insertLike: !userActionInfo?.like.iLike });
         if (userActionInfo?.like.iLike) {
             // 좋아요 취소
             deleteLike({ rid: rid, uid: userId });
@@ -119,8 +121,10 @@ export function ReactionBut(props: { rid: string, userId: string }) {
             <div className={`w-40 h-28 border ${userActionInfo?.star.iStar ? "" : "cursor-pointer"}`} ref={modalRef}>
                 {!isOpen ?
                     (<div className="h-full w-full flex flex-col items-center justify-center" onClick={() => {
-                        if (userActionInfo?.star.iStar === false)
+                        if (userActionInfo?.star.iStar === false) {
+                            track("click_open_star_modal_btn", { rid: rid });
                             openModal();
+                        }
                     }}>
                         <div className="flex text-red-500 items-center">
                             <Image
@@ -148,6 +152,7 @@ export function ReactionBut(props: { rid: string, userId: string }) {
                                             className={`overflow-hidden ${star % 2 ? "" : "scale-x-[-1]"} cursor-pointer`}
                                             onClick={() => {
                                                 setMyLike(star);
+                                                track("change_star_value", { star: star });
                                             }}
                                         />
                                     )
@@ -170,6 +175,7 @@ export function ReactionBut(props: { rid: string, userId: string }) {
                                         }
                                     })
                                     insertStar({ rid: rid, uid: userId, value: myLike });
+                                    track("click_set_star_btn", { star: myLike });
                                     closeModal();
 
                                 }
