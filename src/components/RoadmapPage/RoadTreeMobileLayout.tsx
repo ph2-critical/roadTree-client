@@ -1,6 +1,10 @@
 import { RoadData } from "@/roadmap_json/roadmap_data";
 import { useRoadTreeStore } from "./RoadTreeLayout";
 import Image from "next/image";
+import { ModalPortal } from "@/src/utils/hooks/usePortal";
+import LoginModal from "../Modal/LoginModal";
+import { useModal } from "@/src/utils/hooks/useModal";
+import { useState } from "react";
 
 export default function RoadTreeMobileLayout(props: {
   roadData: RoadData;
@@ -11,12 +15,15 @@ export default function RoadTreeMobileLayout(props: {
     stateBorderColor: string[];
     stateTextColor: string[];
   };
+  userId: string;
 }) {
   const roadData: RoadData = props.roadData;
   const toggleSelect = props.toggleSelect;
   const setIsShowRef = props.setIsShowRef;
   const { statebgColor, stateBorderColor, stateTextColor } = props.stateColor;
   const { updateFunc } = useRoadTreeStore(); // update하여 노드에 적용하기 위한 용도
+  const { isOpen, modalRef, toggleModal } = useModal();
+  const [type, setType] = useState("");
 
   const renderChildren = (data: RoadData) => {
     if (data.children) {
@@ -34,8 +41,16 @@ export default function RoadTreeMobileLayout(props: {
                                 } text-[${stateTextColor[child.state ?? 0]}]}
                                 ${child.state === 3 ? " line-through " : ""}`}
               onClick={() => {
-                toggleSelect(child);
-                updateFunc(child);
+                if (
+                  (props.userId === "" || props.userId === undefined) &&
+                  child.depth === 2
+                ) {
+                  setType("moreInfo");
+                  toggleModal();
+                } else {
+                  toggleSelect(child);
+                  updateFunc(child);
+                }
               }}
             >
               <div className="">
@@ -77,6 +92,15 @@ export default function RoadTreeMobileLayout(props: {
       <div id="roadTreeMobileEntireGroup" className="">
         {renderChildren(roadData)}
       </div>
+      {(props.userId === undefined || props.userId === "") && isOpen && (
+        <ModalPortal>
+          <LoginModal
+            toggleModal={toggleModal}
+            modalRef={modalRef}
+            type={type}
+          />
+        </ModalPortal>
+      )}
     </div>
   );
 }

@@ -533,6 +533,7 @@ export default function RoadTreeLayout(props: RoadTreeLayOutProps) {
       {init && root && ismdSize && (
         <RoadTreeMobileLayout
           roadData={root}
+          userId={userId}
           toggleSelect={toggle_select}
           setIsShowRef={setIsShowRef}
           stateColor={{ statebgColor, stateBorderColor, stateTextColor }}
