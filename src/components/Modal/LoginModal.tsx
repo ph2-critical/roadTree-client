@@ -32,7 +32,6 @@ export default function LoginModal(props: LoginModalProps) {
   // kakao Login
   const kakaoLogin = async () => {
     track("click_kakaologin_modal_btn");
-    console.log("카카오 확인");
     await supabase.auth
       .signInWithOAuth({
         provider: "kakao",
@@ -65,16 +64,16 @@ export default function LoginModal(props: LoginModalProps) {
               {props.type === "login"
                 ? "Sign in"
                 : props.type === "moreInfo"
-                  ? "More"
-                  : "Sign up"}
+                ? "More"
+                : "Sign up"}
             </h1>
 
             <p>
               {props.type === "login"
                 ? "소셜 로그인으로 5초 만에 로그인하세요."
                 : props.type === "moreInfo"
-                  ? "로그인해서 더 많은 기능을 이용해보세요."
-                  : "소셜 계정으로 5초만에 회원가입해보세요."}
+                ? "로그인해서 더 많은 기능을 이용해보세요."
+                : "소셜 계정으로 5초만에 회원가입해보세요."}
             </p>
 
             {/* google Login */}
