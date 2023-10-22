@@ -37,7 +37,7 @@ export default function SideBar(props: {
   const userId: string = props.userId;
   const { isShowRef, setIsShowRef } = props.showRef;
   const useWindowResizeVar: boolean = useWindowResize();
-  const searchParams:ReadonlyURLSearchParams = useSearchParams();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   const [references, setReferences] = useState<reference[]>([]);
 
@@ -200,14 +200,14 @@ export default function SideBar(props: {
               )}
               <div className="flex flex-col gap-y-2">
                 {references.map((item, index) => {
-                  
+
                   const checkNew = (ref: reference) => {
                     var newDate: Date = new Date();
                     newDate.setDate(newDate.getDate() - 15);
                     return new Date(ref.created_at).getTime() > newDate.getTime();
                   }
 
-                  const refParmas:string|null = searchParams.get("ref");
+                  const refParmas: string | null = searchParams.get("ref");
                   if (item.rid === refParmas) {
                     const element = document.getElementById("refblock-" + item.rid);
                     element?.scrollIntoView({ behavior: "smooth" });

@@ -1,239 +1,147 @@
-export const Comments = () => {
+import { deleteComment, getCommentList, insertBadComment, insertComment } from "@/src/api/detailRefPage/comment";
+import { useNicknameStore } from "@/src/state/store";
+import { useModal } from "@/src/utils/hooks/useModal";
+import { track } from "@amplitude/analytics-browser";
+import { set } from "lodash";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { OptionButton } from "./CommentOptButton";
+
+
+interface CommentListProps {
+  id: string
+  comment: string;
+  created_at: string;
+  user: {
+    id: string;
+    nickname: string;
+    profile_image: string | null;
+  } | null;
+}
+
+interface CommentFuncProps {
+  uid: string;
+  rid: string;
+}
+
+export const Comments = (props: CommentFuncProps) => {
+  const { userPicture } = useNicknameStore();
+  const [inputComment, setInputComment] = useState<string>("");
+  const { uid, rid } = props;
+  const [commentList, setCommentList] = useState<CommentListProps[]>([]);
+
+
+  const initCommentList = async () => {
+    const data: CommentListProps[] = await getCommentList({ rid: rid }) ?? [];
+    setCommentList(data);
+  }
+
+  const elapsedTime = (date: number): string => {
+    const start = new Date(date);
+    const end = new Date();
+
+    const seconds = Math.floor((end.getTime() - start.getTime()) / 1000);
+    if (seconds < 60) return '방금 전';
+
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+
+    return `${start.toLocaleDateString()}`;
+  };
+
+  useEffect(() => {
+    initCommentList();
+  }, []);
+
   return (
-    <section className="py-8 bg-white  lg:py-16">
+    <section className="py-8 bg-white lg:py-16">
       <div className="mr-auto ">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <a className="text-base font-medium text-gray-900 lg:text-base ">
-            댓글 수 3
+            댓글 수 {commentList.length ?? 0}
           </a>
         </div>
 
-        <article className="p-6 mb-6 text-base bg-white rounded-lg ">
-          <footer className="flex items-center justify-between mb-2">
-            <div className="flex items-center">
-              <p className="inline-flex items-center mr-3 text-sm text-gray-900 ">
-                강필중
-              </p>
-              <p className="text-sm text-gray-600 ">
-                <time dateTime="2022-02-08" title="February 8th, 2022">
-                  Feb. 8, 2022
-                  {/* 현재 시간 기준으로 커스터마이징하기 */}
-                </time>
-              </p>
-            </div>
-            <button
-              id="dropdownComment1Button"
-              data-dropdown-toggle="dropdownComment1"
-              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 "
-              type="button"
-            >
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-              </svg>
-              <span className="sr-only">Comment settings</span>
-            </button>
-            {/* <!-- Dropdown menu --> */}
-            <div
-              id="dropdownComment1"
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 "
-            >
-              {/* 더보기 버튼 눌렀을 때 여기 hidden이 풀려야됨! */}
-              <ul
-                className="py-1 text-sm text-gray-700 "
-                aria-labelledby="dropdownMenuIconHorizontalButton"
-              >
-                {/* <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Edit
-                  </a>
-                </li> */}
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 "
-                  >
-                    Remove
-                  </a>
-                </li>
-                {/* <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Report
-                  </a>
-                </li> */}
-              </ul>
-            </div>
-          </footer>
-          <p className="text-gray-500">나는 바보다</p>
-          <div className="flex items-center mt-4 space-x-4">
-            <button
-              type="button"
-              className="flex items-center text-sm text-gray-500 hover:underline "
-            >
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                ></path>
-              </svg>
-              답글달기
-            </button>
+        <div className="w-full mb-6">
+          <div className="h-20 mb-3  bg-white border border-gray-200 rounded-lg rounded-t-lg ">
+            <label htmlFor="comment" className="sr-only">
+              댓글 쓰기
+            </label>
+            <textarea
+              onChange={(e) => {
+                setInputComment(e.target.value);
+              }}
+              value={inputComment}
+              id="comment"
+              rows={3}
+              maxLength={300}
+              className="w-full p-3 h-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none  resize-none"
+              placeholder="주제와 무관하거나 명예를 훼손하는 댓글은 관련 법률에 따라 제재를 받을 수 있습니다."
+              required
+            ></textarea>
           </div>
-        </article>
-        <article className="p-6 mb-6 ml-6 text-base bg-white rounded-lg lg:ml-12 ">
-          <footer className="flex items-center justify-between mb-2">
-            <div className="flex items-center">
-              <p className="inline-flex items-center mr-3 text-sm text-gray-900 ">
-                Jese Leos
-              </p>
-              <p className="text-sm text-gray-600">
-                <time dateTime="2022-02-12" title="February 12th, 2022">
-                  Feb. 12, 2022
-                </time>
-              </p>
-            </div>
-            <button
-              id="dropdownComment2Button"
-              data-dropdown-toggle="dropdownComment2"
-              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 "
-              type="button"
-            >
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-              </svg>
-              <span className="sr-only">Comment settings</span>
-            </button>
-            {/* <!-- Dropdown menu --> */}
-            <div
-              id="dropdownComment2"
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 "
-            >
-              <ul
-                className="py-1 text-sm text-gray-700 "
-                aria-labelledby="dropdownMenuIconHorizontalButton"
-              >
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 "
-                  >
-                    Edit
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 "
-                  >
-                    Remove
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 "
-                  >
-                    Report
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </footer>
-          <p className="text-gray-500 ">
-            Much appreciated! Glad you liked it ☺️
-          </p>
-          <div className="flex items-center mt-4 space-x-4">
-            <button
-              type="button"
-              className="flex items-center text-sm text-gray-500 hover:underline "
-            >
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                ></path>
-              </svg>
-              Reply
-            </button>
-          </div>
-        </article>
-
-        <div className="flex">
-          <div className="flex flex-col w-1/6 gap-[4px]">
-            <span className="h-10 pt-2 text-sm border border-gray-300 rounded-lg cursor-pointer">
-              <input
-                type="text"
-                name="nickname"
-                placeholder="닉네임"
-                className="flex-grow w-11/12 px-4 text-sm rounded-lg focus:outline-none"
-              />
-            </span>
-            <span className="h-10 pt-2 text-sm border border-gray-300 rounded-lg cursor-pointer ">
-              <input
-                type="password"
-                name="password"
-                placeholder="비밀번호"
-                className="flex-grow w-11/12 px-4 text-sm rounded-lg focus:outline-none"
-              />
-            </span>
-          </div>
-          <form className="w-5/6 mb-6 ml-3">
-            <div className="px-4 py-2 mb-4 bg-white border border-gray-200 rounded-lg rounded-t-lg ">
-              <label htmlFor="comment" className="sr-only">
-                Your comment
-              </label>
-              <textarea
-                id="comment"
-                rows={6}
-                className="w-full h-20 px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none "
-                placeholder="댓글을 입력해주세요."
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="flex justify-center w-28 ml-auto py-2.5 px-4 text-sm font-bold text-center text-white bg-main rounded-lg focus:ring-4 focus:ring-primary-200  hover:bg-green-900"
-            >
-              등록
-            </button>
-          </form>
+          <button
+            onClick={
+              async () => {
+                if (inputComment !== "") {
+                  await insertComment({ uid: uid, rid: rid, comment: inputComment });
+                  setInputComment("");
+                  initCommentList();
+                }
+              }
+            }
+            className="flex justify-center  w-28 ml-auto py-2.5 px-4 text-sm font-bold text-center text-white bg-main rounded-lg focus:ring-4 focus:ring-primary-200  hover:bg-green-900"
+          >
+            등록
+          </button>
         </div>
+
+        {
+          commentList.map((e, idx) => {
+            return (<div key={idx}>
+              <div className="my-3 text-base bg-white rounded-lg flex items-center gap-3">
+                <Image
+                  src={e.user?.profile_image ?? "/header/user.svg"}
+                  alt={"user"}
+                  width={512}
+                  height={512}
+                  className="hidden rounded-full select-none w-9 h-9 md:flex"
+                />
+                <div className="w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                      <p className="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold ">
+                        {e.user?.nickname ?? "(알수없음)"}
+                      </p>
+                      <p className="text-sm text-gray-600 ">
+                        <time dateTime="2022-02-08" title="February 8th, 2022">
+                          {elapsedTime(new Date(e.created_at).getTime())}
+                          {/* 현재 시간 기준으로 커스터마이징하기 */}
+                        </time>
+                      </p>
+                    </div>
+                    <OptionButton id={e.id} isMyComment={e.user?.id === uid} initCommentList={initCommentList} userid={uid} />
+
+                  </div>
+                  <p className="text-gray-500 text-sm break-all mr-10">{e.comment}</p>
+
+                </div>
+              </div>
+              <hr />
+            </div>
+            )
+          })
+        }
+
+
       </div>
     </section>
   );
 };
+

@@ -16,6 +16,7 @@ import { useLoginStore, useNicknameStore } from "@/src/state/store";
 import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
 import { Search } from "../Search/Search";
+import { updateUserPicture } from "@/src/api/tmp/updateUserPicture";
 
 export const Header = () => {
   const { setNickname, setEmail, setUserPicture, userPicture } =
@@ -45,6 +46,7 @@ export const Header = () => {
         setNickname(user?.user_metadata.full_name);
         setEmail(user?.user_metadata.email);
         setUserPicture(user?.user_metadata.avatar_url);
+        updateUserPicture({ id: user.id, picture: user?.user_metadata.avatar_url });
       } else {
         initAmplitude("");
         setLogout();
@@ -55,7 +57,7 @@ export const Header = () => {
     try {
       checkUser();
     } catch (error) {
-      console.log(123);
+
     }
 
     if (process.env.NODE_ENV !== "development") {
