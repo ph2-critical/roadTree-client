@@ -63,16 +63,21 @@ export default function EditProfile(props: ProfileProps) {
 
   const onSubmit = () => {
     setNickname(watch("nickname"));
-    mutate({
-      id: userId,
-      email: email,
-      nickname: watch("nickname"),
-      gender: watch("gender"),
-      age: watch("age", 0),
-      career: watch("career"),
-      stack: watch("stack"),
-    });
-    router.push("/profile");
+    try {
+      mutate({
+        id: userId,
+        email: email,
+        nickname: watch("nickname"),
+        gender: watch("gender"),
+        age: watch("age", 0),
+        career: watch("career"),
+        stack: watch("stack"),
+      });
+      track("finish_sign_up");
+      router.push("/profile");
+    } catch {
+      console.log("error");
+    }
   };
 
   return (
