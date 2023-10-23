@@ -1,5 +1,6 @@
 import { RefObject } from "react";
 import { CloseIcon } from "../Icons";
+import { track } from "@amplitude/analytics-browser";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -28,13 +29,19 @@ export const SignUpModal = (props: SignupModalProps) => {
           <div className="flex gap-4">
             <button
               className="w-1/2 modal-btn text-gray1"
-              onClick={props.onSubmit}
+              onClick={() => {
+                props.onSubmit;
+                track("click_no_extra_info");
+              }}
             >
               바로 이용하기
             </button>
             <button
               className="w-1/2 font-semibold text-white border-0 modal-btn bg-main"
-              onClick={props.toggleModal}
+              onClick={() => {
+                props.toggleModal;
+                track("click_write_extra_info");
+              }}
             >
               정보 입력하기
             </button>

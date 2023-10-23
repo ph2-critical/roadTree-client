@@ -40,14 +40,14 @@ export default function StudyDropMenu(props: {
     "text-gray-200",
   ];
 
-  const { isOpen, modalRef, toggleModal, closeModal, openModal } = useModal();
+  const { isOpen, modalRef, toggleModal } = useModal();
 
   return (
     <div className="relative" ref={modalRef}>
       <div
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className={`${stateTextColor[stateNum]} min-w-[95px] justify-between rounded-md font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-1 px-2 text-center text-sm rounded-md flex items-center relative`}
+        className={`${stateTextColor[stateNum]} min-w-[95px] justify-center items-center rounded-md font-semibold dropdown ${statebgColor[stateNum]} hover:brightness-75 p-2 text-center text-xs sm:text-sm rounded-md flex`}
         onClick={toggleModal}
       >
         {stateName[stateNum]}
@@ -70,9 +70,11 @@ export default function StudyDropMenu(props: {
       {/* <!-- Dropdown menu --> */}
       <div
         id="dropdown"
-        className={`${isOpen ? "" : "hidden"
-          } border border-gray-200 z-50 dropdown absolute ${rightOn ? "left-0" : "right-0"
-          } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow `}
+        className={`${
+          isOpen ? "" : "hidden"
+        } border border-gray-200 z-50 dropdown absolute ${
+          rightOn ? "left-0" : "right-0"
+        } mt-2 bg-white divide-y w-24 divide-gray-100 flex justify-center rounded-sm shadow `}
         onClick={toggleModal}
       >
         <ul

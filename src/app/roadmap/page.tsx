@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col align-middle justify-centent  h-[calc(100vh-72px)] overflow-hidden">
+    <main className="flex flex-col align-middle justify-centent  h-[calc(100vh-72px)]">
       <section className="mt-auto mb-auto bg-white ">
         <div className="max-w-screen-xl px-4 pt-4 mx-auto lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
