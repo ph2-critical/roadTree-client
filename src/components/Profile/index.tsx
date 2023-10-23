@@ -20,7 +20,7 @@ export interface ExtraInfoInterface {
   stack: string;
 }
 
-export interface ProfileProps {
+export interface UserInfo {
   created_at?: string;
   email?: string;
   id?: string;
@@ -33,7 +33,7 @@ export interface ProfileProps {
   path?: string;
 }
 
-export default function EditProfile(props: ProfileProps) {
+export default function EditProfile(props: UserInfo) {
   const { nickname, email, setNickname, userPicture } = useNicknameStore();
   const { userId } = useLoginStore();
   const { mutate } = useMutation(postUserInfo);

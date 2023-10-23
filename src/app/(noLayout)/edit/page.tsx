@@ -1,22 +1,10 @@
 "use client";
 import { getUserInfo } from "@/src/api/signup";
-import EditProfile from "@/src/components/Profile";
+import EditProfile, { UserInfo } from "@/src/components/Profile";
 import { useLoginStore } from "@/src/state/store";
 import { track } from "@amplitude/analytics-browser";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-interface UserInfo {
-  created_at: string;
-  email: string;
-  id: string;
-  nickname: string;
-  gender: string | null;
-  age: number | null;
-  career: string | null;
-  stack: string | null;
-  profile_image: string | null;
-}
 
 export default function Page() {
   const { userId } = useLoginStore();
