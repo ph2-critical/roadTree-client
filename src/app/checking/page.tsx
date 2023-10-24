@@ -28,7 +28,7 @@ export default function Page() {
   getUserInfo(userId).then((res) => {
     if (res) {
       if (res?.length != 0) {
-        router.push("/");
+        router.push("/profile");
       } else {
         router.push("/signup");
       }
@@ -40,7 +40,7 @@ export default function Page() {
       <div role="status" className="m-auto">
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin  fill-doingColor"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin fill-doingColor"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
