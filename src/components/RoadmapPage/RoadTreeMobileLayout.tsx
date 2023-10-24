@@ -32,13 +32,11 @@ export default function RoadTreeMobileLayout(props: {
           <div key={"roadTreeMobileLayout_" + idx} className="px-2 pb-2 ">
             <div
               className={`border-2 border-black w-full rounded-lg  mt-4 p-4 hover:brightness-95 bg-white cursor-pointer
-                                ${
-                                  child.select ? " brightness-90 h-32 " : "h-20"
-                                } flex flex-row items-center
+                                ${child.select ? " brightness-90 h-32 " : "h-20"
+                } flex flex-row items-center
                                 text-base font-bold text-gray-700 pl-8
-                                bg-[${statebgColor[child.state ?? 0]}] ${
-                                  stateBorderColor[child.state ?? 0]
-                                } text-[${stateTextColor[child.state ?? 0]}]}
+                                bg-[${statebgColor[child.state ?? 0]}] ${stateBorderColor[child.state ?? 0]
+                } text-[${stateTextColor[child.state ?? 0]}]}
                                 ${child.state === 3 ? " line-through " : ""}`}
               onClick={() => {
                 if (
@@ -75,9 +73,8 @@ export default function RoadTreeMobileLayout(props: {
                 alt="downArrow"
                 width={50}
                 height={50}
-                className={`rounded-full ml-auto transition-transform ${
-                  child.select || child.children ? "rotate-180" : ""
-                }`}
+                className={`rounded-full ml-auto transition-transform ${child.select || child.children ? "rotate-180" : ""
+                  }`}
               />
             </div>
             {renderChildren(child)}

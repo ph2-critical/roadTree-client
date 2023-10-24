@@ -1,6 +1,4 @@
 import { supabase } from "@/lib/supabase";
-import { NextApiRequest, NextApiResponse } from "next";
-import { useRouter } from "next/navigation";
 import { NextResponse } from "next/server";
 import ogs from "open-graph-scraper";
 import { OgObject } from "open-graph-scraper/dist/lib/types";

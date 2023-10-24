@@ -1,3 +1,4 @@
+import { track } from "@amplitude/analytics-browser";
 import { useEffect, useRef, useState } from "react";
 
 export const useModal = () => {
@@ -26,8 +27,11 @@ export const useModal = () => {
 
   const handleOutsideClick = (e: Event) => {
     const current = modalRef.current;
-    if (isOpen && current && !current.contains(e.target as Node))
+    if (isOpen && current && !current.contains(e.target as Node)) {
+      track("click_modal_outside");
       setIsOpen(false);
+    }
+
   };
 
   return { isOpen, modalRef, toggleModal, closeModal, openModal };

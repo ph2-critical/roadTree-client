@@ -39,6 +39,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "lib/database.types.tsX"
-  ],
+, "src/components/DetailRoadmap/123"  ],
   "exclude": ["node_modules"]
 }

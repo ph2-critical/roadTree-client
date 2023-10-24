@@ -10,7 +10,8 @@ export const getNodeChildren = async (nid: string) => {
   const data = await supabase
     .from("node")
     .select("nid, name, description, depth")
-    .eq("parent_node_nid", nid);
+    .eq("parent_node_nid", nid)
+    .order("id", { ascending: true });
 
   return data.data!;
 };
@@ -29,7 +30,7 @@ export const getReferenceUsingNid = async (nid: string) => {
       .select("rid, title, detail_content, url, grade, category, amount, price, created_at")
       .eq("rid", item.rid);
 
-    const refData: reference = {
+    const refData2: reference = {
       rid: data2.data![0].rid,
       title: data2.data![0].title,
       detail_content: data2.data![0].detail_content ?? "",
@@ -41,14 +42,18 @@ export const getReferenceUsingNid = async (nid: string) => {
       created_at: data2.data![0].created_at,
     };
 
-    return refData;
+    return refData2;
   });
 
   const promiseEnd = await Promise.all(promise!);
   refData = promiseEnd as reference[];
 
   refData.sort((a, b) => {
-    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    if (a.grade === b.grade) {
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    } else {
+      return (a.grade ?? 0) - (b.grade ?? 0);
+    }
   });
 
   return refData!;
