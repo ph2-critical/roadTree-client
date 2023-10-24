@@ -10,7 +10,8 @@ export const getNodeChildren = async (nid: string) => {
   const data = await supabase
     .from("node")
     .select("nid, name, description, depth")
-    .eq("parent_node_nid", nid);
+    .eq("parent_node_nid", nid)
+    .order("id", { ascending: true });
 
   return data.data!;
 };
