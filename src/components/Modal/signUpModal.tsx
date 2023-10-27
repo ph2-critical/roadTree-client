@@ -30,7 +30,7 @@ export const SignUpModal = (props: SignupModalProps) => {
             <button
               className="w-1/2 modal-btn text-gray1"
               onClick={() => {
-                props.onSubmit;
+                props.onSubmit();
                 track("click_no_extra_info");
               }}
             >
@@ -39,7 +39,7 @@ export const SignUpModal = (props: SignupModalProps) => {
             <button
               className="w-1/2 font-semibold text-white border-0 modal-btn bg-main"
               onClick={() => {
-                props.toggleModal;
+                props.toggleModal();
                 track("click_write_extra_info");
               }}
             >
