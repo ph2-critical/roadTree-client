@@ -25,8 +25,6 @@ export const getCommentList = async (props: { rid: string }) => {
         .eq("rid", props.rid)
         .order('created_at', { ascending: false });
 
-    console.log(data)
-
     return data;
 }
 

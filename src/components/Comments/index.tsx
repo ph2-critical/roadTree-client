@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { OptionButton } from "./CommentOptButton";
 
 
-interface CommentListProps {
+export interface CommentListProps {
   id: string
   comment: string;
   created_at: string;
@@ -16,7 +16,7 @@ interface CommentListProps {
     id: string;
     nickname: string;
     profile_image: string | null;
-  }[]
+  };
 }
 
 interface CommentFuncProps {
@@ -32,7 +32,7 @@ export const Comments = (props: CommentFuncProps) => {
 
 
   const initCommentList = async () => {
-    const data: CommentListProps[] = await getCommentList({ rid: rid }) ?? [];
+    const data: CommentListProps[] = await getCommentList({ rid: rid }) as unknown as CommentListProps[];
     setCommentList(data);
   }
 
@@ -108,7 +108,7 @@ export const Comments = (props: CommentFuncProps) => {
             return (<div key={idx}>
               <div className="my-3 text-base bg-white rounded-lg flex items-center gap-3">
                 <Image
-                  src={(e.user.length > 0) ? (e.user[0]?.profile_image ?? "/header/user.svg") : "/header/user.svg"}
+                  src={e.user?.profile_image ?? "/header/user.svg"}
                   alt={"user"}
                   width={512}
                   height={512}
@@ -118,7 +118,7 @@ export const Comments = (props: CommentFuncProps) => {
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
                       <p className="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold ">
-                        {(e.user.length > 0) ? (e.user[0]?.nickname ?? "(알수없음)") : "(알수없음)"}
+                        {e.user?.nickname ?? "(알수없음)"}
                       </p>
                       <p className="text-sm text-gray-600 ">
                         <time dateTime="2022-02-08" title="February 8th, 2022">
@@ -127,7 +127,7 @@ export const Comments = (props: CommentFuncProps) => {
                         </time>
                       </p>
                     </div>
-                    <OptionButton id={e.id} isMyComment={e.user.length > 0 && e.user[0]?.id === uid} initCommentList={initCommentList} userid={uid} />
+                    <OptionButton id={e.id} isMyComment={e.user?.id === uid} initCommentList={initCommentList} userid={uid} />
 
                   </div>
                   <p className="text-gray-500 text-sm break-all mr-10">{e.comment}</p>
