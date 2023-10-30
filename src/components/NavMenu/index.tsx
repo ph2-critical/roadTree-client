@@ -21,7 +21,10 @@ export const NavMenu = (props: {
       <div className="flex flex-row-reverse p-3 text-gray-500">
         <div
           onClick={() => {
-            track("click_user_icon", { isOpening: isOpen, from: props.pathName });
+            track("click_user_icon", {
+              isOpening: isOpen,
+              from: props.pathName,
+            });
             toggleModal();
           }}
           className="cursor-pointer"
@@ -58,10 +61,7 @@ export const NavMenu = (props: {
           <div className="top-auto w-full text-black bg-white border rounded-xl sm:w-40 border-gray6">
             <div className="z-50 text-base list-none bg-white divide-gray-10 rounded-xl ">
               <div className="px-4 py-2" role="none">
-                <p
-                  className="text-sm text-gray-900 truncate "
-                  role="none"
-                >
+                <p className="text-sm text-gray-900 truncate " role="none">
                   {nickname} ({email})
                 </p>
               </div>
@@ -71,7 +71,11 @@ export const NavMenu = (props: {
                     href={"/profile"}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                     role="menuitem"
-                    onClick={() => {track("click_go_profile_page_header_btn", { from: props.pathName });}}
+                    onClick={() => {
+                      track("click_go_profile_page_header_btn", {
+                        from: props.pathName,
+                      });
+                    }}
                   >
                     <div className="flex items-center text-center align-middle gap-x-2">
                       <UserIcon />
@@ -120,7 +124,33 @@ export const NavMenu = (props: {
                       });
                     }}
                   >
-                    데일리학습
+                    데일리학습 내역
+                  </Link>
+                  <Link
+                    href={"/daily/write"}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                    role="menuitem"
+                    onClick={() => {
+                      track("click_go_daily_write_page_header_btn", {
+                        from: props.pathName,
+                        isOpen: true,
+                      });
+                    }}
+                  >
+                    학습 기록
+                  </Link>
+                  <Link
+                    href={"/daily/write"}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                    role="menuitem"
+                    onClick={() => {
+                      track("click_go_daily_page_ranking_header_btn", {
+                        from: props.pathName,
+                        isOpen: true,
+                      });
+                    }}
+                  >
+                    학습 랭킹
                   </Link>
                 </li>
 
