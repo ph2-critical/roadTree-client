@@ -15,19 +15,24 @@ interface ogData {
 }
 
 
-export function UrlCard(props: { rid: string, url: string }) {
+export function UrlCard(props: { default_title: string, rid: string, url: string }) {
 
-    const { rid, url } = props;
+    const { default_title, rid, url } = props;
 
     const [ogInfo, setOgInfo] = useState<ogData | null>(null);
 
     useEffect(() => {
         try {
+            const timeout = setTimeout(() => {
+                setOgInfo({ ogData: { ogTitle: default_title, ogDescription: "", ogImage: [{ url: "/detailRef/default-image.jpg" }] } });
+            }, 2000)
+
             fetch("/api/getog/" + props.rid).then((res) => res.json()).then((data) => {
+                clearTimeout(timeout);
                 if (data.ogData === undefined) {
                     data.ogData = {
-                        ogTitle: "제목 없음",
-                        ogDescription: "설명 없음",
+                        ogTitle: default_title ?? "제목 없음",
+                        ogDescription: "",
                         ogImage: [{ url: "/detailRef/default-image.jpg" }]
                     }
                 }
@@ -48,8 +53,11 @@ export function UrlCard(props: { rid: string, url: string }) {
                         src={ogInfo?.ogData?.ogImage[0]?.url ?? "/detailRef/default-image.jpg"}
                         alt={url ? (ogInfo?.ogData?.ogTitle ?? "제목 없음") : "잘못된 url"}
                         className="w-64 h-36 object-center object-cover"
+                        onError={(e) => {
+                            e.currentTarget.src = "/detailRef/default-image.jpg";
+                        }}
                     />
-                    <div className="px-4 pt-2 text-sm font-medium break-all w-64">{ogInfo?.ogData?.ogTitle ?? "제목 없음"}</div>
+                    <div className="px-4 pt-2 text-sm font-medium break-all w-64">{ogInfo?.ogData?.ogTitle ?? default_title}</div>
                     <div className="px-4 font-normal text-sm text-gray-500 break-all w-64 line-clamp-3 hover:line-clamp-none">{ogInfo?.ogData?.ogDescription}</div>
                     <div className="px-4 font-light text-xs text-gray-300 break-all w-64">{url}</div>
                 </div>

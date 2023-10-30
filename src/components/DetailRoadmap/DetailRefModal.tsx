@@ -55,7 +55,7 @@ export default function DetailRefModal(props: DetailRefModalProps) {
                 <RefInfoView refdata={refData} className="text-sm font-light text-gray4" />
                 <div className="text-base font-normal text-contentGray my-11 flex items-center justify-center">
                     {/* {refData.detail_content !== '' ? refData.detail_content : '임시 텍스트'} */}
-                    <UrlCard rid={refData.rid} url={refData.url} />
+                    <UrlCard default_title={refData.title} rid={refData.rid} url={refData.url} />
                 </div>
                 <div className="flex m-auto">
                     <ReactionBut rid={refData.rid} userId={userId} />
