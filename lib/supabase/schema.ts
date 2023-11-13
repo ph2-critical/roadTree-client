@@ -436,6 +436,9 @@ export interface Database {
           title: string;
           detail_content: string | null;
           url: string;
+          og_title: string | null;
+          og_description: string | null;
+          og_image: string | null;
         };
         Insert: {
           amount?: string | null;
@@ -446,7 +449,10 @@ export interface Database {
           price?: number | null;
           rid?: string;
           title: string;
-          url: string;
+          url?: string;
+          og_title?: string | null;
+          og_description?: string | null;
+          og_image?: string | null;
         };
         Update: {
           amount?: string | null;
@@ -458,6 +464,9 @@ export interface Database {
           rid?: string;
           title?: string;
           url?: string;
+          og_title?: string | null;
+          og_description?: string | null;
+          og_image?: string | null;
         };
         Relationships: [];
       };
