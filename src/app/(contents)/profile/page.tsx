@@ -10,7 +10,6 @@ export default function Profile() {
   useEffect(() => {
     track("enter_profile_page");
   }, []);
-  console.log(nickname);
   return (
     nickname !== "" && (
       <div className="px-6">
