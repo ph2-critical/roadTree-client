@@ -23,7 +23,6 @@ export const Logo = (props: Props) => {
         alt={"logo"}
         width={64}
         height={64}
-        style={{ width: 64, height: 64 }}
         priority
         className="flex sm:hidden"
       />

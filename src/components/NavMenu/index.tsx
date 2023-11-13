@@ -32,11 +32,9 @@ export const NavMenu = (props: {
           {/* md 보다 작을 경우 햄버거 메뉴 아이콘*/}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            height="100%"
-            className="flex w-8 h-8 text-gray-500 md:hidden"
+            className="w-8 h-8 text-gray-500 md:hidden"
             version="1.1"
             viewBox="0 0 24 24"
-            width="100%"
             fill="currentColor"
           >
             <g id="Icon">
