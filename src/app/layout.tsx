@@ -1,5 +1,4 @@
 import Providers from "../Provider";
-import { Header } from "../components/Header";
 import "./globals.css";
 
 export const metadata = {
@@ -24,7 +23,10 @@ export default function RootLayout({
         />
         <meta property="og:image" content="/logo.png" />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11323385873"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11323385873"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -53,11 +55,13 @@ export default function RootLayout({
           }}
         />
         <noscript>
-          <img height="1" width="1" style={{ display: "none" }}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=676172684563621&ev=PageView&noscript=1"
           />
         </noscript>
-
       </head>
 
       <body

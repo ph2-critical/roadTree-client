@@ -61,8 +61,7 @@ export default function EditProfile(props: UserInfo) {
     if (props.path === "/signup") openModal();
   }, []);
 
-  const onSubmit = () => {
-    setNickname(watch("nickname"));
+  const onSubmit = async () => {
     try {
       mutate({
         id: userId,
@@ -73,7 +72,9 @@ export default function EditProfile(props: UserInfo) {
         career: watch("career"),
         stack: watch("stack"),
       });
+      setNickname(watch("nickname"));
       track("finish_sign_up");
+
       router.push("/profile");
     } catch {
       console.log("error");

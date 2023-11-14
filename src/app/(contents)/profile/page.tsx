@@ -6,10 +6,10 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Profile() {
+  const { nickname } = useNicknameStore();
   useEffect(() => {
     track("enter_profile_page");
   }, []);
-  const { nickname } = useNicknameStore();
   return (
     nickname !== "" && (
       <div className="px-6">

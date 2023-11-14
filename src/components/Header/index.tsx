@@ -17,6 +17,7 @@ import { NavMenu } from "../NavMenu";
 import { initKakao } from "@/lib/kakao/kakao";
 import { Search } from "../Search/Search";
 import { updateUserPicture } from "@/src/api/tmp/updateUserPicture";
+import { getUserNickname } from "@/src/api/userApi";
 
 export const Header = () => {
   const { setNickname, setEmail, setUserPicture, userPicture } =
@@ -41,12 +42,17 @@ export const Header = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
+        getUserNickname(user.id).then((res) => {
+          setNickname(res?.nickname || " ");
+        });
         initAmplitude(user.id);
         setLogin(user.id);
-        setNickname(user?.user_metadata.full_name);
         setEmail(user?.user_metadata.email);
         setUserPicture(user?.user_metadata.avatar_url);
-        updateUserPicture({ id: user.id, picture: user?.user_metadata.avatar_url });
+        updateUserPicture({
+          id: user.id,
+          picture: user?.user_metadata.avatar_url,
+        });
       } else {
         initAmplitude("");
         setLogout();
@@ -56,9 +62,7 @@ export const Header = () => {
     };
     try {
       checkUser();
-    } catch (error) {
-
-    }
+    } catch (error) {}
 
     if (process.env.NODE_ENV !== "development") {
       hotjar.initialize(
