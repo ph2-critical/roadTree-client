@@ -1,10 +1,11 @@
 
+import { getOgData } from "@/src/api/detailRefPage/getDetailRefInfo";
 import { ClassNames } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface ogData {
+export interface ogData {
     ogData: {
         ogTitle?: string;
         ogImage: {
@@ -27,20 +28,41 @@ export function UrlCard(props: { default_title: string, rid: string, url: string
                 setOgInfo({ ogData: { ogTitle: default_title, ogDescription: "", ogImage: [{ url: "/detailRef/default-image.jpg" }] } });
             }, 2000)
 
-            fetch("/api/getog/" + props.rid).then((res) => res.json()).then((data) => {
-                clearTimeout(timeout);
-                if (data.ogData === undefined) {
-                    data.ogData = {
-                        ogTitle: default_title ?? "제목 없음",
-                        ogDescription: "",
-                        ogImage: [{ url: "/detailRef/default-image.jpg" }]
+            const supaOgData = getOgData({ rid: props.rid }).then((data) => {
+                if (data === null) {
+                    fetch("/api/getog/" + props.rid).then((res) => res.json()).then((data) => {
+                        clearTimeout(timeout);
+                        if (data.ogData === undefined) {
+                            data.ogData = {
+                                ogTitle: default_title ?? "제목 없음",
+                                ogDescription: "",
+                                ogImage: [{ url: "/detailRef/default-image.jpg" }]
+                            }
+                        }
+                        else if (data.ogData.ogImage === undefined) {
+                            data.ogData.ogImage = [{ url: "/detailRef/default-image.jpg" }];
+                        }
+                        setOgInfo(data);
+                    });
+                } else {
+                    clearTimeout(timeout);
+                    if (data.ogData === undefined) {
+                        data.ogData = {
+                            ogTitle: default_title ?? "제목 없음",
+                            ogDescription: "",
+                            ogImage: [{ url: "/detailRef/default-image.jpg" }]
+                        }
                     }
+                    else if (data.ogData.ogImage === undefined) {
+                        data.ogData.ogImage = [{ url: "/detailRef/default-image.jpg" }];
+                    }
+                    setOgInfo(data);
+                    console.log(12321312);
+
                 }
-                else if (data.ogData.ogImage === undefined) {
-                    data.ogData.ogImage = [{ url: "/detailRef/default-image.jpg" }];
-                }
-                setOgInfo(data);
             });
+
+
         } catch (error) {
 
         }
