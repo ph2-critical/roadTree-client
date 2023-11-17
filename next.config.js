@@ -6,7 +6,7 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     protocol: "https",
-    domains: ["lh3.googleusercontent.com", "k.kakaocdn.net"],
+    domains: ["lh3.googleusercontent.com", "k.kakaocdn.net, github.com"],
   },
   eslint: {
     ignoreDuringBuilds: true,
