@@ -112,6 +112,9 @@ export const Comments = (props: CommentFuncProps) => {
                   alt={"user"}
                   width={512}
                   height={512}
+                  onError={(e) => {
+                    set(e.target, "src", "/header/user.svg");
+                  }}
                   className="hidden rounded-full select-none w-9 h-9 md:flex"
                 />
                 <div className="w-full">
