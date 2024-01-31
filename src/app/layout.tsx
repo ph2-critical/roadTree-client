@@ -16,7 +16,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <meta property="og:title" content="roadtree" />
-        <meta property="og:url" content="https://nobase.site" />
+        <meta property="og:url" content="https://roadtree.site" />
         <meta
           property="og:description"
           content="당신의 공부 러닝 메이트, 이제 RoadTree 와 함께"
