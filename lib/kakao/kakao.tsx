@@ -29,8 +29,8 @@ const sendKakao = (submission: getSubmissionUserProps) => {
       text: message,
       link: {
         // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-        mobileWebUrl: "https://nobase.site",
-        webUrl: "https://nobase.site",
+        mobileWebUrl: "https://roadtree.site",
+        webUrl: "https://roadtree.site",
       },
       buttonTitle: "기록하러가기",
     });
